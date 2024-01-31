@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Script version="1.0" type="xscript5.1"><![CDATA[/**
+  * @file AniUtils
+  * @desc Animation용 라이브러리
+  * @Author  Hiromoto Tateishi
+  * @version 1.0.0
+*/
+
+/**	
+* @desc 애니메이션 초기화
+* @param name {String} - 명칭
+* @param type {String} - 애니메이션 효과
+* @param duration {Number} - 효과 시간
+* @param callback {String} - 콜백 함수
+* @return {Object} - 생성된 객체
+*/
+this.initAniobj = function (name,type,duration,callback)
+{
+    var aniObj = this.all["Ani_"+ name];
+	if(!aniObj){
+		aniObj= new nexacro.Animation("Ani_"+ name, this);
+		this.addChild("Ani_"+ name, aniObj);
+	}
+	aniObj.stop();
+    aniObj.set_loop(false);
+	aniObj.set_duration(duration);
+    aniObj.set_delay(0);
+    aniObj.set_easing(type);
+    aniObj.set_direction("normal");
+	aniObj.setEventHandler( "oncomplete", this.oncomplete_aniitem, this);
+	if(callback)
+		aniObj.setEventHandler( "oncomplete", callback, this);
+	
+	return aniObj;
+};
+
+/**	
+* @desc 콜백 함수
+* @return none
+*/
+this.oncomplete_aniitem =function(obj:nexacro.Animation,e:nexacro.AnimationEventInfo)
+{
+	if(obj.items.length > 0)
+		obj.removeTarget(obj.items[0].id);
+};
+/**	
+* @desc 애니메이션 객체 가져오기
+* @param name {String} - 명칭
+* @return {Object} - 오브젝트
+*/
+this.getAniObj = function (name)
+{
+	return this.objects["Ani_"+name];
+};
+/**	
+* @desc 애니메이션 취소
+* @param name {String} - 애니메이션 명칭
+* @param comp {Object} - 컴포넌트
+* @return none
+*/
+this.cancelAniItem = function (name ,comp)
+{
+	var aniObj = this.getAniObj(name);
+	aniObj.stop();
+	aniObj.removeTarget(comp.id);
+};
+/**	
+* @desc 애니메이션 추가
+* @param name {String} - 애니메이션 명칭
+* @param comp {Object} - 컴포넌트
+* @param str {String} - 애니메이션 내용
+* @return none
+*/
+this.addAniItem = function(name,comp,str)
+{
+	var aniObj = this.getAniObj(name);
+	if(aniObj.items[comp.id])
+		aniObj.removeTarget(comp.id);
+	aniObj.addTarget(comp.id, comp , str);
+	return aniObj;
+}
+/**	
+* @desc  애니메이션 재생(추가,재생)
+* @param name {String} - 애니메이션 명칭
+* @param comp {Object} - 컴포넌트
+* @param str {String} - 애니메이션 내용
+* @return none
+*/
+this.playAniItem = function(name,comp,str)
+{	
+	var aniObj = this.addAniItem(name,comp,str);
+	this.playAniObj(aniObj);
+};
+/**	
+* @desc  애니메이션 재생(객체)
+* @param aniObj {Object} - 애니메이션 오브젝트
+* @return none
+*/
+this.playAniObj = function(aniObj)
+{
+	aniObj.play();
+};]]></Script>

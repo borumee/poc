@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="poc01" width="1050" height="720" titletext="New Form">
+    <Layouts>
+      <Layout height="720" width="1050">
+        <Static id="sta04_00" taborder="0" top="0" width="30" cssclass="sta_WF_GSize" visible="false" text="W30" right="0" bottom="0"/>
+        <Static id="Static00" taborder="1" text="대메뉴 타이틀" left="20" top="30" width="190" height="30" cssclass="sta_WF_Title1st"/>
+        <Div id="Div00" taborder="2" left="20" top="74" height="80" right="30" cssclass="div_WF_SearchBox">
+          <Layouts>
+            <Layout>
+              <Button id="Button00" taborder="0" text="조회" top="21" width="70" height="36" cssclass="btn_WF_search" right="30"/>
+            </Layout>
+            <Layout name="Layout0"/>
+          </Layouts>
+        </Div>
+        <Static id="Static00_00" taborder="3" text="중메뉴 타이틀" left="20" top="175" width="190" height="30" cssclass="sta_WF_Title2nd"/>
+        <Static id="Static00_01" taborder="4" text="소메뉴 타이틀" left="20" top="215" width="190" height="30" cssclass="sta_WF_Title3rd"/>
+        <Button id="Button00" taborder="5" text="버튼" left="20" top="265" width="80" height="36" cssclass="btn_WF_CRUD01"/>
+        <Button id="Button01" taborder="6" text="버튼" left="103" top="265" width="80" height="36" cssclass="btn_WF_CRUD02"/>
+        <Button id="Button02" taborder="7" text="버튼" top="312" width="80" height="36" cssclass="btn_WF_GridControl" right="30"/>
+        <Grid id="Grid00" taborder="8" left="20" top="353" height="100" right="30" autofittype="col" binddataset="ds_gridSample">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="34" band="head"/>
+                <Row size="34"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="Column0"/>
+                <Cell col="1" text="순번"/>
+                <Cell col="2" text="타이틀1"/>
+                <Cell col="3" text="타이틀2"/>
+                <Cell col="4" text="타이틀3"/>
+                <Cell col="5" text="타이틀4"/>
+                <Cell col="6" text="타이틀5"/>
+                <Cell col="7" text="타이틀6"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Column0"/>
+                <Cell col="1" text="bind:순번"/>
+                <Cell col="2" text="bind:타이틀1"/>
+                <Cell col="3" text="bind:타이틀2"/>
+                <Cell col="4" text="bind:타이틀3"/>
+                <Cell col="5" text="bind:타이틀4"/>
+                <Cell col="6" text="bind:타이틀5"/>
+                <Cell col="7" text="bind:타이틀6"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="Button00_00" taborder="9" left="46.48%" top="Div00:-1" width="63" height="22" cssclass="btn_WF_BoxUp"/>
+        <Button id="Button01_00" taborder="10" text="버튼" left="186" top="265" width="80" height="36" cssclass="btn_WF_CRUD03"/>
+        <Static id="Static01" taborder="11" left="183" top="259" width="3" height="49" cssclass="sta_WF_GSize" visible="false"/>
+        <Static id="Static02" taborder="12" text="3px" left="175" top="307" width="21" height="15" visible="false" color="red"/>
+        <Button id="Button03" taborder="13" left="682" top="318" width="46" height="25" cssclass="btn_WF_ToggleOff"/>
+        <Button id="Button03_00" taborder="14" left="731" top="318" width="46" height="25" cssclass="btn_WF_ToggleOn"/>
+        <Button id="Button04" taborder="15" left="814" top="318" width="46" height="25" cssclass="btn_WF_ToggleGrid"/>
+        <Button id="Button04_00" taborder="16" left="864" top="318" width="46" height="25" cssclass="btn_WF_ToggleSummary"/>
+      </Layout>
+      <Layout height="720" mobileorientation="Landscape" name="Layout0" type="default" width="700"/>
+    </Layouts>
+  </Form>
+</FDL>

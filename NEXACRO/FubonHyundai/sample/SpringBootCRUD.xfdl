@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SpringBootCRUD" width="1280" height="720" titletext="New Form" onload="SpringBootCRUD_onload">
+    <Layouts>
+      <Layout height="720" width="1280">
+        <Grid id="grd00" taborder="0" left="10" top="50" right="10" bottom="4" binddataset="dsList" uFunction="sort,colfix,rowfix,filter,find,colhide,scroll,select,cellcopypaste,initial" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="20"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="id"/>
+                <Cell col="1" text="commissionPct"/>
+                <Cell col="2" text="email"/>
+                <Cell col="3" text="firstName"/>
+                <Cell col="4" text="hireDate"/>
+                <Cell col="5" text="lastName"/>
+                <Cell col="6" text="phoneNumber"/>
+                <Cell col="7" text="salary"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:id"/>
+                <Cell col="1" text="bind:commissionPct" edittype="text"/>
+                <Cell col="2" text="bind:email" edittype="text"/>
+                <Cell col="3" text="bind:firstName" edittype="text"/>
+                <Cell col="4" text="bind:hireDate" displaytype="calendarcontrol" edittype="date"/>
+                <Cell col="5" text="bind:lastName" edittype="text"/>
+                <Cell col="6" text="bind:phoneNumber" edittype="text"/>
+                <Cell col="7" text="bind:salary" edittype="text"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="sta00" taborder="1" left="20" top="5" width="650" height="40" text="서버/네트워크시간 &lt;fc v='red'&gt;0&lt;/fc&gt; 초, 렌더링시간 &lt;fc v='red'&gt;0&lt;/fc&gt; 초, 조회건수 &lt;fc v='red'&gt;0&lt;/fc&gt; 건" usedecorate="true"/>
+        <Button id="btn_save" taborder="5" text="저장" top="5" height="40" width="120" right="10" onclick="fnSave"/>
+        <Button id="btn_del" taborder="4" text="삭제" top="5" width="120" height="40" right="btn_save:5" onclick="fnDel"/>
+        <Button id="btn_add" taborder="3" text="추가" top="5" width="120" height="40" right="btn_del:5" onclick="fnAdd"/>
+        <Button id="btn_search" taborder="2" text="조회" top="5" width="120" height="40" right="btn_add:5" onclick="fnSearch"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  DevPACK
+*  @FileName 	SpringBootCRUD.xfdl
+*  @Creator 	TOBESOFT
+*  @CreateDate 	2023/01/31
+*  @Desction   
+************** 소스 수정 이력 ***********************************************
+* Date					Modifier					Description
+*******************************************************************************
+* 2023/01/31			TOBESOFT					최초생성
+*******************************************************************************
+*/
+
+/*******************************************************************************************************************************
+ * FORM 변수 선언 영역
+*******************************************************************************************************************************/
+
+/*******************************************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose..)
+*******************************************************************************************************************************/
+this.SpringBootCRUD_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{	
+};
+
+//조회
+this.fnSearch = function ()
+{
+	trace('cfnSearch')
+	//TODO..
+	this.sta00.set_text("서버/네트워크시간 <fc v='red'>0</fc> 초, 렌더링시간 <fc v='red'>0</fc> 초, 조회건수 <fc v='red'>0</fc> 건");
+	
+	//TODO..
+	this.starttime = new Date();
+	var sId = "SEARCH";
+	var sUrl = "svcUrl::selectSampleList.do";
+	var sInDs = "";
+	var sOutDs = "dsList=output";
+	var sParam = "";
+	var sCallback = "fn_Callback";
+	this.transaction(sId, sUrl, sInDs, sOutDs, sParam, sCallback);
+};
+
+//저장
+this.fnSave = function ()
+{		
+	// 1. valid	
+	this.gfnClearValidation(this.dsList);
+	this.gfnSetValidation(this.dsList, "firstName", "사용자명(first name)", "required");
+	this.gfnSetValidation(this.dsList, "lastName" , "사용자명(last name)" , "required");
+	if (this.gfnValidation(this.dsList, "U") == false) return;
+	
+	// 2. transaction
+	var sId = "SAVE";
+	var sUrl = "svcUrl::saveSampleList.do";
+	var sInDs = "input=dsList:U";
+	var sOutDs = "";
+	var sParam = "";
+	var sCallback = "fn_Callback";
+	this.transaction(sId, sUrl, sInDs, sOutDs, sParam, sCallback);
+};
+
+//추가
+this.fnAdd = function ()
+{
+	var nRow = this.dsList.addRow();
+	this.dsList.set_rowposition(nRow);
+};
+
+//삭제
+this.fnDel = function ()
+{
+	this.dsList.deleteRow(this.dsList.rowposition);
+};
+/*******************************************************************************************************************************
+ * Transaction 서비스호출 처리 영역
+*******************************************************************************************************************************/
+
+/*******************************************************************************************************************************
+ * Callback 영역 (Transaction, popup, message..)
+*******************************************************************************************************************************/
+this.fn_Callback = function(sId, nErrorCd, sErrorMsg, elapsedTime)
+{
+	// on error
+	if(nErrorCd < 0) {
+		alert("["+nErrorCd+"]"+sErrorMsg);
+	}
+	else {	
+		switch(sId) {
+			case "SEARCH":				
+				this.endtime = new Date();
+				var totaltime = nexacro.round((this.endtime - this.starttime) / 1000, 3),
+					nRowCount = this.dsList.rowcount;
+				
+				this.sta00.set_text("서버/네트워크시간 <fc v='red'>" + elapsedTime + "</fc> 초, 렌더링시간 <fc v='red'>" + nexacro.round(totaltime - elapsedTime, 3) + "</fc> 초, 조회건수 <fc v='red'>" + this.dsList.rowcount + "</fc> 건")
+				
+				console.log(this.dsList.saveXML())
+				break;
+				
+			case "SAVE":
+				alert("save success!!");
+				this.cfnSearch();
+				break;
+				
+			default:
+		}	
+	}
+}
+
+/*******************************************************************************************************************************
+ * 사용자 Function 영역
+*******************************************************************************************************************************/
+
+/*******************************************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+*******************************************************************************************************************************/
+]]></Script>
+    <Objects>
+      <Dataset id="dsList">
+        <ColumnInfo>
+          <Column id="commissionPct" type="int" size="4"/>
+          <Column id="email" type="string" size="32"/>
+          <Column id="firstName" type="string" size="32"/>
+          <Column id="hireDate" type="DATE" size="256"/>
+          <Column id="id" type="int" size="4"/>
+          <Column id="lastName" type="string" size="32"/>
+          <Column id="phoneNumber" type="string" size="32"/>
+          <Column id="salary" type="int" size="4"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

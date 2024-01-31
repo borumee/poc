@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Frame_right" width="80" height="600" titletext="New Form">
+    <Layouts>
+      <Layout height="600" mobileorientation="landscape" width="80">
+        <Div id="Div00" taborder="0" left="0" top="0" height="600" right="0" cssclass="div_RF_iconBg">
+          <Layouts>
+            <Layout>
+              <Button id="Button00" taborder="0" left="5" top="5" width="70" height="70" cssclass="btn_RF_icon01"/>
+              <Button id="Button00_00" taborder="1" left="5" top="75" width="70" height="70" cssclass="btn_RF_icon02"/>
+              <Button id="Button00_01" taborder="2" left="5" top="145" width="70" height="70" cssclass="btn_RF_icon03"/>
+              <Button id="Button00_02" taborder="3" left="5" top="215" width="70" height="70" cssclass="btn_RF_icon04"/>
+              <Button id="Button00_03" taborder="4" left="5" top="285" width="70" height="70" cssclass="btn_RF_icon05"/>
+              <Button id="Button00_00_00" taborder="5" left="5" top="355" width="70" height="70" cssclass="btn_RF_icon06"/>
+              <Button id="Button00_01_00" taborder="6" left="5" top="425" width="70" height="70" cssclass="btn_RF_icon07"/>
+              <Button id="Button00_02_00" taborder="7" left="5" top="495" width="70" height="70" cssclass="btn_RF_icon08"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+  </Form>
+</FDL>

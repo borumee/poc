@@ -1,0 +1,1 @@
+(function(){return function(_a){var _b;this.registerScript(_a,function(){this.sysf_alertAtSub=function(_c,_d,_e,_f,_g){this.sysf_alert(_c,_d,_e,_f,_g);};});this.loadIncludeScript(_a);_b=null;};})();

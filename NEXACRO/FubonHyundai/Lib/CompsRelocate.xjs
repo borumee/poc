@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Script version="1.0" type="xscript5.1"><![CDATA[/**
+  * @file CompsRelocate
+  * @desc 컴포넌트 정렬용 라이브러리
+  * @Author  Hiromoto Tateishi
+  * @version 1.0.0
+*/
+
+/**	
+* @desc 정렬 타깃 컨테이너
+*/
+this.relocateTarget;
+
+/**	
+* @desc 타깃 컨테이너 내 컴포넌트 정렬
+* @param target {Object} - container
+* @param scomp {Array} - 기준 Size
+* @param tpsp {String} - 최상부 여백
+* @param wssp {String} - 좌우 여백
+* @param cssp {String} - 컴포넌트간여백
+* @param ctsp {String} - 열간 여백
+* @param opt {String} - 옵션(slideR, slideL, slideUP, None)
+* @return none
+*/
+this.reloceteComponent = function (target,scomp,tpsp,wssp,cssp,ctsp,opt)
+{
+	var tp_space = 30;
+	var ws_space = 30;
+	var cs_space = 30;
+	var ct_space = 30;
+	if(tpsp>=0)
+		tp_space = tpsp;
+	if(wssp>=0)
+		ws_space = wssp;
+	if(cssp>=0)
+		cs_space = cssp;
+	if(ctsp>=0)
+		ct_space = ctsp;
+
+	var frm_width = target.getOffsetWidth();
+	var frm_obj = target;
+	if(target instanceof Div)
+		frm_obj = target.form;
+
+	this.relocateTarget = frm_obj;
+
+	var std_comp = frm_obj.components[0];
+	var std_width,std_height;
+	if(scomp){
+		std_width = scomp[0];
+		std_height = scomp[1];
+	}else{
+		std_width = std_comp.getOffsetWidth();
+		std_height = std_comp.getOffsetHeight();
+	}
+
+	var oneline_count = Math.floor((frm_width - ws_space * 2) / (std_width + cs_space));
+	var ws_space = Math.floor((frm_width - ((std_width + cs_space) * oneline_count) + cs_space) / 2);
+	if(oneline_count == 0)	return;
+
+	var comps = new Array;
+	var lcont;
+	for(var i=0,lcont=0;i<frm_obj.components.length;i++){
+		var comp = frm_obj.components[i];
+		if(comp.visible){
+			comps[lcont] = comp.id;
+			lcont++;
+		}
+	}
+
+	var left=ws_space,top=tp_space;
+	for(var i=0,lc=1; i<comps.length; i++){
+		var comp = frm_obj.components[comps[i]];
+		if(opt == "slideR" || opt == "slideL")
+			comp.setOffsetTop(top);
+		if(opt == "slideUP"){
+			comp.move(left,top+30,std_width,std_height);
+		}
+		if(opt == "None"){
+			comp.move(left,top,std_width,std_height);
+		}else{
+			this.setRelocateAniItem(comp,left,top,std_width,std_height,opt);
+		}
+		if(lc == oneline_count){
+			left = ws_space;
+			top += std_height + ct_space;
+			lc = 1;
+		}else{
+			left += std_width + cs_space;
+			lc++;
+		}
+	}
+	if(opt != "None"){
+		this.playAniObj(this.getAniObj("relocateCompAniobj"));
+	}
+};
+/**	
+* @desc 타깃 컨테이너 내의 컴포넌트를 세로로 늘어놓다
+* @param target {Object} - container
+* @param tpsp {String} - 최상부 여백
+* @param ctsp {String} - 열간 여백
+* @param opt {String} - 옵션
+* @return none
+*/
+this.stackComponent = function (target,tpsp,ctsp,opt,ex)
+{
+	var tp_space = 30;
+	var ct_space = 30;
+	if(tpsp>=0)
+		tp_space = tpsp;
+	if(ctsp>=0)
+		ct_space = ctsp;
+
+	var frm_obj = target;
+	if(target instanceof Div)
+		frm_obj = target.form;
+
+	this.relocateTarget = frm_obj;
+	var std_comp = frm_obj.components[0];
+	var comps = new Array;
+	var lcont;
+	for(var i=0,lcont=0;i<frm_obj.components.length;i++){
+		var comp = frm_obj.components[i];
+		if(comp.visible && comp.id != ex){
+			comps[lcont] = comp.id;
+			lcont++;
+		}
+	}
+
+	var top=tp_space;
+	for(var i=0; i<comps.length; i++){
+		var comp = frm_obj.components[comps[i]];
+		if(opt == "None"){
+			comp.move(comp.getOffsetLeft(),top,comp.getOffsetWidth(),comp.getOffsetHeight());
+		}else{
+			this.setRelocateAniItem(comp,comp.getOffsetLeft(),top,comp.getOffsetWidth(),comp.getOffsetHeight(),"None");
+		}
+		top += comp.getOffsetHeight() + ct_space;
+	}
+	if(opt != "None"){
+		this.playAniObj(this.getAniObj("relocateCompAniobj"));
+	}
+};
+/**	
+* @desc 정렬용 애니메이션 개체 만들기
+* @param time {Number} - 정렬 시간
+* @return none
+*/
+this.initRelocateAniobj = function (time)
+{
+	var at = 300;
+	if(time)
+		at = time;
+		
+	var aniObj = this.initAniobj("relocateCompAniobj","easeoutsine",at,this.oncomplete_relocateAni);
+    aniObj.set_delay(100);
+};
+/**	
+* @desc 컴포넌트 개개의 애니메이션 설정
+* @param comp {Object} - 컴포넌트
+* @param x {Number} - left
+* @param y {Number} - top
+* @param w {Number} - width
+* @param h {Number} - height
+* @param opt {Number} - 옵션(slideR, slideL, slideUP, None)
+* @return none
+*/
+this.setRelocateAniItem = function(comp,x,y,w,h,opt)
+{
+	var str;
+	switch(opt) {
+	case "slideR":
+		str = "left:["+this.getOffsetWidth()+","+x+"], top:"+y+", width:"+w+" , height:"+h;
+		break;
+	case "slideL":
+		str = "left:["+(-w)+","+x+"], top:"+y+", width:"+w+" , height:"+h;
+		break;
+	default:
+		str = "left:"+x+", top:"+y+", width:"+w+" , height:"+h;
+	}
+	this.addAniItem("relocateCompAniobj",comp,str);
+}
+/**	
+* @desc 애니메이션 완료 후 처리
+* @param none
+* @return none
+*/
+this.oncomplete_relocateAni = function (obj:nexacro.Animation,e:nexacro.AnimationEventInfo)
+{
+	this.relocateTarget.resetScroll();
+};
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+/**	
+* @desc 컴포넌트를 좌우 중앙에 표시
+* @param obj {Object} - 대상 컴포넌트
+* @param parent {Object} - 대상 컨테이너
+* @return none
+*/
+this.setCenterComponent = function (obj,parent)
+{
+	var pw = parent.getOffsetWidth();
+	var cw = obj.getOffsetWidth();
+	if(cw < pw){
+		var mgn = Math.round((pw - cw) / 2);
+		if(this.hscrollbar)
+			obj.setOffsetLeft(mgn + this.hscrollbar.pos);
+		else
+			obj.setOffsetLeft(mgn);
+	}
+};
+/**	
+* @desc 컴포넌트를 상하 중앙에 표시
+* @param obj {Object} - 대상 컴포넌트
+* @param parent {Object} - 대상 컨테이너
+* @return none
+*/
+this.setMiddleComponent = function (obj,parent)
+{
+	var pw = parent.getOffsetHeight();
+	var cw = obj.getOffsetHeight();
+	
+	if(cw < pw){
+		var mgn = Math.round((pw - cw) / 2);
+		if(this.vscrollbar)
+			obj.setOffsetTop(mgn + this.vscrollbar.pos);
+		else
+			obj.setOffsetTop(mgn);
+	}
+};
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+/**	
+* @desc 컨테이너 내 최하부 bottom 획득
+* @param target {Object} - 대상 컨테이너
+* @return {Number} - bottom
+*/
+this.getContainerBottom = function (target)
+{
+	var bottom = 0;
+	for(var i=0;i<target.components.length;i++){
+		var comp = target.components[i];
+		var bv = comp.getOffsetBottom();
+		if(bottom < bv){
+			bottom = bv;
+		}
+	}
+	return bottom;
+};]]></Script>

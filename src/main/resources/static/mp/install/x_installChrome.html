@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <title>신규 Launcher 동작 샘플</title> 
+  <style>
+  div.container {
+    position: relative;
+    align-content: center;
+    text-align: center;
+    display: block;
+    color: #555;
+    top:50px;
+  }
+  div.errorDiv {
+    position: relative;
+    align-content: center;
+    text-align: center;
+    display: block;
+  }
+  div.debugDiv {
+    position: relative;
+    align-content: center;
+    display: block;
+	width:700px;
+	padding: 20px;
+	margin: 10px;    
+  }
+
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #f0ad4e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 24px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.txt {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  border: none;
+  color: #555;
+  text-align: center;
+  font-size: 24px;
+  padding: 20px;
+  width: 400px;
+  transition: all 0.5s;
+  margin: 10px;
+}
+.disabled {
+  opacity: 1;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #ccc;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 24px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: default;
+  margin: 5px;
+  pointer-events: none;
+  text-decoration: none;
+}
+.info {
+  display: inline-block;
+  color: #fff;
+  text-align: left;
+  font-size: 24px;
+  background-color: #2196F3;
+  width:700px;
+  padding: 20px;
+  margin: 10px;
+}
+.warnnig {
+  display: inline-block;
+  color: #fff;
+  text-align: left;
+  font-size: 24px;
+  background-color: #d9534f;
+  padding: 20px;
+  margin: 5px;
+}
+
+  </style>
+  <script type="text/javascript" src="./newlauncher_new.js" charset="UTF-8"></script>
+</head>
+<body>
+<div id="container" class="container">
+<div id="contents">
+  <div id="divtxt" class="divtxt">
+    <span class="info">
+    자동으로 파일이 다운로드 되지 않을 경우 설치 버튼을 눌러<br> 파일을 다운로드 후 설치를 진행에 주시기 바랍니다.
+    </span>
+    <p style="font-size: 24px;"><span>설치 후에는 <strong class="warnnig">새로고침</strong> 또는 <strong class="warnnig">재접속</strong>하여 확인하시기 바랍니다.</span></p>
+  </div>  
+  <div id="installFile">
+    <div id="launcher">
+      <span class="txt" >New Launcher</span>
+      <a id="linklaucher" class="button" href="./newlauncher/TPLSvc_Setup.exe">설치</a>
+    </div>
+  </div>
+</div>
+<div id="errorDiv" class="errorDiv">
+  
+</div>
+</div>
+<!-- <div id="debugDiv"> -->
+    <!-- result -->
+<!-- <textarea id="debugTextBox" rows="50" cols="150" style="display:none;"></textarea> -->
+<!-- </div> -->
+</body>
+</html>

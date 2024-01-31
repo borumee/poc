@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="NexacroNComp" width="1050" height="736" titletext="New Form" onload="NexacroNComp_onload">
+    <Layouts>
+      <Layout height="736" mobileorientation="landscape" width="1050">
+        <Static id="sta00" taborder="0" left="0" top="0" width="750" height="300" cssclass="sta_WF_Box"/>
+        <Static id="sta01" taborder="1" left="770" top="0" height="300" cssclass="sta_WF_Box" right="20"/>
+        <Static id="sta02" taborder="2" text="컴포넌트 선택" left="30" top="0" width="140" height="50" cssclass="sta_WF_Title"/>
+        <Static id="sta02_00" taborder="3" text="컴포넌트 생성 옵션" left="220" top="0" width="170" height="50" cssclass="sta_WF_Title"/>
+        <CheckBox id="chkBtn" taborder="4" text="Button" left="30" top="65" width="150" height="30" value="true" onchanged="CheckBox_onchanged"/>
+        <CheckBox id="chkStc" taborder="5" text="Static" left="30" top="105" width="150" height="30" value="true" onchanged="CheckBox_onchanged"/>
+        <CheckBox id="chkEdt" taborder="6" text="Edit" left="30" top="145" width="150" height="30" value="true" onchanged="CheckBox_onchanged"/>
+        <CheckBox id="chkCal" taborder="7" text="Calendar" left="30" top="185" width="150" height="30" value="true" onchanged="CheckBox_onchanged"/>
+        <CheckBox id="chkImg" taborder="8" text="Image" left="30" top="225" width="150" height="30" value="true" onchanged="CheckBox_onchanged"/>
+        <Static id="Static02_03_02" taborder="9" text="총 컴포넌트 갯수" left="225" top="201" width="150" height="40" messageid="comp.generate.total"/>
+        <MaskEdit id="edtTotCnt" taborder="10" left="387" top="201" width="160" height="40" autoselect="true" value="100" readonly="true"/>
+        <MaskEdit id="edtLineCnt" taborder="11" left="387" top="159" width="160" height="40" autoselect="true" value="20"/>
+        <Static id="Static02_03_01" taborder="12" text="라인 수" left="225" top="159" width="150" height="40" messageid="comp.generate.lineamount"/>
+        <Static id="Static02_03_00" taborder="13" text="한 라인 표시 갯수" left="225" top="117" width="150" height="40" messageid="comp.generate.amountperline"/>
+        <MaskEdit id="edtLinePerCnt" taborder="14" left="387" top="117" width="160" height="40" autoselect="true" value="1"/>
+        <MaskEdit id="edtCountComp" taborder="15" left="387" top="75" width="160" height="40" value="5" readonly="true"/>
+        <Static id="Static02_03" taborder="16" text="컴포넌트 수" left="225" top="75" width="150" height="40" messageid="comp.generate.componentsamount"/>
+        <Static id="Static01" taborder="17" text="Static01" left="575" top="58" width="1" height="200" border="0px none,1px dashed #BABABA,0px none,0px none"/>
+        <Button id="btnGenerate" taborder="18" text="생성" top="108" width="100" height="100" cssclass="btn_WF_Custom" left="610" onclick="btnGenerate_onclick" messageid="comp.generate.create"/>
+        <Static id="sta02_00_00" taborder="19" text="생성 소요시간" left="790" top="0" width="170" height="50" cssclass="sta_WF_Title"/>
+        <Static id="staTime" taborder="20" text="&lt;fc v='red'&gt;0.000&lt;/fc&gt; 초" top="128" height="60" font="normal 20pt/normal &quot;Arial&quot;" usedecorate="true" textAlign="center" left="830" right="40"/>
+        <Static id="sta04" taborder="21" left="0" top="330" cssclass="sta_WF_Box" right="20" bottom="20"/>
+        <Static id="sta02_01" taborder="22" text="Result" left="30" top="330" width="140" height="50" cssclass="sta_WF_Title"/>
+        <Div id="divCanvas" taborder="23" left="0" top="380" right="20" bottom="20"/>
+        <Edit id="edt00" taborder="24" left="1087" top="135" width="120" height="50" value="Edit" text="Edit" visible="false"/>
+        <Button id="btn00" taborder="25" text="Button" left="1095" top="200" width="120" height="50" visible="false"/>
+        <Calendar id="cal00" taborder="26" left="1089" top="274" width="150" height="50" visible="false"/>
+        <Static id="sta05" taborder="27" text="Static" left="1099" top="355" width="120" height="50" cssclass="sta_WF_GBg01" visible="false"/>
+        <ImageViewer id="img00" taborder="28" left="1085" top="439" width="150" height="50" image="url('imagerc::img_WF_sample02.png')" stretch="fit" visible="false"/>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item0" compid="edtLineCnt" propid="value" datasetid="ds_cond" columnid="line_count"/>
+      <BindItem id="item1" compid="edtLinePerCnt" propid="value" datasetid="ds_cond" columnid="line_per_count"/>
+      <BindItem id="item2" compid="edtCountComp" propid="value" datasetid="ds_cond" columnid="comp_cnt"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[
+this.arrCompList = ["chkBtn", "chkCal", "chkStc", "chkImg", "chkEdt"];
+
+this.NexacroNComp_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.fnGetCheckbox();
+};
+
+this.fnGetCheckbox = function ()
+{
+	var nSum = 0;
+	for (var i = 0; i < this.arrCompList.length; i++) 
+	{
+		if (this.all[this.arrCompList[i]].value == true) 
+		{
+			nSum++;
+		}
+	}
+	this.ds_cond.setColumn(0, "comp_cnt", nSum);
+};
+
+this.fnDrawComponent = function ()
+{
+	var arrListup = [];
+	for (var ii = 0; ii < this.arrCompList.length; ii++) 
+	{
+		if (this.all[this.arrCompList[ii]].value == true) 
+		{
+			arrListup.push(this.arrCompList[ii].substring(3));
+		}
+	}
+
+	var oComp;
+	var nWidth = 120;
+	var nHeigth = 30;
+	var wGap = 5;
+	var hGap = 5;
+	var nLeft = 0;
+	var nTop = 0;
+	var nCntItem = this.edtLinePerCnt.value;
+	var nCntLine = this.edtLineCnt.value;
+	var nCntLoop = this.edtCountComp.value * nCntItem * nCntLine;
+
+	for (var x = 0; x < nCntLine; x++) 
+	{
+		for (var y = 0; y < nCntItem; y++) 
+		{
+			for (var z = 0; z < arrListup.length; z++) 
+			{
+				switch (arrListup[z]) 
+				{
+					case "Btn":
+						oComp = new Button("btn_" + x + "_" + y + "_" + z, nLeft + 10, nTop + 10, nWidth, nHeigth, null, null);
+						oComp.set_text("btn_" + x + "_" + y );
+						break;
+					case "Cal":
+						oComp = new Calendar("cal_" + x + "_" + y + "_" + z, nLeft + 10, nTop + 10, nWidth, nHeigth, null, null);
+						oComp.set_dateformat("yyyy-MM-dd");
+						oComp.set_value(this.gfnGetDate());
+						break;
+					case "Stc":
+						oComp = new Static("stc_" + x + "_" + y + "_" + z, nLeft + 10, nTop + 10, nWidth, nHeigth, null, null);
+						oComp.set_text("Static" + x + "_" + y );
+						oComp.set_cssclass("sta_WF_GBg01");
+						oComp.set_textAlign("center");
+						break;
+					case "Img":
+						oComp = new ImageViewer("img_" + x + "_" + y + "_" + z, nLeft + 10, nTop + 10, nWidth, nHeigth, null, null);
+						oComp.set_image("imagerc::img_WF_sample02.png");
+						break;
+					case "Edt":
+						oComp = new Edit("edt_" + x + "_" + y + "_" + z, nLeft + 10, nTop + 10, nWidth, nHeigth, null, null);
+						oComp.set_value("edit" + x + "_" + y );
+						break;
+				}
+				this.divCanvas.form.addChild(oComp.name, oComp);
+				oComp.show();
+				nLeft = nLeft + nWidth + wGap;
+			}
+		}
+		nLeft = 0;
+		nTop = nTop + nHeigth + hGap;
+	}
+};
+
+this.CheckBox_onchanged = function (obj:CheckBox, e:nexacro.CheckBoxChangeEventInfo)
+{
+	this.fnGetCheckbox();
+};
+
+this.btnGenerate_onclick = function (obj:Button, e:nexacro.ClickEventInfo)
+{	
+	this.divCanvas.reload();
+	
+	this.setWaitCursor(true);
+	//this.alert("Start");
+	
+	this.staTime.set_text("<fc v='red'>0.000</fc> 초");
+	
+	var stTime = new Date().getTime();
+
+	this.fnDrawComponent();
+
+	var edTime = new Date().getTime();
+	this.divCanvas.form.resetScroll();
+	
+	this.staTime.set_text("<fc v='red'>"+(edTime - stTime) / 1000+"</fc> 초")
+	
+	this.setWaitCursor(false);	
+};
+
+this.ds_cond_oncolumnchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSColChangeEventInfo)
+{
+	if (e.col != "tot_count") 
+	{
+		this.edtTotCnt.set_value(obj.getColumn(e.row, "comp_cnt") * obj.getColumn(e.row, "line_per_count") * obj.getColumn(e.row, "line_count"));
+	}
+};
+
+]]></Script>
+    <Objects>
+      <Dataset id="ds_cond" firefirstcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false" oncolumnchanged="ds_cond_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="comp_cnt" type="INT" size="256"/>
+          <Column id="line_per_count" type="INT" size="256"/>
+          <Column id="line_count" type="INT" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="line_per_count">1</Col>
+            <Col id="line_count">20</Col>
+            <Col id="comp_cnt">5</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="poc_tab02" width="1000" height="500" titletext="콜센터 상담이력" onload="poc_tab02_onload" onsize="poc_tab02_onsize">
+    <Layouts>
+      <Layout height="500" width="1000">
+        <Div id="div_pagingConsulting" taborder="1" url="Comm::cmmPaging.xfdl" height="48" text="" bottom="0" width="520" left="240"/>
+        <Grid id="Grid00" taborder="0" left="0" right="0" autofittype="col" binddataset="ds_consultingClient" top="0" bottom="div_pagingConsulting:0" cellmovingtype="col" cellsizingtype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="120"/>
+                <Column size="120"/>
+                <Column size="120"/>
+                <Column size="120"/>
+                <Column size="120"/>
+                <Column size="120"/>
+              </Columns>
+              <Rows>
+                <Row size="40" band="head"/>
+                <Row size="40"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="상담일시" messageid="consulting.cnsult_date"/>
+                <Cell col="1" text="상담사" messageid="consulting.counselor"/>
+                <Cell col="2" text="계약번호" messageid="consulting.contract_no"/>
+                <Cell col="3" text="인입&#13;&#10;전화번호" messageid="consulting.phone_in"/>
+                <Cell col="4" text="상담유형" messageid="consulting.cnsult_type"/>
+                <Cell col="5" text="상담내용" messageid="consulting.cnsult_detail"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:cnsult_date"/>
+                <Cell col="1" text="bind:counselor"/>
+                <Cell col="2" text="bind:contract_no"/>
+                <Cell col="3" text="bind:phone_in" displaytype="mask" maskedittype="string" maskeditformat="@@-@@@-@@@@"/>
+                <Cell col="4" text="bind:cnsult_type"/>
+                <Cell col="5" text="bind:cnsult_detail"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+      <Layout height="500" mobileorientation="Landscape" name="Layout0" type="default" width="300">
+        <Grid id="Grid00" autofittype="none" left="0" top="0" right="0" bottom="div_pagingConsulting:0"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_consulting">
+        <ColumnInfo>
+          <Column id="cust_no" type="STRING" size="256" description="고객번호"/>
+          <Column id="cnsult_date" type="STRING" size="256" description="상담일시"/>
+          <Column id="counselor" type="STRING" size="256" description="상담사"/>
+          <Column id="contract_no" type="STRING" size="256" description="계약번호"/>
+          <Column id="phone_in" type="STRING" size="256" description="인입전화번호"/>
+          <Column id="cnsult_type" type="STRING" size="256" description="상담유형"/>
+          <Column id="cnsult_detail" type="STRING" size="256" description="상담상세내용"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_consultingClient">
+        <ColumnInfo>
+          <Column id="cust_no" type="STRING" size="256" description="고객번호"/>
+          <Column id="cnsult_date" type="STRING" size="256" description="상담일시"/>
+          <Column id="counselor" type="STRING" size="256" description="상담사"/>
+          <Column id="contract_no" type="STRING" size="256" description="계약번호"/>
+          <Column id="phone_in" type="STRING" size="256" description="인입전화번호"/>
+          <Column id="cnsult_type" type="STRING" size="256" description="상담유형"/>
+          <Column id="cnsult_detail" type="STRING" size="256" description="상담상세내용"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Nexacro DEMO
+*  @FileName 	poc_tab02.xfdl
+*  @Creator 	TOBESOFT
+*  @CreateDate 	2023/05/18
+*  @Desction   
+************** 소스 수정 이력 ***********************************************
+* Date					Modifier					Description
+*******************************************************************************
+* 2023/05/18			TOBESOFT					최초생성
+*******************************************************************************
+*/
+
+/*******************************************************************************************************************************
+ * FORM 변수 선언 영역
+*******************************************************************************************************************************/
+this.SVC_CONSULTING   = {svcId : "상담", url : "GET::FUBON::data/고객정보/상담.json", outDs : "ds_consulting=consulting"	}
+
+/*******************************************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose..)
+*******************************************************************************************************************************/
+this.poc_tab02_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnload(obj,e); //필수함수
+	
+	this.div_pagingConsulting.form.init(1, "10", 0, "fn_changeConsultingPage");
+	this.gfn_dsRequestAsync(this.SVC_CONSULTING);	
+};
+
+/*******************************************************************************************************************************
+ * Transaction 서비스호출 처리 영역
+*******************************************************************************************************************************/
+
+/*******************************************************************************************************************************
+ * Callback 영역 (Transaction, popup, message..)
+*******************************************************************************************************************************/
+ /*
+ *	트랜잭션 후처리
+ * @param {String} strSvcId       : 서비스 ID
+ * @param {Number} nErrorCode     : 결과 값 (0:성공 -1:실패)
+ * @param {Object} objResolveData : response data
+ */ 
+this.fn_apiCallback = function(strSvcId, nErrorCode, objResolveData) 
+{
+	if (nErrorCode < 0)	// 통신에러
+		return;
+	
+	// service id 에 따라 callback 분기처리
+	switch(strSvcId) {
+		case "상담" :		
+			this.div_pagingConsulting.form.fn_resetPaging("10", this.ds_consulting.rowcount); 
+			this.fn_changeConsultingPage(1);
+			break;
+
+		default:
+	}
+};
+
+/*******************************************************************************************************************************
+ * 사용자 Function 영역
+*******************************************************************************************************************************/
+/*
+ *	상담Data 버튼형 페이징 호출 함수
+ */
+this.fn_changeConsultingPage = function(idx) 
+{
+	var pageSize = "10",
+		nStart   = parseInt((idx-1) * pageSize),
+		nEnd     = parseInt(nStart)  + parseInt(pageSize);
+
+	this.ds_consulting.filter("currow >= " + nStart + " && currow < " + nEnd);
+	this.ds_consultingClient.copyData(this.ds_consulting, true);
+};
+
+/*******************************************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+*******************************************************************************************************************************/
+this.poc_tab02_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{	
+	var nContainerWidth = this.getOffsetWidth();
+	var nCompWidth = this.div_pagingConsulting.getOffsetWidth();
+	
+	var nCompX = (nContainerWidth/2) - (nCompWidth/2);
+	this.div_pagingConsulting.setOffsetLeft(nCompX);		
+};
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SrchShowHide" width="1280" height="720" titletext="New Form" onload="SrchShowHide_onload">
+    <Layouts>
+      <Layout height="720" width="1280">
+        <Div height="53" formscrollbartype="none none" id="div00" left="5" top="5" taborder="0" border="1px solid" right="5">
+          <Layouts>
+            <Layout>
+              <Static id="Static01" taborder="0" text="조회 건수" left="5" top="11" width="60" height="30" cssclass="sta_WF_label01LB"/>
+              <Combo id="cmbRowCount" taborder="1" left="70" top="11" width="120" height="30" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" index="0" value="10000" text="1만건">
+                <Dataset id="innerdataset">
+                  <ColumnInfo>
+                    <Column id="codecolumn" size="256"/>
+                    <Column id="datacolumn" size="256"/>
+                  </ColumnInfo>
+                  <Rows>
+                    <Row>
+                      <Col id="codecolumn">10000</Col>
+                      <Col id="datacolumn">1만건</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">30000</Col>
+                      <Col id="datacolumn">3만건</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">50000</Col>
+                      <Col id="datacolumn">5만건</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">100000</Col>
+                      <Col id="datacolumn">10만건</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">500000</Col>
+                      <Col id="datacolumn">50만건</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">1000000</Col>
+                      <Col id="datacolumn">100만건</Col>
+                    </Row>
+                  </Rows>
+                </Dataset>
+              </Combo>
+              <Button id="btnSearch" taborder="2" top="11" height="30" cssclass="btn_WF_btnY" text="조회" right="224" width="61" onclick="fnComBtnOnClick"/>
+              <Button id="btnAdd" taborder="3" text="추가" top="11" width="70" height="30" cssclass="btn_WF_btnR" right="151" onclick="fnComBtnOnClick" enable="false"/>
+              <Button id="btnDel" taborder="4" text="삭제" top="11" width="70" height="30" cssclass="btn_WF_btnR" right="78" onclick="fnComBtnOnClick" enable="false"/>
+              <Button id="btnSave" taborder="5" text="저장" top="11" width="70" height="30" right="5" cssclass="btn_WF_btnGr" onclick="fnComBtnOnClick" enable="false"/>
+            </Layout>
+            <Layout name="Phone">
+              <Button id="btnSearch" top="64" width="61" height="30" right="388"/>
+              <Button id="btnAdd" top="69" width="70" height="30" right="85"/>
+              <Button id="btnDel" top="26" width="70" height="30" right="184"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div height="336" formscrollbartype="none none" id="div00_00" left="5" top="134" taborder="1" border="1px solid" width="235">
+          <Layouts>
+            <Layout>
+              <Static id="Static01" taborder="0" text="조회 건수" left="5" top="11" width="60" height="30" cssclass="sta_WF_label01LB"/>
+            </Layout>
+            <Layout name="Phone">
+              <Button id="btnSearch" top="64" width="61" height="30" right="388"/>
+              <Button id="btnAdd" top="69" width="70" height="30" right="85"/>
+              <Button id="btnDel" top="26" width="70" height="30" right="184"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::SrchShowHide.xjs"; // 검색영역 접기/펼치기 애니메이션 적용 공통함수
+
+this.SrchShowHide_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var objSearchDiv = this.div00_00;
+	
+	/*
+	 1. 생성될 버튼 넓이
+	 2. 생성될 버튼 높이
+	 3. search view가 펼쳐졌을때 버튼 css class 명
+	 4. search view가 숨겨졌을때 버튼 css class 명
+	 5. L : Left Right 방향 / T : Top Bottom 방향 (default : T)
+	*/
+	
+	var objConfig = {
+						nBtnWidth  : 25,
+						nBtnHeight : 50,
+						sBtnExpandClass   : "btn_WF_expand",
+						sBtnCollapseClass : "btn_WF_expandUp",
+						sActionType : "L"
+					}
+					
+	this.fnInitSrchShowHideSet(objSearchDiv, objConfig);
+	
+	var objSearchDiv2 = this.div00;
+	
+	/*
+	 1. 생성될 버튼 넓이
+	 2. 생성될 버튼 높이
+	 3. search view가 펼쳐졌을때 버튼 css class 명
+	 4. search view가 숨겨졌을때 버튼 css class 명
+	 5. L : Left Right 방향 / T : Top Bottom 방향
+	*/
+	
+	var objConfig2 = {
+						nBtnWidth  : 120,
+						nBtnHeight : 25,
+						sBtnExpandClass   : "btn_WF_expand",
+						sBtnCollapseClass : "btn_WF_expandUp"
+					}
+					
+	this.fnInitSrchShowHideSet(objSearchDiv2, objConfig2);	
+};]]></Script>
+  </Form>
+</FDL>

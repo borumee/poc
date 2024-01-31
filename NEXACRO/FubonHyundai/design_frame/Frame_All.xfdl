@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Frame_All" width="480" height="720" titletext="전체 프레임" onload="Frame_All_onload" ontimer="Frame_All_ontimer">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="480">
+        <Div id="DivTop" taborder="0" left="0" top="0" height="70" url="FrameBase::Frame_Top.xfdl" right="0" formscrolltype="none" text="" maxwidth=""/>
+        <Div id="DivLeft" taborder="2" left="0" top="70" width="224" bottom="0" url="FrameBase::Frame_Left.xfdl" visible="false" formscrolltype="vertical"/>
+        <Div id="DivMdi" taborder="1" left="0" width="480" height="36" url="FrameBase::Frame_Mdi.xfdl" visible="false" formscrolltype="none" top="70" maxwidth=""/>
+        <Div id="DivWork" taborder="3" left="0" top="70" right="0" url="FrameBase::Frame_Work.xfdl" visible="true" bottom="0" maxwidth=""/>
+        <Div id="DivMenu" taborder="4" left="0" height="44" formscrolltype="none" top="70" right="0" url="FrameBase::Frame_Menu.xfdl" visible="false" maxwidth=""/>
+      </Layout>
+      <Layout name="Tablet" width="960" height="720">
+        <Div id="DivTop" left="0" top="0" height="70" right="0"/>
+        <Div id="DivMdi" left="0" width="960" height="36" top="70"/>
+        <Div id="DivWork" left="0" top="70" right="0" text="" bottom="0"/>
+        <Div id="DivMenu" left="0" top="70" height="44" right="0"/>
+        <Div id="DivLeft" url="FrameBase::Frame_Left.xfdl"/>
+      </Layout>
+      <Layout name="Desktop" width="1280" height="720">
+        <Div id="DivTop" left="0" top="0" height="70" right="0" text=""/>
+        <Div id="DivMdi" height="36" url="FrameBase::Frame_Mdi.xfdl" text="MDI" right="0" left="224" visible="true" bottom="0"/>
+        <Div id="DivWork" left="DivLeft:0" top="114" right="0" bottom="DivMdi:0"/>
+        <Div id="DivLeft" isible="true" visible="true" top="70" left="0" width="224" bottom="0" url="FrameBase::Frame_Left.xfdl" text=""/>
+        <Div id="DivMenu" visible="true" text="" height="44" left="224" top="70" right="0" url="FrameBase::Frame_Menu.xfdl"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::AniUtils.xjs";
+
+/**	
+* @desc 선택된 메뉴 ID
+*/
+this.selectedMenuId;
+
+/**
+ * @description 화면 로드 완료 시 이벤트 함수
+*/
+this.Frame_All_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.initAniobj("leftani", "easeoutquint", 500);
+	
+	this.setTimer(1, 500);
+};
+
+/**
+ * @description 화면 타이머 이벤트 함수
+*/
+this.Frame_All_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	if (e.timerid == 0) {
+		this.killTimer(e.timerid);
+		this.DivLeft.set_visible(false);
+	} else if (e.timerid == 1) {
+		if (this.getOffsetWidth() < 1280) {
+			this.DivLeft.bringToFront();
+			this.DivLeft.set_visible(true);
+		}	
+		
+		// X-PUSH Connect
+		this.fn_xpushConnect();
+		
+		this.killTimer(e.timerid);
+	}
+};
+
+/**
+ * @description 메뉴 프레임 토글 함수
+ **/
+this.fnMenuFrameToggle = function()
+{
+	var aniObj;
+	if (this.DivLeft.getOffsetLeft() == -200){
+		aniObj = this.addAniItem("leftani", this.DivLeft, "left:0");
+		this.DivLeft.bringToFront();
+		this.DivLeft.set_visible(true);
+	} else if (this.DivLeft.getOffsetLeft() == 0) {
+		aniObj = this.addAniItem("leftani", this.DivLeft, "left:-200");
+		this.setTimer(0, 500);
+	} else {
+		return;
+	}
+	
+	this.playAniObj(aniObj);
+};
+
+/**	
+* @desc 메인 화면 열기 함수
+* @return none
+*/
+this.fnOpenHome = function()
+{
+	if (this.selectedMenuId) {
+		this.DivWork.form.components["divWork_"+this.selectedMenuId].set_visible(false);
+	}
+	
+	if (nexacro.getApplication().openInfo.CLOSE == "TOP") {
+		this.DivWork.set_visible(false);
+		
+		//메뉴 프레임 이동 시 열린 화면 해제
+		var iFramesCnt = nexacro.getApplication().gdsOpenMenu.getRowCount();
+		
+		for (var i = iFramesCnt; i >= 0; i--) 
+		{
+			this.DivMdi.form.fnTabOnClose(nexacro.getApplication().gdsOpenMenu.getColumn(i, "WIN_ID"));
+		}
+
+		this.getOwnerFrame().form.selectedMenuId = null;
+		
+		nexacro.getApplication().mainframe.VFrameSet.set_separatesize("*, 0, 0");
+		nexacro.getApplication().mainframe.VFrameSet.WorkFrame.form.DivTop.set_url("");
+		nexacro.getApplication().mainframe.VFrameSet.WorkFrame.form.DivMenu.set_url("");
+		nexacro.getApplication().mainframe.VFrameSet.WorkFrame.form.DivLeft.set_url("");
+		nexacro.getApplication().mainframe.VFrameSet.WorkFrame.form.DivMdi.set_url("");
+	}
+};
+
+/**	
+* @desc 메뉴 화면 열기 함수
+* @param menuId {String} - 메뉴 ID
+* @return none
+*/
+this.fnOpenMenu = function(menuId, objArgList)
+{
+	var aniObj;
+	
+	if (this.getCurrentLayoutID() == "default") {
+		aniObj = this.addAniItem("leftani", this.DivLeft, "left:-200");
+		//this.DivLeft.set_visible(false);
+	} else {
+		aniObj = this.addAniItem("leftani", this.DivLeft, "left:0");
+		this.DivLeft.bringToFront();
+		this.DivLeft.set_visible(true);
+	}
+	
+	this.playAniObj(aniObj);
+	
+	this.DivWork.set_visible(true);
+	
+	this.selectedMenuId = menuId;
+	
+	var winId = "divWork_"+menuId;
+	
+	// 열린화면 체크
+	if (this.DivWork.form.components[winId]) {
+		this.DivMdi.form["isActiveFrame"].call(this.DivMdi.form, winId);
+		return;
+	}
+	
+	var ds = nexacro.getApplication().gdsMenu,
+		row = ds.findRow("MENU_ID", menuId),
+		menuNm = ds.getColumn(row, "MENU_NM"),
+		prgmId = ds.getColumn(row, "PRGM_ID"),
+		formUrl = ds.getColumn(row, "PRGM_FULL_PATH"),
+		top = 0;
+	
+	var objWin = new Div(winId, 0, top, null, null, 0, 0);
+	objWin.set_background("#ffffff");
+	objWin.set_url(formUrl);
+	
+	objWin.params = {winId: winId, menuId: menuId, menuNm: menuNm, prgmId: prgmId, objArgList: objArgList||{}};
+	
+	this.DivWork.addChild(winId, objWin);
+	objWin.show();
+	
+	// 열린 메뉴 추가
+	var dsOpen = nexacro.getApplication().gdsOpenMenu,
+		r = dsOpen.addRow();
+	
+	dsOpen.setColumn(r, "WIN_ID", winId);
+	dsOpen.setColumn(r, "MENU_ID", menuId);
+	dsOpen.setColumn(r, "MENU_NM", menuNm);
+	dsOpen.setColumn(r, "PRGM_FULL_PATH", formUrl);
+	
+	//나의 메뉴 표시
+	this.DivMdi.form.btnMyMenu.set_enable(true);
+	
+	this.fvMenuRow = nexacro.getApplication().gdsMyMenu.findRow("MENU_ID", menuId);
+	
+	if (this.fvMenuRow > -1) {
+		this.DivMdi.form.btnMyMenu.set_cssclass("btn_MDI_MyMnuS");
+	} else {
+		this.DivMdi.form.btnMyMenu.set_cssclass("btn_MDI_MyMnu");
+	}
+	
+	// MDI탭 추가
+	this.DivMdi.form["fnAddTab"].call(this.DivMdi.form, winId, menuNm, menuId);
+};
+
+
+
+
+/************************************************************************
+ * X-PUSH
+ ************************************************************************/
+
+/*
+ *	connect to X-PUSH
+ */
+this.fn_xpushConnect = function()
+{
+	this.XPush.set_layouturl("web::pushUrl/push_message_layout.xml");
+	this.XPush.set_iplist(nexacro.getEnvironment().services["xpush"].url);
+	this.XPush.set_projectid("PRO#1");
+	this.XPush.set_protocolversion("3");
+	this.XPush.connect("tobesoft", "xpush");
+};
+
+
+this.XPush_onsuccess = function(obj:nexacro.XPush,e:nexacro.XPushEventInfo)
+{
+	var app = nexacro.getApplication();
+	
+	if (e.action == nexacro.XPushAction.AUTH) {
+		toast.success(this, "Push 서버 연결에 성공");
+		
+		// 조직별 구독
+		this.XPush.subscribe("MSG", app.empInfo["OFFICE_NO"], this, app.gds_push, "append", "fn_PushCallback");
+		// 개인별 구독
+		this.XPush.subscribe("MSG", app.empInfo["EMP_NO"],    this, app.gds_push, "append", "fn_PushCallback");
+	}
+};
+
+this.XPush_onerror = function(obj:nexacro.XPush,e:nexacro.XPushErrorEventInfo)
+{
+	trace("XPush_onerror statuscode["+e.statuscode+"] errortype["+e.errortype+"] errormsg["+e.errormsg+"]");
+	//toast.error(this, e.errormsg);
+	
+	switch(e.statuscode) {
+	case -100:	// Push 서버가 “Byec”를 보냈거나 서버와의 규약에 따라 종료되었습니다.
+		this.XPush.connect("tobesoft", "xpush");
+		break;
+	default:
+	}	
+};
+
+/*
+ *	X-PUSH CallBack
+ */ 
+this.fn_PushCallback = function(Row, ChangeColumn, AllColumns, Type, ActionType, MessageId)
+{	
+	var app      = nexacro.getApplication(),
+		row      = parseInt(app.gds_push.getRowCount()) - 1,
+		title    = app.gds_push.getColumn(row, "sender") + "\n" + app.gds_push.getColumn(row, "title"),
+		Content  = app.gds_push.getColumn(row, "content"),
+		sender   = app.gds_push.getColumn(row, "sender");
+	
+	//com.closeManagerApprovalRequestPopup();
+	toast.info(this, title);	
+	nexacro.flashWindow("count", 10, 500);
+	
+	// 푸시 메시지 팝업이 열려있다면 추가메소드 호출
+	var arrPopup = nexacro.getPopupFrames(this.getOwnerFrame());
+	if(arrPopup["xpushMessagePop"]) {
+		arrPopup["xpushMessagePop"].form.fn_addPushMsg(app.gds_push, row);
+	}
+};
+]]></Script>
+    <Objects>
+      <XPush id="XPush" onerror="XPush_onerror" onsuccess="XPush_onsuccess"/>
+    </Objects>
+  </Form>
+</FDL>

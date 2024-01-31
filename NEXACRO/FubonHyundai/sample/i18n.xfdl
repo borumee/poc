@@ -1,0 +1,298 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="i18n" width="1280" height="720" titletext="New Form" onload="i18n_onload">
+    <Layouts>
+      <Layout height="720" width="1280">
+        <Tab id="Tab00" taborder="0" tabindex="0" left="20" top="215" width="326" height="50">
+          <Tabpages>
+            <Tabpage id="Tabpage1" text="다국어1" textLangId="title01" test="test">
+              <Layouts>
+                <Layout/>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage2" text="다국어2" textLangId="title02"/>
+          </Tabpages>
+        </Tab>
+        <Radio id="Radio00" taborder="1" left="20" top="605" width="280" height="20" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" direction="vertical" onitemchanged="Radio00_onitemchanged" value="format01" text="format01" index="0">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">format01</Col>
+                <Col id="datacolumn">format01</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">format02</Col>
+                <Col id="datacolumn">format02</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Radio>
+        <Static id="Static00" taborder="2" text="Div || PopupDiv : text 속성" left="20" top="20" height="40" right="190" onmouseenter="Static00_onmouseenter"/>
+        <Static id="Static00_00" taborder="3" text="Tab : 탭 페이지별 text 속성(탭 제목)" left="20" top="160" height="40" right="20"/>
+        <Static id="Static00_00_00" taborder="4" text="CheckBox || GroupBox || Static || ImageViewer || Button : text 속성, tooltiptext 속성" left="20" top="290" height="40" right="20" onclick="Static00_00_00_onclick"/>
+        <Static id="Static00_00_00_00" taborder="5" text="Calendar || Combo || Edit || MaskEdit || Spin || TextArea : displaynulltext 속성" left="20" top="420" height="40" right="20"/>
+        <Static id="Static00_00_00_00_00" taborder="6" text="Grid : 컬럼 헤더 별 text 속성" left="20" top="550" height="40" right="20"/>
+        <Div id="Div00" taborder="7" text="Div00" left="20" top="72" width="200" height="50" textLangId="test"/>
+        <PopupDiv id="PopupDiv00" text="PopupDiv00" visible="true" left="250" top="72" width="220" height="50" onmouseenter="PopupDiv00_onmouseenter" textLangId="test"/>
+        <CheckBox id="CheckBox00" taborder="9" text="CheckBox00" left="20" top="342" width="150" height="50" tooltiptype="hover" tooltiptext="test" textLangId="test" tooltiptextLangId="test"/>
+        <GroupBox id="GroupBox00" taborder="10" text="GroupBox00" left="200" top="342" width="300" height="50" tooltiptype="hover" tooltiptext="test" textLangId="test" tooltiptextLangId="test"/>
+        <Static id="Static01" taborder="11" text="Static01" left="530" top="342" width="120" height="50" tooltiptype="hover" tooltiptext="test" textLangId="test" tooltiptextLangId="test"/>
+        <ImageViewer id="ImageViewer00" taborder="12" text="ImageViewer00" left="680" top="342" width="90" height="50" tooltiptype="hover" tooltiptext="test" textLangId="test" tooltiptextLangId="test"/>
+        <Button id="Button00" taborder="13" text="Button00" left="800" top="342" width="120" height="50" tooltiptype="hover" tooltiptext="test" textLangId="test" tooltiptextLangId="test"/>
+        <Calendar id="Calendar00" taborder="14" left="20" top="474" width="150" height="50" displaynulltext="nulltxt" displaynulltextLangId="test"/>
+        <Combo id="Combo00" taborder="15" left="200" top="474" width="150" height="50" displaynulltext="nulltxt" displaynulltextLangId="test"/>
+        <Edit id="Edit00" taborder="16" left="380" top="474" width="140" height="50" displaynulltext="nulltxt" displaynulltextLangId="test"/>
+        <MaskEdit id="MaskEdit00" taborder="17" left="550" top="474" width="90" height="50" displaynulltext="nulltxt" displaynulltextLangId="test"/>
+        <Spin id="Spin00" taborder="18" left="670" top="474" width="150" height="50" displaynulltext="nulltxt" displaynulltextLangId="test"/>
+        <TextArea id="TextArea00" taborder="19" left="850" top="474" width="168" height="50" displaynulltext="nulltxt" displaynulltextLangId="test"/>
+        <Combo id="Combo01" taborder="20" top="20" width="150" height="30" right="20" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" index="0" onitemchanged="Combo01_onitemchanged" value="ko" text="한국어">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">ko</Col>
+                <Col id="datacolumn">한국어</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">eng</Col>
+                <Col id="datacolumn">Enlish</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Combo>
+        <Grid id="Grid00" taborder="20" left="20" top="640" width="770" height="270" binddataset="Dataset00" autofittype="col">
+          <Formats>
+            <Format id="format01">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="formid" textLangId="column01"/>
+                <Cell col="1" text="langid" textLangId="column02"/>
+                <Cell col="2" text="ko" textLangId="column03"/>
+                <Cell col="3" text="eng" textLangId="column04"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:formid" test=""/>
+                <Cell col="1" text="bind:langid"/>
+                <Cell col="2" text="bind:ko"/>
+                <Cell col="3" text="bind:eng"/>
+              </Band>
+            </Format>
+            <Format id="format02">
+              <Columns>
+                <Column size="48"/>
+                <Column size="48"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+              </Rows>
+              <Band id="head">
+                <Cell textLangId="column01" text="col"/>
+                <Cell col="1" textLangId="column02" text="col"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="Dataset00">
+        <ColumnInfo>
+          <Column id="formid" type="STRING" size="256"/>
+          <Column id="langid" type="STRING" size="256"/>
+          <Column id="ko" type="STRING" size="256"/>
+          <Column id="eng" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="formid">i18n</Col>
+            <Col id="langid">test</Col>
+            <Col id="ko">다국어 테스트</Col>
+            <Col id="eng">i18n test</Col>
+          </Row>
+          <Row>
+            <Col id="formid">i18n</Col>
+            <Col id="langid">title01</Col>
+            <Col id="ko">제목01</Col>
+            <Col id="eng">title01</Col>
+          </Row>
+          <Row>
+            <Col id="formid">i18n</Col>
+            <Col id="langid">title02</Col>
+            <Col id="ko">제목02</Col>
+            <Col id="eng">title02</Col>
+          </Row>
+          <Row>
+            <Col id="formid">i18n</Col>
+            <Col id="langid">column01</Col>
+            <Col id="ko">컬럼01</Col>
+            <Col id="eng">column01</Col>
+          </Row>
+          <Row>
+            <Col id="formid">i18n</Col>
+            <Col id="langid">column02</Col>
+            <Col id="ko">컬럼02</Col>
+            <Col id="eng">column02</Col>
+          </Row>
+          <Row>
+            <Col id="formid">i18n</Col>
+            <Col id="langid">column03</Col>
+            <Col id="ko">컬럼03</Col>
+            <Col id="eng">column03</Col>
+          </Row>
+          <Row>
+            <Col id="formid">i18n</Col>
+            <Col id="langid">column04</Col>
+            <Col id="ko">컬럼04</Col>
+            <Col id="eng">column04</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.i18n_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.fn_applyI18n(this, 'ko', this.Dataset00);
+};
+
+this.Combo01_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	var langcode = e.postvalue;
+	this.fn_applyI18n(this, langcode, this.Dataset00);
+};
+
+this.Radio00_onitemchanged = function(obj:nexacro.Radio,e:nexacro.ItemChangeEventInfo)
+{
+	this.Grid00.setFormat(e.postvalue)
+};
+
+this.Static00_onmouseenter = function(obj:nexacro.Static,e:nexacro.MouseEventInfo)
+{
+	this.PopupDiv00.trackPopup(250, 72)	
+};
+
+
+
+
+/**
+* @desc form open 시 Component 다국어 처리
+* @param {Object} objForm - Form Object
+* @return N/A
+* @example 
+* this.gfn_applyI18n(this);
+*/
+this.fn_applyI18n = function (objForm, strLangCode, objDs) {
+	var app   = nexacro.getApplication();
+	var comps = objForm.components;	
+	var txtLangPropName 	= "textLangId";					// Component 별 text            다국어 prop name
+	var tooltipLangPropName = "tooltiptextLangId";			// Component 별 tooltiptext     다국어 prop name
+	var nulltxtLangPropName = "displaynulltextLangId";		// Component 별 displaynulltext 다국어 prop name
+		
+	for (var i = 0; i < comps.length; i++) {
+		var comp = comps[i];	
+
+		// DIV text, 내부 form 다국어 입력
+		if (comp instanceof Div || comp instanceof PopupDiv) {
+			// text 속성 다국어 입력
+			messageid =  comp[txtLangPropName];
+			messageid && comp.set_text(objDs.getColumn(objDs.findRow('langid', messageid), strLangCode));//app.messages[messageid]);
+			
+			// div 내부 form 다국어
+			this.fn_applyI18n(comp.form, strLangCode, objDs);
+			comp.form.resetScroll();
+			
+		} 
+		// Tab 페이지별 text, 내부 form 다국어 입력
+		else if (comp instanceof Tab) {
+		
+			var tabpages = comp.tabpages;			
+			for (var j = 0, len = tabpages.length; j < len; j++) {
+				// 탭 페이지별 text 속성 다국어 입력
+				messageid =  tabpages[j][txtLangPropName];
+				messageid && tabpages[j].set_text(objDs.getColumn(objDs.findRow('langid', messageid), strLangCode));//app.messages[messageid]);
+				
+				// 탭 페이지별 내부 form 다국어
+				tabpages[j].form && this.fn_applyI18n(tabpages[i].form, strLangCode, objDs);
+				tabpages[j].form.resetScroll();
+			}
+			
+		} 
+		// 다국어, 툴팁 다국어 입력
+		else if (
+			comp instanceof CheckBox    ||
+			comp instanceof GroupBox    ||
+			comp instanceof Static      ||
+			comp instanceof ImageViewer ||
+			comp instanceof Button
+		) {
+			// text 속성 다국어 입력
+			messageid 		 =  comp[txtLangPropName];		
+			messageid        && comp.set_text(objDs.getColumn(objDs.findRow('langid', messageid), strLangCode));//app.messages[messageid]);
+			
+			// tooltiptext 속성 다국어 입력
+			tooltipmessageid =  comp[tooltipLangPropName];	
+			tooltipmessageid && comp.set_tooltiptext(objDs.getColumn(objDs.findRow('langid', messageid), strLangCode));//app.messages[tooltipmessageid]);
+			
+		} 
+		// displaynulltext 다국어 입력
+		else if (
+			comp instanceof Calendar ||
+			comp instanceof Combo    ||
+			comp instanceof Edit     ||
+			comp instanceof MaskEdit ||
+			comp instanceof Spin     ||
+			comp instanceof TextArea
+		) {
+			// displaynulltext 속성 다국어 입력
+			messageid =  comp[nulltxtLangPropName];
+			messageid && comp.set_displaynulltext(objDs.getColumn(objDs.findRow('langid', messageid), strLangCode));//app.messages[messageid]);
+			
+		} 
+		// Grid header 다국어 입력
+		else if (comp instanceof Grid) {
+		
+			var curFormatId  = comp.formatid;
+			var formatIdList = comp.getFormatIdList();
+			
+			for(var j = 0; j < formatIdList.length; j++) {
+				comp.setFormat(formatIdList[j]);
+				
+				var nCount = comp.getCellCount("head");
+				for (var k = 0; k < nCount; k++) {
+					// 컬럼 헤더 text 속성 다국어 입력
+					messageid =  comp.getCellProperty("head", k, txtLangPropName);
+					messageid && comp.setCellProperty("head", k, "text", objDs.getColumn(objDs.findRow('langid', messageid), strLangCode));//app.messages[messageid]);
+				}
+			}
+				
+			comp.setFormat(curFormatId);	
+			comp.set_autoenter("select");			
+		}
+	}
+	
+	objDs.filter('');
+	objForm.resetScroll();
+};
+
+this.Static00_00_00_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+	
+};
+]]></Script>
+  </Form>
+</FDL>

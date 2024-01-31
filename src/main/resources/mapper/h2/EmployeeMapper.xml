@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="employeeMapper">
+    
+    <select id="selectEmployeeList" resultType="com.example.demo.testdb.model.Employee">
+      SELECT
+        *
+      FROM EMPLOYEE
+    </select>
+    
+    <insert id="insertEmployee" parameterType="com.example.demo.testdb.model.Employee">
+    	INSERT INTO EMPLOYEE
+    		(firstName, lastName, email, phoneNumber, hireDate, salary, commissionPct)
+    	VALUES
+    		(#{firstName}, #{lastName}, #{email}, #{phoneNumber}, #{hireDate}, #{salary}, #{commissionPct})
+    </insert>
+    
+    <update id="updateEmployee" parameterType="com.example.demo.testdb.model.Employee">
+      UPDATE EMPLOYEE
+      SET firstName=#{firstName}
+        , lastName=#{lastName}
+        , email=#{email}
+        , phoneNumber=#{phoneNumber}
+        , hireDate=#{hireDate}
+        , salary=#{salary}
+        , commissionPct=#{commissionPct}
+          WHERE id=#{id}
+  	</update>
+  	
+  	<delete id="deleteEmployee" parameterType="com.example.demo.testdb.model.Employee">
+      DELETE FROM EMPLOYEE
+      WHERE id=#{id}
+  	</delete>
+</mapper>

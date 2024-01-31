@@ -1,0 +1,14 @@
+﻿{
+	"name": "CryptoJS",
+	"version": "14.0.0.1",
+	"description": "",
+	"license": "",
+	"scripts": [ 
+		"CryptoJS/jquery-1.11.0.min.js", 
+		"CryptoJS/jquery-migrate-1.2.1.min.js",
+		"CryptoJS/core-min.js", 
+		"CryptoJS/aes.js", 
+		"CryptoJS/pad-zeropadding.js"
+	]
+} 
+ 

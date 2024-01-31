@@ -1,0 +1,666 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="rchart" width="1000" height="760" titletext="rChart 기본샘플" onload="rchart_onload">
+    <Layouts>
+      <Layout height="760" width="1000">
+        <Div id="divChart1" taborder="0" left="20" top="20" height="43.46%" border="1px solid #a1abba" cssclass="div_WF_ChartBox" width="47.07%">
+          <Layouts>
+            <Layout/>
+          </Layouts>
+        </Div>
+        <Div id="divChart2" taborder="1" top="20" height="43.46%" formscrollbarsize="0" border="1px solid #a1abba" cssclass="div_WF_ChartBox" left="divChart1:9.956000000000017" right="21">
+          <Layouts>
+            <Layout/>
+          </Layouts>
+        </Div>
+        <Div id="divChart3" taborder="2" left="20" top="divChart1:10" formscrollbarsize="0" border="1px solid #a1abba" width="47.07%" cssclass="div_WF_ChartBox" bottom="20" text="">
+          <Layouts>
+            <Layout/>
+          </Layouts>
+        </Div>
+        <Div id="divChart4" taborder="3" left="divChart3:10" top="divChart2:10" formscrollbarsize="0" border="1px solid #a1abba" right="20" cssclass="div_WF_ChartBox" bottom="20">
+          <Layouts>
+            <Layout/>
+          </Layouts>
+        </Div>
+        <Button id="btnChartChange1" taborder="4" top="25" height="30" cssclass="btn_WF_ChartChange" width="30" left="divChart1:-35" onclick="fnComBtnOnClick" text="1"/>
+        <Button id="btnChartChange2" taborder="5" top="25" height="30" cssclass="btn_WF_ChartChange" width="30" left="divChart2:-36" onclick="fnComBtnOnClick" text="1"/>
+        <Button id="btnChartChange3" taborder="6" top="divChart1:15" height="30" cssclass="btn_WF_ChartChange" width="30" left="divChart3:-35.69999999999999" onclick="fnComBtnOnClick" text="1"/>
+        <Button id="btnChartChange4" taborder="7" top="divChart2:15" height="30" cssclass="btn_WF_ChartChange" width="30" left="divChart4:-36" onclick="fnComBtnOnClick" text="1"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::rMateChartH5.xjs";
+
+this.CHART_LAYOUT1 = null;
+this.CHART_LAYOUT2 = null;
+this.CHART_LAYOUT3 = null;
+this.CHART_LAYOUT4 = null;
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.rchart_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{	
+	this.CHART_LAYOUT1 = this.layoutPieChart;
+	this.CHART_LAYOUT2 = this.layoutPieChart;
+	this.CHART_LAYOUT3 = this.layoutBarChart;
+	this.CHART_LAYOUT4 = this.layoutBarChart;
+	
+	this.create_rChart1(this.divChart1);
+	this.create_rChart2(this.divChart2);
+	this.create_rChart3(this.divChart3);
+	this.create_rChart4(this.divChart4);
+};
+
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+/************************************************************************************************
+ * 공통버튼 Event 영역
+ ************************************************************************************************/
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+this.fnComBtnOnClick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	switch (obj.name)
+	{
+		case "btnChartChange1" :
+			if (obj.text == "1") 
+			{
+				obj.set_text("2");
+				this.CHART_LAYOUT1 = this.layoutBarChart2;
+				this.create_rChart1(this.divChart1);
+			}
+			else
+			{
+				obj.set_text("1");
+				this.CHART_LAYOUT1 = this.layoutPieChart;
+				this.create_rChart1(this.divChart1);
+			}
+			break;
+			
+		case "btnChartChange2" :
+			if (obj.text == "1") 
+			{
+				obj.set_text("2");
+				this.CHART_LAYOUT2 = this.layoutBarChart2;
+				this.create_rChart2(this.divChart2);
+			}
+			else
+			{
+				obj.set_text("1");
+				this.CHART_LAYOUT2 = this.layoutPieChart;
+				this.create_rChart2(this.divChart2);
+			}		
+			break;
+			
+		case "btnChartChange3" :
+			if (obj.text == "1") 
+			{
+				obj.set_text("2");
+				this.CHART_LAYOUT3 = this.layoutLineChart;
+				this.create_rChart3(this.divChart3);
+			}
+			else
+			{
+				obj.set_text("1");
+				this.CHART_LAYOUT3 = this.layoutBarChart;
+				this.create_rChart3(this.divChart3);
+			}		
+			break;
+			
+		case "btnChartChange4" :
+			if (obj.text == "1") 
+			{
+				obj.set_text("2");
+				this.CHART_LAYOUT4 = this.layoutLineChart;
+				this.create_rChart4(this.divChart4);
+			}
+			else
+			{
+				obj.set_text("1");
+				this.CHART_LAYOUT4 = this.layoutBarChart;
+				this.create_rChart4(this.divChart4);
+			}			
+			break;
+	}
+};
+
+/************************************************************************************************
+ * Transaction 영역(Transaction, Popup, Common)
+ ************************************************************************************************/
+/************************************************************************************************
+ * CallBack 영역(Transaction, Popup, Common)
+ ************************************************************************************************/
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+that = this;
+this.create_rChart1 = function(objDiv)
+{	
+	rMateChartH5.create("chart1", objDiv.form._unique_id, "rMateOnLoadCallFunction=chartReadyHandler1", "100%", "100%");
+};
+
+this.create_rChart2 = function(objDiv)
+{	
+	rMateChartH5.create("chart2", objDiv.form._unique_id, "rMateOnLoadCallFunction=chartReadyHandler2", "100%", "100%");
+};
+
+this.create_rChart3 = function(objDiv)
+{	
+	rMateChartH5.create("chart3", objDiv.form._unique_id, "rMateOnLoadCallFunction=chartReadyHandler3", "100%", "100%");
+};
+
+this.create_rChart4 = function(objDiv)
+{	
+	rMateChartH5.create("chart4", objDiv.form._unique_id, "rMateOnLoadCallFunction=chartReadyHandler4", "100%", "100%");
+};
+
+window.chartReadyHandler1 = function(id) {
+	document.getElementById(id).setLayout(that.CHART_LAYOUT1);
+	document.getElementById(id).setData(that.rMateChartDataSetToXml(that.dsChart1));
+};
+
+window.chartReadyHandler2 = function(id) {
+	document.getElementById(id).setLayout(that.CHART_LAYOUT2);
+	document.getElementById(id).setData(that.rMateChartDataSetToXml(that.dsChart2));	
+};
+
+window.chartReadyHandler3 = function(id) {
+	document.getElementById(id).setLayout(that.CHART_LAYOUT3);
+	document.getElementById(id).setData(that.rMateChartDataSetToXml(that.dsChart3));	
+};
+
+window.chartReadyHandler4 = function(id) {
+	document.getElementById(id).setLayout(that.CHART_LAYOUT4);
+	document.getElementById(id).setData(that.rMateChartDataSetToXml(that.dsChart4));	
+};
+
+window.pieSeriesLabelFunc = function(seriesId, index, data, values)
+{
+	return data["cnsult_type"]+", "+data["cnt"]+"건";
+};
+
+window.dataTipFunc = function(seriesId, seriesName, index, xName, yName, data, values) {
+   return "<b><font color='#CC3300'>itemIndex : " + index + "</b></font>"
+			+"<br><b><font color='#CC3300'>data : </b></font>"
+			+ "<b>" + obj2string(data) + "</b>"
+			+"<b><br><font color='#CC3300'>대상 : </b></font><b>"+values[2] + "</b>"
+			+"<b><br><font color='#CC3300'>건수 : </b></font><b>"+values[0] + "건" + "</b>"
+			+"<b><br><font color='#CC3300'>비율 : </b></font><b>"+ (Math.round(values[1]*100) / 100) +"%</b>";
+};
+ 
+window.obj2string = function(values) {
+   var rtnValue = "";
+   var prop;
+   
+   for (prop in values) 
+   {
+      if (rtnValue.length > 0) rtnValue += "";
+      
+	  if (prop == "cnsult_type") rtnValue += "" + values[prop];
+	  else rtnValue += ", " + values[prop] + "건";
+   }
+   
+   return rtnValue;
+};
+
+this.layoutBarChart = 
+'<rMateChart backgroundColor="#FFFFFF" borderStyle="none">'
+	+'<Options>'
+		+'<Caption text="" textAlign="center"/>'
+		+'<Legend defaultMouseOverAction="false" useVisibleCheck="true"/>'
+	+'</Options>'
+	+'<Column2DChart showDataTips="true">'
+		+'<horizontalAxis>'
+			+'<CategoryAxis categoryField="counselor"/>'
+		+'</horizontalAxis>'
+		+'<verticalAxis>'
+			+'<LinearAxis maximum="50"/>'
+		+'</verticalAxis>'
+		+'<series>'
+			+'<Column2DSeries yField="LMS문구문의" displayName="LMS문구문의" showValueLabels="[2]">'
+				+'<fills>'
+					+'<LinearGradient angle="90">'
+						+'<entries>'
+							+'<GradientEntry color="#7BBFE9" ratio="0"/>'
+							+'<GradientEntry color="#7BBFE9" ratio="0.2"/>'
+							+'<GradientEntry color="#0076C0" ratio="0.8"/>'
+							+'<GradientEntry color="#0076C0" ratio="1"/>'
+						+'</entries>'
+					+'</LinearGradient>'
+				+'</fills>'
+			+'</Column2DSeries>'
+			+'<Column2DSeries yField="결제금액문의" displayName="결제금액문의" showValueLabels="[2]">'
+				+'<fills>'
+					+'<LinearGradient angle="90">'
+						+'<entries>'
+							+'<GradientEntry color="#9DDFEC" ratio="0"/>'
+							+'<GradientEntry color="#10A9C9" ratio="1"/>'
+						+'</entries>'
+					+'</LinearGradient>'
+				+'</fills>'
+			+'</Column2DSeries>'
+			+'<Column2DSeries yField="결제일문의" displayName="결제일문의" showValueLabels="[2]">'
+				+'<fills>'
+					+'<LinearGradient angle="90">'
+						+'<entries>'
+							+'<GradientEntry color="#ADF2D0" ratio="0"/>'
+							+'<GradientEntry color="#4DD4A6" ratio="1"/>'
+						+'</entries>'
+					+'</LinearGradient>'
+				+'</fills>'
+			+'</Column2DSeries>'
+			+'<Column2DSeries yField="계약문의" displayName="계약문의" showValueLabels="[2]">'
+				+'<fills>'
+					+'<LinearGradient angle="90">'
+						+'<entries>'
+							+'<GradientEntry color="#86E4DA" ratio="0"/>'
+								+'<GradientEntry color="#1CA8A3" ratio="1"/>'
+						+'</entries>'
+					+'</LinearGradient>'
+				+'</fills>'
+			+'</Column2DSeries>'
+			+'<Column2DSeries yField="고객정보변경" displayName="고객정보변경" showValueLabels="[2]">'
+				+'<fills>'
+					+'<LinearGradient angle="90">'
+						+'<entries>'
+							+'<GradientEntry color="#B3E4F1" ratio="0"/>'
+								+'<GradientEntry color="#3B96BE" ratio="1"/>'
+						+'</entries>'
+					+'</LinearGradient>'
+				+'</fills>'
+			+'</Column2DSeries>'
+			+'<Column2DSeries yField="연락처변경" displayName="연락처변경" showValueLabels="[2]">'
+				+'<fills>'
+					+'<LinearGradient angle="90">'
+						+'<entries>'
+							+'<GradientEntry color="#C8DFF1" ratio="0"/>'
+							+'<GradientEntry color="#6E90BB" ratio="1"/>'
+						+'</entries>'
+					+'</LinearGradient>'
+				+'</fills>'
+			+'</Column2DSeries>'
+		+'</series>'
+	+'</Column2DChart>'
++'</rMateChart>';
+
+this.layoutPieChart = 
+'<rMateChart backgroundColor="#FFFFFF" borderStyle="none">'
+	+'<Options>'
+		+'<Caption text="" textAlign="center"/>'
+		+'<Legend useVisibleCheck="false" defaultMouseOverAction="true"/>'
+	+'</Options>'
+    +'<CurrencyFormatter id="numFmt" currencySymbol="%" alignSymbol="right"/>'
+    +'<Pie2DChart showDataTips="true" dataTipJsFunction="dataTipFunc">'
+        +'<series>'
+            +'<Pie2DSeries nameField="cnsult_type" field="cnt" labelPosition="callout" labelJsFunction="pieSeriesLabelFunc">'
+				 +'<fills>'
+				 +'<SolidColor color="#255E91" />'
+				 +'<SolidColor color="#0076C0" />'
+				 +'<SolidColor color="#11B4D6" />'
+				 +'<SolidColor color="#65D2AD" />'
+				 +'<SolidColor color="#11A19C" />'
+				 +'<SolidColor color="#92CFDF" />'
+				 +'<SolidColor color="#7FA4C1" />'
+				 +'</fills>'
+                +'<showDataEffect>'
+                    +'<SeriesSlide duration="1000"/>'
+                +'</showDataEffect>'
+            +'</Pie2DSeries>'
+        +'</series>'
+    +'</Pie2DChart>'
++'</rMateChart>';
+
+this.layoutBarChart2 = 
+'<rMateChart backgroundColor="#FFFFFF" borderStyle="none">'
+	+'<Options>'
+		+'<Caption text="" />'
+	+'</Options>'
+	+'<Bar2DChart showDataTips="true">'
+		+'<horizontalAxis>'
+			+'<LinearAxis maximum="200"/>'
+		+'</horizontalAxis>'
+		+'<verticalAxis>'
+			+'<CategoryAxis categoryField="cnsult_type"/>'
+		+'</verticalAxis>'
+		+'<series>'
+			+'<Bar2DSeries labelPosition="outside" xField="cnt" displayName="cnt" showValueLabels="[6,7]" color="#ffffff" insideLabelYOffset="-2">'
+				+'<fills>'
+				+'<SolidColor color="#255E91" />'
+				+'<SolidColor color="#0076C0" />'
+				+'<SolidColor color="#11B4D6" />'
+				+'<SolidColor color="#65D2AD" />'
+				+'<SolidColor color="#11A19C" />'
+				+'<SolidColor color="#92CFDF" />'
+				+'<SolidColor color="#7FA4C1" />'
+				+'</fills>'		   
+				+'<showDataEffect>'
+				   +'<SeriesInterpolate/>'
+			   +'</showDataEffect>'
+			+'</Bar2DSeries>'
+		+'</series>'
+	+'</Bar2DChart>'
++'</rMateChart>';
+
+this.layoutLineChart = 
+'<rMateChart backgroundColor="#FFFFFF" borderStyle="none">'
+	+'<Options>'
+		+'<Caption text=""/>'
+		+'<Legend defaultMouseOverAction="false"/>'
+	+'</Options>'
+	+'<Area2DChart showDataTips="true" dataTipDisplayMode="axis">'
+		+'<horizontalAxis>'
+			+'<CategoryAxis categoryField="counselor" padding="0"/>'
+		+'</horizontalAxis>'
+		+'<verticalAxis>'
+			+'<LinearAxis />'
+		+'</verticalAxis>'
+		+'<series>'
+			/* Area2D Multi-Sereis 를 생성시에는 Area2DSeries를 여러 개 정의합니다 */
+			+'<Area2DSeries yField="LMS문구문의" form="curve" displayName="LMS문구문의">'
+				+'<areaStroke>'
+					+'<Stroke color="#255E91" weight="1"/>'
+				+'</areaStroke>'
+				/* 영역 차트의 채우기 색상 입니다. */
+				+'<areaFill>'
+					+'<SolidColor color="#255E91" alpha="0.5"/>'
+				+'</areaFill>'
+				+'<fill>'
+					+'<SolidColor color="#ffffff"/>'
+				+'</fill>'
+				/* itemRenderer의 테두리 선 색상 입니다. */
+				+'<stroke>'
+					+'<Stroke color="#255E91" weight="1"/>'
+				+'</stroke>'
+				+'<showDataEffect>'
+					+'<SeriesInterpolate duration="1000"/>'
+			   +'</showDataEffect>'
+			+'</Area2DSeries>'
+			+'<Area2DSeries yField="결제금액문의" form="curve" displayName="결제금액문의">'
+				+'<areaStroke>'
+					+'<Stroke color="#11B4D6" weight="1"/>'
+				+'</areaStroke>'
+				/* 영역 차트의 채우기 색상 입니다. */
+				+'<areaFill>'
+					+'<SolidColor color="#11B4D6" alpha="0.5"/>'
+				+'</areaFill>'
+				+'<fill>'
+					+'<SolidColor color="#ffffff"/>'
+				+'</fill>'
+				/* itemRenderer의 테두리 선 색상 입니다. */
+				+'<stroke>'
+					+'<Stroke color="#11B4D6" weight="1"/>'
+				+'</stroke>'
+				+'<showDataEffect>'
+					+'<SeriesInterpolate duration="1000"/>'
+				+'</showDataEffect>'
+			+'</Area2DSeries>'
+			+'<Area2DSeries yField="결제일문의" form="curve" displayName="결제일문의">'
+				+'<areaStroke>'
+					+'<Stroke color="#65D2AD" weight="1"/>'
+				+'</areaStroke>'
+				/* 영역 차트의 채우기 색상 입니다. */
+				+'<areaFill>'
+					+'<SolidColor color="#65D2AD" alpha="0.5"/>'
+				+'</areaFill>'
+				+'<fill>'
+					+'<SolidColor color="#ffffff"/>'
+				+'</fill>'
+				/* itemRenderer의 테두리 선 색상 입니다. */
+				+'<stroke>'
+					+'<Stroke color="#65D2AD" weight="1"/>'
+				+'</stroke>'
+				+'<showDataEffect>'
+					+'<SeriesInterpolate duration="1000"/>'
+				+'</showDataEffect>'
+			+'</Area2DSeries>'
+			+'<Area2DSeries yField="계약문의" form="curve" displayName="계약문의">'
+				+'<areaStroke>'
+					+'<Stroke color="#11A19C" weight="1"/>'
+				+'</areaStroke>'
+				/* 영역 차트의 채우기 색상 입니다. */
+				+'<areaFill>'
+					+'<SolidColor color="#11A19C" alpha="0.5"/>'
+				+'</areaFill>'
+				+'<fill>'
+					+'<SolidColor color="#ffffff"/>'
+				+'</fill>'
+				/* itemRenderer의 테두리 선 색상 입니다. */
+				+'<stroke>'
+					+'<Stroke color="#11A19C" weight="1"/>'
+				+'</stroke>'
+				+'<showDataEffect>'
+					+'<SeriesInterpolate duration="1000"/>'
+				+'</showDataEffect>'
+			+'</Area2DSeries>'
+			+'<Area2DSeries yField="고객정보변경" form="curve" displayName="고객정보변경">'
+				+'<areaStroke>'
+					+'<Stroke color="#92CFDF" weight="1"/>'
+				+'</areaStroke>'
+				/* 영역 차트의 채우기 색상 입니다. */
+				+'<areaFill>'
+					+'<SolidColor color="#92CFDF" alpha="0.5"/>'
+				+'</areaFill>'
+				+'<fill>'
+					+'<SolidColor color="#ffffff"/>'
+				+'</fill>'
+				/* itemRenderer의 테두리 선 색상 입니다. */
+				+'<stroke>'
+					+'<Stroke color="#92CFDF" weight="1"/>'
+				+'</stroke>'
+				+'<showDataEffect>'
+					+'<SeriesInterpolate duration="1000"/>'
+				+'</showDataEffect>'
+			+'</Area2DSeries>'
+			+'<Area2DSeries yField="연락처변경" form="curve" displayName="연락처변경">'
+				+'<areaStroke>'
+					+'<Stroke color="#7FA4C1" weight="1"/>'
+				+'</areaStroke>'
+				/* 영역 차트의 채우기 색상 입니다. */
+				+'<areaFill>'
+					+'<SolidColor color="#7FA4C1" alpha="0.5"/>'
+				+'</areaFill>'
+				+'<fill>'
+					+'<SolidColor color="#ffffff"/>'
+				+'</fill>'
+				/* itemRenderer의 테두리 선 색상 입니다. */
+				+'<stroke>'
+					+'<Stroke color="#7FA4C1" weight="1"/>'
+				+'</stroke>'
+				+'<showDataEffect>'
+					+'<SeriesInterpolate duration="1000"/>'
+				+'</showDataEffect>'
+			+'</Area2DSeries>'
+		+'</series>'
+	+'</Area2DChart>'
+ +'</rMateChart>';]]></Script>
+    <Objects>
+      <Dataset id="dsChart3">
+        <ColumnInfo>
+          <Column id="counselor" type="STRING" size="256" description="상담사"/>
+          <Column id="LMS문구문의" type="STRING" size="256" description="상담유형"/>
+          <Column id="결제금액문의" type="STRING" size="256"/>
+          <Column id="결제일문의" type="STRING" size="256"/>
+          <Column id="계약문의" type="STRING" size="256"/>
+          <Column id="고객정보변경" type="STRING" size="256"/>
+          <Column id="연락처변경" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="counselor">강감찬</Col>
+            <Col id="LMS문구문의">23</Col>
+            <Col id="결제금액문의">23</Col>
+            <Col id="결제일문의">23</Col>
+            <Col id="계약문의">23</Col>
+            <Col id="고객정보변경">23</Col>
+            <Col id="연락처변경">23</Col>
+          </Row>
+          <Row>
+            <Col id="counselor">김알지</Col>
+            <Col id="LMS문구문의">12</Col>
+            <Col id="결제금액문의">12</Col>
+            <Col id="결제일문의">11</Col>
+            <Col id="계약문의">12</Col>
+            <Col id="고객정보변경">12</Col>
+            <Col id="연락처변경">11</Col>
+          </Row>
+          <Row>
+            <Col id="counselor">문을지</Col>
+            <Col id="LMS문구문의">11</Col>
+            <Col id="결제금액문의">11</Col>
+            <Col id="결제일문의">12</Col>
+            <Col id="계약문의">12</Col>
+            <Col id="고객정보변경">12</Col>
+            <Col id="연락처변경">12</Col>
+          </Row>
+          <Row>
+            <Col id="counselor">안중근</Col>
+            <Col id="LMS문구문의">23</Col>
+            <Col id="결제금액문의">23</Col>
+            <Col id="결제일문의">24</Col>
+            <Col id="계약문의">23</Col>
+            <Col id="고객정보변경">23</Col>
+            <Col id="연락처변경">24</Col>
+          </Row>
+          <Row>
+            <Col id="counselor">왕단군</Col>
+            <Col id="LMS문구문의">10</Col>
+            <Col id="결제금액문의">10</Col>
+            <Col id="결제일문의">11</Col>
+            <Col id="계약문의">10</Col>
+            <Col id="고객정보변경">10</Col>
+            <Col id="연락처변경">11</Col>
+          </Row>
+          <Row>
+            <Col id="counselor">킹세종</Col>
+            <Col id="LMS문구문의">17</Col>
+            <Col id="결제금액문의">17</Col>
+            <Col id="결제일문의">17</Col>
+            <Col id="계약문의">18</Col>
+            <Col id="고객정보변경">18</Col>
+            <Col id="연락처변경">17</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsChart4">
+        <ColumnInfo>
+          <Column id="counselor" type="STRING" size="256" description="상담사"/>
+          <Column id="LMS문구문의" type="STRING" size="256" description="상담유형"/>
+          <Column id="결제금액문의" type="STRING" size="256"/>
+          <Column id="결제일문의" type="STRING" size="256"/>
+          <Column id="계약문의" type="STRING" size="256"/>
+          <Column id="고객정보변경" type="STRING" size="256"/>
+          <Column id="연락처변경" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="counselor">123456</Col>
+            <Col id="LMS문구문의">11</Col>
+            <Col id="결제금액문의">11</Col>
+            <Col id="결제일문의">12</Col>
+            <Col id="계약문의">12</Col>
+            <Col id="고객정보변경">12</Col>
+            <Col id="연락처변경">23</Col>
+          </Row>
+          <Row>
+            <Col id="counselor">568789</Col>
+            <Col id="LMS문구문의">23</Col>
+            <Col id="결제금액문의">23</Col>
+            <Col id="결제일문의">23</Col>
+            <Col id="계약문의">23</Col>
+            <Col id="고객정보변경">23</Col>
+            <Col id="연락처변경">23</Col>
+          </Row>
+          <Row>
+            <Col id="counselor">588714</Col>
+            <Col id="LMS문구문의">33</Col>
+            <Col id="결제금액문의">33</Col>
+            <Col id="결제일문의">34</Col>
+            <Col id="계약문의">34</Col>
+            <Col id="고객정보변경">34</Col>
+            <Col id="연락처변경">34</Col>
+          </Row>
+          <Row>
+            <Col id="counselor">789102</Col>
+            <Col id="LMS문구문의">18</Col>
+            <Col id="결제금액문의">18</Col>
+            <Col id="결제일문의">17</Col>
+            <Col id="계약문의">17</Col>
+            <Col id="고객정보변경">17</Col>
+            <Col id="연락처변경">17</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsChart2">
+        <ColumnInfo>
+          <Column id="cnsult_type" type="STRING" size="256" description="상담사"/>
+          <Column id="cnt" type="STRING" size="256" description="상담유형"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="cnsult_type">LMS문구문의</Col>
+            <Col id="cnt">85</Col>
+          </Row>
+          <Row>
+            <Col id="cnsult_type">결제금액문의</Col>
+            <Col id="cnt">85</Col>
+          </Row>
+          <Row>
+            <Col id="cnsult_type">결제일문의</Col>
+            <Col id="cnt">86</Col>
+          </Row>
+          <Row>
+            <Col id="cnsult_type">계약문의</Col>
+            <Col id="cnt">86</Col>
+          </Row>
+          <Row>
+            <Col id="cnsult_type">고객정보변경</Col>
+            <Col id="cnt">86</Col>
+          </Row>
+          <Row>
+            <Col id="cnsult_type">연락처변경</Col>
+            <Col id="cnt">86</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsChart1">
+        <ColumnInfo>
+          <Column id="cnsult_type" type="STRING" size="256" description="상담사"/>
+          <Column id="cnt" type="STRING" size="256" description="상담유형"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="cnsult_type">09시</Col>
+            <Col id="cnt">98</Col>
+          </Row>
+          <Row>
+            <Col id="cnsult_type">10시</Col>
+            <Col id="cnt">159</Col>
+          </Row>
+          <Row>
+            <Col id="cnsult_type">11시</Col>
+            <Col id="cnt">45</Col>
+          </Row>
+          <Row>
+            <Col id="cnsult_type">13시</Col>
+            <Col id="cnt">42</Col>
+          </Row>
+          <Row>
+            <Col id="cnsult_type">14시</Col>
+            <Col id="cnt">57</Col>
+          </Row>
+          <Row>
+            <Col id="cnsult_type">15시</Col>
+            <Col id="cnt">58</Col>
+          </Row>
+          <Row>
+            <Col id="cnsult_type">16시</Col>
+            <Col id="cnt">55</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

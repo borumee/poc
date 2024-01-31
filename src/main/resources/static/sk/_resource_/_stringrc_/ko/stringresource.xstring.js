@@ -1,0 +1,1 @@
+(function(){if(nexacro){nexacro._StringResource={"find":"이미지 찾기","search_null":"Ctrl + K 검색","name":"이름 :","position":"직급 :","tel":"전화번호 :","email":"이메일 :"};}})();

@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="fluid" width="1280" height="720" titletext="New Form">
+    <Layouts>
+      <Layout height="720" width="1280">
+        <Div id="Div00" taborder="0" text="Div00" left="0" top="0" border="1px solid black" onsize="Div00_onsize" height="302" right="0">
+          <Layouts>
+            <Layout type="horizontal" flexwrap="wrap">
+              <Div id="Div00_02" taborder="0" text="Div00" left="900" top="0" width="300" height="300" background="black"/>
+              <Div id="Div00_01" taborder="1" text="Div00" left="600" top="0" width="300" height="300" background="blue"/>
+              <Div id="Div00_00" taborder="2" text="Div00" left="300" top="0" width="300" height="300" background="green"/>
+              <Div id="Div00" taborder="3" text="Div00" left="0" top="0" width="300" height="300" background="red"/>
+            </Layout>
+            <Layout name="Layout0"/>
+            <Layout name="Layout1"/>
+          </Layouts>
+        </Div>
+        <Div id="Div00_00" taborder="1" text="Div00" left="0" top="Div00:0" border="1px solid black" onsize="Div00_onsize" height="242" right="0">
+          <Layouts>
+            <Layout type="horizontal" flexwrap="wrap">
+              <Div id="Div00" taborder="0" text="Div00" left="67" top="30" width="400" height="60" border="1px solid black">
+                <Layouts>
+                  <Layout>
+                    <Static id="Static00" taborder="0" text="Static00" left="0" top="0" width="120" bottom="0"/>
+                    <Edit id="Edit00" taborder="1" left="Static00:0" top="5" bottom="5" right="5"/>
+                  </Layout>
+                  <Layout name="Layout0"/>
+                  <Layout name="Layout1">
+                    <Static id="Static00"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Div id="Div00_00" taborder="1" text="Div00" left="67" top="30" width="400" height="60" border="1px solid black">
+                <Layouts>
+                  <Layout>
+                    <Static id="Static00" taborder="0" text="Static00" left="0" top="0" width="120" bottom="0"/>
+                    <Edit id="Edit00" taborder="1" left="Static00:0" top="5" bottom="5" right="5"/>
+                  </Layout>
+                  <Layout name="Layout0"/>
+                  <Layout name="Layout1">
+                    <Static id="Static00"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Div id="Div00_01" taborder="2" text="Div00" left="67" top="30" width="400" height="60" border="1px solid black">
+                <Layouts>
+                  <Layout>
+                    <Static id="Static00" taborder="0" text="Static00" left="0" top="0" width="120" bottom="0"/>
+                    <Edit id="Edit00" taborder="1" left="Static00:0" top="5" bottom="5" right="5"/>
+                  </Layout>
+                  <Layout name="Layout0"/>
+                  <Layout name="Layout1">
+                    <Static id="Static00"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Div id="Div00_02" taborder="3" text="Div00" left="67" top="30" width="400" height="60" border="1px solid black">
+                <Layouts>
+                  <Layout>
+                    <Static id="Static00" taborder="0" text="Static00" left="0" top="0" width="120" bottom="0"/>
+                    <Edit id="Edit00" taborder="1" left="Static00:0" top="5" bottom="5" right="5"/>
+                  </Layout>
+                  <Layout name="Layout0"/>
+                  <Layout name="Layout1"/>
+                </Layouts>
+              </Div>
+              <Div id="Div00_03" taborder="4" text="Div00" left="67" top="30" width="400" height="60" border="1px solid black">
+                <Layouts>
+                  <Layout>
+                    <Static id="Static00" taborder="0" text="Static00" left="0" top="0" width="120" bottom="0"/>
+                    <Edit id="Edit00" taborder="1" left="Static00:0" top="5" bottom="5" right="5"/>
+                  </Layout>
+                  <Layout name="Layout0"/>
+                  <Layout name="Layout1"/>
+                </Layouts>
+              </Div>
+              <Div id="Div00_04" taborder="5" text="Div00" left="67" top="30" width="400" height="60" border="1px solid black">
+                <Layouts>
+                  <Layout>
+                    <Static id="Static00" taborder="0" text="Static00" left="0" top="0" width="120" bottom="0"/>
+                    <Edit id="Edit00" taborder="1" left="Static00:0" top="5" bottom="5" right="5"/>
+                  </Layout>
+                  <Layout name="Layout0"/>
+                  <Layout name="Layout1"/>
+                </Layouts>
+              </Div>
+              <Div id="Div00_05" taborder="6" text="Div00" left="67" top="30" width="400" height="60" border="1px solid black">
+                <Layouts>
+                  <Layout>
+                    <Static id="Static00" taborder="0" text="Static00" left="0" top="0" width="120" bottom="0"/>
+                    <Edit id="Edit00" taborder="1" left="Static00:0" top="5" bottom="5" right="5"/>
+                  </Layout>
+                  <Layout name="Layout0"/>
+                  <Layout name="Layout1"/>
+                </Layouts>
+              </Div>
+              <Div id="Div00_06" taborder="7" text="Div00" left="67" top="30" width="400" height="60" border="1px solid black">
+                <Layouts>
+                  <Layout>
+                    <Static id="Static00" taborder="0" text="Static00" left="0" top="0" width="120" bottom="0"/>
+                    <Edit id="Edit00" taborder="1" left="Static00:0" top="5" bottom="5" right="5"/>
+                  </Layout>
+                  <Layout name="Layout0"/>
+                  <Layout name="Layout1"/>
+                </Layouts>
+              </Div>
+              <Div id="Div00_07" taborder="8" text="Div00" left="67" top="30" width="400" height="60" border="1px solid black">
+                <Layouts>
+                  <Layout>
+                    <Static id="Static00" taborder="0" text="Static00" left="0" top="0" width="120" bottom="0"/>
+                    <Edit id="Edit00" taborder="1" left="Static00:0" top="5" bottom="5" right="5"/>
+                  </Layout>
+                  <Layout name="Layout0"/>
+                  <Layout name="Layout1"/>
+                </Layouts>
+              </Div>
+              <Div id="Div00_08" taborder="9" text="Div00" left="67" top="30" width="400" height="60" border="1px solid black">
+                <Layouts>
+                  <Layout>
+                    <Static id="Static00" taborder="0" text="Static00" left="0" top="0" width="120" bottom="0"/>
+                    <Edit id="Edit00" taborder="1" left="Static00:0" top="5" bottom="5" right="5"/>
+                  </Layout>
+                  <Layout name="Layout0"/>
+                  <Layout name="Layout1"/>
+                </Layouts>
+              </Div>
+              <Div id="Div00_09" taborder="10" text="Div00" left="67" top="30" width="400" height="60" border="1px solid black">
+                <Layouts>
+                  <Layout>
+                    <Static id="Static00" taborder="0" text="Static00" left="0" top="0" width="120" bottom="0"/>
+                    <Edit id="Edit00" taborder="1" left="Static00:0" top="5" bottom="5" right="5"/>
+                  </Layout>
+                  <Layout name="Layout0"/>
+                  <Layout name="Layout1"/>
+                </Layouts>
+              </Div>
+              <Div id="Div00_10" taborder="11" text="Div00" left="67" top="30" width="400" height="60" border="1px solid black">
+                <Layouts>
+                  <Layout>
+                    <Static id="Static00" taborder="0" text="Static00" left="0" top="0" width="120" bottom="0"/>
+                    <Edit id="Edit00" taborder="1" left="Static00:0" top="5" bottom="5" right="5"/>
+                  </Layout>
+                  <Layout name="Layout0"/>
+                  <Layout name="Layout1"/>
+                </Layouts>
+              </Div>
+            </Layout>
+            <Layout name="Layout0"/>
+            <Layout name="Layout1"/>
+          </Layouts>
+        </Div>
+      </Layout>
+      <Layout height="720" mobileorientation="Landscape" name="Layout0" type="default" width="1150">
+        <Div id="Div00" height="602" left="0" top="0" right="0"/>
+        <Div id="Div00_00" height="362" left="0" top="Div00:0" right="0"/>
+      </Layout>
+      <Layout height="720" mobileorientation="Landscape" name="Layout1" type="default" width="480">
+        <Div id="Div00_00" left="0" top="Div00:0" height="722" right="0"/>
+        <Div id="Div00" left="0" top="0" height="602" right="0"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.Div00_onsize = function(obj:nexacro.Div,e:nexacro.SizeEventInfo)
+{
+	//console.log(obj)
+};
+]]></Script>
+  </Form>
+</FDL>

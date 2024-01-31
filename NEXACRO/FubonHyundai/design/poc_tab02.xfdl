@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="poc01" width="1000" height="500" titletext="콜센터 상담이력">
+    <Layouts>
+      <Layout height="500" width="1000">
+        <Grid id="Grid00" taborder="0" left="20" top="20" height="270" right="20" autofittype="col" binddataset="ds_gridSample">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="34" band="head"/>
+                <Row size="34"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="Column0"/>
+                <Cell col="1" text="순번"/>
+                <Cell col="2" text="타이틀1"/>
+                <Cell col="3" text="타이틀2"/>
+                <Cell col="4" text="타이틀3"/>
+                <Cell col="5" text="타이틀4"/>
+                <Cell col="6" text="타이틀5"/>
+                <Cell col="7" text="타이틀6"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Column0"/>
+                <Cell col="1" text="bind:순번"/>
+                <Cell col="2" text="bind:타이틀1"/>
+                <Cell col="3" text="bind:타이틀2"/>
+                <Cell col="4" text="bind:타이틀3"/>
+                <Cell col="5" text="bind:타이틀4"/>
+                <Cell col="6" text="bind:타이틀5"/>
+                <Cell col="7" text="bind:타이틀6"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static03" taborder="1" text="[Grid] Head/row &#13;&#10;Height : 34px" left="20" top="300" width="187" height="72" cssclass="sta_WF_GuideMemo" visible="false"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_gridSample">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="순번" type="STRING" size="256"/>
+          <Column id="타이틀1" type="STRING" size="256"/>
+          <Column id="타이틀2" type="STRING" size="256"/>
+          <Column id="타이틀3" type="STRING" size="256"/>
+          <Column id="타이틀4" type="STRING" size="256"/>
+          <Column id="타이틀5" type="STRING" size="256"/>
+          <Column id="타이틀6" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column0">테스트</Col>
+            <Col id="순번">테스트</Col>
+            <Col id="타이틀1">테스트</Col>
+            <Col id="타이틀2">테스트</Col>
+            <Col id="타이틀4">테스트</Col>
+            <Col id="타이틀5">테스트</Col>
+            <Col id="타이틀6">테스트</Col>
+            <Col id="타이틀3">테스트</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">테스트</Col>
+            <Col id="순번">테스트</Col>
+            <Col id="타이틀1">테스트</Col>
+            <Col id="타이틀2">테스트</Col>
+            <Col id="타이틀3">테스트</Col>
+            <Col id="타이틀4">테스트</Col>
+            <Col id="타이틀5">테스트</Col>
+            <Col id="타이틀6">테스트</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">테스트</Col>
+            <Col id="순번">테스트</Col>
+            <Col id="타이틀1">테스트</Col>
+            <Col id="타이틀2">테스트</Col>
+            <Col id="타이틀3">테스트</Col>
+            <Col id="타이틀4">테스트</Col>
+            <Col id="타이틀5">테스트</Col>
+            <Col id="타이틀6">테스트</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">test</Col>
+            <Col id="타이틀6">test</Col>
+            <Col id="타이틀5">test</Col>
+            <Col id="타이틀4">test</Col>
+            <Col id="타이틀3">test</Col>
+            <Col id="타이틀2">test</Col>
+            <Col id="타이틀1">test</Col>
+            <Col id="순번">test</Col>
+          </Row>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.Tab01_onchanged = function(obj:nexacro.Tab,e:nexacro.TabIndexChangeEventInfo)
+{
+	
+};
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,500 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="poc01" width="1050" height="850" titletext="고객정보 통합조회" onload="poc01_onload" ondrop="poc01_ondrop" ontimer="poc01_ontimer" onlayoutchanged="poc01_onlayoutchanged">
+    <Layouts>
+      <Layout height="850" width="1050">
+        <Static id="sta04_00" taborder="0" top="0" width="30" cssclass="sta_WF_GSize" visible="false" text="W30" right="0" bottom="0"/>
+        <Static id="Static00" taborder="1" text="고객정보 통합조회" left="6" top="30" width="190" height="30" cssclass="sta_WF_Title1st" messageid="menu.M1100"/>
+        <Div id="divSrch" taborder="2" left="6" top="74" height="80" right="30" cssclass="div_WF_SearchBox" formscrollbartype="none none">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="고객번호" left="20" top="21" width="57" height="36" cssclass="sta_WF_SchLabel" messageid="customer.no" fittocontents="width"/>
+              <Edit id="Edit00" taborder="1" left="Static00:10" top="21" width="160" height="36" value="1" text="1" textAlign="center" onkeyup="divSrch_Edit00_onkeyup"/>
+              <Button id="btnSrch" taborder="3" top="21" width="36" height="36" cssclass="btn_WF_search" right="30" onclick="fnComBtnOnClick"/>
+              <Edit id="Edit00_00" taborder="2" left="Edit00:3" top="21" width="160" height="36"/>
+            </Layout>
+            <Layout name="Layout0">
+              <Edit id="Edit00" width="160" left="Static00:10" top="21" height="36"/>
+              <Edit id="Edit00_00" width="160" left="Edit00:3" top="21" height="36"/>
+            </Layout>
+            <Layout name="Layout1">
+              <Edit id="Edit00_00" left="Edit00:3" top="21" height="36" right="btnSrch:4"/>
+              <Edit id="Edit00" width="28.04%" left="Static00:10" top="21" height="36" value="1" text="1"/>
+              <Button id="btnSrch" top="21" width="36" height="36" right="20"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="btnShowHide" taborder="3" left="46.48%" top="153" width="66" height="22" cssclass="btn_WF_BoxUp" onclick="fnComBtnOnClick" visible="false"/>
+        <Tab id="Tab00" taborder="4" tabindex="0" left="6" top="divSrch:31" height="250" right="30" tabbuttonheight="32" ondrag="fnComTabOnDrag" usePort="Y">
+          <Tabpages>
+            <Tabpage id="Tabpage1" text="고객기본" messageid="customer.basic">
+              <Layouts>
+                <Layout>
+                  <Static id="Static00" taborder="2" text="고객기본정보1" left="20" top="20" width="90" height="16" cssclass="sta_WF_GroupTitle" messageid="customer.basic1"/>
+                  <Div id="Div00" taborder="0" left="20" top="Static00:4" height="60" right="20" cssclass="div_WF_Groupbox">
+                    <Layouts>
+                      <Layout>
+                        <Static id="Static00" taborder="0" text="고객주민번호 : " left="26" top="15" width="100" height="30" cssclass="sta_WF_Title3rd" messageid="customer.ssn" fittocontents="width"/>
+                        <Static id="Static00_00" taborder="1" text="고객한글성명 : " left="256" top="15" width="100" height="30" cssclass="sta_WF_Title3rd" messageid="customer.name_ko" fittocontents="width"/>
+                        <Static id="Static01_00" taborder="2" text="홍길동" left="Static00_00:0" top="15" width="100" height="30"/>
+                        <Static id="Static00_00_00" taborder="3" text="고객영문성명 : " left="466" top="15" width="100" height="30" cssclass="sta_WF_Title3rd" messageid="customer.name_en" fittocontents="width"/>
+                        <Static id="Static01_00_00" taborder="4" text="Hong Gil Dong" left="Static00_00_00:0" top="15" width="100" height="30"/>
+                        <Static id="Static00_00_00_00" taborder="5" text="고객국적 : " left="701" top="15" width="75" height="30" cssclass="sta_WF_Title3rd" messageid="customer.locale" fittocontents="width"/>
+                        <Combo id="cboLocale" taborder="6" left="Static00_00_00_00:0" top="15" width="15.64%" height="30" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" text="" index="-1">
+                          <Dataset id="innerdataset">
+                            <ColumnInfo>
+                              <Column id="codecolumn" size="256"/>
+                              <Column id="datacolumn" size="256"/>
+                            </ColumnInfo>
+                            <Rows>
+                              <Row>
+                                <Col id="codecolumn">0</Col>
+                                <Col id="datacolumn">한국</Col>
+                              </Row>
+                              <Row>
+                                <Col id="codecolumn">1</Col>
+                                <Col id="datacolumn">미국</Col>
+                              </Row>
+                            </Rows>
+                          </Dataset>
+                        </Combo>
+                        <MaskEdit id="MaskEdit00" taborder="7" left="Static00:0" top="15" width="120" height="30" format="@@@@@@-@{@@@@@@}" type="string" onitemchanged="Tab00_Tabpage1_Div00_MaskEdit00_onitemchanged"/>
+                      </Layout>
+                      <Layout name="Layout0">
+                        <Static id="Static00_00_00" left="26" top="55" width="100" height="30"/>
+                        <Static id="Static01_00_00" left="Static00_00_00:0" top="55" width="100" height="30"/>
+                        <Static id="Static00_00_00_00" left="45.39%" top="55" width="75" height="30"/>
+                        <Combo id="cboLocale" left="Static00_00_00_00:0" top="55" height="30" right="30"/>
+                        <Static id="Static00_00" left="45.39%" top="15" width="100" height="30"/>
+                        <Static id="Static01_00" left="Static00_00:0" top="15" width="45" height="30"/>
+                        <MaskEdit id="MaskEdit00" left="Static00:0" width="120" height="30" top="15"/>
+                        <Static id="Static00" left="26" width="100" height="30" top="15"/>
+                      </Layout>
+                      <Layout name="Layout1">
+                        <Static id="Static00_00" left="30" top="55" width="100" height="30"/>
+                        <Static id="Static01_00" left="Static00_00:0" top="55" width="45" height="30"/>
+                        <Static id="Static00_00_00" left="30" top="95" width="100" height="30"/>
+                        <Static id="Static01_00_00" left="Static00_00_00:0" top="95" width="100" height="30"/>
+                        <Static id="Static00_00_00_00" left="30" top="135" width="75" height="30"/>
+                        <Combo id="cboLocale" left="Static00_00_00_00:0" top="135" height="30" right="30"/>
+                        <Static id="Static00" left="30" top="15" width="100" height="30"/>
+                        <MaskEdit id="MaskEdit00" left="Static00:0" width="120" height="30" top="15"/>
+                      </Layout>
+                    </Layouts>
+                  </Div>
+                  <Static id="Static00_00" taborder="3" text="고객기본정보2" left="20" top="Div00:10" width="90" height="16" cssclass="sta_WF_GroupTitle" messageid="customer.basic2"/>
+                  <Div id="Div00_00" taborder="1" left="20" top="Static00_00:4" height="60" right="20" cssclass="div_WF_Groupbox">
+                    <Layouts>
+                      <Layout>
+                        <Static id="Static00" taborder="0" text="고객직업 : " left="26" top="13" width="100" height="30" cssclass="sta_WF_Title3rd" messageid="customer.job" fittocontents="width"/>
+                        <Static id="Static00_00" taborder="1" text="고객연령 : " left="256" top="15" width="100" height="30" cssclass="sta_WF_Title3rd" messageid="customer.age" fittocontents="width"/>
+                        <Static id="Static00_00_00" taborder="2" text="운전여부 : " left="466" top="15" width="100" height="30" cssclass="sta_WF_Title3rd" messageid="customer.drive" fittocontents="width"/>
+                        <Static id="Static00_00_00_00" taborder="3" text="생년월일 : " left="701" top="15" width="75" height="30" cssclass="sta_WF_Title3rd" messageid="customer.birthday" fittocontents="width"/>
+                        <Radio id="rdoJob" taborder="4" left="Static00:0" top="15" width="120" height="30" innerdataset="ds_radio01" codecolumn="code" direction="vertical" text="주부" index="0"/>
+                        <Radio id="Radio01" taborder="5" left="Static00_00_00:0" top="15" width="120" height="30" innerdataset="ds_radio02" codecolumn="code" direction="vertical"/>
+                        <Calendar id="Calendar00" taborder="6" left="Static00_00_00_00:0" top="15" width="15.64%" height="30" dateformat="yyyy-MM-dd"/>
+                        <MaskEdit id="MaskEdit00" taborder="7" left="Static00_00:0" top="15" width="55" height="30" postfixtext="세" format="###" type="number" limitbymask="both"/>
+                      </Layout>
+                      <Layout name="Layout0">
+                        <Static id="Static00_00_00" left="26" top="53" width="72" height="30"/>
+                        <Static id="Static00_00_00_00" left="45.39%" top="53" width="72" height="30"/>
+                        <Radio id="Radio01" left="Static00_00_00:0" top="53" width="120" height="30"/>
+                        <Calendar id="Calendar00" left="Static00_00_00_00:0" top="53" height="30" right="30"/>
+                        <Static id="Static00_00" left="45.39%" top="15" width="72" height="30"/>
+                        <Static id="Static00" width="72" left="26" top="13" height="30"/>
+                        <MaskEdit id="MaskEdit00" left="Static00_00:0" width="55" height="30" top="15"/>
+                        <Radio id="rdoJob" left="Static00:0" width="120" height="30" top="15"/>
+                      </Layout>
+                      <Layout name="Layout1">
+                        <Static id="Static00_00" left="30" top="53" width="72" height="30"/>
+                        <Static id="Static00_00_00" left="30" top="93" width="72" height="30"/>
+                        <Static id="Static00_00_00_00" left="30" top="133" width="75" height="30"/>
+                        <Radio id="Radio01" left="Static00_00_00:0" top="93" width="120" height="30"/>
+                        <Calendar id="Calendar00" left="Static00_00_00_00:0" top="133" height="30" right="30"/>
+                        <Static id="Static00" left="30" top="13" width="72" height="30"/>
+                        <MaskEdit id="MaskEdit00" left="Static00_00:0" top="53" width="55" height="30"/>
+                        <Radio id="rdoJob" left="Static00:0" width="120" height="30" top="15"/>
+                      </Layout>
+                    </Layouts>
+                  </Div>
+                </Layout>
+                <Layout name="Layout0">
+                  <Div id="Div00" height="100" left="20" top="Static00:4" right="20"/>
+                  <Div id="Div00_00" height="100" left="20" top="Static00_00:4" right="20"/>
+                </Layout>
+                <Layout name="Layout1">
+                  <Div id="Div00" height="185" left="20" top="Static00:4" right="20"/>
+                  <Div id="Div00_00" height="185" left="20" top="Static00_00:4" right="20"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+          </Tabpages>
+        </Tab>
+        <Tab id="Tab01" taborder="5" tabindex="0" left="6" top="Tab00:20" tabbuttongap="1" tabbuttonheight="32" right="30" ondrag="fnComTabOnDrag" usePort="Y" height="834" onchanged="Tab01_onchanged">
+          <Tabpages>
+            <Tabpage id="Tabpage1" text="고객상담 패턴 그래프" messageid="customer.grape">
+              <Layouts>
+                <Layout>
+                  <Div id="Div00" taborder="0" left="20" top="20" right="20" text="조회된 데이터가 없습니다." bottom="20"/>
+                </Layout>
+                <Layout name="Layout0"/>
+                <Layout name="Layout1"/>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage2" text="콜센터상담이력" messageid="customer.callcenter">
+              <Layouts>
+                <Layout>
+                  <Div id="Div00" taborder="0" left="20" top="20" right="20" bottom="20" text="조회된 데이터가 없습니다."/>
+                </Layout>
+                <Layout name="Layout0"/>
+                <Layout name="Layout1"/>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage3" text="지급이력" messageid="customer.payments">
+              <Layouts>
+                <Layout>
+                  <Div id="Div00" taborder="0" left="20" top="20" right="20" bottom="20" text="조회된 데이터가 없습니다."/>
+                </Layout>
+                <Layout name="Layout0"/>
+                <Layout name="Layout1"/>
+              </Layouts>
+            </Tabpage>
+          </Tabpages>
+        </Tab>
+      </Layout>
+      <Layout height="900" mobileorientation="Landscape" name="Layout0" type="default" width="950">
+        <Tab id="Tab00" height="330" left="30" top="divSrch:31" right="30"/>
+        <Tab id="Tab01" left="30" top="Tab00:20" right="30" height="834"/>
+        <Button id="btnShowHide" left="45.26%" top="153" width="66" height="22"/>
+        <Div id="divSrch" left="30" top="74" height="80" right="30"/>
+        <Static id="Static00" left="30" top="30" width="190" height="30"/>
+      </Layout>
+      <Layout height="1000" mobileorientation="Landscape" name="Layout1" type="default" width="480">
+        <Tab id="Tab00" height="500" left="20" top="divSrch:31" right="20"/>
+        <Static id="sta04_00" width="20" top="0" right="0" bottom="0" text="W20"/>
+        <Div id="divSrch" right="20" left="20" top="74" height="80"/>
+        <Tab id="Tab01" right="20" left="20" top="Tab00:20" height="1580"/>
+        <Static id="Static00" left="20" top="30" width="190" height="30"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_radio01">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="data_ko" type="STRING" size="256"/>
+          <Column id="data_en" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code">주부</Col>
+            <Col id="data_ko">주부</Col>
+            <Col id="data_en">none</Col>
+          </Row>
+          <Row>
+            <Col id="code">직장인</Col>
+            <Col id="data_ko">직장인</Col>
+            <Col id="data_en">office</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_radio02">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="data_ko" type="STRING" size="256"/>
+          <Column id="data_en" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code">운전</Col>
+            <Col id="data_ko">운전</Col>
+            <Col id="data_en">yes</Col>
+          </Row>
+          <Row>
+            <Col id="code">미운전</Col>
+            <Col id="data_ko">미운전</Col>
+            <Col id="data_en">no</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_consulting">
+        <ColumnInfo>
+          <Column id="cust_no" type="STRING" size="256" description="고객번호"/>
+          <Column id="cnsult_date" type="STRING" size="256" description="상담일시"/>
+          <Column id="counselor" type="STRING" size="256" description="상담사"/>
+          <Column id="contract_no" type="STRING" size="256" description="계약번호"/>
+          <Column id="phone_in" type="STRING" size="256" description="인입전화번호"/>
+          <Column id="cnsult_type" type="STRING" size="256" description="상담유형"/>
+          <Column id="cnsult_detail" type="STRING" size="256" description="상담상세내용"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsList">
+        <ColumnInfo>
+          <Column id="id" type="INT" size="256"/>
+          <Column id="name_ko" type="STRING" size="256"/>
+          <Column id="name_en" type="STRING" size="256"/>
+          <Column id="ssn" type="STRING" size="256"/>
+          <Column id="locale" type="STRING" size="256"/>
+          <Column id="job" type="STRING" size="256"/>
+          <Column id="age" type="STRING" size="256"/>
+          <Column id="drive" type="STRING" size="256"/>
+          <Column id="birthday" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Nexacro DEMO
+*  @FileName 	poc.xfdl
+*  @Creator 	TOBESOFT
+*  @CreateDate 	2023/05/18
+*  @Desction   
+************** 소스 수정 이력 ***********************************************
+* Date					Modifier					Description
+*******************************************************************************
+* 2023/05/18			TOBESOFT					최초생성
+*******************************************************************************
+*/
+
+include "Lib::SrchShowHide.xjs"; // 검색영역 접기/펼치기 애니메이션 적용 공통함수
+
+/*******************************************************************************************************************************
+ * FORM 변수 선언 영역
+*******************************************************************************************************************************/
+this.bAni = false;
+this.fvObjDrag = false;
+this.fvTimerIdx = 0;
+this.fvTimerMax = 30;
+this.fvObjFrom;
+this.fvObjTo;
+
+this.key = CryptoJS.enc.Utf8.parse("TOBESOFT12345678");
+this.iv  = CryptoJS.enc.Utf8.parse('1234567812345678');
+/*******************************************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose..)
+*******************************************************************************************************************************/
+this.poc01_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnload(obj,e); //필수함수
+	
+	var app = nexacro.getApplication(),
+		langcode = app.langCode;
+		
+	this.Tab00.Tabpage1.form.Div00_00.form.rdoJob.set_datacolumn('data_'+langcode);
+	this.Tab00.Tabpage1.form.Div00_00.form.Radio01.set_datacolumn('data_'+langcode);
+	
+	/*
+	 1. 생성될 버튼 넓이
+	 2. 생성될 버튼 높이
+	 3. search view가 펼쳐졌을때 버튼 css class 명
+	 4. search view가 숨겨졌을때 버튼 css class 명
+	 5. L : Left Right 방향 / T : Top Bottom 방향
+	*/
+	
+	var objConfig = {
+						nBtnWidth  : 66,
+						nBtnHeight : 22,
+						sBtnExpandClass   : "btn_WF_BoxDown",
+						sBtnCollapseClass : "btn_WF_BoxUp"
+					}
+					
+	this.fnInitSrchShowHideSet(this.divSrch, objConfig);
+	
+	this.divSrch.form.Edit00.setFocus();
+};
+
+this.poc01_ondrop = function(obj:nexacro.Form,e:nexacro.DragEventInfo)
+{
+	if (this.bAni == false)
+	{
+		this.fvObjFrom = e.userdata;
+		this.fvObjTo = this.fnGetDragToObj(e.fromobject);
+		
+		if (this.fvObjTo.usePort == "Y" && this.fvObjFrom instanceof Tab && this.fvObjFrom.name != this.fvObjTo.name)
+		{		
+			this.fvObjFrom.orgLeft = this.fvObjFrom.getOffsetLeft();
+			this.fvObjFrom.orgTop = this.fvObjFrom.getOffsetTop();
+			this.fvObjFrom.orgWidth = this.fvObjFrom.getOffsetWidth();
+			this.fvObjFrom.orgHeight = this.fvObjFrom.getOffsetHeight();
+			
+			this.fvObjTo.orgLeft = this.fvObjTo.getOffsetLeft();
+			this.fvObjTo.orgTop = this.fvObjTo.getOffsetTop();
+			this.fvObjTo.orgWidth = this.fvObjTo.getOffsetWidth();
+			this.fvObjTo.orgHeight = this.fvObjTo.getOffsetHeight();
+
+			this.bAni = true;
+			this.setTimer(1, 10);
+		}
+	}
+};
+
+this.poc01_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	if (e.timerid == 1)
+	{
+		this.fvTimerIdx++;
+		
+		var nLeft1 = this.fnMoveAni(this.fvTimerIdx, this.fvObjFrom.orgLeft, this.fvObjTo.orgLeft - this.fvObjFrom.orgLeft, this.fvTimerMax);
+		var nTop1 = this.fnMoveAni(this.fvTimerIdx, this.fvObjFrom.orgTop, this.fvObjTo.orgTop - this.fvObjFrom.orgTop, this.fvTimerMax);
+		var nWidth1 = this.fnMoveAni(this.fvTimerIdx, this.fvObjFrom.orgWidth, this.fvObjTo.orgWidth - this.fvObjFrom.orgWidth, this.fvTimerMax);
+		var nHeight1 = this.fnMoveAni(this.fvTimerIdx, this.fvObjFrom.orgHeight, this.fvObjTo.orgHeight - this.fvObjFrom.orgHeight, this.fvTimerMax);
+		
+		var nLeft2 = this.fnMoveAni(this.fvTimerIdx, this.fvObjTo.orgLeft, this.fvObjFrom.orgLeft - this.fvObjTo.orgLeft, this.fvTimerMax);
+		var nTop2 = this.fnMoveAni(this.fvTimerIdx, this.fvObjTo.orgTop, this.fvObjFrom.orgTop - this.fvObjTo.orgTop, this.fvTimerMax);
+		var nWidth2 = this.fnMoveAni(this.fvTimerIdx, this.fvObjTo.orgWidth, this.fvObjFrom.orgWidth - this.fvObjTo.orgWidth, this.fvTimerMax);
+		var nHeight2 = this.fnMoveAni(this.fvTimerIdx, this.fvObjTo.orgHeight, this.fvObjFrom.orgHeight - this.fvObjTo.orgHeight, this.fvTimerMax);
+		
+		this.fvObjFrom.move(nLeft1, nTop1, nWidth2, nHeight2);
+		this.fvObjTo.move(nLeft2, nTop2, nWidth1, nHeight1);
+		
+		if (this.fvTimerIdx == this.fvTimerMax) {
+			var	topObj = this.gfn_getSmallNum(this.fvObjTo, this.fvObjFrom);		
+			var	bottomObj = this.gfn_getLargeNum(this.fvObjTo, this.fvObjFrom);		
+			topObj.set_top('divSrch:31');
+			topObj.set_right("30px");
+			bottomObj.set_top(topObj.name+':20');
+		
+			this.bAni = false;
+ 			this.fvTimerIdx = 0;
+ 			this.killTimer(e.timerid);
+ 		}
+	}	
+};
+
+this.gfn_getSmallNum = function(obj1, obj2)  {
+	return (obj1.getOffsetTop() > obj2.getOffsetTop()) ? obj2 : obj1;
+}
+this.gfn_getLargeNum = function(obj1, obj2)  {
+	return (obj1.getOffsetTop() < obj2.getOffsetTop()) ? obj2 : obj1;
+}
+/*******************************************************************************************************************************
+ * Transaction 서비스호출 처리 영역
+*******************************************************************************************************************************/
+
+/*******************************************************************************************************************************
+ * Callback 영역 (Transaction, popup, message..)
+*******************************************************************************************************************************/
+this.fn_apiCallback = function(strSvcId, nErrorCode, objResolveData) 
+{
+	if (nErrorCode < 0)	// 통신에러
+		return;
+			
+	// service id 에 따라 callback 분기처리
+	switch(strSvcId) 
+	{
+		case "MasterSrch" :		
+			var tabDiv1 = this.Tab01.Tabpage1.form.Div00;
+			var tabDiv2 = this.Tab01.Tabpage2.form.Div00;
+			var tabDiv3 = this.Tab01.Tabpage3.form.Div00;
+			if(this.gfn_isEmpty(tabDiv1.url) && this.gfn_isEmpty(tabDiv2.url) && this.gfn_isEmpty(tabDiv3.url)) {
+				tabDiv1.set_url("poc::poc_tab01.xfdl");
+				tabDiv2.set_url("poc::poc_tab02.xfdl");
+				tabDiv3.set_url("poc::poc_tab03.xfdl");
+			} else {
+				tabDiv1.form.reload();
+				tabDiv2.form.reload();
+				tabDiv3.form.reload();
+			}
+			break;
+		
+		default:
+	}
+};
+
+/*******************************************************************************************************************************
+ * 사용자 Function 영역
+*******************************************************************************************************************************/
+this.fnMoveAni = function (t, b, c, d)
+{
+	t /= d / 2;
+	
+	if (t < 1) {
+		return c / 2 * t * t * t + b;
+	}
+	
+	t -= 2;
+	
+	return c / 2 * (t * t * t + 2) + b;
+};
+
+this.fnGetDragToObj = function(obj)
+{
+	if (obj.parent.parent.usePort == "Y") {
+		return obj.parent.parent;
+	} else {
+		return obj;	
+	}
+};
+
+/*******************************************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+*******************************************************************************************************************************/
+this.fnComBtnOnClick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	switch (obj.name)
+	{
+		case "btnSrch" :
+			var sParam = this.divSrch.form.Edit00.value;
+			if (this.gfn_isNull(sParam)) {
+				alert("고객번호 조건을 입력하세요.");
+				this.divSrch.form.Edit00.setFocus();
+			} else {
+			
+				var app = nexacro.getApplication();
+				app.pocParam = sParam;
+				var svcID = {svcId : "MasterSrch", url : "GET::FUBON::customer/" + sParam, outDs : "dsList"}
+				this.gfn_dsRequestAsync(svcID);
+			}
+			break;
+	}
+};
+
+this.fnComTabOnDrag = function(obj:nexacro.Tab,e:nexacro.DragEventInfo)
+{
+	e.userdata = obj;
+	
+	return true;
+};
+
+
+/*
+ *	탭 크기 조절
+ */ 
+this.Tab01_onchanged = function(obj:nexacro.Tab,e:nexacro.TabIndexChangeEventInfo)
+{
+	this.fn_setTabHeight(this.Tab01, e.postindex);
+};
+this.poc01_onlayoutchanged = function(obj:nexacro.Form,e:nexacro.LayoutChangeEventInfo)
+{
+	this.fn_setTabHeight(this.Tab01, this.Tab01.tabindex);	
+};
+this.fn_setTabHeight = function(obj, idx) {
+	if(idx <= 0) {
+		obj.setOffsetHeight((this.getCurrentLayoutID() == 'Layout1') ? '1580' : '834')
+	} else {
+		obj.setOffsetHeight('534')
+	}
+	this.resetScroll()
+}
+
+this.divSrch_Edit00_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	// enter 키 입력시 
+	if (e.keycode == 13) {
+		this.divSrch.form.btnSrch.click()
+	}
+};
+
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="Tab00.Tabpage1.form.Div00.form.Static01" propid="text" datasetid="dsList" columnid="ssn"/>
+      <BindItem id="item1" compid="Tab00.Tabpage1.form.Div00.form.Static01_00" propid="text" datasetid="dsList" columnid="name_ko"/>
+      <BindItem id="item2" compid="Tab00.Tabpage1.form.Div00.form.Static01_00_00" propid="text" datasetid="dsList" columnid="name_en"/>
+      <BindItem id="item7" compid="Tab00.Tabpage1.form.Div00_00.form.Calendar00" propid="value" datasetid="dsList" columnid="birthday"/>
+      <BindItem id="item3" compid="Tab00.Tabpage1.form.Div00.form.cboLocale" propid="text" datasetid="dsList" columnid="locale"/>
+      <BindItem id="item4" compid="Tab00.Tabpage1.form.Div00_00.form.rdoJob" propid="value" datasetid="dsList" columnid="job"/>
+      <BindItem id="item6" compid="Tab00.Tabpage1.form.Div00_00.form.Radio01" propid="value" datasetid="dsList" columnid="drive"/>
+      <BindItem id="item8" compid="Tab00.Tabpage1.form.Div00.form.MaskEdit00" propid="value" datasetid="dsList" columnid="ssn"/>
+      <BindItem id="item9" compid="Tab00.Tabpage1.form.Div00_00.form.MaskEdit00" propid="value" datasetid="dsList" columnid="age"/>
+      <BindItem id="item5" compid="divSrch.form.Edit00_00" propid="value" datasetid="dsList" columnid="name_ko"/>
+    </Bind>
+  </Form>
+</FDL>

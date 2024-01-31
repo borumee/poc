@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="toast_sample" width="1070" height="560" titletext="New Form">
+    <Layouts>
+      <Layout height="560" width="1070">
+        <Static id="Static00" taborder="0" text="Toast 샘플" left="0" top="0" height="34" cssclass="sta_WF_pageTitle" right="0"/>
+        <Div id="Div00" taborder="1" left="137" top="47" width="300" height="50" background="#0f63b5" borderRadius="3px" boxShadow="0px 0px 12px #999999">
+          <Layouts>
+            <Layout>
+              <ImageViewer id="ImageViewer00" taborder="0" left="5" top="4" width="40" background="transparent" border="0px none" bottom="0" image="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADsSURBVEhLY2AYBfQMgf///3P8+/evAIgvA/FsIF+BavYDDWMBGroaSMMBiE8VC7AZDrIFaMFnii3AZTjUgsUUWUDA8OdAH6iQbQEhw4HyGsPEcKBXBIC4ARhex4G4BsjmweU1soIFaGg/WtoFZRIZdEvIMhxkCCjXIVsATV6gFGACs4Rsw0EGgIIH3QJYJgHSARQZDrWAB+jawzgs+Q2UO49D7jnRSRGoEFRILcdmEMWGI0cm0JJ2QpYA1RDvcmzJEWhABhD/pqrL0S0CWuABKgnRki9lLseS7g2AlqwHWQSKH4oKLrILpRGhEQCw2LiRUIa4lwAAAABJRU5ErkJggg=="/>
+              <Static id="Static00" taborder="1" text="message" left="50" top="0" bottom="0" color="#ffffff" font="14px/normal &quot;Neue&quot;,&quot;Helvetica&quot;,&quot;Arial&quot;,&quot;sans-serif&quot;" wordWrap="char" right="0"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static01" taborder="2" text="Success" left="30" top="47" width="100" height="50"/>
+        <Static id="Static02" taborder="3" text="Info" left="30" top="103" width="100" height="50"/>
+        <Div id="Div01" taborder="4" left="137" top="103" width="300" height="50" background="#16a0db" borderRadius="3px" boxShadow="0px 0px 12px #999999">
+          <Layouts>
+            <Layout>
+              <ImageViewer id="ImageViewer00" taborder="0" left="5" top="4" width="40" image="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGwSURBVEhLtZa9SgNBEMc9sUxxRcoUKSzSWIhXpFMhhYWFhaBg4yPYiWCXZxBLERsLRS3EQkEfwCKdjWJAwSKCgoKCcudv4O5YLrt7EzgXhiU3/4+b2ckmwVjJSpKkQ6wAi4gwhT+z3wRBcEz0yjSseUTrcRyfsHsXmD0AmbHOC9Ii8VImnuXBPglHpQ5wwSVM7sNnTG7Za4JwDdCjxyAiH3nyA2mtaTJufiDZ5dCaqlItILh1NHatfN5skvjx9Z38m69CgzuXmZgVrPIGE763Jx9qKsRozWYw6xOHdER+nn2KkO+Bb+UV5CBN6WC6QtBgbRVozrahAbmm6HtUsgtPC19tFdxXZYBOfkbmFJ1VaHA1VAHjd0pp70oTZzvR+EVrx2Ygfdsq6eu55BHYR8hlcki+n+kERUFG8BrA0BwjeAv2M8WLQBtcy+SD6fNsmnB3AlBLrgTtVW1c2QN4bVWLATaIS60J2Du5y1TiJgjSBvFVZgTmwCU+dAZFoPxGEEs8nyHC9Bwe2GvEJv2WXZb0vjdyFT4Cxk3e/kIqlOGoVLwwPevpYHT+00T+hWwXDf4AJAOUqWcDhbwAAAAASUVORK5CYII=" background="transparent" border="0px none" bottom="0"/>
+              <Static id="Static00" taborder="1" text="message" left="50" top="0" right="0" bottom="0" color="#ffffff" font="14px/normal &quot;Neue&quot;,&quot;Helvetica&quot;,&quot;Arial&quot;,&quot;sans-serif&quot;" wordWrap="char"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static03" taborder="5" text="Warning" left="30" top="159" width="100" height="50"/>
+        <Div id="Div02" taborder="6" left="137" top="159" width="300" height="50" background="#f48327" borderRadius="3px" boxShadow="0px 0px 12px #999999">
+          <Layouts>
+            <Layout>
+              <ImageViewer id="ImageViewer00" taborder="0" left="5" top="4" width="40" image="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGYSURBVEhL5ZSvTsNQFMbXZGICMYGYmJhAQIJAICYQPAACiSDB8AiICQQJT4CqQEwgJvYASAQCiZiYmJhAIBATCARJy+9rTsldd8sKu1M0+dLb057v6/lbq/2rK0mS/TRNj9cWNAKPYIJII7gIxCcQ51cvqID+GIEX8ASG4B1bK5gIZFeQfoJdEXOfgX4QAQg7kH2A65yQ87lyxb27sggkAzAuFhbbg1K2kgCkB1bVwyIR9m2L7PRPIhDUIXgGtyKw575yz3lTNs6X4JXnjV+LKM/m3MydnTbtOKIjtz6VhCBq4vSm3ncdrD2lk0VgUXSVKjVDJXJzijW1RQdsU7F77He8u68koNZTz8Oz5yGa6J3H3lZ0xYgXBK2QymlWWA+RWnYhskLBv2vmE+hBMCtbA7KX5drWyRT/2JsqZ2IvfB9Y4bWDNMFbJRFmC9E74SoS0CqulwjkC0+5bpcV1CZ8NMej4pjy0U+doDQsGyo1hzVJttIjhQ7GnBtRFN1UarUlH8F3xict+HY07rEzoUGPlWcjRFRr4/gChZgc3ZL2d8oAAAAASUVORK5CYII=" background="transparent" border="0px none" bottom="0"/>
+              <Static id="Static00" taborder="1" text="message" left="50" top="0" right="0" bottom="0" color="#ffffff" font="14px/normal &quot;Neue&quot;,&quot;Helvetica&quot;,&quot;Arial&quot;,&quot;sans-serif&quot;" wordWrap="char"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static04" taborder="7" text="Error" left="30" top="215" width="100" height="50"/>
+        <Div id="Div03" taborder="8" left="137" top="215" width="300" height="50" background="#eb543b" borderRadius="3px" boxShadow="0px 0px 12px #999999">
+          <Layouts>
+            <Layout>
+              <ImageViewer id="ImageViewer00" taborder="0" left="5" top="4" width="40" image="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHOSURBVEhLrZa/SgNBEMZzh0WKCClSCKaIYOED+AAKeQQLG8HWztLCImBrYadgIdY+gIKNYkBFSwu7CAoqCgkkoGBI/E28PdbLZmeDLgzZzcx83/zZ2SSXC1j9fr+I1Hq93g2yxH4iwM1vkoBWAdxCmpzTxfkN2RcyZNaHFIkSo10+8kgxkXIURV5HGxTmFuc75B2RfQkpxHG8aAgaAFa0tAHqYFfQ7Iwe2yhODk8+J4C7yAoRTWI3w/4klGRgR4lO7Rpn9+gvMyWp+uxFh8+H+ARlgN1nJuJuQAYvNkEnwGFck18Er4q3egEc/oO+mhLdKgRyhdNFiacC0rlOCbhNVz4H9FnAYgDBvU3QIioZlJFLJtsoHYRDfiZoUyIxqCtRpVlANq0EU4dApjrtgezPFad5S19Wgjkc0hNVnuF4HjVA6C7QrSIbylB+oZe3aHgBsqlNqKYH48jXyJKMuAbiyVJ8KzaB3eRc0pg9VwQ4niFryI68qiOi3AbjwdsfnAtk0bCjTLJKr6mrD9g8iq/S/B81hguOMlQTnVyG40wAcjnmgsCNESDrjme7wfftP4P7SP4N3CJZdvzoNyGq2c/HWOXJGsvVg+RA/k2MC/wN6I2YA2Pt8GkAAAAASUVORK5CYII=" background="transparent" border="0px none" bottom="0"/>
+              <Static id="Static00" taborder="1" text="message" left="50" top="0" right="0" bottom="0" color="#ffffff" font="14px/normal &quot;Neue&quot;,&quot;Helvetica&quot;,&quot;Arial&quot;,&quot;sans-serif&quot;" wordWrap="char"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static06" taborder="9" text="Message" left="505" top="47" width="80" height="30"/>
+        <TextArea id="TextArea00" taborder="10" left="505" top="77" width="250" height="90" displaynulltext="Enter a message..." wordWrap="char" value="Enter a message..."/>
+        <Button id="Button00" taborder="11" text="Show Success Toast" left="505" top="175" width="140" height="40" onclick="Button00_onclick"/>
+        <Spin id="Spin00" taborder="12" left="772" top="77" width="150" height="33" value="5"/>
+        <Static id="Static06_00" taborder="13" text="Duration (단위 : 초)" left="772" top="47" width="150" height="30"/>
+        <Button id="Button01" taborder="14" text="Show Info Toast" left="505" top="220" width="140" height="40" onclick="Button01_onclick"/>
+        <Button id="Button02" taborder="15" text="Show Warning Toast" left="505" top="265" width="140" height="40" onclick="Button02_onclick"/>
+        <Button id="Button03" taborder="16" text="Show Error Toast" left="505" top="310" width="140" height="40" onclick="Button03_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var text = this.TextArea00.value;
+	var duration = this.Spin00.value * 1000;
+	
+	toast.success(this, text, duration);
+};
+
+this.Button01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var text = this.TextArea00.value;
+	var duration = this.Spin00.value * 1000;
+	
+	toast.info(this, text, duration);
+};
+
+this.Button02_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var text = this.TextArea00.value;
+	var duration = this.Spin00.value * 1000;
+	
+	toast.warn(this, text, duration);
+};
+
+this.Button03_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var text = this.TextArea00.value;
+	var duration = this.Spin00.value * 1000;
+	
+	toast.error(this, text, duration);
+};
+
+]]></Script>
+  </Form>
+</FDL>

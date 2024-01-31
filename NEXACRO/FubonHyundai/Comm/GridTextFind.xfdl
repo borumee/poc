@@ -1,0 +1,308 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="GridTextFind" width="400" height="316" titletext="데이터찾기" initvalueid="iv_FormPop" onload="GridTextFind_onload" onclose="fn_Close">
+    <Layouts>
+      <Layout height="316" mobileorientation="landscape" width="400">
+        <Button id="btn_Find" taborder="0" text="찾기" left="118" width="80" uWord="popup.find" top="266" onclick="btn_Find_onclick" height="30" cssclass="btn_WF_basic02"/>
+        <Button id="btn_Close" taborder="1" text="닫기" left="203" width="80" uWord="popup.close" height="30" top="266" onclick="fn_Close" cssclass="btn_WF_popBtn01"/>
+        <Static id="Static01_03" taborder="2" top="5" cssclass="sta_WF_label03" left="5" text="" right="5" height="252"/>
+        <Static id="Static07" taborder="3" text="대상칼럼" left="5" top="5" width="110" height="44" cssclass="sta_WF_label02"/>
+        <Combo id="cbo_Column" taborder="4" text="cbo00" left="119" top="10" height="36" innerdataset="ds_Column" codecolumn="index" datacolumn="name" width="271"/>
+        <Static id="Static02" taborder="5" text="찾을 문자열" left="5" top="48" width="110" height="44" cssclass="sta_WF_label02"/>
+        <Edit id="edt_FindText" taborder="6" left="119" top="51" height="36" width="271"/>
+        <Static id="Static04" taborder="7" text="찾을 방향" left="5" top="91" width="110" height="44" cssclass="sta_WF_label02"/>
+        <Radio id="rdo_direction" taborder="8" left="125" top="95" height="36" direction="vertical" innerdataset="ds_Direction" codecolumn="code" datacolumn="data" index="1" value="next" text="다음" width="160"/>
+        <Static id="Static06" taborder="9" text="찾을 위치" left="5" top="134" width="110" height="80" cssclass="sta_WF_label02"/>
+        <Radio id="rdo_position" taborder="10" left="125" top="139" height="36" direction="vertical" innerdataset="ds_Position" codecolumn="code" datacolumn="data" index="1" value="first" width="160" text="처음부터"/>
+        <Static id="Static09" taborder="11" text="찾을 조건" left="5" top="213" width="110" cssclass="sta_WF_label02" height="44"/>
+        <Radio id="rdo_condition" taborder="12" left="125" top="174" height="36" direction="vertical" innerdataset="ds_Condition" codecolumn="code" datacolumn="data" index="0" value="equal" width="160"/>
+        <CheckBox id="chk_Upper" taborder="13" text="대/소문자구분" left="125" top="217" height="36" uWord="popup.casesensitive" width="160"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.fv_PrgmId = "";
+this.fv_TargetGrid = "";
+this.fv_TargetDs = "";
+this.fv_CellIdx = "";
+this.fv_RowIdx = "";
+this.fv_SelectType = "";
+
+/************************************************************************
+ * 화면 onload 이벤트
+ ************************************************************************/
+this.GridTextFind_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.fv_TargetGrid = this.getOwnerFrame().grid;
+	this.fv_TargetDs = this.fv_TargetGrid.getBindDataset();
+	this.fv_CellIdx = this.getOwnerFrame().cellIndex;
+	this.fv_RowIdx = this.getOwnerFrame().rowIndex;
+	this.fv_SelectType = this.getOwnerFrame().selectType;
+	this.fv_TargetGrid.set_selecttype("cell"); // cell 단위로 데이터를 찾아야하므로
+	
+	this.fn_setInit();
+};
+
+/************************************************************************
+ * 화면 초기설정
+ ************************************************************************/
+this.fn_setInit = function ()
+{
+	this.ds_Column.clearData();
+	
+	// 바디의 수만큼 디스플레이정보, 콤보정보 설정  
+    for (var i=0; i<this.fv_TargetGrid.getCellCount("body"); i++)
+	{
+		if ( this.fv_TargetGrid.getCellProperty("body", i, "displaytype") != "image" )
+		{
+			var sText = this.fv_TargetGrid.getCellProperty("body", i, "text");
+			var sBind = "";
+			if (!this.gfn_isNull(sText)) 
+			{
+				sBind = sText.substr(0, 5);
+			}
+			
+			if (sBind == "bind:") 
+			{
+				var nrow = this.ds_Column.addRow();
+				
+				this.ds_Column.setColumn(nrow, "body", this.fv_TargetGrid.getCellProperty("body", i, "text"));            
+				this.ds_Column.setColumn(nrow, "displaytype", this.fv_TargetGrid.getCellProperty("body", i, "displaytype"));
+				this.ds_Column.setColumn(nrow, "edittype", this.fv_TargetGrid.getCellProperty("body", i, "edittype"));
+				this.ds_Column.setColumn(nrow, "index", i);
+				this.ds_Column.setColumn(nrow, "name", this.fv_TargetGrid.getCellProperty("head", i, "text"));
+			}
+        }
+    }
+	
+	// 현재 선택된 셀을 선택하도록
+	// 현재 선택된 셀이 검색/바꾸기에 해당되지 않을 경우 INDEX=0으로 세팅
+	var nRow = this.ds_Column.findRow("index", this.fv_CellIdx);
+	if ( nRow > -1 ) 
+	{
+		this.cbo_Column.set_value(this.ds_Column.getColumn(nRow,"index"));
+	} 
+	else 
+	{
+		this.cbo_Column.set_index(0);
+	}
+	
+	this.fv_CellIdx = this.cbo_Column.value;
+}
+
+/************************************************************************
+ * 찾기 버튼 onclick 이벤트
+ ************************************************************************/
+this.btn_Find_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var findText = this.edt_FindText.value;
+	var option = {
+		'direction': this.rdo_direction.value,
+		'position': this.rdo_position.value,
+		'scope': 'col',
+		'condition': this.rdo_condition.value,
+		'strict': this.chk_Upper.value,
+		'cell': this.cbo_Column.value,
+	};
+	if (this.gfn_isNull(findText)) return;
+	
+	var findRowCell = this.fn_FindGridText(findText, option);
+	var findRow = findRowCell[0];
+	var findCell = findRowCell[1];
+	
+	if ( findRow > -1 && findCell > -1 )
+	{
+		this.fv_TargetDs.set_rowposition(findRow);
+		this.fv_TargetGrid.setCellPos(findCell);
+	} 
+	else 
+	{
+		alert("데이터가 존재하지 않습니다.");
+	}
+};
+
+
+/************************************************************************
+ * 그리드에서 찾은 text 의 cell 정보 return
+ ************************************************************************/
+this.fn_FindGridText = function (findText, option)
+{
+	this.fv_TargetGrid.lastFindText = findText;
+	this.fv_TargetGrid.lastFindOption = option;
+
+	// 찾을 옵션
+	var direction = option.direction; // 방향
+	var position = option.position; // 위치
+	var scope = option.scope; // col
+	var condition = option.condition; // 일치,포함
+	var strict = option.strict; // 대문자여부
+
+	var dataset = this.fv_TargetDs;
+	this.fv_TargetGrid.lastFindCell = this.gfn_isNull(this.fv_TargetGrid.lastFindCell)?this.fv_TargetGrid.currentcell:this.fv_TargetGrid.lastFindCell;
+	this.fv_TargetGrid.lastFindRow = this.gfn_isNull(this.fv_TargetGrid.lastFindRow)?0:this.fv_TargetGrid.lastFindRow; 
+
+	var startCell = ( position == "current" ? this.fv_TargetGrid.currentcell : this.fv_TargetGrid.lastFindCell );
+	var startRow = ( position == "current" ? this.fv_TargetGrid.currentrow : this.fv_TargetGrid.lastFindRow );
+	
+	// 바꾸기에서 호출시 (option.cell 은 바꾸기에서만 지정)
+	if ( scope == "col" && !this.gfn_isNull(option.cell) )
+	{
+		startCell = option.cell;
+	}
+	
+	var findRow = findCell = -1;
+	var rowCnt = dataset.rowcount;
+	var bodyCellCnt = this.fv_TargetGrid.getCellCount("body");
+			
+	// 대소문자 구분
+	if ( !strict )
+	{
+		findText = findText.toUpperCase();			
+	}
+		
+	if ( direction == "prev" )
+	{
+		startRow -= 1;	
+		if ( startRow < 0 )
+		{
+			startRow = rowCnt-1;
+		}
+	}
+	else
+	{
+		startRow += 1;
+		if ( startRow >= rowCnt )
+		{
+			startRow = 0;
+		}
+	}
+	
+	var loopCnt = rowCnt;
+	while ( loopCnt > 0 )
+	{
+		var cellText = this.fv_TargetGrid.getCellText(startRow, startCell);
+	
+		// 대소문자 구분
+		if (!strict)
+		{
+			cellText = cellText.toUpperCase();
+		}
+		
+		// 일치/포함
+		if ( condition == "equal" )
+		{
+			if ( findText == cellText )
+			{
+				findRow = startRow;
+				findCell = startCell;
+				break;
+			}
+		}
+		else 
+		{
+			if ( cellText.indexOf(findText) > -1 )
+			{			
+				findRow = startRow;
+				findCell = startCell;
+				break;
+			}
+		}
+		
+		// 방향 (이전, 다음)
+		if ( direction == "prev" )
+		{
+			startRow -= 1;
+			if ( startRow < 0 )
+			{
+				startRow = rowCnt-1;
+			}				
+		}
+		else
+		{
+			startRow += 1;
+			if ( startRow > (rowCnt-1) )
+			{
+				startRow = 0;
+			}
+		}
+		
+		loopCnt--;
+	}
+	// 마지막 찾은 위치 지정
+	// 팝업에서 찾을 방향을 "처음부터" 로 변경 시 초기화
+	if ( findRow > -1 && findCell > -1 )
+	{
+		this.fv_TargetGrid.lastFindRow = findRow;
+		this.fv_TargetGrid.lastFindCell = findCell;
+	}
+	
+ 	return [findRow, findCell];
+};
+
+/************************************************************************
+ * 화면 onclose 이벤트
+ ************************************************************************/
+this.fn_Close = function ()
+{
+	this.fv_TargetGrid.set_selecttype(this.fv_SelectType); // selecttype을 cell -> 기존타입으로 변경
+	this.close();
+};]]></Script>
+    <Objects>
+      <Dataset id="ds_Column">
+        <ColumnInfo>
+          <Column id="index" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="displaytype" type="STRING" size="256"/>
+          <Column id="edittype" type="STRING" size="256"/>
+          <Column id="body" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_Direction">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="data" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code">prev</Col>
+            <Col id="data">이전</Col>
+          </Row>
+          <Row>
+            <Col id="code">next</Col>
+            <Col id="data">다음</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_Position">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="data" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code">current</Col>
+            <Col id="data">현재위치</Col>
+          </Row>
+          <Row>
+            <Col id="code">first</Col>
+            <Col id="data">처음부터</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_Condition">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="data" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code">equal</Col>
+            <Col id="data">일치</Col>
+          </Row>
+          <Row>
+            <Col id="code">inclusion</Col>
+            <Col id="data">포함</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

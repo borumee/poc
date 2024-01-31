@@ -1,0 +1,353 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Frame_Main" width="750" height="2460" titletext="메인 화면" onload="Frame_Main_onload" background="#F2F5FD" onlayoutchanged="Frame_Main_onlayoutchanged">
+    <Layouts>
+      <Layout height="2460" mobileorientation="landscape" width="750">
+        <Div id="DivTop" taborder="0" left="0" top="0" height="70" url="FrameBase::Frame_Top.xfdl" right="0" formscrolltype="none" text="" maxwidth=""/>
+        <Div id="DivWork" taborder="1" left="0" top="70" bottom="0" text="" right="0" maxwidth="" onsize="DivWork_onsize" formscrollbartype="default indicator">
+          <Layouts>
+            <Layout>
+              <Div id="DivContent" taborder="1" text="Div04" left="20" top="65" height="2315" right="20" formscrolltype="none">
+                <Layouts>
+                  <Layout>
+                    <Div id="Div01" taborder="0" left="0" top="468" height="348" cssclass="div_WF_MainBox" right="0">
+                      <Layouts>
+                        <Layout>
+                          <Static id="sta00" taborder="0" text="계약 진행 현황" left="0" top="0" height="73" cssclass="sta_WF_MainTitle" width="200" messageid="main.contactlist" fittocontents="width"/>
+                          <Static id="sta01" taborder="1" left="20" top="73" cssclass="sta_WF_DashStatus" right="20" bottom="20"/>
+                          <Button id="Button00" taborder="2" top="20" width="32" height="32" right="20" cssclass="btn_WF_DashMore"/>
+                        </Layout>
+                        <Layout name="Tablet"/>
+                        <Layout name="Desktop"/>
+                      </Layouts>
+                    </Div>
+                    <Div id="Div00" taborder="1" left="0" top="100" height="348" right="0" cssclass="div_WF_MainBoxC">
+                      <Layouts>
+                        <Layout>
+                          <Static id="sta00" taborder="0" text="이팀장의 업무" left="0" top="0" height="73" cssclass="sta_WF_MainTitleW" width="200" messageid="main.joblist" fittocontents="width"/>
+                          <Static id="sta01" taborder="1" left="20" top="73" cssclass="sta_WF_DashWorkL" bottom="20" width="200"/>
+                          <Static id="Static00" taborder="2" top="73" width="70" height="255" right="20" cssclass="sta_WF_DashWorkR"/>
+                        </Layout>
+                        <Layout name="Tablet"/>
+                        <Layout name="Desktop"/>
+                      </Layouts>
+                    </Div>
+                    <Div id="Div02" taborder="2" left="0" top="836" height="348" cssclass="div_WF_MainBox" right="0">
+                      <Layouts>
+                        <Layout>
+                          <Grid id="grd00" taborder="0" top="80" binddataset="ds_Notice" right="30" cssclass="grd_WF_MainGrid" height="253" autofittype="col" left="20">
+                            <Formats>
+                              <Format id="default">
+                                <Columns>
+                                  <Column size="60"/>
+                                  <Column size="200"/>
+                                  <Column size="80"/>
+                                </Columns>
+                                <Rows>
+                                  <Row size="36"/>
+                                </Rows>
+                                <Band id="body">
+                                  <Cell text="bind:icon" displaytype="imagecontrol"/>
+                                  <Cell col="1" text="bind:title"/>
+                                  <Cell col="2" text="bind:date" cssclass="grd_WF_DashDate"/>
+                                </Band>
+                              </Format>
+                            </Formats>
+                          </Grid>
+                          <Static id="sta00" taborder="1" text="공지사항" left="0" top="0" height="73" cssclass="sta_WF_MainTitle" width="200" messageid="main.noti" fittocontents="width"/>
+                          <Button id="Button00" taborder="2" top="20" width="32" height="32" right="20" cssclass="btn_WF_DashMore"/>
+                        </Layout>
+                        <Layout name="Tablet"/>
+                        <Layout name="Desktop"/>
+                      </Layouts>
+                    </Div>
+                    <Div id="Div01_00" taborder="3" left="0" top="1204" height="348" cssclass="div_WF_MainBox" right="0">
+                      <Layouts>
+                        <Layout>
+                          <Static id="sta00" taborder="0" text="상반기 현황" left="0" top="0" height="73" cssclass="sta_WF_MainTitle" width="200" messageid="main.status" fittocontents="width"/>
+                          <Static id="sta01" taborder="1" left="20" top="73" cssclass="sta_WF_DashChart" right="20" bottom="20"/>
+                          <Button id="Button00" taborder="2" top="20" width="32" height="32" right="20" cssclass="btn_WF_DashMore"/>
+                        </Layout>
+                        <Layout name="Tablet"/>
+                        <Layout name="Desktop">
+                          <Static id="sta01" left="20" top="73" right="20" bottom="20"/>
+                        </Layout>
+                      </Layouts>
+                    </Div>
+                    <Div id="Div01_01" taborder="4" left="0" top="1572" height="348" cssclass="div_WF_MainBox" right="0">
+                      <Layouts>
+                        <Layout>
+                          <Static id="sta00" taborder="0" text="영업실적" left="0" top="0" height="73" cssclass="sta_WF_MainTitle" width="200" messageid="main.performance" fittocontents="width"/>
+                          <Static id="sta01" taborder="1" left="20" top="73" cssclass="sta_WF_DashResult" right="20" bottom="20" background="url('imagerc::sta_WF_DashResultM.png') no-repeat center center"/>
+                          <Button id="Button00" taborder="2" top="20" width="32" height="32" right="20" cssclass="btn_WF_DashMore"/>
+                        </Layout>
+                        <Layout name="Tablet">
+                          <Static id="sta01" background="url('imagerc::sta_WF_DashResult.png') no-repeat center center"/>
+                        </Layout>
+                        <Layout name="Desktop">
+                          <Static id="sta01" background="url('imagerc::sta_WF_DashResult.png') no-repeat center center"/>
+                        </Layout>
+                      </Layouts>
+                    </Div>
+                    <Div id="Div01_01_00" taborder="5" left="0" top="1940" cssclass="div_WF_MainBox" height="348" right="0">
+                      <Layouts>
+                        <Layout>
+                          <Static id="sta00" taborder="0" text="일정관리" left="0" top="0" height="73" cssclass="sta_WF_MainTitle" width="200" messageid="main.schedule" fittocontents="width"/>
+                          <Button id="Button00" taborder="1" top="20" width="32" height="32" right="20" cssclass="btn_WF_DashWrite"/>
+                          <CheckBox id="CheckBox00" taborder="2" text="사업부 주간회의" left="50" top="90" width="150" height="22" value="true" cssclass="chk_WF_MainTodo"/>
+                          <CheckBox id="CheckBox01" taborder="3" text="영업2팀 회의" left="50" top="126" width="150" height="22" value="true" cssclass="chk_WF_MainTodo"/>
+                          <CheckBox id="CheckBox02" taborder="4" text="신규 영업부 컨설팅" left="50" top="162" width="150" height="22" cssclass="chk_WF_MainTodo"/>
+                          <CheckBox id="CheckBox03" taborder="5" text="계약 서류 제출" left="50" top="198" width="150" height="22" cssclass="chk_WF_MainTodo"/>
+                          <CheckBox id="CheckBox04" taborder="6" text="고객상담" left="50" top="234" width="150" height="22" cssclass="chk_WF_MainTodo"/>
+                          <CheckBox id="CheckBox05" taborder="7" text="고객상담" left="50" top="270" width="150" height="22" cssclass="chk_WF_MainTodo"/>
+                          <Static id="Static00" taborder="8" text="10:00" top="91" width="40" height="20" right="50" cssclass="sta_WF_MianTodo"/>
+                          <Static id="Static00_00" taborder="9" text="13:30" top="127" width="40" height="20" right="50" cssclass="sta_WF_MianTodo"/>
+                          <Static id="Static00_01" taborder="10" text="15:00" top="164" width="40" height="20" right="50" cssclass="sta_WF_MianTodo"/>
+                          <Static id="Static00_02" taborder="11" text="16:00" top="199" width="40" height="20" right="50" cssclass="sta_WF_MianTodo"/>
+                          <Static id="Static00_03" taborder="12" text="16:30" top="235" width="40" height="20" right="50" cssclass="sta_WF_MianTodo"/>
+                          <Static id="Static00_04" taborder="13" text="17:00" top="271" width="40" height="20" right="50" cssclass="sta_WF_MianTodo"/>
+                        </Layout>
+                        <Layout name="Tablet"/>
+                        <Layout name="Desktop"/>
+                      </Layouts>
+                    </Div>
+                    <Div id="Div03" taborder="6" left="0" top="0" height="80" cssclass="div_WF_MainBox" right="0">
+                      <Layouts>
+                        <Layout>
+                          <Button id="btnM1000" taborder="0" left="7.63%" top="19" width="16.95%" height="40" cssclass="sta_WF_UserIcon01" tooltiptext="POC" onclick="fnComBtnOnClick"/>
+                          <Button id="btnM3000" taborder="1" left="btnM1000:0" top="19" width="16.95%" height="40" cssclass="sta_WF_UserIcon02" tooltiptext="특장점" onclick="fnComBtnOnClick" tooltipmessageid="menu.advantage"/>
+                          <Button id="btnM0000" taborder="2" left="btnM3000:0" top="19" width="16.95%" height="40" cssclass="sta_WF_UserIcon03" tooltiptext="나의메뉴" onclick="fnComBtnOnClick" tooltipmessageid="menu.mymenu"/>
+                          <Button id="Button00_02" taborder="3" left="btnM0000:0" top="19" width="16.95%" height="40" cssclass="sta_WF_UserIcon04" tooltiptext="공지사항" tooltipmessageid="menu.noti"/>
+                          <Button id="Button00_03" taborder="4" top="19" height="40" cssclass="sta_WF_UserIcon05" left="Button00_02:0" text="" right="7.63%" tooltiptext="푸시메시지" onclick="btnAlarm_onclick" tooltipmessageid="menu.push"/>
+                        </Layout>
+                        <Layout name="Tablet">
+                          <Button id="btnM1000" left="21.75%" top="19" width="5.65%" height="40"/>
+                          <Button id="btnM3000" left="btnM1000:125%" top="19" width="5.65%" height="40"/>
+                          <Button id="btnM0000" left="btnM3000:125%" top="19" width="5.65%" height="40"/>
+                          <Button id="Button00_02" left="btnM0000:125%" top="19" width="5.65%" height="40"/>
+                          <Button id="Button00_03" left="Button00_02:125%" top="19" width="5.65%" height="40"/>
+                        </Layout>
+                        <Layout name="Desktop">
+                          <Button id="Button00_03" width="5.65%" left="Button00_02:125%" top="19" height="40"/>
+                          <Button id="btnM1000" left="21.75%" top="19" width="5.65%" height="40"/>
+                          <Button id="btnM3000" left="btnM1000:125%" top="19" width="5.65%" height="40"/>
+                          <Button id="btnM0000" left="btnM3000:125%" top="19" width="5.65%" height="40"/>
+                          <Button id="Button00_02" left="btnM0000:125%" top="19" width="5.65%" height="40"/>
+                        </Layout>
+                      </Layouts>
+                    </Div>
+                  </Layout>
+                  <Layout name="Tablet">
+                    <Div id="Div00" left="0" top="100" width="440" height="348"/>
+                    <Div id="Div01" left="460" top="100" height="348" width="440"/>
+                    <Div id="Div02" top="468" left="0" height="348" width="440"/>
+                    <Div id="Div01_00" left="460" top="468" height="348" width="440"/>
+                    <Div id="Div01_01" left="0" top="836" height="348" width="440"/>
+                    <Div id="Div01_01_00" left="460" top="836" height="348" width="440"/>
+                    <Div id="Div03" left="0" top="0" height="80" right="0"/>
+                  </Layout>
+                  <Layout name="Desktop">
+                    <Div id="Div00" left="0" top="0" width="427" height="348"/>
+                    <Div id="Div01" left="447" top="0" width="427" height="348"/>
+                    <Div id="Div02" left="894" top="0" height="348" width="427"/>
+                    <Div id="Div01_00" left="0" top="368" height="348" width="427"/>
+                    <Div id="Div01_01" left="447" top="368" height="348" width="427"/>
+                    <Div id="Div01_01_00" left="894" top="368" height="348" width="427"/>
+                    <Div id="Div03" left="0" top="736" height="80" right="0"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Static id="stcTitle" taborder="0" top="0" height="45" left="0" right="0" background="url('imagerc::sta_WF_DisplayM.png') no-repeat center center #5e788f" cssclass="sta_WF_MainDisplay"/>
+            </Layout>
+            <Layout name="Tablet">
+              <Static id="stcTitle" background="url('imagerc::sta_WF_Display.png') no-repeat center center #5e788f"/>
+              <Div id="DivContent" left="30" top="65" height="1205" width="900"/>
+            </Layout>
+            <Layout name="Desktop">
+              <Static id="stcTitle" top="0" left="0" right="0" height="45" background="url('imagerc::sta_WF_Display.png') no-repeat center center #5e788f"/>
+              <Div id="DivContent" left="20" top="65" width="1322" height="835"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+      <Layout name="Tablet" width="960" height="1360">
+        <Div id="DivTop" left="0" top="0" height="70" right="0"/>
+        <Div id="DivWork" left="0" top="70" right="0" text="" bottom="0"/>
+      </Layout>
+      <Layout name="Desktop" width="1380" height="990">
+        <Div id="DivTop" left="0" top="0" height="70" right="0" text=""/>
+        <Div id="DivWork" left="0" top="70" right="0" bottom="0"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_Notice">
+        <ColumnInfo>
+          <Column id="icon" type="STRING" size="256"/>
+          <Column id="title" type="STRING" size="256"/>
+          <Column id="date" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="icon">url('imagerc::sta_WF_NoticeTag01.png')</Col>
+            <Col id="title">APP 재설치 안내</Col>
+            <Col id="date">2023-05-25</Col>
+          </Row>
+          <Row>
+            <Col id="icon">url('imagerc::sta_WF_NoticeTag01.png')</Col>
+            <Col id="title">이용약관 및 개인정보 처리...</Col>
+            <Col id="date">2023-05-23</Col>
+          </Row>
+          <Row>
+            <Col id="icon">url('imagerc::sta_WF_NoticeTag01.png')</Col>
+            <Col id="title">통합게시판 이용 안내</Col>
+            <Col id="date">2023-05-22</Col>
+          </Row>
+          <Row>
+            <Col id="icon">url('imagerc::sta_WF_NoticeTag02.png')</Col>
+            <Col id="title">프로모션 등록 페이지 변경</Col>
+            <Col id="date">2023-05-22</Col>
+          </Row>
+          <Row>
+            <Col id="icon">url('imagerc::sta_WF_NoticeTag02.png')</Col>
+            <Col id="title">분기별 보고자료 제출</Col>
+            <Col id="date">2023-05-19</Col>
+          </Row>
+          <Row>
+            <Col id="icon">url('imagerc::sta_WF_NoticeTag03.png')</Col>
+            <Col id="title">개인별 계정관리 메뉴 안내</Col>
+            <Col id="date">2023-05-17</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::AniUtils.xjs";
+
+this.bContentsPos = true;
+
+this.Frame_Main_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnload(this)
+	this.initAniobj("leftani", "easeoutquint", 500);
+	
+	this.fn_contentsPosChange();
+};
+
+this.DivWork_onsize = function(obj:nexacro.Div,e:nexacro.SizeEventInfo)
+{
+	this.fn_contentsPosChange();
+};
+
+this.Frame_Main_onlayoutchanged = function(obj:nexacro.Form,e:nexacro.LayoutChangeEventInfo)
+{
+	if(e.newlayout == "default") {
+		this.bContentsPos = false;
+	} else {
+		this.bContentsPos = true;
+	}
+};
+
+this.fn_contentsPosChange = function() {	
+	if(this.bContentsPos) {
+		var nContainerWidth = this.DivWork.getOffsetWidth();
+		var nCompWidth = this.DivWork.form.DivContent.getOffsetWidth();
+		
+		var nCompX = (nContainerWidth/2) - (nCompWidth/2);
+		this.DivWork.form.DivContent.setOffsetLeft(nCompX);		
+	}
+}
+
+
+
+/**
+ * @description 메뉴 프레임 토글 함수
+ **/
+this.fnMenuFrameToggle = function()
+{
+	var aniObj;
+	if (this.DivLeft.getOffsetLeft() < 0){
+		aniObj = this.addAniItem("leftani", this.DivLeft, "left:0");
+		this.DivLeft.bringToFront();
+		this.DivLeft.set_visible(true);
+	} else if (this.DivLeft.getOffsetLeft() == 0) {
+		aniObj = this.addAniItem("leftani", this.DivLeft, "left:-200");
+		this.setTimer(0, 500);
+	} else {
+		return;
+	}
+	
+	this.playAniObj(aniObj);
+};
+
+/**
+ * @description 버튼 이벤트
+ **/
+this.fnComBtnOnClick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (obj.name == "btnM0000") //나의 메뉴
+	{
+		if (nexacro.getApplication().gdsMyMenu.getRowCount() == 0) {
+			alert("등록 된 나의 메뉴가 없습니다.");
+			return;
+		}		
+	}
+	
+	if (obj.name == "btnHtmlRun") // html 실행
+	{
+		alert("등록된 화면이 없습니다.");
+		return;
+	}
+	
+	nexacro.getApplication().MENU_ID = obj.name.substring(3);
+	
+	nexacro.getApplication().mainframe.VFrameSet.set_separatesize("0, *, 0");
+	nexacro.getApplication().mainframe.VFrameSet.WorkFrame.form.DivTop.set_url("");
+	nexacro.getApplication().mainframe.VFrameSet.WorkFrame.form.DivMenu.set_url("");
+	nexacro.getApplication().mainframe.VFrameSet.WorkFrame.form.DivLeft.set_url("");
+	nexacro.getApplication().mainframe.VFrameSet.WorkFrame.form.DivMdi.set_url("");
+	
+	nexacro.getApplication().mainframe.VFrameSet.WorkFrame.form.DivTop.set_url("FrameBase::Frame_Top.xfdl");
+	nexacro.getApplication().mainframe.VFrameSet.WorkFrame.form.DivMenu.set_url("FrameBase::Frame_Menu.xfdl");
+	nexacro.getApplication().mainframe.VFrameSet.WorkFrame.form.DivLeft.set_url("FrameBase::Frame_Left.xfdl");
+	nexacro.getApplication().mainframe.VFrameSet.WorkFrame.form.DivMdi.set_url("FrameBase::Frame_Mdi.xfdl");
+};
+
+// 푸시메시지 팝업 호출
+this.btnAlarm_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var params = {};
+	var options;
+	
+	if (this.getOwnerFrame().getOffsetWidth() < 960) {
+		options = "autosize=false width=700 height=500";
+	}
+	
+	this.openPopup("xpushMessagePop", "Comm::xpushMessagePop.xfdl", params, options, "", false);
+};
+
+this.DivWork_Div00_00_Button00_00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sOpenMenuId = obj.name.substring(3);
+	var nRow = nexacro.getApplication().gdsMenu.findRow("MENU_ID", sOpenMenuId);
+	var sOpenMenuIdLvl1 = nexacro.getApplication().gdsMenu.getColumn(nRow, "HIPO_MENU_ID");
+
+	nexacro.getApplication().MENU_ID = sOpenMenuIdLvl1;
+	
+	nexacro.getApplication().mainframe.VFrameSet.set_separatesize("0, *, 0");
+	nexacro.getApplication().mainframe.VFrameSet.WorkFrame.form.DivTop.set_url("FrameBase::Frame_Top.xfdl");
+	nexacro.getApplication().mainframe.VFrameSet.WorkFrame.form.DivMenu.set_url("FrameBase::Frame_Menu.xfdl");
+	nexacro.getApplication().mainframe.VFrameSet.WorkFrame.form.DivLeft.set_url("FrameBase::Frame_Left.xfdl");
+	nexacro.getApplication().mainframe.VFrameSet.WorkFrame.form.DivMdi.set_url("FrameBase::Frame_Mdi.xfdl");	
+	
+	var p = nexacro.getApplication().mainframe.VFrameSet.WorkFrame.form;
+	p["fnOpenMenu"].call(p, sOpenMenuId);
+};
+
+
+
+this.DivWork_stcTitle_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+	
+};
+]]></Script>
+  </Form>
+</FDL>

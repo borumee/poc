@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Frame_All" width="480" height="720" titletext="전체 프레임" onload="Frame_All_onload" ontimer="Frame_All_ontimer" onlayoutchanged="Frame_All_onlayoutchanged">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="480">
+        <Div id="DivTop" taborder="0" left="0" top="0" height="70" right="0" formscrolltype="none" text="" maxwidth=""/>
+        <Div id="DivLeft" taborder="2" left="0" top="70" width="254" bottom="0" formscrolltype="vertical" visible="true"/>
+        <Div id="DivMdi" taborder="1" left="0" width="480" height="36" visible="false" formscrolltype="none" top="70" maxwidth=""/>
+        <Div id="DivWork" taborder="3" left="0" top="70" right="0" visible="true" bottom="0" maxwidth=""/>
+        <Div id="DivMenu" taborder="4" left="0" height="44" formscrolltype="none" top="70" right="0" visible="false" maxwidth=""/>
+      </Layout>
+      <Layout name="Tablet" width="960" height="720">
+        <Div id="DivTop" left="0" top="0" height="70" right="0"/>
+        <Div id="DivMdi" left="0" width="960" height="36" top="70"/>
+        <Div id="DivWork" left="0" top="70" right="0" text="" bottom="0"/>
+        <Div id="DivMenu" left="0" top="70" height="44" right="0" visible="false"/>
+        <Div id="DivLeft" visible="true"/>
+      </Layout>
+      <Layout name="Desktop" width="1280" height="720">
+        <Div id="DivTop" left="0" top="0" height="70" right="0" text=""/>
+        <Div id="DivMdi" height="36" text="MDI" right="0" left="230" visible="true" bottom="0"/>
+        <Div id="DivWork" left="254" top="114" right="0" bottom="DivMdi:0"/>
+        <Div id="DivLeft" isible="true" visible="true" top="70" left="0" bottom="0" text="" width="254"/>
+        <Div id="DivMenu" visible="true" text="" height="44" left="254" top="70" right="0"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::AniUtils.xjs";
+
+/**	
+* @desc 선택된 메뉴 ID
+*/
+this.selectedMenuId;
+
+/**
+ * @description 화면 로드 완료 시 이벤트 함수
+*/
+this.Frame_All_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+
+	this.DivLeft.set_url("FrameBase::Frame_Left.xfdl");
+	this.DivMdi.set_url("FrameBase::Frame_Mdi.xfdl");
+	this.DivMenu.set_url("FrameBase::Frame_Menu.xfdl");
+	this.DivTop.set_url("FrameBase::Frame_Top.xfdl");
+	this.DivWork.set_url("FrameBase::Frame_Work.xfdl");
+	
+	
+	this.initAniobj("leftani", "easeoutquint", 500);
+	
+	
+	
+	this.setTimer(1, 500);
+};
+
+/**
+ * @description 화면 타이머 이벤트 함수
+*/
+this.Frame_All_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	if (e.timerid == 0) {
+		this.killTimer(e.timerid);
+		this.DivLeft.set_visible(false);
+	} else if (e.timerid == 1) {
+		if (this.getOffsetWidth() < 1280) {
+			this.DivLeft.bringToFront();
+			this.DivLeft.set_visible(true);
+		}	
+		
+		this.killTimer(e.timerid);
+	}
+};
+
+/**
+ * @description 메뉴 프레임 토글 함수
+ **/
+this.fnMenuFrameToggle = function()
+{
+	var aniObj;
+	if (this.DivLeft.getOffsetLeft() < 0){
+		aniObj = this.addAniItem("leftani", this.DivLeft, "left:0");
+		this.DivLeft.set_visible(true);
+		this.DivLeft.bringToFront();
+		this.DivLeft.reload();
+	} 
+	else if (this.DivLeft.getOffsetLeft() == 0) {
+		if(this.DivLeft.form.isWide) {
+	
+			aniObj = this.addAniItem("leftani", this.DivLeft, "left:-254");
+		
+		} else {
+			this.DivLeft.setOffsetWidth(254)
+			aniObj = this.addAniItem("leftani", this.DivLeft, "left:0");
+		
+		}
+		
+		this.DivLeft.set_visible(true);		
+		this.DivLeft.bringToFront();
+		this.DivLeft.reload();
+	} 
+	else {
+		return;
+	}
+	
+	this.playAniObj(aniObj);
+};
+
+/**	
+* @desc 메인 화면 열기 함수
+* @return none
+*/
+this.fnOpenHome = function()
+{
+	if (this.selectedMenuId) {
+		//this.DivWork.form.components["divWork_"+this.selectedMenuId].set_visible(false);
+	}
+	
+	if (nexacro.getApplication().openInfo.CLOSE == "TOP") {
+		this.DivWork.set_visible(false);
+		
+		//메뉴 프레임 이동 시 열린 화면 해제
+		var iFramesCnt = nexacro.getApplication().gdsOpenMenu.getRowCount();
+		
+		for (var i = iFramesCnt; i >= 0; i--) 
+		{
+			this.DivMdi.form.fnTabOnClose(nexacro.getApplication().gdsOpenMenu.getColumn(i, "WIN_ID"));
+		}
+
+		this.getOwnerFrame().form.selectedMenuId = null;
+		
+		nexacro.getApplication().mainframe.VFrameSet.set_separatesize("*, 0, 0");
+		nexacro.getApplication().mainframe.VFrameSet.WorkFrame.form.DivTop.set_url("");
+		nexacro.getApplication().mainframe.VFrameSet.WorkFrame.form.DivMenu.set_url("");
+		nexacro.getApplication().mainframe.VFrameSet.WorkFrame.form.DivLeft.set_url("");
+		nexacro.getApplication().mainframe.VFrameSet.WorkFrame.form.DivMdi.set_url("");
+		
+	}
+};
+
+/**	
+* @desc 메뉴 화면 열기 함수
+* @param menuId {String} - 메뉴 ID
+* @return none
+*/
+this.fnOpenMenu = function(menuId, objArgList)
+{
+	var aniObj;
+	
+	if (this.getCurrentLayoutID() == "default") {
+		aniObj = this.addAniItem("leftani", this.DivLeft, "left:-254");
+		//this.DivLeft.set_visible(false);
+	} else {
+		aniObj = this.addAniItem("leftani", this.DivLeft, "left:0");
+		this.DivLeft.bringToFront();
+		this.DivLeft.set_visible(true);
+	}
+	
+	this.playAniObj(aniObj);
+	
+	this.DivWork.set_visible(true);
+	
+	this.selectedMenuId = menuId;
+	
+/************************************************************************
+ * 같은 업무화면 open 방지 START
+ ************************************************************************/	
+	// 	var winId = "divWork_"+menuId;
+	// 	
+	// 	//열린화면 체크
+	// 	if (this.DivWork.form.components[winId]) {
+	// 		this.DivMdi.form["isActiveFrame"].call(this.DivMdi.form, winId);
+	// 		return;
+	// 	}
+	// 	
+	// 	var ds = nexacro.getApplication().gdsMenu,
+	// 		row = ds.findRow("MENU_ID", menuId),
+	// 		menuNm = ds.getColumn(row, "MENU_NM"),
+	// 		prgmId = ds.getColumn(row, "PRGM_ID"),
+	// 		formUrl = ds.getColumn(row, "PRGM_FULL_PATH"),
+	// 		top = 0;
+/************************************************************************
+ * 같은 업무화면 open 방지 END
+ ************************************************************************/	
+	 
+/************************************************************************
+ * 같은 업무화면 open 가능 START
+ ************************************************************************/
+	var tmpWinId = "divWork_"+menuId
+		winId    = "divWork_"+menuId+"_"+this.gfn_getUUID(),
+		openWins = this.DivWork.form.components,
+		nFormCnt = 0;
+		
+	for(var i=0; i<openWins.length; i++) {
+		var openFormId = openWins[i].id;
+		if(openFormId.indexOf(tmpWinId) > -1) {
+			nFormCnt++;
+		}
+	}
+	
+	var ds = nexacro.getApplication().gdsMenu,
+		row = ds.findRow("MENU_ID", menuId),
+		tmpMenuNm = ds.getColumn(row, "MENU_NM"),
+		tmpCnt = (nFormCnt >= 1) ? ' ('+(nFormCnt+1)+')' : '',
+		menuNm = tmpMenuNm + tmpCnt,
+		prgmId = ds.getColumn(row, "PRGM_ID"),
+		formUrl = ds.getColumn(row, "PRGM_FULL_PATH"),
+		top = 0;
+/************************************************************************
+ * 같은 업무화면 open 가능 END
+ ************************************************************************/	
+	
+	
+	var objWin = new Div(winId, 0, top, null, null, 0, 0);
+	objWin.set_background("#ffffff");
+	objWin.set_formscrollbartype("default indicator");
+	objWin.set_url(formUrl);
+	
+	objWin.params = {winId: winId, menuId: menuId, menuNm: menuNm, prgmId: prgmId, objArgList: objArgList||{}};
+	
+	this.DivWork.addChild(winId, objWin);
+	objWin.show();
+	
+	// 열린 메뉴 추가
+	var dsOpen = nexacro.getApplication().gdsOpenMenu,
+		r = dsOpen.addRow();
+	
+	dsOpen.setColumn(r, "WIN_ID", winId);
+	dsOpen.setColumn(r, "MENU_ID", menuId);
+	dsOpen.setColumn(r, "MENU_NM", menuNm);
+	dsOpen.setColumn(r, "PRGM_FULL_PATH", formUrl);
+	
+	//나의 메뉴 표시
+	this.DivMdi.form.btnMyMenu.set_enable(true);
+	
+	this.fvMenuRow = nexacro.getApplication().gdsMyMenu.findRow("MENU_ID", menuId);
+	
+	if (this.fvMenuRow > -1) {
+		this.DivMdi.form.btnMyMenu.set_cssclass("btn_MDI_MyMnuS");
+	} else {
+		this.DivMdi.form.btnMyMenu.set_cssclass("btn_MDI_MyMnu");
+	}
+	
+	// MDI탭 추가
+	this.DivMdi.form["fnAddTab"].call(this.DivMdi.form, winId, menuNm, menuId);
+};
+
+
+
+this.Frame_All_onlayoutchanged = function(obj:nexacro.Form,e:nexacro.LayoutChangeEventInfo)
+{	
+ 	if (e.newlayout == "Desktop") {
+		this.DivLeft.setOffsetLeft(0);
+		this.DivLeft.setOffsetWidth(254);
+		//this.DivLeft.form.setBtnMenuToggleVisable(true);
+ 	} else {
+		this.DivLeft.setOffsetLeft(-254);
+		this.DivLeft.setOffsetWidth(254);
+		//this.DivLeft.form.setBtnMenuToggleVisable(false);
+	}
+	this.DivLeft.form.reload();
+};
+]]></Script>
+    <Objects/>
+  </Form>
+</FDL>

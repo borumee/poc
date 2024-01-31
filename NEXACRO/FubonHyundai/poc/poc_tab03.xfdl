@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="poc_tab03" width="1000" height="500" titletext="지급이력" onload="poc_tab03_onload">
+    <Layouts>
+      <Layout height="500" width="1000">
+        <Grid id="Grid00" taborder="0" left="0" top="30" right="0" autofittype="col" binddataset="ds_payments" bottom="0" cellmovingtype="col,band" cellsizingtype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="120"/>
+                <Column size="120"/>
+                <Column size="120"/>
+                <Column size="120"/>
+                <Column size="120"/>
+                <Column size="120"/>
+              </Columns>
+              <Rows>
+                <Row size="40" band="head"/>
+                <Row size="40"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="계약번호" messageid="consulting.contract_no"/>
+                <Cell col="1" text="지급사유" messageid="consulting.pay_reason"/>
+                <Cell col="2" text="지급방법" messageid="consulting.pay_type"/>
+                <Cell col="3" text="지급일자" messageid="consulting.pay_date"/>
+                <Cell col="4" text="지급계좌" messageid="consulting.account_no"/>
+                <Cell col="5" text="금액" messageid="consulting.amount"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:cust_no"/>
+                <Cell col="1" text="bind:pay_reason"/>
+                <Cell col="2" text="bind:pay_type"/>
+                <Cell col="3" text="bind:pay_date" displaytype="date" calendardateformat="yyyy-MM-dd"/>
+                <Cell col="4" text="bind:contract_no" displaytype="mask" maskedittype="string" maskeditformat="@@@-@@@@-@@@@"/>
+                <Cell col="5" text="bind:amount" displaytype="number"/>
+              </Band>
+            </Format>
+            <Format id="sumFormat">
+              <Columns>
+                <Column size="120"/>
+                <Column size="120"/>
+                <Column size="120"/>
+                <Column size="120"/>
+                <Column size="120"/>
+                <Column size="120"/>
+              </Columns>
+              <Rows>
+                <Row size="40" band="head"/>
+                <Row size="40"/>
+                <Row size="42" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="계약번호" messageid="consulting.contract_no"/>
+                <Cell col="1" text="지급방법" messageid="consulting.pay_type"/>
+                <Cell col="2" text="지급일자" messageid="consulting.pay_date"/>
+                <Cell col="3" text="지급계좌" messageid="consulting.account_no"/>
+                <Cell col="4" text="지급사유" messageid="consulting.pay_reason"/>
+                <Cell col="5" text="금액" messageid="consulting.amount"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:cust_no"/>
+                <Cell col="1" text="bind:pay_type"/>
+                <Cell col="2" text="bind:pay_date" displaytype="expr:dataset.getRowLevel(currow)==1?'none':'date'" calendardateformat="yyyy-MM-dd"/>
+                <Cell col="3" text="bind:contract_no" displaytype="expr:dataset.getRowLevel(currow)==1?'normal':'mask'" maskedittype="string" maskeditformat="@@@-@@@@-@@@@"/>
+                <Cell col="4" text="bind:pay_reason" expr="dataset.getRowLevel(currow)==1?'소계':'pay_reason'" suppress="1"/>
+                <Cell col="5" text="bind:amount" displaytype="number"/>
+              </Band>
+              <Band id="summary">
+                <Cell colspan="5" text="합계"/>
+                <Cell col="5" expr="dataset.getSum('parseInt(amount)')" displaytype="number" textAlign="right"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btnMultiFormat" taborder="1" top="0" width="46" height="25" cssclass="btn_WF_ToggleGrid" right="0" onclick="fnComBtnOnClick"/>
+      </Layout>
+      <Layout height="500" mobileorientation="Landscape" name="Layout0" type="default" width="300">
+        <Grid id="Grid00" autofittype="none"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_payments" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="cust_no" type="STRING" size="256" description="고객번호"/>
+          <Column id="pay_date" type="STRING" size="256" description="지급일자"/>
+          <Column id="pay_type" type="STRING" size="256" description="지급방법"/>
+          <Column id="recipient" type="STRING" size="256" description="수령인"/>
+          <Column id="amount" type="INT" size="256" prop="SUM" description="금액"/>
+          <Column id="pay_reason" type="STRING" size="256" description="지급사유"/>
+          <Column id="contract_no" type="STRING" size="256" description="계약번호"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Nexacro DEMO
+*  @FileName 	poc_tab03.xfdl
+*  @Creator 	TOBESOFT
+*  @CreateDate 	2023/05/18
+*  @Desction   
+************** 소스 수정 이력 ***********************************************
+* Date					Modifier					Description
+*******************************************************************************
+* 2023/05/18			TOBESOFT					최초생성
+*******************************************************************************
+*/
+
+/*******************************************************************************************************************************
+ * FORM 변수 선언 영역
+*******************************************************************************************************************************/
+this.SVC_PAYMENTS = {svcId : "지급", url : "GET::FUBON::data/고객정보/지급.json", outDs : "ds_payments=payments"}
+
+/*******************************************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose..)
+*******************************************************************************************************************************/
+this.poc_tab03_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnload(obj,e); //필수함수
+	
+	this.gfn_dsRequestAsync(this.SVC_PAYMENTS);
+};
+
+/*******************************************************************************************************************************
+ * Transaction 서비스호출 처리 영역
+*******************************************************************************************************************************/
+
+/*******************************************************************************************************************************
+ * Callback 영역 (Transaction, popup, message..)
+*******************************************************************************************************************************/
+ /*
+ *	트랜잭션 후처리
+ * @param {String} strSvcId       : 서비스 ID
+ * @param {Number} nErrorCode     : 결과 값 (0:성공 -1:실패)
+ * @param {Object} objResolveData : response data
+ */ 
+this.fn_apiCallback = function(strSvcId, nErrorCode, objResolveData) 
+{
+	if (nErrorCode < 0)	// 통신에러
+		return;
+		
+	// service id 에 따라 callback 분기처리
+	switch(strSvcId) 
+	{
+		case "지급":
+			//trace(this.ds_payments.saveJSON());
+			break;
+
+		default:
+	}
+};
+
+/*******************************************************************************************************************************
+ * 사용자 Function 영역
+*******************************************************************************************************************************/
+
+/*******************************************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+*******************************************************************************************************************************/
+this.fnComBtnOnClick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	switch (obj.name)
+	{
+		case "btnMultiFormat" :
+			var objCssClass = obj.cssclass;
+			if (objCssClass == "btn_WF_ToggleGrid") {
+				this.Grid00.set_formatid("sumFormat");
+				this.ds_payments.set_keystring("G:pay_reason S:+cust_no");
+				obj.set_cssclass("btn_WF_ToggleSummary");
+			} else {
+				this.Grid00.set_formatid("default");
+				this.ds_payments.set_keystring("");
+				obj.set_cssclass("btn_WF_ToggleGrid");
+			}
+			break;
+	}
+};
+]]></Script>
+  </Form>
+</FDL>

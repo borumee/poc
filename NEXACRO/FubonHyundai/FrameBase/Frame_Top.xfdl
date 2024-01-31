@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Frame_Top" width="480" height="70" titletext="상단 프레임" onload="Frame_Top_onload" onlayoutchanged="Frame_Top_onlayoutchanged">
+    <Layouts>
+      <Layout height="70" width="480">
+        <Static id="stcBg" taborder="6" left="0" top="0" right="0" bottom="0" cssclass="sta_TF_base"/>
+        <Static id="sta_logo" taborder="0" left="60" top="10" width="180" height="51" cssclass="sta_TF_logo" text="" cursor="pointer" onclick="sta_logo_onclick"/>
+        <Button id="btnUserInfo" taborder="1" top="20" width="30" height="30" cssclass="btn_TF_menuUser" right="145" visible="false"/>
+        <Button id="btn_leftMenu" taborder="2" left="15" top="15" width="40" height="40" cssclass="btn_TF_leftMenu" visible="true" onclick="btn_leftMenu_onclick"/>
+        <Button id="btnAlarm" taborder="3" top="20" width="30" height="30" right="180" onclick="btnAlarm_onclick" cssclass="btn_TF_menuNotice" visible="false"/>
+        <Static id="stcEmpUser" taborder="4" top="15" height="40" cssclass="sta_TF_textAdmin" visible="false" left="340" right="btnAlarm:-70"/>
+        <Button id="Button00" taborder="5" text="기능" left="182" top="17" width="110" height="36" cssclass="btn_TF_functionMenu" visible="false"/>
+        <Static id="Static01" taborder="7" top="18" width="100" height="34" cssclass="sta_WF_FnArea" right="30"/>
+        <Button id="btn_langCode" taborder="8" top="24" width="24" height="24" cssclass="btn_TF_FnKOR" right="92" onclick="btnLanguage_onclick"/>
+        <Static id="Static02" taborder="9" top="28" width="1" height="14" cssclass="sta_TF_IconBar" right="79"/>
+        <Button id="btn_themeCode" taborder="10" top="24" width="24" height="24" cssclass="btn_TF_FnThemeL" right="43" onclick="btnTheme_onclick"/>
+      </Layout>
+      <Layout name="M960" width="960" height="70">
+        <Button id="btn_leftMenu" left="15" top="15" width="40" height="40" visible="true"/>
+        <Button id="btnUserInfo" top="20" width="30" height="30" right="145" visible="true"/>
+        <Button id="Button00" left="222" top="17" width="110" height="36"/>
+        <Static id="stcEmpUser" right="btnAlarm:0" top="15" width="60" height="40" visible="true"/>
+        <Button id="btnAlarm" visible="true"/>
+        <Static id="sta_logo" left="60" top="10" width="180" height="51"/>
+      </Layout>
+      <Layout name="L1280" width="1280" height="70">
+        <Button id="btn_leftMenu" visible="false" left="15" top="15" width="40" height="40"/>
+        <Static id="sta_logo" left="30" top="15" width="180" height="40" text=""/>
+        <Button id="btnUserInfo" top="20" width="30" height="30" right="145" visible="true"/>
+        <Button id="Button00" left="207" top="17" width="110" height="36" visible="false"/>
+        <Static id="stcEmpUser" right="btnAlarm:0" top="15" width="60" height="40" visible="true"/>
+        <Button id="btnAlarm" visible="true"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.buttonNames = [];
+
+this.Frame_Top_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var app = nexacro.getApplication(),
+		langCode = app.langCode,
+		p = this.getOwnerFrame().form;
+	
+	// langCode cssclass (btn_TF_FnKOR : btn_TF_FnENG)
+	this.btn_langCode.set_cssclass((langCode == "ko") ? 'btn_TF_FnENG' : 'btn_TF_FnKOR')
+	
+	this.stcEmpUser.set_text(nexacro.getApplication().empInfo.EMP_NM + "  ");
+	this.stcEmpUser.set_fittocontents("width");
+
+	// Top 대메뉴 만들기
+	this.createMenuButton();
+};
+
+/*
+ *	Top 대메뉴 만들기
+ */ 
+this.createMenuButton = function() {
+	var left=207, top=17, width=110, height=36, gap=5,
+		app    = nexacro.getApplication(),
+		layout = this.getCurrentLayoutID();
+	app.gdsMenu.filter("LEVL==0");
+	
+	for (var i=0, len=app.gdsMenu.rowcount; i<len; i++) {
+		var menuId = app.gdsMenu.getColumn(i, "MENU_ID"),
+			id = "btnMenu_"+menuId,
+			button = new Button(id, left, top, width, height, null, null);
+
+		button.set_cssclass("btn_TF_functionMenu");
+		button.set_text(app.gdsMenu.getColumn(i, "MENU_NM"));
+		button.set_visible((layout == "L1280")?true:false);
+		button.menuId = menuId;
+		button.addEventHandler("onclick", this.btnMenu_onclick, this);
+		this.addChild(id, button);
+		button.show();
+		
+		left += width + gap;
+		this.buttonNames.push(id);
+	}
+	
+	app.gdsMenu.filter("");
+}
+
+
+this.Frame_Top_onlayoutchanged = function(obj:nexacro.Form,e:nexacro.LayoutChangeEventInfo)
+{
+	var pThis = this, layout = e.newlayout;
+	this.buttonNames.forEach(function(buttonName) {
+		pThis.components[buttonName].set_visible((layout == "L1280")?true:false);
+	});
+};
+
+
+
+this.btn_leftMenu_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var p = this.getOwnerFrame().form;
+	p["fnMenuFrameToggle"].call(p);
+};
+
+
+
+/**
+ * @description 대메뉴 버튼 이벤트
+ **/
+this.btnMenu_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (obj.name == "btnMenu_M0000") //나의 메뉴
+	{
+		if (nexacro.getApplication().gdsMyMenu.getRowCount() == 0) {
+			alert("등록 된 나의 메뉴가 없습니다.");
+			return;
+		}		
+	}
+	
+	var app = nexacro.getApplication(),
+		p   = this.getOwnerFrame().form;
+		
+	nexacro.getApplication().MENU_ID = obj.name.substring(8);
+	
+ 	if (p.name == "Frame_Main")  {
+		nexacro.getApplication().mainframe.VFrameSet.set_separatesize("0, *, 0");
+		nexacro.getApplication().mainframe.VFrameSet.WorkFrame.form.DivTop.set_url("");
+		nexacro.getApplication().mainframe.VFrameSet.WorkFrame.form.DivMenu.set_url("");
+		nexacro.getApplication().mainframe.VFrameSet.WorkFrame.form.DivLeft.set_url("");
+		nexacro.getApplication().mainframe.VFrameSet.WorkFrame.form.DivMdi.set_url("");
+		
+		nexacro.getApplication().mainframe.VFrameSet.WorkFrame.form.DivTop.set_url("FrameBase::Frame_Top.xfdl");
+		nexacro.getApplication().mainframe.VFrameSet.WorkFrame.form.DivMenu.set_url("FrameBase::Frame_Menu.xfdl");
+		nexacro.getApplication().mainframe.VFrameSet.WorkFrame.form.DivLeft.set_url("FrameBase::Frame_Left.xfdl");
+		nexacro.getApplication().mainframe.VFrameSet.WorkFrame.form.DivMdi.set_url("FrameBase::Frame_Mdi.xfdl");
+	} else {
+		nexacro.getApplication().mainframe.VFrameSet.WorkFrame.form.DivLeft.set_url("");
+		nexacro.getApplication().mainframe.VFrameSet.WorkFrame.form.DivLeft.set_url("FrameBase::Frame_Left.xfdl");
+	}
+};
+
+// 로고 클릭
+this.sta_logo_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+	nexacro.getApplication().openInfo = {
+		 "CLOSE": "TOP"
+	};
+	
+	var p = this.getOwnerFrame().form;
+	
+	if (p.name != "Frame_Main") {
+		p["fnOpenHome"].call(p);
+	}
+	
+	//nexacro.loadStyle("xcssrc::IBKbasic.xcss");
+};
+
+// 푸시메시지 팝업 호출
+this.btnAlarm_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var params = {};
+	var options;
+	
+	if (this.getOwnerFrame().getOffsetWidth() < 960) {
+		options = "autosize=false width=700 height=500";
+	}
+	
+	this.openPopup("xpushMessagePop", "Comm::xpushMessagePop.xfdl", params, options, "", false);
+};
+
+// 다국어 버튼
+this.btnLanguage_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var app = nexacro.getApplication(),
+		langCode = app.langCode=="en"?"ko":"en";
+	
+	if(confirm("다국어 변경\n페이지가 새로고침 됩니다.")) {
+		nexacro.setPrivateProfile('langCode', langCode)
+		location.reload();		
+	}
+	//app["changeLanguage"].call(app, langCode);
+};
+
+// 테마 버튼
+this.btnTheme_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var app       = nexacro.getApplication();
+	
+	/// 테마 (xcssrc::IBKbasic.xcss : xcssrc::IBKbasic_theme.xcss)	
+	if(app.themeCode == 'xcssrc::IBKbasic.xcss') {
+		app.themeCode = 'xcssrc::IBKbasic_theme.xcss';
+	} else {
+		app.themeCode = 'xcssrc::IBKbasic.xcss';
+	}		
+	nexacro.setPrivateProfile('themeCode', app.themeCode);
+	nexacro.loadStyle(app.themeCode);
+	
+	// themeCode cssclass (btn_TF_FnThemeL : btn_TF_FnThemeD)
+	this.btn_themeCode.set_cssclass((app.themeCode == 'xcssrc::IBKbasic.xcss') ? 'btn_TF_FnThemeD' : 'btn_TF_FnThemeL');
+};
+]]></Script>
+  </Form>
+</FDL>

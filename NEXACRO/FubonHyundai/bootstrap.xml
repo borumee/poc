@@ -1,0 +1,412 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BootstrapPreset version="1.1">
+  <Bootstrap id="index" version="1.0"><![CDATA[<!-- DOCTYPE : DOCTYPE declaration -->
+#{DOCTYPE}
+<html #{LANGUAGE}> <!-- LANGUAGE : locale setting (value of location property in Environment) -->
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="user-scalable=1, initial-scale=0.1, width=device-width, target-densitydpi=device-dpi">
+	<link rel="stylesheet" type="text/css" href="../rMateChartH5/Assets/Css/rMateChartH5.css"/>
+	<!--오픈 그래프 태그
+	<meta property="og:type" content="website"> 
+	<meta property="og:title" content="IBK 연금보험 넥사크로 데모">
+	<meta property="og:description" content="IBK 연금보험 넥사크로 데모사이트 입니다.">
+	<meta property="og:image" content="http://20.41.97.202/IBKI/ui/_resource_/_images_/Frame/img_TF_logo.png">
+	<meta property="og:url" content="http://20.41.97.202/IBKI/ui/index.html">
+	-->
+	<!-- META_CHECKVERSION : Add if value of checkversion property in Envrionment is true -->
+	#{META_CHECKVERSION}
+	
+	<!-- FAVICON : favion setting (value of icon property in Environment. add to value of icon property in Environment) -->
+	#{FAVICON}
+	
+	<!-- USERFONT_STYLE : userfont style setting (value of userfontid property in Environment. crate contents contained in xfont file specified userfontid property in Environment) -->
+	#{USERFONT_STYLE}
+	
+	<!-- FRAMEWORK_LIBRARY : framework lodaing path (list of scripts files in the Framework.json file) -->
+	#{FRAMEWORK_LIBRARY}
+	
+	<!-- COMPONENTS_LIBRARY : commonent lodaing path (list of script file in json file specified in the TypeDefinition module) -->
+    <script src="../CryptoJS/jquery-1.11.0.min.js"></script>
+    <script src="../CryptoJS/jquery-migrate-1.2.1.min.js"></script>
+    <script src="../CryptoJS/core-min.js"></script>
+    <script src="../CryptoJS/aes.js"></script>
+    <script src="../CryptoJS/pad-zeropadding.js"></script>
+	
+	#{COMPONENTS_LIBRARY}
+  
+    <script src="../rMateChartH5/JS/editablegrid-2.0.1.js"></script>
+    <script src="../rMateChartH5/JS/rMateChartH5.js"></script>
+    <script src="../rMateChartH5/LicenseKey/rMateChartH5License.js"></script>
+		
+	<!-- ENVIRONMENT_LIBRARY : application environment path (path of Environment.xml.js) -->
+	#{ENVIRONMENT_LIBRARY}
+	
+  <!-- SPLASH_DEFINE_STYLE : Defines the style of the splash screen that is visible while modules are loading -->
+	#{SPLASH_DEFINE_STYLE}
+  
+	<title></title>
+</head>
+<body style="margin:0;border:none;-ms-touch-action:none;" onload="oninitframework()">
+
+	<!-- SPLASH_SHOW_STYLE : Adds the splash screen that is visible while modules are loading -->
+	#{SPLASH_SHOW_STYLE}
+  
+	<script>
+		function oninitframework()
+		{
+			/* SPLASH_HIDE_STYLE : Hides the splash screen when modules finish loading */
+			#{SPLASH_HIDE_STYLE}
+      
+			/* SCREEN_INFORMATION : create screen information defined in Environment > ScreenDefinition */
+			var screeninfo = [
+#{SCREEN_INFORMATION}
+			];
+
+			nexacro._initHTMLSysEvent(window, document);
+			nexacro._initEnvironment(screeninfo);
+			/* create internal iframe */
+			/* USERFONT_INFORMATION : userfontid property is specified in the Environment */
+			nexacro._prepareManagerFrame(onloadframework#{USERFONT_INFORMATION});
+		}
+		function onloadframework()
+		{
+			/* application loading */
+			nexacro._loadADL();
+		}
+		function onfinalframework()
+		{
+			/* application exit */
+		}
+	</script>
+</body>
+</html>
+  
+  ]]></Bootstrap>
+  <Bootstrap id="launch" version="1.0"><![CDATA[<!-- DOCTYPE : DOCTYPE declaration -->
+#{DOCTYPE}
+<html #{LANGUAGE}> <!-- LANGUAGE : locale setting (value of location property in Environment) -->
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="user-scalable=1, initial-scale=0.1, width=device-width, target-densitydpi=device-dpi">
+	<link rel="stylesheet" type="text/css" href="../rMateChartH5/Assets/Css/rMateChartH5.css"/>
+
+	<!-- META_CHECKVERSION : Add if value of checkversion property in Envrionment is true -->
+	#{META_CHECKVERSION}
+	
+	<!-- FAVICON : favion setting (value of icon property in Environment. add to value of icon property in Environment) -->
+	#{FAVICON}
+	
+	<!-- USERFONT_STYLE : userfont style setting (value of userfontid property in Environment. crate contents contained in xfont file specified userfontid property in Environment) -->
+	#{USERFONT_STYLE}
+	
+	<!-- FRAMEWORK_LIBRARY : framework lodaing path (list of scripts files in the Framework.json file) -->
+	#{FRAMEWORK_LIBRARY}
+	
+	<!-- COMPONENTS_LIBRARY : commonent lodaing path (list of script file in json file specified in the TypeDefinition module) -->
+    <script src="../CryptoJS/jquery-1.11.0.min.js"></script>
+    <script src="../CryptoJS/jquery-migrate-1.2.1.min.js"></script>
+    <script src="../CryptoJS/core-min.js"></script>
+    <script src="../CryptoJS/aes.js"></script>
+    <script src="../CryptoJS/pad-zeropadding.js"></script>
+	
+	#{COMPONENTS_LIBRARY}
+  
+    <script src="../rMateChartH5/JS/editablegrid-2.0.1.js"></script>
+    <script src="../rMateChartH5/JS/rMateChartH5.js"></script>
+    <script src="../rMateChartH5/LicenseKey/rMateChartH5License.js"></script>
+		
+	<!-- ENVIRONMENT_LIBRARY : application environment path (path of Environment.xml.js) -->
+	#{ENVIRONMENT_LIBRARY}
+  
+  <!-- SPLASH_DEFINE_STYLE : Defines the style of the splash screen that is visible while modules are loading -->
+	#{SPLASH_DEFINE_STYLE}
+	
+	<title></title>
+</head>
+
+<body style="margin:0;border:none;-ms-touch-action:none;" onload="oninitframework()">
+
+	<!-- SPLASH_SHOW_STYLE : Adds the splash screen that is visible while modules are loading -->
+	#{SPLASH_SHOW_STYLE}
+  
+	<script>
+	function oninitframework()
+	{
+		/* SPLASH_HIDE_STYLE : Hides the splash screen when modules finish loading */
+		#{SPLASH_HIDE_STYLE}
+    
+		/* parameter information */
+		var urlParams = {};
+		(function () {
+			var match,
+			pl     = /\+/g,
+			search = /([^&=]+)=?([^&]*)/g,
+			decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+			query  = window.location.search.substring(1);
+			while (match = search.exec(query)) { urlParams[decode(match[1])] = decode(match[2]); }
+			})();
+			
+		nexacro._launch_screenid = urlParams.screenid;
+		/* SCREEN_INFORMATION : create screen information defined in Environment > ScreenDefinition */
+		var screeninfo = [
+#{SCREEN_INFORMATION}
+		];
+		
+		nexacro._initHTMLSysEvent(window, document);
+		nexacro._initEnvironment(screeninfo);
+		/* create internal iframe */
+		/* USERFONT_INFORMATION : userfontid property is specified in the Environment */
+		nexacro._prepareManagerFrame(onloadframework#{USERFONT_INFORMATION});
+	}
+	function onloadframework()
+	{
+		/* application loading */
+		nexacro._loadADL();
+	}
+	function onfinalframework()
+	{
+		/* application exit */
+	}
+	</script>
+</body>
+</html>  
+  ]]></Bootstrap>
+  <Bootstrap id="popup" version="1.0"><![CDATA[<!-- DOCTYPE : DOCTYPE declaration -->
+#{DOCTYPE}
+<html #{LANGUAGE}> <!-- LANGUAGE : locale setting (value of location property in Environment) -->
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="user-scalable=1, initial-scale=0.1, width=device-width, target-densitydpi=device-dpi">
+	<link rel="stylesheet" type="text/css" href="../rMateChartH5/Assets/Css/rMateChartH5.css"/>
+	<!-- META_CHECKVERSION : Add if value of checkversion property in Envrionment is true -->
+	#{META_CHECKVERSION}
+	<script>
+		window._popup = true;
+	</script>
+	
+	<!-- FAVICON : favion setting (value of icon property in Environment. add to value of icon property in Environment) -->
+	#{FAVICON}
+	
+	<!-- USERFONT_STYLE : userfont style setting (value of userfontid property in Environment. crate contents contained in xfont file specified userfontid property in Environment) -->
+	#{USERFONT_STYLE}
+	
+	<!-- FRAMEWORK_LIBRARY : framework lodaing path (list of scripts files in the Framework.json file) -->
+	#{FRAMEWORK_LIBRARY}
+	
+	<!-- COMPONENTS_LIBRARY : commonent lodaing path (list of script file in json file specified in the TypeDefinition module) -->
+    <script src="../CryptoJS/jquery-1.11.0.min.js"></script>
+    <script src="../CryptoJS/jquery-migrate-1.2.1.min.js"></script>
+    <script src="../CryptoJS/core-min.js"></script>
+    <script src="../CryptoJS/aes.js"></script>
+    <script src="../CryptoJS/pad-zeropadding.js"></script>
+	
+	#{COMPONENTS_LIBRARY}
+  
+    <script src="../rMateChartH5/JS/editablegrid-2.0.1.js"></script>
+    <script src="../rMateChartH5/JS/rMateChartH5.js"></script>
+    <script src="../rMateChartH5/LicenseKey/rMateChartH5License.js"></script>
+		
+	<!-- ENVIRONMENT_LIBRARY : application environment path (path of Environment.xml.js) -->
+	#{ENVIRONMENT_LIBRARY}
+  
+  <!-- SPLASH_DEFINE_STYLE : Defines the style of the splash screen that is visible while modules are loading -->
+	#{SPLASH_DEFINE_STYLE}
+	
+	<title></title>
+</head>
+<body style="margin:0; border:none; -ms-touch-action:none;" onload="oninitframework()">
+
+	<!-- SPLASH_SHOW_STYLE : Adds the splash screen that is visible while modules are loading -->
+	#{SPLASH_SHOW_STYLE}
+  
+	<script>
+  function oninitframework()
+  {
+		/* SPLASH_HIDE_STYLE : Hides the splash screen when modules finish loading */
+		#{SPLASH_HIDE_STYLE}
+      
+		/* parameter information */
+		var urlParams = {};
+		(function () {
+			var match,
+			pl = /\+/g,
+			search = /([^&=]+)=?([^&]*)/g,
+			decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+			query = window.location.search.substring(1);
+			while (match = search.exec(query)) { urlParams[decode(match[1])] = decode(match[2]); }
+			})();
+
+		/* create internal iframe */
+		/* USERFONT_INFORMATION : userfontid property is specified in the Environment */
+		nexacro._preparePopupFrame(window, document, urlParams#{USERFONT_INFORMATION});
+  }
+	</script>
+</body>
+</html>
+  ]]></Bootstrap>
+  <Bootstrap id="quickview" version="1.0"><![CDATA[<!-- DOCTYPE : DOCTYPE declaration -->
+#{DOCTYPE}
+<html #{LANGUAGE}> <!-- LANGUAGE : locale setting (value of location property in Environment) -->
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="user-scalable=1, initial-scale=0.1, width=device-width, target-densitydpi=device-dpi">
+	<link rel="stylesheet" type="text/css" href="../rMateChartH5/Assets/Css/rMateChartH5.css"/>
+	<!-- META_CHECKVERSION : Add if value of checkversion property in Envrionment is true -->
+	#{META_CHECKVERSION}
+	
+	<!-- FAVICON : favion setting (value of icon property in Environment. add to value of icon property in Environment) -->
+	#{FAVICON}
+
+	<!-- USERFONT_STYLE : userfont style setting (value of userfontid property in Environment. crate contents contained in xfont file specified userfontid property in Environment) -->
+	#{USERFONT_STYLE}
+	
+	<!-- FRAMEWORK_LIBRARY : framework lodaing path (list of scripts files in the Framework.json file) -->
+	#{FRAMEWORK_LIBRARY}
+	
+	<!-- COMPONENTS_LIBRARY : commonent lodaing path (list of script file in json file specified in the TypeDefinition module) -->
+    <script src="../CryptoJS/jquery-1.11.0.min.js"></script>
+    <script src="../CryptoJS/jquery-migrate-1.2.1.min.js"></script>
+    <script src="../CryptoJS/core-min.js"></script>
+    <script src="../CryptoJS/aes.js"></script>
+    <script src="../CryptoJS/pad-zeropadding.js"></script>
+	
+	#{COMPONENTS_LIBRARY}
+  
+    <script src="../rMateChartH5/JS/editablegrid-2.0.1.js"></script>
+    <script src="../rMateChartH5/JS/rMateChartH5.js"></script>
+    <script src="../rMateChartH5/LicenseKey/rMateChartH5License.js"></script>
+		
+	<!-- ENVIRONMENT_LIBRARY : application environment path (path of Environment.xml.js) -->
+	#{ENVIRONMENT_LIBRARY}
+  
+  <!-- SPLASH_DEFINE_STYLE : Defines the style of the splash screen that is visible while modules are loading -->
+	#{SPLASH_DEFINE_STYLE}
+	
+	<title></title>
+</head>
+
+<body style="margin:0;border:none;-ms-touch-action:none;" onload="oninitframework()">
+	
+  <!-- SPLASH_SHOW_STYLE : Adds the splash screen that is visible while modules are loading -->
+	#{SPLASH_SHOW_STYLE}
+  
+	<script>
+	function oninitframework()
+	{
+		/* SPLASH_HIDE_STYLE : Hides the splash screen when modules finish loading */
+		#{SPLASH_HIDE_STYLE}
+      
+		/* parameter information */
+		var urlParams = {};
+		(function () {
+			var match,
+			pl     = /\+/g,
+			search = /([^&=]+)=?([^&]*)/g,
+			decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+			query  = window.location.search.substring(1);
+			while (match = search.exec(query)) { urlParams[decode(match[1])] = decode(match[2]); }
+			})();
+
+		nexacro._launch_screenid = urlParams.screenid;
+		nexacro._quickview_formurl = urlParams.formname;
+
+		/* SCREEN_INFORMATION : create screen information defined in Environment > ScreenDefinition */
+		var screeninfo = [
+#{SCREEN_INFORMATION}
+		];
+
+		nexacro._initHTMLSysEvent(window, document);
+		nexacro._initEnvironment(screeninfo);
+		/* create internal iframe */
+		/* USERFONT_INFORMATION : userfontid property is specified in the Environment */
+		nexacro._prepareManagerFrame(onloadframework#{USERFONT_INFORMATION});
+	}
+	function onloadframework()
+	{
+		/* application loading */
+		nexacro._loadADL();
+	}
+	function onfinalframework()
+	{
+		/* application exit */
+	}
+	</script>
+</body>
+</html>
+  ]]></Bootstrap>
+  <Bootstrap id="run" version="1.0"><![CDATA[<!-- DOCTYPE : DOCTYPE declaration -->
+#{DOCTYPE}
+<html #{LANGUAGE}> <!-- LANGUAGE : locale setting (value of location property in Environment) -->
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="user-scalable=1, initial-scale=0.1, width=device-width, target-densitydpi=device-dpi">
+	<link rel="stylesheet" type="text/css" href="../rMateChartH5/Assets/Css/rMateChartH5.css"/>
+	<!-- META_CHECKVERSION : Add if value of checkversion property in Envrionment is true -->
+	#{META_CHECKVERSION}
+
+	<!-- FAVICON : favion setting (value of icon property in Environment. add to value of icon property in Environment) -->
+	#{FAVICON}
+
+	<!-- USERFONT_STYLE : userfont style setting (value of userfontid property in Environment. crate contents contained in xfont file specified userfontid property in Environment) -->
+	#{USERFONT_STYLE}
+
+	<!-- FRAMEWORK_LIBRARY : framework lodaing path (list of scripts files in the Framework.json file) -->
+	#{FRAMEWORK_LIBRARY}
+
+	<!-- COMPONENTS_LIBRARY : commonent lodaing path (list of script file in json file specified in the TypeDefinition module) -->
+    <script src="../CryptoJS/jquery-1.11.0.min.js"></script>
+    <script src="../CryptoJS/jquery-migrate-1.2.1.min.js"></script>
+    <script src="../CryptoJS/core-min.js"></script>
+    <script src="../CryptoJS/aes.js"></script>
+    <script src="../CryptoJS/pad-zeropadding.js"></script>
+	
+	#{COMPONENTS_LIBRARY}
+  
+    <script src="../rMateChartH5/JS/editablegrid-2.0.1.js"></script>
+    <script src="../rMateChartH5/JS/rMateChartH5.js"></script>
+    <script src="../rMateChartH5/LicenseKey/rMateChartH5License.js"></script>
+	
+	<!-- ENVIRONMENT_LIBRARY : application environment path (path of Environment.xml.js) -->
+	#{ENVIRONMENT_LIBRARY}
+
+	<!-- MOBILE_LIBRARY : mobile component loading path -->
+	#{MOBILE_LIBRARY}
+
+	<title></title>
+</head>
+<body style="margin:0;border:none;-ms-touch-action:none;" onload="oninitframework()">
+	<script>
+	function oninitframework()
+	{
+		/* SCREEN_INFORMATION : create screen information defined in Environment > ScreenDefinition */
+		var screeninfo = [
+#{SCREEN_INFORMATION}
+		];
+
+	nexacro._initHTMLSysEvent(window, document);
+	nexacro._initEnvironment(screeninfo);
+	/* create internal iframe */
+	/* USERFONT_INFORMATION : userfontid property is specified in the Environment */
+	nexacro._prepareManagerFrame(onloadframework#{USERFONT_INFORMATION});
+	}
+	function onloadframework()
+	{
+	/* application loading */
+	/* PROJECT_URL : application project url to load */
+	nexacro._loadADL(#{PROJECT_URL});
+	}
+	function onfinalframework()
+	{
+		/* application exit */
+	}
+	</script>
+</body>
+</html>
+  ]]></Bootstrap>
+</BootstrapPreset>

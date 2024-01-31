@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Frame_Left" width="254" height="640" titletext="좌측 프레임" onload="Frame_Left_onload" ontimer="Frame_Left_ontimer">
+    <Layouts>
+      <Layout height="640" mobileorientation="landscape" width="254">
+        <Static id="stcBg" taborder="2" left="0" top="0" bottom="0" cssclass="sta_LF_base" right="24"/>
+        <Static id="sta_curTime" taborder="1" width="180" height="30" textAlign="center" color="#9ab3e0" left="10" bottom="10" text="CURRENT TIME"/>
+        <Div id="divMenuBase" taborder="0" left="0" top="0" bottom="50" width="230" text=""/>
+        <Static id="Static00" taborder="4" left="divMenuBase:0" top="0" width="24" height="44" background="#DCDFE9"/>
+        <Button id="btnMenuToggle" taborder="3" text="&lt;" left="divMenuBase:0" top="0" width="24" height="45" onclick="btnMenuToggle_onclick" cssclass="btn_LF_CloseMenu" color="transparent"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::CompsUtils.xjs";
+include "Lib::AniUtils.xjs";
+include "Lib::CompsRelocate.xjs";
+
+this.isWide = true;
+
+/**	
+* @desc 선택 메뉴 위치
+*/
+this.menuRow;
+
+/**	
+* @desc 선택 하위 메뉴 위치
+*/
+this.subMenuRow;
+
+/**	
+* @desc 애니메이션 상태
+*/
+this.statusAni;
+
+this.Frame_Left_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var objApp = nexacro.getApplication();
+	
+	///////////////////////////////////////////
+	var ownerForm = this.getOwnerFrame().form,
+	    fLayout   = ownerForm.getCurrentLayoutID();
+		
+	if(fLayout == "Desktop") {
+		this.setBtnMenuToggleVisable(true)
+	} else {
+		this.setBtnMenuToggleVisable(false)
+	}
+	
+	this.divMenuBase.set_width(230);
+	this.stcBg.set_width(230);
+	this.sta_curTime.set_width(210);
+	///////////////////////////////////////////
+	
+	
+	this.dsMenu.clearData();
+	
+	if (objApp.MENU_ID == "M0000") {
+		this.dsMenu.copyData(objApp.gdsMyMenu); 
+	} else {
+		objApp.gdsMenu.filter("MENU_ID == '" + objApp.MENU_ID + "' || " + 
+		                      "HIPO_MENU_ID == '" + objApp.MENU_ID + "'");
+		this.dsMenu.copyData(objApp.gdsMenu, true);
+		objApp.gdsMenu.filter("");		
+	}
+
+	this.createMenuButton(this.divMenuBase);
+	
+	this.initAniobj("titleani", "easeoutquint", 1000);
+	
+	if (objApp.MENU_ID != "M0000") {
+		this.initMenuChildButton(this.divMenuBase);
+	}
+	
+ 	this.initRelocateAniobj(200);
+	this.stackComponent(this.divMenuBase,0,0,"Ani","stBGC");
+	this.menuRow = 0;
+	this.statusAni = false;
+	
+	this.initAniobj("leftani", "easeInSine", 3000);
+	
+	this.setTimer(0, 1000);
+};
+
+this.Frame_Left_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	if (e.timerid == 0) {
+		var d = new nexacro.Date(),
+			year = d.getFullYear(),
+			month = d.getMonth()+1,
+			date = d.getDate(),
+			hour = d.getHours(),
+			minute = d.getMinutes(),
+			second = d.getSeconds();
+		
+		var ampm = hour >= 12 ? '오후' : '오전';
+		hour = hour % 12;
+		hour = hour ? hour : 12;
+		
+		var padLeft = function(nr, n, str) {
+			return Array(n-String(nr).length+1).join(str||'0')+nr;
+		}
+		
+		var v = year+"-"+padLeft(month,2)+"-"+padLeft(date,2)+"  "+ampm+" "+hour+":"+padLeft(minute,2)+":"+padLeft(second,2);
+		this.sta_curTime.set_text(v);
+	}
+};
+
+/**	
+* @desc 메뉴 버튼 생성
+* @return none
+*/
+this.createMenuButton = function (target)
+{
+	var ds = this.dsMenu,
+		pos = {left: 30, top: 121, width:null, height: 45, right: 0, bottom: null};
+	
+	for (var i=0;i<ds.getRowCount();i++) {
+		if(target["btnMenu_"+menuId]) {
+			continue;
+		}
+		var menuLvl = ds.getColumn(i, "LEVL"),
+			menuId = ds.getColumn(i, "MENU_ID"),
+			menuNm = ds.getColumn(i, "MENU_NM"),
+			objButton = new Button("btnMenu_"+menuId, pos.left, pos.top, pos.width, pos.height, pos.right, pos.bottom);
+		
+		if (menuLvl == 0) {
+			objButton.set_cssclass("btn_LF_LeftTitle");
+			objButton.set_left(0)
+			pos.top += 30;
+		} else {
+			objButton.set_cssclass("btn_LF_LeftMenu");
+		}
+		
+		objButton.menuId = menuId;
+		objButton.set_text(menuNm.length>18?menuNm.substr(0, 18)+"...":menuNm);
+		objButton.addEventHandler("onclick", this.btnMenu_onclick, this);
+		
+		target.addChild("btnMenu_"+menuId, objButton);
+		objButton.show();
+		
+		pos.top += objButton.height;
+	}
+};
+
+/**	
+* @desc 자식 버튼을 부모 버튼 위치로 이동
+* @return none
+*/
+this.initMenuChildButton = function (target)
+{
+	var ds = this.dsMenu;
+	
+	for(var i=0;i<ds.getRowCount();i++){
+		var lv = ds.getColumn(i,"LEVL");
+		if(lv != 0){
+			var comp = target.form.components["btnMenu_"+ds.getColumn(i,"MENU_ID")];
+			comp.set_visible(true);
+			
+			var parent = target.form.components["btnMenu_"+ds.getColumn(i,"HIPO_MENU_ID")];
+			comp.setOffsetTop(parent.getOffsetTop()+parent.getOffsetHeight()+30);
+		}
+	}
+};
+
+/**	
+* @desc 메뉴 버튼 눌렸을 때 처리
+* @return none
+*/
+this.btnMenu_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var ds = this.dsMenu;
+	var row = ds.findRow("MENU_ID",obj.menuId);
+	var lv = ds.getColumn(row,"LEVL");
+
+	// left 영역 대메뉴 클릭시
+	if (lv == 0) {
+		// 메뉴 선택 취소
+		if (this.menuRow == row) {
+			this.menuRow = -1;
+			obj.set_cssclass("btn_LF_LeftTitle");
+			ds.filter("HIPO_MENU_ID == '" + obj.menuId+"'");
+			for(var i=0;i<ds.getRowCount();i++){
+				var comp = this.divMenuBase.form.components["btnMenu_"+ds.getColumn(i,"MENU_ID")];
+				comp.set_visible(false);
+			}
+			ds.filter("");
+		}
+		// 메뉴 선택
+		else {
+			// 이전 선택 메뉴 초기화
+			var preComp = this.divMenuBase.form.components["btnMenu_"+ds.getColumn(this.menuRow,"MENU_ID")];
+			if (preComp) {
+				preComp.set_cssclass("btn_LF_LeftTitle");
+			}
+			this.menuRow = row;
+			this.initMenuChildButton(this.divMenuBase);
+			obj.set_cssclass("btn_LF_LeftTitle");
+			ds.filter("HIPO_MENU_ID == '" + obj.menuId+"'");
+			for(var i=0;i<ds.getRowCount();i++){
+				var comp = this.divMenuBase.form.components["btnMenu_"+ds.getColumn(i,"MENU_ID")];
+				comp.set_visible(true);
+			}
+			ds.filter("");
+		}
+		this.stackComponent(this.divMenuBase,0,0,"Ani","stBGC");
+	} 
+	// left 영역 하위메뉴(업무화면메뉴) 클릭시
+	else {
+		if(this.statusAni)	return;
+		
+		this.subMenuRow = row;
+		var p = this.getOwnerFrame().form;
+		p["fnOpenMenu"].call(p, obj.menuId);
+	}
+};
+
+this.setBtnMenuToggleVisable = function(bVisible) {
+	this.btnMenuToggle.set_visible(bVisible);
+	this.Static00.set_visible(bVisible);
+}
+
+this.btnMenuToggle_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var p = this.getOwnerFrame().form;
+	var aniObj, aniObj2, aniObj3, aniObj4;
+	
+	if (obj.cssclass == "btn_LF_CloseMenu") {
+		aniObj = p.addAniItem("leftani", p.DivLeft, "width:24");
+		aniObj2 = p.addAniItem("leftani", p.DivMenu, "left:24");
+		aniObj3 = p.addAniItem("leftani", p.DivWork, "left:24");
+		aniObj4 = p.addAniItem("leftani", p.DivMdi, "left:24");
+		this.divMenuBase.set_width(0);
+		this.stcBg.set_width(0);
+		this.sta_curTime.set_width(0);
+		obj.set_cssclass("btn_LF_OpenMenu");
+		
+		this.isWide = false;
+	} else if (obj.cssclass == "btn_LF_OpenMenu") {
+		aniObj = p.addAniItem("leftani", p.DivLeft, "width:254");
+		aniObj2 = p.addAniItem("leftani", p.DivMenu, "left:254");
+		aniObj3 = p.addAniItem("leftani", p.DivWork, "left:254");
+		aniObj4 = p.addAniItem("leftani", p.DivMdi, "left:254");
+		this.divMenuBase.set_width(230);
+		this.stcBg.set_width(230);
+		this.sta_curTime.set_width(210);
+		obj.set_cssclass("btn_LF_CloseMenu");
+		
+		this.isWide = true;
+	} else {
+		return;
+	}
+	
+	this.resetScroll();
+	this.playAniObj(aniObj);
+};]]></Script>
+    <Objects>
+      <Dataset id="dsMenu"/>
+    </Objects>
+  </Form>
+</FDL>

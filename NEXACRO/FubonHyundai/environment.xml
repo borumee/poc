@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ENV version="2.1">
+  <Environment themeid="theme::blue" datatyperule="2.0" enabletouchevent="true" filesecurelevel="all" networksecurelevel="all" tracemode="new" icon="url('imagerc::IBK.ico')" checkversion="true" version="1.0">
+    <ScreenDefinition>
+      <Screen id="Desktop_screen" type="desktop" icon="url('imagerc::ico/fubon.ico')"/>
+    </ScreenDefinition>
+    <Variables>
+      <Variable id="evRunMode" initval="0"/>
+      <Variable id="evQuikView" initval="Y"/>
+      <Variable id="evEnvErrorMsg"/>
+    </Variables>
+    <Cookies/>
+    <httpheader/>
+  </Environment>
+</ENV>

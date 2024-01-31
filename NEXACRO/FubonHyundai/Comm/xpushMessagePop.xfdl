@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="700" height="500" onload="form_onload" ontimer="form_ontimer" titletext="푸시메시지" scrollbartype="autoindicator autoindicator" scrolltype="both">
+    <Layouts>
+      <Layout height="500" width="700"/>
+    </Layouts>
+    <Objects/>
+    <Script type="xscript5.1"><![CDATA[
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var app = nexacro.getApplication(),
+		ds  = app.gds_push;
+		
+	for(var i=0; i<ds.rowcount; i++) {
+		this.fn_addPushMsg(ds, i);
+	}
+};
+
+this.fn_addPushMsg = function(ds, nRow) {
+	let title    = ds.getColumn(nRow, 'title');
+	let content  = ds.getColumn(nRow, 'content');
+	let sender   = ds.getColumn(nRow, 'sender');
+	let reg_time = ds.getColumn(nRow, 'reg_time');
+	
+	toast.pushMessage(this, 'info', title, sender, reg_time, content);	
+	
+	this.resetScroll();
+	//this.Div00.form.resetScroll();
+}]]></Script>
+  </Form>
+</FDL>

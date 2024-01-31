@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MetaInfo version="2.0">
+  <Object id="GroupWorkplaceSearch">
+    <ObjectInfo inheritance="nexacro.CompositeComponent" classname="nexacro.GroupWorkplaceSearch" shorttypename="GroupWorkplaceSearch" csstypename="GroupWorkplaceSearch" csscontrolname="GroupWorkplaceSearchControl" group="Component" subgroup="Component ( default )" csspseudo="true" container="true" tabstop="true" cssstyle="true" defaultwidth="400" defaultheight="30" registration="allow" edittype="" useinitvalue="true" popup="false" edittypecomponent="" dblclickevent="onclick" requirement="IE10,IE11,Edge,Chrome,Safari,Firefox,Opera,Windows NRE,macOS NRE,Android NRE,iOS/iPadOS NRE,Android Default Web Browser,iOS/iPadOS Default Web Browser" description="GroupWorkplaceSearch는 그룹사업장과 사업장을 검색하여 선택 가능한 표준 컴포넌트입니다." finalclass="false"/>
+    <PropertyInfo>
+      <Property name="text" readonly="false" initonly="false" hidden="false" control="false" expr="false" bind="false" unused="false" mandatory="false" group="Action" edittype="String" description="GroupWorkplaceSearch 에서 선택된 아이템의 데이터값을 갖는 속성입니다."/>
+      <Property name="value" readonly="false" initonly="false" hidden="false" control="false" expr="false" bind="false" unused="false" mandatory="false" group="Action" edittype="String" description="GroupWorkplaceSearch 에서 선택된 아이템의 코드값을 갖는 속성입니다."/>
+    </PropertyInfo>
+    <CSSInfo>
+      <PropertyInfo/>
+    </CSSInfo>
+    <StatusInfo/>
+    <MethodInfo/>
+    <EventHandlerInfo>
+      <EventHandler name="onchanged" group="Event" unused="false" description="GroupWorkplaceSearch 의 값이 변경된 후 발생하는 이벤트입니다." requirement="IE10,IE11,Edge,Chrome,Safari,Firefox,Opera,Windows NRE,macOS NRE,Android NRE,iOS/iPadOS NRE,Android Default Web Browser,iOS/iPadOS Default Web Browser">
+        <Syntax text="onchanged(obj:nexacro.GroupWorkplaceSearch, e:nexacro.ChangeEventInfo)">
+          <Return type="" description=""/>
+          <Arguments>
+            <Argument name="obj" type="nexacro.GroupWorkplaceSearch"/>
+            <Argument name="e" type="nexacro.ChangeEventInfo"/>
+          </Arguments>
+        </Syntax>
+      </EventHandler>
+    </EventHandlerInfo>
+  </Object>
+</MetaInfo>

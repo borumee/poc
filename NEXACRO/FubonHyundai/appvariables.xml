@@ -1,0 +1,525 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AppVariables version="2.0">
+  <Datasets>
+    <Dataset id="gds_empInfo">
+      <ColumnInfo>
+        <Column id="OFFICE_NO" type="STRING" size="256"/>
+        <Column id="EMP_NO" type="STRING" size="256"/>
+        <Column id="EMP_NM" type="STRING" size="256"/>
+      </ColumnInfo>
+      <Rows>
+        <Row>
+          <Col id="OFFICE_NO">1000</Col>
+          <Col id="EMP_NO">123</Col>
+          <Col id="EMP_NM">[경영분석팀] 이팀장</Col>
+        </Row>
+        <Row>
+          <Col id="OFFICE_NO">1000</Col>
+          <Col id="EMP_NO">234</Col>
+          <Col id="EMP_NM">[경영분석팀] 박수석</Col>
+        </Row>
+        <Row>
+          <Col id="OFFICE_NO">2000</Col>
+          <Col id="EMP_NO">345</Col>
+          <Col id="EMP_NM">[상품개발팀] 이수석</Col>
+        </Row>
+        <Row>
+          <Col id="OFFICE_NO">2000</Col>
+          <Col id="EMP_NO">456</Col>
+          <Col id="EMP_NM">[상품개발팀] 조선임</Col>
+        </Row>
+      </Rows>
+    </Dataset>
+    <Dataset id="gdsAllMenu" useclientlayout="false">
+      <ColumnInfo>
+        <Column id="LEVL" type="string" size="40"/>
+        <Column id="MENU_ID" type="string" size="10"/>
+        <Column id="HIPO_MENU_ID" type="string" size="10"/>
+        <Column id="PRGM_ID" type="string" size="50"/>
+        <Column id="MENU_NM_en" type="STRING" size="256"/>
+        <Column id="MENU_NM_ko" type="string" size="50"/>
+        <Column id="PRGM_FULL_PATH" type="string" size="252"/>
+        <Column id="HashTag" type="STRING" size="256"/>
+      </ColumnInfo>
+      <Rows>
+        <Row>
+          <Col id="LEVL">0</Col>
+          <Col id="MENU_ID">M1000</Col>
+          <Col id="HIPO_MENU_ID">0</Col>
+          <Col id="MENU_NM_ko">POC</Col>
+          <Col id="MENU_NM_en">POC</Col>
+          <Col id="HashTag"/>
+          <Col id="PRGM_FULL_PATH"/>
+        </Row>
+        <Row>
+          <Col id="LEVL">1</Col>
+          <Col id="MENU_ID">M1100</Col>
+          <Col id="HIPO_MENU_ID">M1000</Col>
+          <Col id="PRGM_ID">Scenario1</Col>
+          <Col id="MENU_NM_ko">고객정보 통합조회</Col>
+          <Col id="PRGM_FULL_PATH">poc::poc01.xfdl</Col>
+          <Col id="HashTag">#시연1</Col>
+          <Col id="MENU_NM_en">Customer Info</Col>
+        </Row>
+        <Row>
+          <Col id="LEVL">1</Col>
+          <Col id="MENU_ID">M1200</Col>
+          <Col id="HIPO_MENU_ID">M1000</Col>
+          <Col id="PRGM_ID">Scenario2</Col>
+          <Col id="MENU_NM_ko">LMS 안내</Col>
+          <Col id="PRGM_FULL_PATH">poc::poc02.xfdl</Col>
+          <Col id="HashTag">#시연2</Col>
+          <Col id="MENU_NM_en">LMS Guide</Col>
+        </Row>
+        <Row>
+          <Col id="LEVL">0</Col>
+          <Col id="MENU_ID">M3000</Col>
+          <Col id="HIPO_MENU_ID">0</Col>
+          <Col id="MENU_NM_ko">특장점</Col>
+          <Col id="MENU_NM_en">Advantages</Col>
+          <Col id="HashTag"/>
+          <Col id="PRGM_FULL_PATH"/>
+        </Row>
+        <Row>
+          <Col id="LEVL">1</Col>
+          <Col id="MENU_ID">M3100</Col>
+          <Col id="HIPO_MENU_ID">M3000</Col>
+          <Col id="PRGM_ID">Scenario3</Col>
+          <Col id="MENU_NM_ko">파일 업/다운로드</Col>
+          <Col id="PRGM_FULL_PATH">sample::filetransfer.xfdl</Col>
+          <Col id="HashTag">#특1</Col>
+          <Col id="MENU_NM_en">File Up/Down</Col>
+        </Row>
+        <Row>
+          <Col id="LEVL">1</Col>
+          <Col id="MENU_ID">M3200</Col>
+          <Col id="HIPO_MENU_ID">M3000</Col>
+          <Col id="PRGM_ID">Scenario4</Col>
+          <Col id="MENU_NM_ko">넥사크로 피벗</Col>
+          <Col id="PRGM_FULL_PATH">sample::NexacroPivot.xfdl</Col>
+          <Col id="HashTag">#특2</Col>
+          <Col id="MENU_NM_en">Pivot Grid</Col>
+        </Row>
+        <Row>
+          <Col id="LEVL">1</Col>
+          <Col id="MENU_ID">M3300</Col>
+          <Col id="HIPO_MENU_ID">M3000</Col>
+          <Col id="PRGM_ID">Scenario5</Col>
+          <Col id="MENU_NM_ko">퀀텀 그리드</Col>
+          <Col id="PRGM_FULL_PATH">sample::NexacroQuantumGrid.xfdl</Col>
+          <Col id="HashTag">#특3</Col>
+          <Col id="MENU_NM_en">Quantum Grid</Col>
+        </Row>
+        <Row>
+          <Col id="LEVL">1</Col>
+          <Col id="MENU_ID">M3400</Col>
+          <Col id="HIPO_MENU_ID">M3000</Col>
+          <Col id="PRGM_ID">Scenario6</Col>
+          <Col id="MENU_NM_ko">다양한 그리드 기능</Col>
+          <Col id="PRGM_FULL_PATH">sample::Module.xfdl</Col>
+          <Col id="HashTag">#특4</Col>
+          <Col id="MENU_NM_en">Common Grid</Col>
+        </Row>
+        <Row>
+          <Col id="LEVL">1</Col>
+          <Col id="MENU_ID">M3500</Col>
+          <Col id="HIPO_MENU_ID">M3000</Col>
+          <Col id="PRGM_ID">Scenario7</Col>
+          <Col id="MENU_NM_ko">웹 위젯</Col>
+          <Col id="PRGM_FULL_PATH">sample::PortletWidget.xfdl</Col>
+          <Col id="HashTag">#특5</Col>
+          <Col id="MENU_NM_en">Web Widget</Col>
+        </Row>
+        <Row>
+          <Col id="LEVL">1</Col>
+          <Col id="MENU_ID">M3600</Col>
+          <Col id="HIPO_MENU_ID">M3000</Col>
+          <Col id="PRGM_ID">Scenario8</Col>
+          <Col id="MENU_NM_ko">X-PUSH</Col>
+          <Col id="PRGM_FULL_PATH">sample::xpush.xfdl</Col>
+          <Col id="HashTag">#특6</Col>
+          <Col id="MENU_NM_en">X-PUSH</Col>
+        </Row>
+        <Row>
+          <Col id="LEVL">1</Col>
+          <Col id="MENU_ID">M3700</Col>
+          <Col id="HIPO_MENU_ID">M3000</Col>
+          <Col id="PRGM_ID">Scenario9</Col>
+          <Col id="MENU_NM_ko">MiPlatform 연동</Col>
+          <Col id="PRGM_FULL_PATH">sample::MiPlatform.xfdl</Col>
+          <Col id="HashTag">#특7</Col>
+          <Col id="MENU_NM_en">MiPlatform connect</Col>
+        </Row>
+        <Row>
+          <Col id="LEVL">1</Col>
+          <Col id="MENU_ID">M3800</Col>
+          <Col id="HIPO_MENU_ID">M3000</Col>
+          <Col id="PRGM_ID">Scenario10</Col>
+          <Col id="MENU_NM_ko">복사 붙여넣기 방지</Col>
+          <Col id="PRGM_FULL_PATH">sample::prevent_copyNmouse.xfdl</Col>
+          <Col id="HashTag">#특8</Col>
+          <Col id="MENU_NM_en">Prevent Copy&amp;Paste</Col>
+        </Row>
+        <Row>
+          <Col id="LEVL">1</Col>
+          <Col id="MENU_ID">M3900</Col>
+          <Col id="HIPO_MENU_ID">M3000</Col>
+          <Col id="PRGM_ID">Scenario11</Col>
+          <Col id="MENU_NM_ko">암호화 전송</Col>
+          <Col id="PRGM_FULL_PATH">sample::crypto_AES.xfdl</Col>
+          <Col id="HashTag">#특9</Col>
+          <Col id="MENU_NM_en">Crypto</Col>
+        </Row>
+        <Row>
+          <Col id="LEVL">0</Col>
+          <Col id="MENU_ID">M0000</Col>
+          <Col id="HIPO_MENU_ID">0</Col>
+          <Col id="MENU_NM_ko">나의메뉴</Col>
+          <Col id="MENU_NM_en">My Menu</Col>
+          <Col id="HashTag"/>
+          <Col id="PRGM_FULL_PATH"/>
+        </Row>
+      </Rows>
+    </Dataset>
+    <Dataset id="gdsMenu" useclientlayout="false">
+      <ColumnInfo>
+        <Column id="LEVL" type="string" size="40"/>
+        <Column id="MENU_ID" type="string" size="10"/>
+        <Column id="HIPO_MENU_ID" type="string" size="10"/>
+        <Column id="PRGM_ID" type="string" size="50"/>
+        <Column id="MENU_NM" type="string" size="50"/>
+        <Column id="PRGM_FULL_PATH" type="string" size="252"/>
+        <Column id="HashTag" type="STRING" size="256"/>
+      </ColumnInfo>
+    </Dataset>
+    <Dataset id="gdsOpenMenu">
+      <ColumnInfo>
+        <Column id="WIN_ID" type="STRING" size="32"/>
+        <Column id="MENU_ID" type="STRING" size="32"/>
+        <Column id="MENU_NM" type="STRING" size="32"/>
+        <Column id="PRGM_FULL_PATH" type="STRING" size="256"/>
+      </ColumnInfo>
+    </Dataset>
+    <Dataset id="gdsMyMenu">
+      <ColumnInfo>
+        <Column id="LEVL" type="string" size="40"/>
+        <Column id="MENU_ID" type="string" size="10"/>
+        <Column id="HIPO_MENU_ID" type="string" size="10"/>
+        <Column id="PRGM_ID" type="string" size="50"/>
+        <Column id="MENU_NM" type="string" size="50"/>
+        <Column id="PRGM_FULL_PATH" type="string" size="252"/>
+        <Column id="HashTag" type="STRING" size="256"/>
+      </ColumnInfo>
+      <Rows>
+        <Row>
+          <Col id="LEVL">0</Col>
+          <Col id="MENU_ID">M1000</Col>
+          <Col id="HIPO_MENU_ID">0</Col>
+          <Col id="MENU_NM">나의메뉴</Col>
+        </Row>
+      </Rows>
+    </Dataset>
+    <Dataset id="gds_domain">
+      <ColumnInfo>
+        <Column id="group" type="STRING" size="256"/>
+        <Column id="mode" type="STRING" size="256"/>
+        <Column id="prod" type="STRING" size="256"/>
+        <Column id="qa" type="STRING" size="256"/>
+        <Column id="dev" type="STRING" size="256"/>
+        <Column id="local" type="STRING" size="256"/>
+      </ColumnInfo>
+      <Rows>
+        <Row>
+          <Col id="group">fubon</Col>
+          <Col id="mode">local</Col>
+          <Col id="prod">http://20.41.97.202:80/Fubon-GA/</Col>
+          <Col id="qa">http://20.41.97.202:80/Fubon-GA/</Col>
+          <Col id="dev">http://20.41.97.202:80/Fubon-GA/</Col>
+          <Col id="local">http://localhost:8080/</Col>
+        </Row>
+        <Row>
+          <Col id="group">app02</Col>
+          <Col id="mode">dev</Col>
+          <Col id="prod">https://demo.tobesoft.com/</Col>
+          <Col id="qa">https://demo.tobesoft.com/</Col>
+          <Col id="dev">https://demo.tobesoft.com/</Col>
+          <Col id="local">http://localhost:8081/</Col>
+        </Row>
+        <Row>
+          <Col id="group">app03</Col>
+          <Col id="mode">dev</Col>
+          <Col id="prod">https://demo.tobesoft.com/</Col>
+          <Col id="qa">https://demo.tobesoft.com/</Col>
+          <Col id="dev">https://demo.tobesoft.com/</Col>
+          <Col id="local">http://localhost:8082/</Col>
+        </Row>
+      </Rows>
+    </Dataset>
+    <Dataset id="gds_GridPopupMenu">
+      <ColumnInfo>
+        <Column id="id" type="STRING" size="256"/>
+        <Column id="caption" type="STRING" size="256"/>
+        <Column id="level" type="STRING" size="256"/>
+        <Column id="enable" type="STRING" size="256"/>
+        <Column id="type" type="STRING" size="256"/>
+      </ColumnInfo>
+      <Rows>
+        <Row>
+          <Col id="caption">열고정</Col>
+          <Col id="id">colfix</Col>
+          <Col id="type">head</Col>
+          <Col id="enable">enable</Col>
+          <Col id="level">0</Col>
+        </Row>
+        <Row>
+          <Col id="caption">열고정 해제</Col>
+          <Col id="id">colfixclear</Col>
+          <Col id="enable">enable</Col>
+          <Col id="type">head</Col>
+          <Col id="level">0</Col>
+        </Row>
+        <Row>
+          <Col id="caption">컬럼 숨기기/ 보이기</Col>
+          <Col id="id">colhide</Col>
+          <Col id="enable">enable</Col>
+          <Col id="type">head</Col>
+          <Col id="level">0</Col>
+        </Row>
+        <Row>
+          <Col id="caption">그리드 설정 저장</Col>
+          <Col id="id">personalized</Col>
+          <Col id="enable">enable</Col>
+          <Col id="type">head</Col>
+          <Col id="level">0</Col>
+        </Row>
+        <Row>
+          <Col id="caption">그리드 설정 초기화</Col>
+          <Col id="id">init</Col>
+          <Col id="enable">enable</Col>
+          <Col id="type">head</Col>
+          <Col id="level">0</Col>
+        </Row>
+        <Row>
+          <Col id="caption">헤더정렬사용</Col>
+          <Col id="id">sort</Col>
+          <Col id="enable">enable</Col>
+          <Col id="type">head</Col>
+          <Col id="level">0</Col>
+        </Row>
+        <Row>
+          <Col id="caption">헤더정렬사용안함</Col>
+          <Col id="id">sortnone</Col>
+          <Col id="enable">enable</Col>
+          <Col id="type">head</Col>
+          <Col id="level">0</Col>
+        </Row>
+        <Row>
+          <Col id="id">filter</Col>
+          <Col id="caption">그리드필터</Col>
+          <Col id="level">0</Col>
+          <Col id="enable">enable</Col>
+          <Col id="type">head</Col>
+        </Row>
+        <Row>
+          <Col id="caption">그리드필터 해제</Col>
+          <Col id="id">filterclear</Col>
+          <Col id="enable">enable</Col>
+          <Col id="type">head</Col>
+          <Col id="level">0</Col>
+        </Row>
+        <Row>
+          <Col id="caption">엑셀</Col>
+          <Col id="level">0</Col>
+          <Col id="enable">enable</Col>
+          <Col id="type">head</Col>
+          <Col id="id">excel</Col>
+        </Row>
+        <Row>
+          <Col id="caption">내보내기</Col>
+          <Col id="level">1</Col>
+          <Col id="enable">enable</Col>
+          <Col id="type">head</Col>
+          <Col id="id">excel_export</Col>
+        </Row>
+        <Row>
+          <Col id="id">excel_import</Col>
+          <Col id="caption">가져오기</Col>
+          <Col id="level">1</Col>
+          <Col id="type">head</Col>
+          <Col id="enable">enable</Col>
+        </Row>
+        <Row>
+          <Col id="caption">행고정</Col>
+          <Col id="level">0</Col>
+          <Col id="enable">enable</Col>
+          <Col id="type">body</Col>
+          <Col id="id">rowfix</Col>
+        </Row>
+        <Row>
+          <Col id="caption">행고정 해제</Col>
+          <Col id="level">0</Col>
+          <Col id="enable">enable</Col>
+          <Col id="type">body</Col>
+          <Col id="id">rowfixclear</Col>
+        </Row>
+        <Row>
+          <Col id="caption">소계</Col>
+          <Col id="level">0</Col>
+          <Col id="enable">enable</Col>
+          <Col id="type">body</Col>
+          <Col id="id">subsum</Col>
+        </Row>
+        <Row>
+          <Col id="caption">소계 표현</Col>
+          <Col id="level">1</Col>
+          <Col id="enable">enable</Col>
+          <Col id="type">body</Col>
+          <Col id="id">subsum_set</Col>
+        </Row>
+        <Row>
+          <Col id="caption">소계 표현 해제</Col>
+          <Col id="level">1</Col>
+          <Col id="enable">enable</Col>
+          <Col id="type">body</Col>
+          <Col id="id">subsum_init</Col>
+        </Row>
+        <Row>
+          <Col id="caption">합계</Col>
+          <Col id="level">0</Col>
+          <Col id="enable">enable</Col>
+          <Col id="type">body</Col>
+          <Col id="id">total</Col>
+        </Row>
+        <Row>
+          <Col id="caption">합계(상단)</Col>
+          <Col id="level">1</Col>
+          <Col id="enable">enable</Col>
+          <Col id="type">body</Col>
+          <Col id="id">total_top</Col>
+        </Row>
+        <Row>
+          <Col id="caption">합계(하단)</Col>
+          <Col id="level">1</Col>
+          <Col id="enable">enable</Col>
+          <Col id="type">body</Col>
+          <Col id="id">total_bottom</Col>
+        </Row>
+        <Row>
+          <Col id="level">1</Col>
+          <Col id="enable">enable</Col>
+          <Col id="type">body</Col>
+          <Col id="id">total_init</Col>
+          <Col id="caption">합계 해제</Col>
+        </Row>
+        <Row>
+          <Col id="level">0</Col>
+          <Col id="enable">enable</Col>
+          <Col id="type">body</Col>
+          <Col id="id">find</Col>
+          <Col id="caption">데이터 찾기</Col>
+        </Row>
+        <Row>
+          <Col id="level">0</Col>
+          <Col id="enable">enable</Col>
+          <Col id="type">body</Col>
+          <Col id="id">cellcopypaste</Col>
+          <Col id="caption">Copy &amp; Paste 사용</Col>
+        </Row>
+        <Row>
+          <Col id="level">0</Col>
+          <Col id="enable">enable</Col>
+          <Col id="type">body</Col>
+          <Col id="id">cellcopypastenone</Col>
+          <Col id="caption">Copy &amp; Paste 사용 안함</Col>
+        </Row>
+        <Row>
+          <Col id="id">scroll</Col>
+          <Col id="caption">스크롤 옵션</Col>
+          <Col id="level">0</Col>
+          <Col id="enable">enable</Col>
+          <Col id="type">body</Col>
+        </Row>
+        <Row>
+          <Col id="id">scroll_default</Col>
+          <Col id="caption">기본</Col>
+          <Col id="level">1</Col>
+          <Col id="enable">enable</Col>
+          <Col id="type">body</Col>
+        </Row>
+        <Row>
+          <Col id="id">scroll_centerdisplay</Col>
+          <Col id="caption">중앙</Col>
+          <Col id="level">1</Col>
+          <Col id="enable">enable</Col>
+          <Col id="type">body</Col>
+        </Row>
+        <Row>
+          <Col id="id">scroll_topcenterbottomdisplay</Col>
+          <Col id="caption">상단, 하단, 중앙 표시</Col>
+          <Col id="level">1</Col>
+          <Col id="enable">enable</Col>
+          <Col id="type">body</Col>
+        </Row>
+        <Row>
+          <Col id="id">scroll_trackbarfollow</Col>
+          <Col id="caption">스크롤 위치 표시</Col>
+          <Col id="level">1</Col>
+          <Col id="enable">enable</Col>
+          <Col id="type">body</Col>
+        </Row>
+        <Row>
+          <Col id="id">select</Col>
+          <Col id="caption">셀 선택 옵션</Col>
+          <Col id="level">0</Col>
+          <Col id="enable">enable</Col>
+          <Col id="type">body</Col>
+        </Row>
+        <Row>
+          <Col id="id">select_row</Col>
+          <Col id="caption">Row</Col>
+          <Col id="level">1</Col>
+          <Col id="enable">enable</Col>
+          <Col id="type">body</Col>
+        </Row>
+        <Row>
+          <Col id="id">select_cell</Col>
+          <Col id="caption">Cell</Col>
+          <Col id="level">1</Col>
+          <Col id="enable">enable</Col>
+          <Col id="type">body</Col>
+        </Row>
+        <Row>
+          <Col id="id">select_multirow</Col>
+          <Col id="level">1</Col>
+          <Col id="enable">enable</Col>
+          <Col id="type">body</Col>
+          <Col id="caption">다중 row</Col>
+        </Row>
+        <Row>
+          <Col id="id">select_area</Col>
+          <Col id="level">1</Col>
+          <Col id="enable">enable</Col>
+          <Col id="type">body</Col>
+          <Col id="caption">영역</Col>
+        </Row>
+      </Rows>
+    </Dataset>
+    <Dataset id="gds_push">
+      <ColumnInfo>
+        <Column id="TOPIC_ID" type="STRING" size="256"/>
+        <Column id="title" type="STRING" size="32"/>
+        <Column id="content" type="STRING" size="2048"/>
+        <Column id="sender" type="STRING" size="32"/>
+        <Column id="reg_time" type="STRING" size="32"/>
+      </ColumnInfo>
+    </Dataset>
+  </Datasets>
+  <Variables>
+    <Variable id="POPUP_INFO"/>
+    <Variable id="APPR_MSG_POP_INFO"/>
+    <Variable id="AES256_SECRET_KEY" initval="0123456789abcdef0123456789abcdef"/>
+    <Variable id="MENU_ID" initval="M1000"/>
+    <Variable id="Theme_Option"/>
+  </Variables>
+  <DataObjects/>
+</AppVariables>

@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="NexacroN" width="1050" height="736" titletext="New Form" onload="NexacroN_onload">
+    <Layouts>
+      <Layout height="736" mobileorientation="landscape" width="1050">
+        <Grid id="grd00" taborder="0" left="10" top="50" right="20" bottom="20" binddataset="dsList" uFunction="sort,colfix,rowfix,filter,find,colhide,scroll,select,cellcopypaste,initial">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="32" band="head"/>
+                <Row size="32"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="ID"/>
+                <Cell col="1" text="FIRST_NAME"/>
+                <Cell col="2" text="LAST_NAME"/>
+                <Cell col="3" text="EMAIL"/>
+                <Cell col="4" text="GENDER"/>
+                <Cell col="5" text="CITY"/>
+                <Cell col="6" text="COLOR"/>
+                <Cell col="7" text="COUNTRY"/>
+                <Cell col="8" text="PHONE"/>
+                <Cell col="9" text="TIME_ZONE"/>
+                <Cell col="10" text="LANGUAGE"/>
+                <Cell col="11" text="SHIRT_SIZE"/>
+                <Cell col="12" text="TITLE"/>
+                <Cell col="13" text="CAR_MAKE"/>
+                <Cell col="14" text="CAR_MODEL_YEAR"/>
+                <Cell col="15" text="MOVIE_TITLE"/>
+                <Cell col="16" text="CARD_TYPE"/>
+                <Cell col="17" text="CURRENCY"/>
+                <Cell col="18" text="MAC_ADDRESS"/>
+                <Cell col="19" text="IP_ADDRESS_V4"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:ID"/>
+                <Cell col="1" text="bind:FIRST_NAME"/>
+                <Cell col="2" text="bind:LAST_NAME"/>
+                <Cell col="3" text="bind:EMAIL"/>
+                <Cell col="4" text="bind:GENDER"/>
+                <Cell col="5" text="bind:CITY"/>
+                <Cell col="6" text="bind:COLOR"/>
+                <Cell col="7" text="bind:COUNTRY"/>
+                <Cell col="8" text="bind:PHONE"/>
+                <Cell col="9" text="bind:TIME_ZONE"/>
+                <Cell col="10" text="bind:LANGUAGE"/>
+                <Cell col="11" text="bind:SHIRT_SIZE"/>
+                <Cell col="12" text="bind:TITLE"/>
+                <Cell col="13" text="bind:CAR_MAKE"/>
+                <Cell col="14" text="bind:CAR_MODEL_YEAR"/>
+                <Cell col="15" text="bind:MOVIE_TITLE"/>
+                <Cell col="16" text="bind:CARD_TYPE"/>
+                <Cell col="17" text="bind:CURRENCY"/>
+                <Cell col="18" text="bind:MAC_ADDRESS"/>
+                <Cell col="19" text="bind:IP_ADDRESS_V4"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="sta00" taborder="1" left="20" top="5" width="650" height="40" text="서버/네트워크시간 &lt;fc v='red'&gt;0&lt;/fc&gt; 초, 렌더링시간 &lt;fc v='red'&gt;0&lt;/fc&gt; 초, 조회건수 &lt;fc v='red'&gt;0&lt;/fc&gt; 건" usedecorate="true"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.NexacroN_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnload(obj,e); //필수함수
+};
+
+//조회
+this.cfnSearch = function ()
+{
+	this.sta00.set_text("서버/네트워크시간 <fc v='red'>0</fc> 초, 렌더링시간 <fc v='red'>0</fc> 초, 조회건수 <fc v='red'>0</fc> 건");
+	
+	//TODO..
+	this.starttime = new Date();
+	var sId = "SEARCH";
+	var sUrl = "svcUrl::largedata.do";
+	var sInDs = "";
+	var sOutDs = "dsList=output";
+	var sParam = "";
+	var sCallback = "fn_Callback";
+	this.transaction(sId, sUrl, sInDs, sOutDs, sParam, sCallback);
+};
+
+this.fn_Callback = function(sId, nErrorCd, sErrorMsg,elapsedTime)
+{
+	if(nErrorCd<0)
+	{
+		alert("["+nErrorCd+"]"+sErrorMsg);
+	}else 
+	{
+		this.endtime = new Date();
+		var totaltime = nexacro.round((this.endtime - this.starttime) / 1000, 3),
+				nRowCount = this.dsList.rowcount;
+		
+		this.sta00.set_text("서버/네트워크시간 <fc v='red'>" + elapsedTime + "</fc> 초, 렌더링시간 <fc v='red'>" + nexacro.round(totaltime - elapsedTime, 3) + "</fc> 초, 조회건수 <fc v='red'>" + this.dsList.rowcount + "</fc> 건")
+	}
+}]]></Script>
+    <Objects>
+      <Dataset id="dsList">
+        <ColumnInfo>
+          <Column id="ID" type="STRING" size="256"/>
+          <Column id="FIRST_NAME" type="STRING" size="256"/>
+          <Column id="LAST_NAME" type="STRING" size="256"/>
+          <Column id="EMAIL" type="STRING" size="256"/>
+          <Column id="GENDER" type="STRING" size="256"/>
+          <Column id="CITY" type="STRING" size="256"/>
+          <Column id="COLOR" type="STRING" size="256"/>
+          <Column id="COUNTRY" type="STRING" size="256"/>
+          <Column id="PHONE" type="STRING" size="256"/>
+          <Column id="TIME_ZONE" type="STRING" size="256"/>
+          <Column id="LANGUAGE" type="STRING" size="256"/>
+          <Column id="SHIRT_SIZE" type="STRING" size="256"/>
+          <Column id="TITLE" type="STRING" size="256"/>
+          <Column id="CAR_MAKE" type="STRING" size="256"/>
+          <Column id="CAR_MODEL_YEAR" type="STRING" size="256"/>
+          <Column id="MOVIE_TITLE" type="STRING" size="256"/>
+          <Column id="CARD_TYPE" type="STRING" size="256"/>
+          <Column id="CURRENCY" type="STRING" size="256"/>
+          <Column id="MAC_ADDRESS" type="STRING" size="256"/>
+          <Column id="IP_ADDRESS_V4" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

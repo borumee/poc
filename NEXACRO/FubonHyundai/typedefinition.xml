@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TypeDefinition version="3.0">
+  <Modules>
+    <Module url="CompBase.json"/>
+    <Module url="ComComp.json"/>
+    <Module url="Grid.json"/>
+    <Module url="DeviceAPI.json"/>
+    <Module url="Push.json"/>
+    <Module url="extlib::extPrototype.json"/>
+    <Module url="extlib::util.json"/>
+    <Module url="extlib::Common-Module.json"/>
+    <Module url="extlib::pivot.json"/>
+  </Modules>
+  <Components>
+    <Component type="JavaScript" id="Button" classname="nexacro.Button"/>
+    <Component type="JavaScript" id="Combo" classname="nexacro.Combo"/>
+    <Component type="JavaScript" id="Edit" classname="nexacro.Edit"/>
+    <Component type="JavaScript" id="MaskEdit" classname="nexacro.MaskEdit"/>
+    <Component type="JavaScript" id="TextArea" classname="nexacro.TextArea"/>
+    <Component type="JavaScript" id="Static" classname="nexacro.Static"/>
+    <Component type="JavaScript" id="Div" classname="nexacro.Div"/>
+    <Component type="JavaScript" id="PopupDiv" classname="nexacro.PopupDiv"/>
+    <Component type="JavaScript" id="Radio" classname="nexacro.Radio"/>
+    <Component type="JavaScript" id="CheckBox" classname="nexacro.CheckBox"/>
+    <Component type="JavaScript" id="ListBox" classname="nexacro.ListBox"/>
+    <Component type="JavaScript" id="Grid" classname="nexacro.Grid"/>
+    <Component type="JavaScript" id="Spin" classname="nexacro.Spin"/>
+    <Component type="JavaScript" id="Menu" classname="nexacro.Menu"/>
+    <Component type="JavaScript" id="PopupMenu" classname="nexacro.PopupMenu"/>
+    <Component type="JavaScript" id="Tab" classname="nexacro.Tab"/>
+    <Component type="JavaScript" id="GroupBox" classname="nexacro.GroupBox"/>
+    <Component type="JavaScript" id="Calendar" classname="nexacro.Calendar"/>
+    <Component type="JavaScript" id="ImageViewer" classname="nexacro.ImageViewer"/>
+    <Component type="JavaScript" id="ProgressBar" classname="nexacro.ProgressBar"/>
+    <Component type="JavaScript" id="Plugin" classname="nexacro.Plugin"/>
+    <Component type="JavaScript" id="Dataset" classname="nexacro.NormalDataset"/>
+    <Component type="JavaScript" id="DataObject" classname="nexacro.DataObject"/>
+    <Component type="JavaScript" id="WebBrowser" classname="nexacro.WebBrowser"/>
+    <Component type="JavaScript" id="FileDownload" classname="nexacro.FileDownload"/>
+    <Component type="JavaScript" id="FileUpload" classname="nexacro.FileUpload"/>
+    <Component type="JavaScript" id="XPush" classname="nexacro.XPush"/>
+    <Component type="JavaScript" id="FromToCalendar" classname="nexacro.FromToCalendar" defaultwidth="260" defaultheight="30" prefixid=""/>
+    <Component type="JavaScript" id="BusinessCalendar" classname="nexacro.BusinessCalendar" defaultwidth="150" defaultheight="30"/>
+    <Component type="JavaScript" id="TransactionDateCombo" classname="nexacro.TransactionDateCombo" defaultwidth="310" defaultheight="30" prefixid=""/>
+    <Component type="JavaScript" id="WorkplaceSearch" classname="nexacro.WorkplaceSearch" defaultwidth="400" defaultheight="30" prefixid=""/>
+    <Component type="JavaScript" id="MultiCombo" classname="nexacro.MultiCombo" defaultwidth="150" defaultheight="30" prefixid=""/>
+    <Component type="JavaScript" id="GroupWorkplaceSearch" classname="nexacro.GroupWorkplaceSearch" defaultwidth="400" defaultheight="30" prefixid=""/>
+    <Component type="JavaScript" id="FileDialog" classname="nexacro.FileDialog"/>
+    <Component type="JavaScript" id="FileDownTransfer" classname="nexacro.FileDownTransfer"/>
+    <Component type="JavaScript" id="FileUpTransfer" classname="nexacro.FileUpTransfer"/>
+    <Component type="JavaScript" id="ExcelExportObject" classname="nexacro.ExcelExportObject"/>
+    <Component type="JavaScript" id="ExcelImportObject" classname="nexacro.ExcelImportObject"/>
+    <Component type="JavaScript" id="NxPivot" classname="nexacro.NxPivot" defaultwidth="840" defaultheight="500"/>
+  </Components>
+  <Services>
+    <Service prefixid="theme" type="resource" url="./_resource_/_theme_/" version="0" communicationversion="0" cachelevel="session" include_subdir="true"/>
+    <Service prefixid="initvalue" type="resource" url="./_resource_/_initvalue_/" version="0" communicationversion="0" cachelevel="session" include_subdir="false"/>
+    <Service prefixid="imagerc" type="resource" url="./_resource_/_images_/" cachelevel="session" include_subdir="true"/>
+    <Service prefixid="font" type="resource" url="./_resource_/_font_/" version="0" communicationversion="0" cachelevel="session" include_subdir="false"/>
+    <Service prefixid="xcssrc" type="resource" url="./_resource_/_xcss_/" cachelevel="session" include_subdir="false"/>
+    <Service prefixid="FrameBase" type="form" cachelevel="session" url="./FrameBase/" version="1.0" communicationversion="0" include_subdir="false"/>
+    <Service prefixid="Comm" type="form" url="./Comm/" version="1.0" cachelevel="session" include_subdir="false" communicationversion="0"/>
+    <Service prefixid="util" type="js" url="./_extlib_/util/" version="1.0" cachelevel="session" include_subdir="true" communicationversion="0"/>
+    <Service prefixid="Lib" type="js" url="./Lib/" version="1.0" cachelevel="session" include_subdir="false" communicationversion="0"/>
+    <Service prefixid="web" type="file" cachelevel="session" url="./web/" version="1.0" communicationversion="0" include_subdir="true"/>
+    <Service prefixid="svcUrl" type="JSP" version="1.0" cachelevel="none" include_subdir="false" communicationversion="0" url="http://localhost:8080/"/>
+    <Service prefixid="xpush" type="JSP" version="0" cachelevel="none" include_subdir="false" communicationversion="0" url="https://demo.tobesoft.com:50000"/>
+    <Service prefixid="poc" type="form" url="./poc/" version="1.1" cachelevel="session" include_subdir="false" communicationversion="0"/>
+    <Service prefixid="sample" type="form" cachelevel="session" url="./sample/" version="1.0" communicationversion="0" include_subdir="true"/>
+    <Service prefixid="design" type="form" url="./design/" version="0" cachelevel="session" include_subdir="true" communicationversion="0"/>
+    <Service prefixid="design_frame" type="form" url="./design_frame/" version="0" cachelevel="session" include_subdir="false" communicationversion="0"/>
+  </Services>
+  <Protocols/>
+  <Update>
+    <Os name="Windows" url="./" timeout="30" retry="3" autoupdate="auto" updatetype="server">
+      <Version name="Windows 11 64bit, Windows 10 64bit, Windows 8 / 8.1 64bit, Windows 7 64bit, Windows Vista 64bit, Windows Server 2003 64bit, Windows Server 2008 64bit, Windows Server 2012 64bit, Windows Server 2016 64bit" enginesetupkey="3E221E7D-2ECF-4EF4-AD16-C69972112C86">
+        <Resource type="Engine" file="NexacroN_SetupRuntime_x64.exe" version="21.0.0.1301" targetpath="./"/>
+      </Version>
+      <Version name="common">
+        <Resource type="Module" file="nexacrolib.zip" version="0" targetpath="" description=""/>
+      </Version>
+    </Os>
+  </Update>
+  <Deploy>
+    <Os name="Windows"/>
+  </Deploy>
+  <DeviceAdaptors/>
+</TypeDefinition>

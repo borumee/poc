@@ -1,0 +1,542 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XCSS version="1.0"><![CDATA[.FromToCalendar
+{
+	
+}
+
+.PopupDiv.pdiv_WF_Bg
+{
+	-nexa-border : 1px solid #646982;
+	background : #e9ecf2;
+}
+
+.Static.sta_WF_titlebar
+{
+	background : #0075d1;
+	color : #ffffff;
+	-nexa-padding : 0px 0px 0px 10px;
+}
+
+.Button.btn_WF_close,
+.Button.btn_WF_close[status=mouseover],
+.Button.btn_WF_close[userstatus=pushed],
+.Button.btn_WF_close[status=focused]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	color : #ffffff;
+}
+
+/************************************************************************
+ * 월달력
+ ************************************************************************/
+.Static.sta_WF_calback
+{
+	background : #D3DCE8;
+	-nexa-border : 1px solid #697888;
+}
+
+.Static.sta_WF_calhead
+{
+	background : #125dae;
+}
+
+.Button.btn_WF_calprev
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : URL('theme://images/btn_WF_Calprev.png');
+}
+
+.Button.btn_WF_calprev[status=mouseover],
+.Button.btn_WF_calprev[userstatus=pushed],
+.Button.btn_WF_calprev[status=focused]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : URL('theme://images/btn_WF_Calprev_O.png');
+}
+
+.Button.btn_WF_calprev[status=disabled]
+{
+	-nexa-icon : URL('theme://images/btn_WF_Calprev.png');
+}
+
+.Button.btn_WF_calnext
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : URL('theme://images/btn_WF_Calnext.png');
+}
+
+.Button.btn_WF_calnext[status=mouseover],
+.Button.btn_WF_calnext[userstatus=pushed],
+.Button.btn_WF_calnext[status=focused]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : URL('theme://images/btn_WF_Calnext_O.png');
+}
+
+.Button.btn_WF_calnext[status=disabled]
+{
+	-nexa-icon : URL('theme://images/btn_WF_Calnext.png');
+}
+
+.Static.sta_WF_calyear
+{
+	font : bold 14px Tahoma;
+	color : #ffffff;
+	background : transparent;
+	-nexa-text-align : center;
+}
+
+.BusinessCalendar
+{
+	
+}
+
+.TransactionDateCombo
+{
+	
+}
+
+.WorkplaceSearch
+{
+	
+}
+
+
+/************************************************************************
+ * 멀티콤보
+ ************************************************************************/
+.MultiCombo
+{
+	
+}
+
+.Edit.edt_WF_Cbo,.Edit.edt_WF_Cbo[status=readonly]
+{
+	-nexa-border : 1px solid #dddddd;
+	-nexa-padding : 0px 28px 0px 8px;
+	background : #ffffff;
+	color : #333333;
+	font : 13px "Malgun Gothic";
+}
+.Edit.edt_WF_Cbo[status=mouseover],
+.Edit.edt_WF_Cbo[status=focused]
+{
+	-nexa-border : 1px solid #313340;
+}
+.Edit.edt_WF_Cbo[userstatus=nulltext]
+{
+	color : #aeaeae;
+}
+.Edit.edt_WF_Cbo[status=disabled]
+{
+	-nexa-border : 1px solid #efefef;
+	background : #f9f9f9;
+	color : #aeaeae;
+}
+
+.Button.btn_WF_Drop
+{
+	-nexa-border : 0px none;
+	-nexa-padding : 0px;
+	background : transparent url("imagerc::MultiCombo/cbo_WF_Drop.png") no-repeat center center transparent;
+	color : #333333;
+	font : 13px "Malgun Gothic";
+}
+.Button.btn_WF_Drop[status=mouseover],
+.Button.btn_WF_Drop[userstatus=pushed],
+.Button.btn_WF_Drop[userstatus=selected],
+.Button.btn_WF_Drop[status=focused]
+{
+	-nexa-border : 0px none;
+	background : transparent url("imagerc::MultiCombo/cbo_WF_DropO.png") no-repeat center center transparent;
+}
+.Button.btn_WF_Drop[status=disabled]
+{
+	-nexa-border : 0px none;
+	background : transparent url("imagerc::MultiCombo/cbo_WF_DropD.png") no-repeat center center transparent;
+}
+
+.Grid.grd_WF_Cbo
+{
+	-nexa-border : 0px none;
+	color : #333333;
+	font : 13px "Malgun Gothic";
+}
+.Grid.grd_WF_Cbo .body .row .cell
+{
+	-nexa-border : 0px none;
+	-nexa-padding : 0px 0px 0px 8px;
+	color : #333333;
+}
+.Grid.grd_WF_Cbo .body .row .cell[status=mouseover]
+{
+	background : #e4f0fe;
+}
+.Grid.grd_WF_Cbo .body .row .cell[userstatus=selected]
+{
+	background : #8ec2ff;
+}
+
+
+/************************************************************************
+ * 그룹사업장검색
+ ************************************************************************/
+.GroupWorkplaceSearch
+{
+	
+}
+.Button.btn_WF_search,
+.Button.btn_WF_search[status=focused]
+{
+	background : #7999C2;
+	color : #ffffff;
+	-nexa-border : 1px solid #517EB7;
+	-nexa-icon : url('imagerc::GroupWorkplaceSearch/img_WF_search.png');
+}
+.Button.btn_WF_search[status=mouseover],
+.Button.btn_WF_search[userstatus=pushed],
+.Button.btn_WF_search[userstatus=selected]
+{
+	background : #648BBC;	
+	color : #ffffff;
+	-nexa-border : 1px solid #517EB7;
+	-nexa-icon : url('imagerc::GroupWorkplaceSearch/img_WF_search.png');
+}
+.Button.btn_WF_search[status=disabled]
+{
+	background : #7999C2;	
+	color : #ffffff;
+	-nexa-border : 1px solid #517EB7;
+	-nexa-icon : url('imagerc::GroupWorkplaceSearch/img_WF_search.png');
+	opacity : 0.7;
+}
+
+/************************************************************************
+ * From to calendar
+ ************************************************************************/
+.Button.btn_WF_basic01,
+.Button.btn_WF_basic01[status=focused]
+{
+	background : #7999C2;
+	-nexa-border : 1px solid #517EB7;
+	color : #ffffff;
+	font : 12px "Malgun Gothic";
+}
+.Button.btn_WF_basic01[status=mouseover],
+.Button.btn_WF_basic01[userstatus=pushed],
+.Button.btn_WF_basic01[userstatus=selected]
+{
+	background : #648BBC;
+	-nexa-border : 1px solid #517EB7;
+}
+.Button.btn_WF_basic01[status=disabled]
+{
+	background : #7999C2;
+	-nexa-border : 1px solid #517EB7;
+	color : #ffffff;
+	opacity : 0.7;
+}
+ 
+
+.Button.btn_WF_cal01,
+.Button.btn_WF_cal01[status=focused]
+{
+	-nexa-border : 0px none;
+	background :transparent;
+	-nexa-icon : url('imagerc::FromToCalendar/img_WF_month01.png');
+}
+.Button.btn_WF_cal01[status=mouseover],
+.Button.btn_WF_cal01[userstatus=pushed],
+.Button.btn_WF_cal01[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background :transparent;
+	-nexa-icon : url('imagerc::FromToCalendar/img_WF_month01P.png');
+}
+.Button.btn_WF_cal01[status=disabled]
+{
+	-nexa-border : 0px none;
+	background :transparent;
+	-nexa-icon : url('imagerc::FromToCalendar/img_WF_month01.png');
+	opacity : 0.6;
+}
+.Button.btn_WF_cal02,
+.Button.btn_WF_cal02[status=focused]
+{
+	-nexa-border : 0px none;
+	background :transparent;
+	-nexa-icon : url('imagerc::FromToCalendar/img_WF_month02.png');
+}
+.Button.btn_WF_cal02[status=mouseover],
+.Button.btn_WF_cal02[userstatus=pushed],
+.Button.btn_WF_cal02[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background :transparent;
+	-nexa-icon : url('imagerc::FromToCalendar/img_WF_month02P.png');
+}
+.Button.btn_WF_cal02[status=disabled]
+{
+	-nexa-border : 0px none;
+	background :transparent;
+	-nexa-icon : url('imagerc::FromToCalendar/img_WF_month02.png');
+	opacity : 0.6;
+}
+.Button.btn_WF_cal03,
+.Button.btn_WF_cal03[status=focused]
+{
+	-nexa-border : 0px none;
+	background :transparent;
+	-nexa-icon : url('imagerc::FromToCalendar/img_WF_month03.png');
+}
+.Button.btn_WF_cal03[status=mouseover],
+.Button.btn_WF_cal03[userstatus=pushed],
+.Button.btn_WF_cal03[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background :transparent;
+	-nexa-icon : url('imagerc::FromToCalendar/img_WF_month03P.png');
+}
+.Button.btn_WF_cal03[status=disabled]
+{
+	-nexa-border : 0px none;
+	background :transparent;
+	-nexa-icon : url('imagerc::FromToCalendar/img_WF_month03.png');
+	opacity : 0.6;
+}
+.Button.btn_WF_cal04,
+.Button.btn_WF_cal04[status=focused]
+{
+	-nexa-border : 0px none;
+	background :transparent;
+	-nexa-icon : url('imagerc::FromToCalendar/img_WF_month04.png');
+}
+.Button.btn_WF_cal04[status=mouseover],
+.Button.btn_WF_cal04[userstatus=pushed],
+.Button.btn_WF_cal04[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background :transparent;
+	-nexa-icon : url('imagerc::FromToCalendar/img_WF_month04P.png');
+}
+.Button.btn_WF_cal04[status=disabled]
+{
+	-nexa-border : 0px none;
+	background :transparent;
+	-nexa-icon : url('imagerc::FromToCalendar/img_WF_month04.png');
+	opacity : 0.6;
+}
+.Button.btn_WF_cal05,
+.Button.btn_WF_cal05[status=focused]
+{
+	-nexa-border : 0px none;
+	background :transparent;
+	-nexa-icon : url('imagerc::FromToCalendar/img_WF_month05.png');
+}
+.Button.btn_WF_cal05[status=mouseover],
+.Button.btn_WF_cal05[userstatus=pushed],
+.Button.btn_WF_cal05[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background :transparent;
+	-nexa-icon : url('imagerc::FromToCalendar/img_WF_month05P.png');
+}
+.Button.btn_WF_cal05[status=disabled]
+{
+	-nexa-border : 0px none;
+	background :transparent;
+	-nexa-icon : url('imagerc::FromToCalendar/img_WF_month05.png');
+	opacity : 0.6;
+}
+.Button.btn_WF_cal06,
+.Button.btn_WF_cal06[status=focused]
+{
+	-nexa-border : 0px none;
+	background :transparent;
+	-nexa-icon : url('imagerc::FromToCalendar/img_WF_month06.png');
+}
+.Button.btn_WF_cal06[status=mouseover],
+.Button.btn_WF_cal06[userstatus=pushed],
+.Button.btn_WF_cal06[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background :transparent;
+	-nexa-icon : url('imagerc::FromToCalendar/img_WF_month06P.png');
+}
+.Button.btn_WF_cal06[status=disabled]
+{
+	-nexa-border : 0px none;
+	background :transparent;
+	-nexa-icon : url('imagerc::FromToCalendar/img_WF_month06.png');
+	opacity : 0.6;
+}
+.Button.btn_WF_cal07,
+.Button.btn_WF_cal07[status=focused]
+{
+	-nexa-border : 0px none;
+	background :transparent;
+	-nexa-icon : url('imagerc::FromToCalendar/img_WF_month07.png');
+}
+.Button.btn_WF_cal07[status=mouseover],
+.Button.btn_WF_cal07[userstatus=pushed],
+.Button.btn_WF_cal07[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background :transparent;
+	-nexa-icon : url('imagerc::FromToCalendar/img_WF_month07P.png');
+}
+.Button.btn_WF_cal07[status=disabled]
+{
+	-nexa-border : 0px none;
+	background :transparent;
+	-nexa-icon : url('imagerc::FromToCalendar/img_WF_month07.png');
+	opacity : 0.6;
+}
+.Button.btn_WF_cal08,
+.Button.btn_WF_cal08[status=focused]
+{
+	-nexa-border : 0px none;
+	background :transparent;
+	-nexa-icon : url('imagerc::FromToCalendar/img_WF_month08.png');
+}
+.Button.btn_WF_cal08[status=mouseover],
+.Button.btn_WF_cal08[userstatus=pushed],
+.Button.btn_WF_cal08[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background :transparent;
+	-nexa-icon : url('imagerc::FromToCalendar/img_WF_month08P.png');
+}
+.Button.btn_WF_cal08[status=disabled]
+{
+	-nexa-border : 0px none;
+	background :transparent;
+	-nexa-icon : url('imagerc::FromToCalendar/img_WF_month08.png');
+	opacity : 0.6;
+}
+.Button.btn_WF_cal09,
+.Button.btn_WF_cal09[status=focused]
+{
+	-nexa-border : 0px none;
+	background :transparent;
+	-nexa-icon : url('imagerc::FromToCalendar/img_WF_month09.png');
+}
+.Button.btn_WF_cal09[status=mouseover],
+.Button.btn_WF_cal09[userstatus=pushed],
+.Button.btn_WF_cal09[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background :transparent;
+	-nexa-icon : url('imagerc::FromToCalendar/img_WF_month09P.png');
+}
+.Button.btn_WF_cal09[status=disabled]
+{
+	-nexa-border : 0px none;
+	background :transparent;
+	-nexa-icon : url('imagerc::FromToCalendar/img_WF_month09.png');
+	opacity : 0.6;
+}
+.Button.btn_WF_cal10,
+.Button.btn_WF_cal10[status=focused]
+{
+	-nexa-border : 0px none;
+	background :transparent;
+	-nexa-icon : url('imagerc::FromToCalendar/img_WF_month10.png');
+}
+.Button.btn_WF_cal10[status=mouseover],
+.Button.btn_WF_cal10[userstatus=pushed],
+.Button.btn_WF_cal10[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background :transparent;
+	-nexa-icon : url('imagerc::FromToCalendar/img_WF_month10P.png');
+}
+.Button.btn_WF_cal10[status=disabled]
+{
+	-nexa-border : 0px none;
+	background :transparent;
+	-nexa-icon : url('imagerc::FromToCalendar/img_WF_month10.png');
+	opacity : 0.6;
+}
+.Button.btn_WF_cal11,
+.Button.btn_WF_cal11[status=focused]
+{
+	-nexa-border : 0px none;
+	background :transparent;
+	-nexa-icon : url('imagerc::FromToCalendar/img_WF_month11.png');
+}
+.Button.btn_WF_cal11[status=mouseover],
+.Button.btn_WF_cal11[userstatus=pushed],
+.Button.btn_WF_cal11[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background :transparent;
+	-nexa-icon : url('imagerc::FromToCalendar/img_WF_month11P.png');
+}
+.Button.btn_WF_cal11[status=disabled]
+{
+	-nexa-border : 0px none;
+	background :transparent;
+	-nexa-icon : url('imagerc::FromToCalendar/img_WF_month11.png');
+	opacity : 0.6;
+}
+.Button.btn_WF_cal12,
+.Button.btn_WF_cal12[status=focused]
+{
+	-nexa-border : 0px none;
+	background :transparent;
+	-nexa-icon : url('imagerc::FromToCalendar/img_WF_month12.png');
+}
+.Button.btn_WF_cal12[status=mouseover],
+.Button.btn_WF_cal12[userstatus=pushed],
+.Button.btn_WF_cal12[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background :transparent;
+	-nexa-icon : url('imagerc::FromToCalendar/img_WF_month12P.png');
+}
+.Button.btn_WF_cal12[status=disabled]
+{
+	-nexa-border : 0px none;
+	background :transparent;
+	-nexa-icon : url('imagerc::FromToCalendar/img_WF_month12.png');
+	opacity : 0.6;
+}
+
+.Button.btn_WF_today,
+.Button.btn_WF_today[status=focused]
+{
+	-nexa-border : 1px solid #A0A1A3;
+	background :#EFF5FC;
+	color : #111111;
+}
+.Button.btn_WF_today[status=mouseover],
+.Button.btn_WF_today[userstatus=selected]
+{
+	-nexa-border : 1px solid #A0A1A3;
+	background :#E0EBF8;
+}
+.Button.btn_WF_today[userstatus=pushed]
+{
+	-nexa-border : 1px solid #A0A1A3;
+	background :#D6E5F6;
+}
+.Button.btn_WF_today[status=disabled]
+{
+	-nexa-border : 1px solid #A0A1A3;
+	background :#EFF5FC;
+	opacity : 0.6;
+}
+.Static.sta_WF_prop
+{
+	background :#EFF5FC;
+	-nexa-border : 1px solid #A0A1A3;
+	color : #111111;
+	-nexa-text-align : center;
+}
+]]></XCSS>

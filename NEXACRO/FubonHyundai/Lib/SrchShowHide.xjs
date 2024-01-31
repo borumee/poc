@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Script version="1.0" type="xscript5.1"><![CDATA[/**
+*  techtip searchshowhide sample 
+*  @MenuPath    techtip > lib_searchshowhide
+*  @FileName	lib_searchshowhide.xjs 
+*  @Desction	search div show & hide sample
+*******************************************************************************
+*  2022.02.11		nana			최초 생성
+*******************************************************************************
+*/
+
+/**************************************************************************
+ * 사용자 FUNCTION 영역
+ **************************************************************************/
+/**
+* @description form onload --> define a user variable
+* @param objDiv	: search div
+*		 objConfig : {nBtnWidth,nBtnHeight,sBtnExpandClass,sBtnCollapseClass,sActionType}
+* @return
+*/
+this.fnInitSrchShowHideSet = function (objDiv, objConfig)
+{
+	objDiv.config = objConfig;
+	this.gfnCreateSrchShowHide(objDiv);
+};
+
+/**
+* @description 업무화면 조회조건 숨김/보임 버튼 생성
+* @param objDiv	: 버튼 생성 할 div id
+* @return null
+*/
+this.gfnCreateSrchShowHide = function (objViewSearch)
+{
+	if (objViewSearch == "[object Div]") {
+		
+		var nViewTop = nexacro.toNumber(objViewSearch.getOffsetTop());
+		var nViewLeft = nexacro.toNumber(objViewSearch.getOffsetLeft());
+		var nViewWidth = nexacro.toNumber(objViewSearch.getOffsetWidth());
+		var nViewHeight = nexacro.toNumber(objViewSearch.getOffsetHeight());
+
+		var sActionType = objViewSearch.config.sActionType;
+		if (this.gfn_isNull(sActionType)) {
+			sActionType = "T";
+		}
+		
+		var nBtnWidth = objViewSearch.config.nBtnWidth;
+		var nBtnHeight = objViewSearch.config.nBtnHeight;
+		var nBtnTop, nBtnTopPerc;
+		if (sActionType == "T") {
+			nBtnTop = objViewSearch.id+":-1";
+		} else {
+			nBtnTop = nViewTop;
+		}
+		var nBtnLeft, nBtnLeftPerc;
+		if (sActionType == "T") {
+			nBtnLeft = (nViewWidth/2) - (nBtnWidth/2); //가운데 위치 픽셀 설정 값
+			nBtnLeftPerc = nexacro.round((nBtnLeft/nViewWidth)*100, 2)+"%"; //가운데 위치 비율 설정 값
+		} else {
+			nBtnLeftPerc = objViewSearch.id+":-1";
+		}
+
+		//button Expand & collapse cssclass
+		var sBtnExpandClass = objViewSearch.config.sBtnExpandClass;
+		var sBtnCollapseClass = objViewSearch.config.sBtnCollapseClass;
+		
+		var sBtnId = "btnSearchShowHide_"+sActionType;
+		
+		var objBtnShowHide = new Button();
+		objBtnShowHide.init(sBtnId, nBtnLeftPerc, nBtnTop, nBtnWidth, nBtnHeight);
+		
+		//set css class property
+		objBtnShowHide._expandclass   = sBtnExpandClass;
+		objBtnShowHide._collapseclass = sBtnCollapseClass;	
+		
+		// add component	
+		this.addChild(objBtnShowHide.id, objBtnShowHide);
+		objBtnShowHide.set_cssclass(sBtnCollapseClass);
+		objBtnShowHide.addEventHandler("onclick", this.gfnSrchShowHideClick, this);
+		objBtnShowHide.show();
+		
+		//init animation frame value
+		objViewSearch.showhideframeidx = 0;
+		
+		//set show height
+		objViewSearch.showHeight = nViewHeight;
+		
+		//set show width
+		objViewSearch.showWidth = nViewWidth;
+		
+		var animationId;
+		if (sActionType == "T") {
+			//show hide add animation object
+			animationId = "aniShowHide"+"_T";
+			
+			var objAniShowHideT = new nexacro.Animation(animationId, this);
+			this.addChild(objAniShowHideT.id, objAniShowHideT);
+			
+			//init animation frame value 	
+			//set animation target view
+			objAniShowHideT.targetView = objViewSearch;
+			
+			//set aimation target button 
+			objAniShowHideT.targetBtn = objBtnShowHide;
+			
+			objAniShowHideT.set_duration(500);
+			objAniShowHideT.set_easing("linear");
+			objAniShowHideT.setEventHandler( "onrun", this.Animation_onrun, this);
+			objAniShowHideT.setEventHandler( "oncomplete", this.Animation_oncomplete, this);
+			
+			//set animation increasing value (0~100)
+			objAniShowHideT.addTarget("item1", objViewSearch, "showhideframeidx:100");
+		} else {
+			animationId = "aniShowHide"+"_L";
+			var objAniShowHideL = new nexacro.Animation(animationId, this);
+			this.addChild(objAniShowHideL.id, objAniShowHideL);
+			
+			//init animation frame value 	
+			//set animation target view
+			objAniShowHideL.targetView = objViewSearch;
+			
+			//set aimation target button 
+			objAniShowHideL.targetBtn = objBtnShowHide;
+			
+			objAniShowHideL.set_duration(500);
+			objAniShowHideL.set_easing("linear");
+			objAniShowHideL.setEventHandler( "onrun", this.Animation_onrun, this);
+			objAniShowHideL.setEventHandler( "oncomplete", this.Animation_oncomplete, this);
+			
+			//set animation increasing value (0~100)
+			objAniShowHideL.addTarget("item1", objViewSearch, "showhideframeidx:100");
+		}
+	}
+	else {
+		trace("view component가 아닙니다.");
+		return;
+	}
+};
+
+/**
+ * @description 업무화면 조회조건 숨김/보임 동작 애니메이션 처리
+ * @param object : objAni(애니메이션 오브젝트)
+ * @param string : sType(숨김/보임 타입)
+ * @param string : sEvent(애니메이션 완료이벤트 여부)
+ * @return null
+ */
+this.gfnRunShowHideAni = function(objAni, sType, sEvent)
+{
+	//get animation target view
+	var objTargetView = objAni.targetView;
+	var sActionType = objTargetView.config.sActionType;
+	if (this.gfn_isNull(sActionType)) {
+		sActionType = "T";
+	}	
+	var nMinSize = 1;
+	var nMaxSize;
+	if (sActionType == "T") {
+		nMaxSize = objTargetView.showHeight;
+	} else {
+		nMaxSize = objTargetView.showWidth;
+	}
+	var nDiffSize = nMaxSize - nMinSize;
+
+	//show animation execute
+	if(sType=="show")
+	{
+		if (sActionType == "T") {
+			//animation progress
+			nPerIdx = objTargetView.showhideframeidx/100;
+			
+			//get targetview top position
+			nNextSize = nMinSize + nexacro.round(nDiffSize * nPerIdx);
+			
+			//set targetview height
+			objTargetView.setOffsetHeight(nNextSize);
+		} else {
+			//animation progress
+			nPerIdx = objTargetView.showhideframeidx/100;
+			
+			//get targetview top position
+			nNextSize = nMinSize + nexacro.round(nDiffSize * nPerIdx);
+			
+			//set targetview height
+			objTargetView.setOffsetWidth(nNextSize);			
+		}
+		
+		//oncomplete animation
+		if(sEvent=="oncomplete")
+		{
+			//init frameidx value
+			objTargetView.showhideframeidx = 0;
+		}
+	}
+	//hide animation execute
+	else
+	{
+		//animation progress
+		nPerIdx = objTargetView.showhideframeidx/100;
+		
+		//get targetview top position
+		nNextSize = nMaxSize - nexacro.round(nDiffSize * nPerIdx);
+		
+		if (sActionType == "T") {
+			//set targetview height
+			objTargetView.setOffsetHeight(nNextSize);
+		} else {
+			//set targetview width
+			objTargetView.setOffsetWidth(nNextSize);		
+		}
+		
+		//oncomplete animation
+		if(sEvent=="oncomplete")
+		{
+			//init frameidx value
+			objTargetView.showhideframeidx = 0;
+		}
+	}
+	this.resetScroll();
+};
+
+/**
+ * @description btnSearchShowHide onclick event --> paly animation
+*/
+this.gfnSrchShowHideClick = function (obj, e)
+{
+	var sExpandClass = obj._expandclass;
+	var sCollapseClass = obj._collapseclass;
+	
+	// button class == "collapse"
+	if (obj.cssclass == sCollapseClass) {
+		
+		//set expand
+ 		obj.set_cssclass(sExpandClass);
+	}
+	// button class == "expand"
+	else if (obj.cssclass == sExpandClass) {
+		
+		//set collapse
+		obj.set_cssclass(sCollapseClass);
+	}
+	
+	//this.aniShowHide.play();
+	if (obj.name == "btnSearchShowHide_T") {
+		this.aniShowHide_T.play();
+	} else {
+		this.aniShowHide_L.play();
+	}
+};
+
+/**
+ * @description animation onrun event --> call gfnRunShowHideAni
+*/
+this.Animation_onrun = function(obj:nexacro.Animation,e:nexacro.AnimationEventInfo)
+{
+	var objViewSearch = obj.targetView;	
+	var sExpandClass =   objViewSearch.config.sBtnExpandClass;
+	var sCollapseClass = objViewSearch.config.sBtnCollapseClass;
+	
+	var objTargetBtn = obj.targetBtn;
+	
+	//show view animation
+	if(objTargetBtn.cssclass==sCollapseClass)
+	{
+		//show animation function call
+		this.gfnRunShowHideAni(obj, "show");
+	}
+	//hide view animation
+	else
+	{
+		//hide animation function call
+		this.gfnRunShowHideAni(obj, "hide");
+	}
+};
+
+/**
+ * @description animation oncomplete event --> call gfnRunShowHideAni
+*/
+this.Animation_oncomplete = function(obj:nexacro.Animation,e:nexacro.AnimationEventInfo)
+{
+	var objViewSearch = obj.targetView;	
+	var sExpandClass =   objViewSearch.config.sBtnExpandClass;
+	var sCollapseClass = objViewSearch.config.sBtnCollapseClass;
+	
+	var objTargetBtn = obj.targetBtn;
+	
+	//show view animation
+	if(objTargetBtn.cssclass==sCollapseClass)
+	{
+		//show animation function call
+		this.gfnRunShowHideAni(obj, "show", "oncomplete");
+	}
+	//hide view animation
+	else
+	{
+		//hide animation function call
+		this.gfnRunShowHideAni(obj, "hide", "oncomplete");
+	}
+};
+
+/**
+ * @desc 값이 존재하는지 여부 체크 <br>
+ * @param {String} sValue	
+ * @return {Boolean} true/false
+ * @example
+ * var bNull = this.gfn_isNull("aaa");	// false
+ */
+this.gfn_isNull = function(sValue)
+{
+    if (new String(sValue).valueOf() == "undefined") return true;
+    if (sValue == null) return true;
+    
+    var ChkStr = new String(sValue);
+
+    if (ChkStr == null) return true;
+    if (ChkStr.toString().length == 0 ) return true;
+    return false;
+};]]></Script>

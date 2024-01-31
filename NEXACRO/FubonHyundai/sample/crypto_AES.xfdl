@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="test" width="1280" height="720" titletext="암호화 전송" onload="test_onload">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="1280">
+        <Button id="Button00" taborder="0" text="조회" left="395" top="310" width="608" height="40" onclick="Button00_onclick" cssclass="btn_WF_CRUD01"/>
+        <Grid id="Grid00" taborder="1" left="10" top="310" width="375" height="240" binddataset="gds_empInfo" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="40"/>
+              </Rows>
+              <Band id="body">
+                <Cell text="bind:EMP_NM"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Edit id="Edit00" taborder="2" left="470" top="360" width="533" height="40"/>
+        <Edit id="Edit00_00" taborder="3" left="470" top="410" width="533" height="40"/>
+        <Edit id="Edit00_01" taborder="4" left="470" top="460" width="533" height="40"/>
+        <MaskEdit id="MaskEdit00" taborder="5" left="470" top="510" width="533" height="40" type="string" format="@@@@@@-@{999999}"/>
+        <Edit id="edt_fromEnc" taborder="6" left="10" top="129" width="420" height="40"/>
+        <Edit id="edt_fromDec" taborder="7" left="10" top="179" width="420" height="40"/>
+        <Button id="btn_encryt" taborder="8" text=" &gt;&gt; 암호화 &gt;&gt;" left="447" top="129" width="120" height="40" onclick="btn_encryt_onclick" cssclass="btn_WF_CRUD03"/>
+        <Button id="btn_decrypt" taborder="9" text=" &gt;&gt; 복호화 &gt;&gt;" left="447" top="179" width="120" height="40" onclick="btn_decrypt_onclick" cssclass="btn_WF_CRUD03"/>
+        <Edit id="edt_toEnc" taborder="10" left="583" top="129" width="420" height="40"/>
+        <Edit id="edt_toDec" taborder="11" left="583" top="179" width="420" height="40"/>
+        <Static id="sta_sender" taborder="12" text="암호화 알고리즘" left="10" top="74" height="40" cssclass="sta_WF_Title2nd" right="10"/>
+        <Static id="sta_sender00" taborder="13" text="암호화 알고리즘 활용 예시 (직원정보 조회)" left="10" top="250" height="40" cssclass="sta_WF_Title2nd" right="10"/>
+        <Static id="Static00" taborder="14" text="조직 코드" left="395" top="360" width="148" height="40"/>
+        <Static id="Static00_01" taborder="15" text="사원 코드" left="395" top="410" width="148" height="40"/>
+        <Static id="Static00_01_00" taborder="16" text="사원명" left="395" top="460" width="148" height="40"/>
+        <Static id="Static00_01_00_00" taborder="17" text="주민번호" left="395" top="510" width="148" height="40"/>
+        <Static id="Static00_02" taborder="18" text="암호화 전송" left="6" top="30" width="190" height="30" cssclass="sta_WF_Title1st" messageid="menu.M3900"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.OFFICE_NO = "";
+this.EMP_NO = "";
+this.EMP_NM = "";
+this.SSN = "";
+this.key = CryptoJS.enc.Utf8.parse("TOBESOFT12345678");
+this.iv  = CryptoJS.enc.Utf8.parse('1234567812345678');
+
+
+this.test_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	
+		this.gfnFormOnload(obj,e); //필수함수
+
+};
+
+
+
+
+
+this.fn_search_after =function (a,b,c)
+{
+	trace(" << 조직 코드 : " + this.OFFICE_NO);
+	trace(" << 사원 코드 : " + this.EMP_NO);
+	trace(" << 사원명 : " + this.EMP_NM);
+	trace(" << 주민번호 : " + this.SSN);
+	
+	this.Edit00.set_value(this.dataDecode(this.OFFICE_NO, 	this.key, 	this.iv))
+	this.Edit00_00.set_value(this.dataDecode(this.EMP_NO, 	this.key, 	this.iv))
+	this.Edit00_01.set_value(this.dataDecode(this.EMP_NM, 	this.key, 	this.iv))
+	this.MaskEdit00.set_value(this.dataDecode(this.SSN, 	this.key, 	this.iv))
+}
+
+
+
+ //암호화
+this.dataEncode = function(message, key, iv){
+       var encrypted = CryptoJS.AES.encrypt(message, key, { iv: iv,mode:CryptoJS.mode.CBC,padding:CryptoJS.pad.ZeroPadding});
+       return encrypted.toString();
+ }
+  //복호화
+this.dataDecode = function(encrypted, key, iv)
+{
+       var decrypted = CryptoJS.AES.decrypt(encrypted,key,{iv:iv,padding:CryptoJS.pad.ZeroPadding}); 
+       return decrypted.toString(CryptoJS.enc.Utf8);
+}
+
+this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	var app   = nexacro.getApplication(),
+		nRow  = this.Grid00.currentrow,
+		empNo = app.gds_empInfo.getColumn(nRow, 'EMP_NO');
+	
+	var encrypted = this.dataEncode(empNo, 		this.key, 	this.iv);
+	var decrypted = this.dataDecode(encrypted, 	this.key, 	this.iv);
+	
+	trace("================ 암호화 통신 ================");
+	trace(" >> 사원 코드 : " + empNo);
+	trace(" >> 암호화 전송 : " + encrypted);
+	
+	this.transaction("test","svcUrl::crypto-aes","","","input="+encrypted,"fn_search_after");
+};
+
+
+/************************************************************************
+ * 암/복호화 테스트
+ ************************************************************************/
+this.btn_encryt_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	let fromValue = this.edt_fromEnc.value,
+		toValue   = this.dataEncode(fromValue, this.key, this.iv);
+	this.edt_toEnc.set_value(toValue);
+};
+this.btn_decrypt_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	let fromValue = this.edt_fromDec.value,
+		toValue   = this.dataDecode(fromValue, this.key, this.iv);
+	this.edt_toDec.set_value(toValue);
+};
+
+
+]]></Script>
+  </Form>
+</FDL>

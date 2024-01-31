@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="prevent_copyNmouse" width="1280" height="720" titletext="New Form" onload="prevent_copyNmouse_onload">
+    <Layouts>
+      <Layout height="720" width="1280">
+        <Div id="Div00_00" taborder="8" left="6" top="454" height="226" right="30" cssclass="div_WF_SearchBox">
+          <Layouts>
+            <Layout/>
+            <Layout name="Layout0"/>
+          </Layouts>
+        </Div>
+        <Static id="Static00_00" taborder="5" text="복사 붙여넣기 방지" left="6" top="74" height="30" cssclass="sta_WF_Title2nd" right="30"/>
+        <Div id="Div00" taborder="6" left="6" top="114" height="226" right="30" cssclass="div_WF_SearchBox">
+          <Layouts>
+            <Layout/>
+            <Layout name="Layout0"/>
+          </Layouts>
+        </Div>
+        <Edit id="Edit00" taborder="0" left="27" top="150" width="260" height="40" usecontextmenu="false" preventCopy="true"/>
+        <Edit id="Edit00_00" taborder="1" left="27" top="490" width="260" height="40" usecontextmenu="true"/>
+        <Grid id="Grid00" taborder="2" left="320" top="150" width="335" height="163" binddataset="Dataset00" preventCopy="true" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="40" band="head"/>
+                <Row size="40"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="Column0"/>
+                <Cell col="1" text="Column1"/>
+                <Cell col="2" text="Column2"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Column0" displaytype="text" edittype="text"/>
+                <Cell col="1" text="bind:Column1" displaytype="text" edittype="text"/>
+                <Cell col="2" text="bind:Column2" displaytype="text" edittype="text"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="Grid00_00" taborder="3" left="320" top="490" width="335" height="163" binddataset="Dataset00" preventCopy="false" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="40" band="head"/>
+                <Row size="40"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="Column0"/>
+                <Cell col="1" text="Column1"/>
+                <Cell col="2" text="Column2"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Column0" displaytype="text" edittype="text"/>
+                <Cell col="1" text="bind:Column1" displaytype="text" edittype="text"/>
+                <Cell col="2" text="bind:Column2" displaytype="text" edittype="text"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static00" taborder="4" text="복사 붙여넣기 방지" left="6" top="30" width="190" height="30" cssclass="sta_WF_Title1st" messageid="menu.M3800"/>
+        <Static id="Static00_00_00" taborder="7" text="복사 붙여넣기 허용" left="6" top="414" height="30" cssclass="sta_WF_Title2nd" right="30"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Nexacro DEMO
+*  @FileName 	prevent_copyNmouse.xfdl
+*  @Creator 	TOBESOFT
+*  @CreateDate 	2023/05/17
+*  @Desction   
+************** 소스 수정 이력 ***********************************************
+* Date					Modifier					Description
+*******************************************************************************
+* 2023/05/17			TOBESOFT					최초생성
+*******************************************************************************
+*/
+
+/*******************************************************************************************************************************
+ * FORM 변수 선언 영역
+*******************************************************************************************************************************/
+
+/*******************************************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose..)
+*******************************************************************************************************************************/
+this.prevent_copyNmouse_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	// 5.2 우클릭 방지 요건  -> 컴포넌트에 usecontextmenu property 가 false 인 경우 화면에서 우클릭 서브메뉴 수행이 방지
+	// 5.4 클립보드 제어 요건 -> 컴포넌트에 User Property (preventCopy) 가 true 인 경우 복사방지 수행
+	this.gfnFormOnload(this);
+};
+
+/*******************************************************************************************************************************
+ * Transaction 서비스호출 처리 영역
+*******************************************************************************************************************************/
+
+/*******************************************************************************************************************************
+ * Callback 영역 (Transaction, popup, message..)
+*******************************************************************************************************************************/
+
+/*******************************************************************************************************************************
+ * 사용자 Function 영역
+*******************************************************************************************************************************/
+
+/*******************************************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+*******************************************************************************************************************************/
+
+]]></Script>
+    <Objects>
+      <Dataset id="Dataset00">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+          <Column id="Column2" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column0">1</Col>
+            <Col id="Column1">test1</Col>
+            <Col id="Column2">한글</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">2</Col>
+            <Col id="Column1">test2</Col>
+            <Col id="Column2">한글</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">3</Col>
+            <Col id="Column1">test3</Col>
+            <Col id="Column2">한글</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

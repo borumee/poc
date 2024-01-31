@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="frm_paging" width="511" height="48" titletext="페이징" onload="init" onsize="fn_pagingSize" scrolltype="none">
+    <Layouts>
+      <Layout width="511" height="48">
+        <Div id="div_page" taborder="0" left="0" top="0" right="0" bottom="0">
+          <Layouts>
+            <Layout width="414" height="24">
+              <Button id="stc_no7" text="8" onclick="div_page_stc_no_onclick" visible="false" taborder="3" left="333" top="4" width="40" height="40" cssclass="btn_WF_Page"/>
+              <Button id="stc_no8" text="9" onclick="div_page_stc_no_onclick" visible="false" taborder="2" left="stc_no7:-1" top="4" width="40" height="40" cssclass="btn_WF_Page"/>
+              <Button id="stc_no9" text="10" onclick="div_page_stc_no_onclick" visible="false" taborder="1" left="stc_no8:-1" top="4" width="40" height="40" cssclass="btn_WF_Page"/>
+              <Button id="stc_next" onclick="div_page_stc_next_onclick" visible="false" taborder="0" top="4" height="40" cssclass="btn_WF_PageN" text="" width="46" right="4"/>
+              <Button id="stc_prev" onclick="div_page_stc_prev_onclick" visible="false" taborder="11" left="4" top="4" width="46" height="40" cssclass="btn_WF_PageP"/>
+              <Button id="stc_no0" text="1" onclick="div_page_stc_no_onclick" visible="false" taborder="10" left="stc_prev:10" top="4" width="40" height="40" cssclass="btn_WF_PageS"/>
+              <Button id="stc_no1" text="2" onclick="div_page_stc_no_onclick" visible="false" taborder="9" left="stc_no0:-1" top="4" width="40" height="40" cssclass="btn_WF_Page"/>
+              <Button id="stc_no2" text="3" onclick="div_page_stc_no_onclick" visible="false" taborder="8" left="stc_no1:-1" top="4" width="40" height="40" cssclass="btn_WF_Page"/>
+              <Button id="stc_no3" text="4" onclick="div_page_stc_no_onclick" visible="false" taborder="7" left="stc_no2:-1" top="4" width="40" height="40" cssclass="btn_WF_Page"/>
+              <Button id="stc_no4" text="5" onclick="div_page_stc_no_onclick" visible="false" taborder="6" left="stc_no3:-1" top="4" width="40" height="40" cssclass="btn_WF_Page"/>
+              <Button id="stc_no5" text="6" onclick="div_page_stc_no_onclick" visible="false" taborder="5" left="stc_no4:-1" top="4" width="40" height="40" cssclass="btn_WF_Page"/>
+              <Button id="stc_no6" text="7" onclick="div_page_stc_no_onclick" visible="false" taborder="4" left="stc_no5:-1" top="4" width="40" height="40" cssclass="btn_WF_Page"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  컨설팅 표준화 작업
+*  @MenuPath        sample > CRUD단일
+*  @FileName 		cmmPaging.xfdl 
+*  @Creator 		consulting
+*  @CreateDate 		2022.11.17
+*  @Desction         메세지팝업
+************** 소스 수정 이력 ***************************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2022.11.17     		consulting 	           최초 생성 
+*******************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.fv_iStartPageNo = 0; //전체 페이지 순서
+this.fv_iUnitSelRowNo = 10; //한번 Server호출시 가져올 row갯수
+this.fv_iStartSelRowNo = 1; //Server호출시 시작할 row no
+this.fv_iMaxPageNum = 10; //화면에 보여줄 최대 Page번호 갯수
+this.fv_iServerRowTotal = 0;
+this.fv_iCntPageNum = 0; //화면에 노출되는 번호 갯수
+this.fv_currentPage = 1; //현재 페이지
+
+this.fv_pageWidth;
+
+this.nPage = "1"; //선택 페이지
+this.nPageSize = "10"; //그리드 노출 글수
+this.nPageTotal = "0"; //전체 글수
+this.vPageFunc = ""; //본화면 조회함수명 
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload)
+/***********************************************************************************************/
+
+this.init = function (nPage, nPageSize, nPageTotal, vPageFunc)
+{	
+	this.nPage = nPage; //선택 페이지
+	this.nPageSize = nPageSize; //그리드 노출 글수
+	this.nPageTotal = nPageTotal; //전체 글수
+	this.vPageFunc = vPageFunc; //본화면 조회함수명 
+
+	this.fv_currentPage = nPage; //현재 페이지
+	this.fn_pagingSize();
+};
+
+ /************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+this.fn_pagingSize = function (obj:Form, e:nexacro.SizeEventInfo)
+{
+//  	var nStartW = parseInt(this.div_page.form.stc_first.getOffsetLeft());
+//  	var nEndW = parseInt(this.div_page.form.stc_end.getOffsetRight());
+	var nStartW = parseInt(this.div_page.form.stc_prev.getOffsetLeft());
+ 	var nEndW = parseInt(this.div_page.form.stc_next.getOffsetRight());
+ 	var nTermW = nEndW - nStartW;
+
+	this.div_page.set_left(parseInt(this.getOffsetWidth() / 2) - parseInt(nTermW / 2));
+	//this.div_page.set_left(parseInt(this.getOffsetWidth() / 2));
+};
+
+this.fn_check = function ()
+{
+	var rslt = 'Y';
+	if (rslt == 'Y' && this.nPage == '')
+	{
+		this.alert('소스에 page 값이 없습니다.');
+		rslt = 'N';
+	}
+
+	if (rslt == 'Y' && this.nPageSize == '') 
+	{
+		this.alert('소스에 page_size 값이 없습니다.');
+		rslt = 'N';
+	}
+
+	if (rslt == 'Y' && this.nPageTotal == undefined || this.nPageTotal == 'undefined') 
+	{
+		this.alert('소스에 page_total 가 존재하지 않습니다.');
+		rslt = 'N';
+	}
+
+	if (rslt == 'Y') 
+	{
+		this.fv_iStartSelRowNo = this.nPage;
+		this.fv_iUnitSelRowNo = this.nPageSize;
+		this.fv_iServerRowTotal = this.nPageTotal;
+	}
+	return rslt;
+};
+
+/**
+* @description  페이징 구현
+*/
+this.fn_paging = function ()
+{
+	if (this.fn_check() == 'N')
+	{
+		return false;
+	}
+
+	this.fn_setPageNo();
+	this.fn_setStyle();
+	this.fn_pagingSize();
+};
+
+/**
+* @description  인텍스 클릭
+*/
+this.div_page_stc_no_onclick = function (obj:Static, e:nexacro.ClickEventInfo)
+{
+	var iNo = new Number(obj.text);
+	
+	this.fv_currentPage = iNo;
+	this.nPage = iNo;
+	this.fn_setStyle();
+	if(this.vPageFunc){
+		this.lookupFunc(this.vPageFunc).call(this.nPage);
+	}
+};
+
+/**
+* @description  First 버튼
+*/
+this.div_page_stc_first_onclick = function (obj:Static, e:nexacro.ClickEventInfo)
+{
+	if (this.fv_currentPage != 1) 
+	{
+		this.fv_iStartPageNo = 0;
+		this.fv_currentPage = 1;
+		this.nPage = 1;
+		if(this.vPageFunc){
+			this.lookupFunc(this.vPageFunc).call(this.nPage);
+		}
+
+		this.fn_setPageNo();
+		this.fn_setStyle();
+		this.fn_pagingSize();
+	}
+};
+
+/**
+* @description  Prev 버튼
+*/
+this.div_page_stc_prev_onclick = function (obj:Static, e:nexacro.ClickEventInfo)
+{
+	if (this.fv_currentPage - 1 > 0) 
+	{
+		if (this.fv_currentPage - 1 <= parseInt(this.fv_iStartPageNo)) 
+		{
+			this.fv_iStartPageNo = parseInt(this.fv_iStartPageNo) - parseInt(this.fv_iMaxPageNum);
+		}
+		this.fv_currentPage = this.fv_currentPage - 1;
+		this.nPage = this.fv_currentPage;
+
+		if(this.vPageFunc){
+			this.lookupFunc(this.vPageFunc).call(this.nPage);
+		}
+
+		this.fn_setPageNo();
+		this.fn_setStyle();
+		this.fn_pagingSize();
+	}
+};
+
+/**
+* @description  Next 버튼
+*/
+this.div_page_stc_next_onclick = function (obj:Static, e:nexacro.ClickEventInfo)
+{
+	if ((this.fv_currentPage) * this.fv_iUnitSelRowNo < this.nPageTotal) 
+	{
+		if (this.fv_currentPage + 1 > parseInt(this.fv_iStartPageNo) + parseInt(this.fv_iMaxPageNum)) 
+		{
+			this.fv_iStartPageNo = parseInt(this.fv_iStartPageNo) + parseInt(this.fv_iMaxPageNum);
+		}
+
+		if (this.fv_currentPage == 0) 
+		{
+			this.fv_currentPage = this.fv_currentPage + 2;
+			this.nPage = this.fv_currentPage;
+		}
+		else 
+		{
+			this.fv_currentPage = this.fv_currentPage + 1;
+			this.nPage = this.fv_currentPage;
+		}
+		
+		if(this.vPageFunc){
+			this.lookupFunc(this.vPageFunc).call(this.nPage);
+		}
+		
+		this.fn_setPageNo();
+		this.fn_setStyle();
+		this.fn_pagingSize();
+	}
+};
+
+/**
+* @description  End 버튼
+*/
+this.div_page_stc_end_onclick = function (obj:Static, e:nexacro.ClickEventInfo)
+{
+	if (this.fv_currentPage != parseInt((this.fv_iServerRowTotal - 1) / this.fv_iUnitSelRowNo) + 1) 
+	{
+		this.fv_iStartPageNo = Math.floor(this.fv_iServerRowTotal / (this.fv_iUnitSelRowNo * this.fv_iMaxPageNum)) * this.fv_iMaxPageNum;
+		this.fv_currentPage = parseInt((this.fv_iServerRowTotal - 1) / this.fv_iUnitSelRowNo) + 1;
+		this.nPage = parseInt((this.fv_iServerRowTotal - 1) / this.fv_iUnitSelRowNo) + 1;
+		if (this.fv_iStartPageNo == this.parent.nPage) 
+		{
+			this.fv_iStartPageNo = this.fv_iStartPageNo - this.fv_iMaxPageNum;
+		}
+		if(this.vPageFunc){
+			this.lookupFunc(this.vPageFunc).call(this.nPage);
+		}
+		this.fn_setPageNo();
+		this.fn_setStyle();
+		this.fn_pagingSize();
+	}
+};
+
+/**
+* @description  Page번호 Setting
+*/
+this.fn_setPageNo = function ()
+{
+	this.fv_iCntPageNum = 0;
+	var sPage = this.fv_iStartPageNo;
+
+	// Prev 버튼 처리
+	//this.div_page.form.stc_first.set_visible(true); 
+	this.div_page.form.stc_prev.set_visible(true); 
+
+	// Next 버튼 처리
+	this.div_page.form.stc_next.set_visible(true);
+	//this.div_page.form.stc_end.set_visible(true);
+
+	var nMaxNum = 0;
+
+	if (parseInt(this.nPageTotal) % parseInt(this.fv_iUnitSelRowNo) == 0) 
+	{
+		nMaxNum = parseInt(parseInt(this.nPageTotal) / parseInt(this.fv_iUnitSelRowNo));
+	}
+	else 
+	{
+		nMaxNum = parseInt((parseInt(this.nPageTotal) / parseInt(this.fv_iUnitSelRowNo))) + 1;
+	}
+
+	if (parseInt(nMaxNum - sPage) > 10) 
+	{
+		nMaxNum = 10;
+	}
+	else 
+	{
+		nMaxNum = parseInt(nMaxNum - sPage);
+	}
+
+	if (this.nPageTotal == 0) 
+	{
+		// 데이터가 없을때 예외처리
+		nMaxNum = 1;
+	}
+
+	for (var ii = 0; ii < 10; ii++) 
+	{
+		this.div_page.form.components["stc_no" + ii].set_visible(false);
+		//trace("stc_no" + ii + " = false");
+	}
+
+	// 인덱스 번호 처리
+	for (var i = 0; i < nMaxNum; i++) 
+	{
+		this.div_page.form.components["stc_no" + i].set_visible(true);
+		this.div_page.form.components["stc_no" + i].set_text(sPage + i + 1);
+
+		if (this.fv_iServerRowTotal <= parseInt((sPage * this.fv_iUnitSelRowNo) + (this.fv_iUnitSelRowNo * i))) 
+		{
+			this.div_page.form.components["stc_no" + i].set_visible(false);
+		}
+		else 
+		{
+			this.div_page.form.components["stc_no" + i].set_visible(true);
+			this.fv_iCntPageNum++;
+		}
+		if (i == nMaxNum - 1) 
+		{
+			this.div_page.form.stc_next.set_left(parseInt(this.div_page.form.components["stc_no" + i].left) + 35);
+			//this.div_page.form.stc_end.set_left(parseInt(this.div_page.form.stc_next.left) + 30);
+		}
+		
+		//trace("stc_no" + i + " = "+this.div_page.form.components["stc_no" + i].visible);
+	}
+
+	if (this.nPageTotal == 0) 
+	{
+		// 데이터가 없을때 예외처리
+		this.div_page.form.components["stc_no" + 0].set_visible(true);
+	}
+};
+
+/**
+* @description Style조정
+*/
+this.fn_setStyle = function ()
+{
+	var sPage = this.fv_iStartPageNo;
+
+	for (var i = 0; i < this.fv_iMaxPageNum; i++) 
+	{
+		if ((parseInt(sPage) + 1 + i) == this.nPage){
+			this.div_page.form.components["stc_no" + i].set_cssclass("btn_WF_PageS");
+		}else{		
+			this.div_page.form.components["stc_no" + i].set_cssclass("btn_WF_Page");
+		}
+	}
+};
+
+/**
+* @description 페이지당row, 전체row 재설정
+*/
+this.fn_resetPaging = function (nPageSize, nPageTotal)
+{
+	this.nPageSize = nPageSize;
+	this.nPageTotal = nPageTotal;
+	this.fn_paging();
+};]]></Script>
+  </Form>
+</FDL>

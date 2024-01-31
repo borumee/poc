@@ -1,0 +1,1 @@
+(function(){if(nexacro){nexacro._StringResource={"find":"Find Image","search_null":"Ctrl + K Search","name":"Name :","position":"Position :","tel":"Tel :","email":"E-mail :"};}})();

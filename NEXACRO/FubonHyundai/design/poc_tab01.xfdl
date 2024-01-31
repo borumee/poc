@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="poc01" width="1000" height="760" titletext="고객상담그래프">
+    <Layouts>
+      <Layout height="760" width="1000">
+        <Div id="Div00" taborder="0" left="20" top="20" width="47%" height="350" cssclass="div_WF_ChartBox">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="차트 타이틀" left="20" top="20" width="120" height="30" cssclass="sta_WF_ChartTitle"/>
+              <Button id="Button00" taborder="1" top="20" width="30" height="30" right="20" cssclass="btn_WF_ChartBar"/>
+              <Button id="Button00_00" taborder="2" top="52" width="30" height="30" right="20" cssclass="btn_WF_ChartPie" visible="false"/>
+              <Static id="Static03" taborder="3" left="160" top="28" width="244" height="79" cssclass="sta_WF_GuideMemo" visible="false" text="- Bar 차트 : btn_WF_ChartBar&#13;&#10;- Pie 차트 : btn_WF_ChartPie&#13;&#10;- Area 차트 : btn_WF_ChartArea"/>
+              <Button id="Button00_00_00" taborder="4" top="87" width="30" height="30" right="20" cssclass="btn_WF_ChartArea" visible="false"/>
+            </Layout>
+            <Layout name="Layout0"/>
+            <Layout name="Layout1"/>
+          </Layouts>
+        </Div>
+        <Div id="Div01" taborder="1" left="Div00:20" top="20" height="350" cssclass="div_WF_ChartBox" right="20">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="차트 타이틀" left="20" top="20" width="120" height="30" cssclass="sta_WF_ChartTitle"/>
+              <Button id="Button00" taborder="1" top="20" width="30" height="30" right="20" cssclass="btn_WF_ChartBar"/>
+            </Layout>
+            <Layout name="Layout0"/>
+            <Layout name="Layout1"/>
+          </Layouts>
+        </Div>
+        <Div id="Div02" taborder="2" left="20" top="390" width="47.00%" cssclass="div_WF_ChartBox" height="350">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="차트 타이틀" left="20" top="20" width="120" height="30" cssclass="sta_WF_ChartTitle"/>
+              <Button id="Button00" taborder="1" top="20" width="30" height="30" right="20" cssclass="btn_WF_ChartBar"/>
+            </Layout>
+            <Layout name="Layout0"/>
+            <Layout name="Layout1"/>
+          </Layouts>
+        </Div>
+        <Div id="Div03" taborder="3" left="Div02:20" top="390" height="350" cssclass="div_WF_ChartBox" right="20">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="차트 타이틀" left="20" top="20" width="120" height="30" cssclass="sta_WF_ChartTitle"/>
+              <Button id="Button00" taborder="1" top="20" width="30" height="30" right="20" cssclass="btn_WF_ChartBar"/>
+            </Layout>
+            <Layout name="Layout0"/>
+            <Layout name="Layout1"/>
+          </Layouts>
+        </Div>
+      </Layout>
+      <Layout height="720" mobileorientation="Landscape" name="Layout0" type="default" width="700"/>
+      <Layout height="1500" mobileorientation="Landscape" name="Layout1" type="default" width="480">
+        <Div id="Div03" left="20" top="1130" height="350" right="20"/>
+        <Div id="Div01" left="20" top="390" height="350" right="20"/>
+        <Div id="Div02" left="20" top="760" height="350" right="20"/>
+        <Div id="Div00" height="350" left="20" top="20" right="20"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_radio01">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="data" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code">0</Col>
+            <Col id="data">주부</Col>
+          </Row>
+          <Row>
+            <Col id="code">1</Col>
+            <Col id="data">직장인</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_radio02">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="data" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code">0</Col>
+            <Col id="data">운전</Col>
+          </Row>
+          <Row>
+            <Col id="code">1</Col>
+            <Col id="data">미운전</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.Tab01_onchanged = function(obj:nexacro.Tab,e:nexacro.TabIndexChangeEventInfo)
+{
+	
+};
+]]></Script>
+  </Form>
+</FDL>

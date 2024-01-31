@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="xpush_msg" width="1280" height="720" titletext="푸시메시지 전송" onload="form_onload">
+    <Layouts>
+      <Layout height="720" width="1280">
+        <Grid id="Grid00" taborder="0" left="6" top="224" width="250" bottom="30" binddataset="ds_empInfo" treeinitstatus="expand,all" treeusecheckbox="false" treeuseimage="false" treeuseline="true" autofittype="col" oncellposchanged="Grid00_oncellposchanged">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="40"/>
+              </Rows>
+              <Band id="body">
+                <Cell text="bind:EMP_NM" treelevel="bind:treelvl" displaytype="treeitemcontrol"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <WebBrowser id="WebBrowser00" taborder="1" left="Grid00:10" top="224" onloadcompleted="WebBrowser00_onloadcompleted" right="30" bottom="30"/>
+        <Static id="sta_sender" taborder="2" text="보내는사람" left="6" top="74" width="110" height="40" cssclass="sta_WF_Title2nd" messageid="comm.sender"/>
+        <Button id="btn_send" taborder="3" text="전송" top="74" height="40" right="30" width="100" onclick="btn_send_onclick" cssclass="btn_WF_CRUD01" messageid="comm.send"/>
+        <Edit id="edt_sender" taborder="4" left="sta_sender:5" top="74" height="40" right="btn_send:10" enable="false"/>
+        <Static id="sta_receiver" taborder="5" text="받는사람" left="6" top="124" width="110" height="40" cssclass="sta_WF_Title2nd" messageid="comm.recipient"/>
+        <Edit id="edt_receiver" taborder="6" left="sta_receiver:5" top="124" height="40" right="30" enable="false"/>
+        <Static id="sta_title" taborder="7" text="제목" left="6" top="174" width="110" height="40" cssclass="sta_WF_Title2nd" messageid="comm.title"/>
+        <Edit id="edt_title" taborder="8" left="sta_title:5" top="174" height="40" right="30" text="푸시 메시지 전송" displaynulltext="제목을 입력해주세요."/>
+        <Static id="Static00" taborder="9" text="X-PUSH" left="6" top="30" width="190" height="30" cssclass="sta_WF_Title1st" messageid="menu.M3600"/>
+      </Layout>
+      <Layout height="720" mobileorientation="Landscape" name="Layout0" type="default" width="480">
+        <WebBrowser id="WebBrowser00" left="6" top="477" right="30" height="300"/>
+        <Grid id="Grid00" left="6" top="224" right="30" height="243"/>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item0" compid="edt_sender" propid="value" datasetid="ds_push" columnid="sender"/>
+      <BindItem id="item1" compid="edt_title" propid="value" datasetid="ds_push" columnid="title"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Nexacro DEMO
+*  @FileName 	xpush.xfdl
+*  @Creator 	TOBESOFT
+*  @CreateDate 	2023/05/16
+*  @Desction   
+************** 소스 수정 이력 ***********************************************
+* Date					Modifier					Description
+*******************************************************************************
+* 2023/05/16			TOBESOFT					최초생성
+*******************************************************************************
+*/
+
+/*******************************************************************************************************************************
+ * FORM 변수 선언 영역
+*******************************************************************************************************************************/
+this.CKEditorUrl = nexacro.getEnvironment().services["svcUrl"].url + "ckeditor4/editor.html";
+
+/*******************************************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose..)
+*******************************************************************************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnload(obj,e); //필수함수
+	
+	
+	// CKEditor 호출
+	this.WebBrowser00.set_url(this.CKEditorUrl);
+	this.WebBrowser00.show();
+	
+	// 사용자 정보 세팅
+	var app = nexacro.getApplication();	
+	this.ds_push.setColumn(0, 'sender', app.empInfo["EMP_NM"]);	
+};
+
+/*******************************************************************************************************************************
+ * Transaction 서비스호출 처리 영역
+*******************************************************************************************************************************/
+this.sendPush = function()
+{
+
+	let time = new Date();
+	let str_time = (time.getMonth()+1)+'월 '+time.getDate()+'일 : '+time.getHours()+'시 '+time.getMinutes()+'분 '+time.getSeconds()+'초';
+	
+
+	var topic_id = this.ds_empInfo.lookup('EMP_NM', this.PUSH_RECEIVER, 'EMP_NO'),
+		topic_id = this.gfn_isEmpty(topic_id) ? this.ds_empInfo.lookup('EMP_NM', this.PUSH_RECEIVER, 'OFFICE_NO') : topic_id;
+	
+	this.ds_push.setColumn(0, 'topic_type', 'MSG');
+	this.ds_push.setColumn(0, 'topic_id', topic_id);
+	this.ds_push.setColumn(0, 'content', this._win.callMethod("getData"));
+	this.ds_push.setColumn(0, 'reg_time', str_time);
+
+	//alert(this.ds_push.saveXML());
+	
+	this.transaction("trPush", "svcUrl::xpush/sendMessage", "input=ds_push", "", "", "fnCallback");
+};
+/*******************************************************************************************************************************
+ * Callback 영역 (Transaction, popup, message..)
+*******************************************************************************************************************************/
+ // function : 처리콜백 함수
+this.fnCallback = function(svcID,errorCode,errorMsg)
+{
+	var app = nexacro.getApplication();
+	
+	switch(svcID)
+	{
+		case "trPush":		
+			alert((app.langCode == "ko") ? "푸시메시지 전송!" : "Push message sent successfully!");
+			break;
+	}	
+};
+
+/*******************************************************************************************************************************
+ * 사용자 Function 영역
+*******************************************************************************************************************************/
+
+/*******************************************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+*******************************************************************************************************************************/
+
+/*
+ *	CKEditor
+ */ 
+this.WebBrowser00_onloadcompleted = function(obj:nexacro.WebBrowser,e:nexacro.WebLoadCompEventInfo)
+{
+	this._win = this.WebBrowser00.getProperty('window');	
+};
+this.btnSetData_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this._win.callMethod("setData", this.TextArea00.value);	
+};
+this.btnGetData_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.TextArea00.set_value(this._win.callMethod("getData"));
+};
+
+/*
+ *	Tree Grid event
+ */ 
+this.Grid00_oncellposchanged = function(obj:nexacro.Grid,e:nexacro.GridSelectEventInfo)
+{
+	var OFFICE_NO = this.ds_empInfo.getColumn(e.row, "OFFICE_NO");
+	var EMP_NO    = this.ds_empInfo.getColumn(e.row, "EMP_NO");
+	var EMP_NM    = this.ds_empInfo.getColumn(e.row, "EMP_NM");
+	
+	this.PUSH_RECEIVER = EMP_NM;
+	this.edt_receiver.set_value(EMP_NM);
+};
+
+/*
+ *	전송 버튼 클릭
+ */ 
+this.btn_send_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.sendPush();
+};
+
+this.xpush_msg_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	
+};
+]]></Script>
+    <Objects>
+      <Dataset id="ds_push">
+        <ColumnInfo>
+          <Column id="topic_type" type="STRING" size="256"/>
+          <Column id="topic_id" type="STRING" size="256"/>
+          <Column id="title" type="STRING" size="32"/>
+          <Column id="content" type="STRING" size="2048"/>
+          <Column id="sender" type="STRING" size="32"/>
+          <Column id="reg_time" type="STRING" size="32"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="title">푸시 메시지 전송</Col>
+            <Col id="content"/>
+            <Col id="sender"/>
+            <Col id="reg_time"/>
+            <Col id="topic_type"/>
+            <Col id="topic_id"/>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_empInfo">
+        <ColumnInfo>
+          <Column id="treelvl" type="STRING" size="256"/>
+          <Column id="OFFICE_NO" type="STRING" size="256"/>
+          <Column id="EMP_NO" type="STRING" size="256"/>
+          <Column id="EMP_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="treelvl">0</Col>
+            <Col id="OFFICE_NO">1000</Col>
+            <Col id="EMP_NM">경영분석팀</Col>
+          </Row>
+          <Row>
+            <Col id="OFFICE_NO">1000</Col>
+            <Col id="EMP_NO">123</Col>
+            <Col id="EMP_NM">[경영분석팀] 이팀장</Col>
+            <Col id="treelvl">1</Col>
+          </Row>
+          <Row>
+            <Col id="OFFICE_NO">1000</Col>
+            <Col id="EMP_NO">234</Col>
+            <Col id="EMP_NM">[경영분석팀] 박수석</Col>
+            <Col id="treelvl">1</Col>
+          </Row>
+          <Row>
+            <Col id="treelvl">0</Col>
+            <Col id="OFFICE_NO">2000</Col>
+            <Col id="EMP_NM">상품개발팀</Col>
+          </Row>
+          <Row>
+            <Col id="OFFICE_NO">2000</Col>
+            <Col id="EMP_NO">345</Col>
+            <Col id="EMP_NM">[상품개발팀] 이수석</Col>
+            <Col id="treelvl">1</Col>
+          </Row>
+          <Row>
+            <Col id="OFFICE_NO">2000</Col>
+            <Col id="EMP_NO">456</Col>
+            <Col id="EMP_NM">[상품개발팀] 조선임</Col>
+            <Col id="treelvl">1</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

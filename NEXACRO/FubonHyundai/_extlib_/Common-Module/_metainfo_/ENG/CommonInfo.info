@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MetaInfo version="2.0">
+  <EnumInfo id="autoselecttypeenum">
+    <Enum name=""/>
+    <Enum name="day" description=""/>
+    <Enum name="date" description=""/>
+  </EnumInfo>
+</MetaInfo>

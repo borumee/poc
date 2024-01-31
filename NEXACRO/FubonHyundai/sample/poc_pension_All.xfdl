@@ -1,0 +1,524 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="poc_pension_All" width="1280" height="720" titletext="DataObject X-api 성능측정" onload="poc_pension_onload">
+    <Layouts>
+      <Layout height="720" width="1280">
+        <Static id="Static00" taborder="0" text="연금저축 거래 정보 조회" left="10" top="10" height="37" right="10"/>
+        <Div id="div_search" taborder="1" text="Div00" left="10" top="45" height="75" right="10" background="#cccccc">
+          <Layouts>
+            <Layout>
+              <Button id="btn_search" taborder="0" text="조회" top="14" width="120" height="50" right="143" onclick="div_search_btn_search_onclick"/>
+              <Button id="btn_clear" taborder="1" text="새화면" top="14" width="120" height="50" right="10" onclick="div_search_btn_clear_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Tab id="Tab00" taborder="2" tabindex="0" left="10" top="130" right="10" bottom="10">
+          <Tabpages>
+            <Tabpage id="Tabpage1" text="Nexacro X-API">
+              <Layouts>
+                <Layout>
+                  <Grid id="Grid00" taborder="0" left="10" top="20" right="10" bottom="10" binddataset="ds_pension0">
+                    <Formats>
+                      <Format id="default">
+                        <Columns>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                        </Columns>
+                        <Rows>
+                          <Row band="head" size="24"/>
+                          <Row size="24"/>
+                        </Rows>
+                        <Band id="head">
+                          <Cell text="CTMN_METD_COD"/>
+                          <Cell col="1" text="STD_INTE_SUM"/>
+                          <Cell col="2" text="TRSF_RSN_YMD"/>
+                          <Cell col="3" text="TRSF_XC_SCTN"/>
+                          <Cell col="4" text="STD_2_INTE"/>
+                          <Cell col="5" text="ACNT_INSN_YMD"/>
+                          <Cell col="6" text="CTMN_METD_COD_NAM"/>
+                          <Cell col="7" text="LAST_PYM_YYMM"/>
+                          <Cell col="8" text="DPS_CORS_COD_NAM"/>
+                          <Cell col="9" text="USE_YN"/>
+                          <Cell col="10" text="BZ_NAM"/>
+                          <Cell col="11" text="PLYNO"/>
+                          <Cell col="12" text="GSPRE"/>
+                          <Cell col="13" text="ITM_NAM"/>
+                          <Cell col="14" text="TADT"/>
+                          <Cell col="15" text="TRSF_TGT_AMT"/>
+                          <Cell col="16" text="PYM_ORD"/>
+                          <Cell col="17" text="STD_1_INTE"/>
+                          <Cell col="18" text="NRPYM_NBZEXP_STD_INTE"/>
+                          <Cell col="19" text="TRSF_ST"/>
+                          <Cell col="20" text="AD_DYOTRM"/>
+                          <Cell col="21" text="OTR_AMT"/>
+                          <Cell col="22" text="NRPYM_NBZEXP"/>
+                          <Cell col="23" text="AD_INTE"/>
+                          <Cell col="24" text="STD_2_RITR"/>
+                          <Cell col="25" text="PRDCD"/>
+                          <Cell col="26" text="TRTPRE"/>
+                          <Cell col="27" text="ORGT_YMD"/>
+                          <Cell col="28" text="RNUM"/>
+                          <Cell col="29" text="DLNG_AMT"/>
+                          <Cell col="30" text="WRK_YMD"/>
+                          <Cell col="31" text="DLNG_OFC_COD"/>
+                          <Cell col="32" text="DPS_CORS_COD"/>
+                          <Cell col="33" text="STD_1_RITR"/>
+                          <Cell col="34" text="FDCD"/>
+                          <Cell col="35" text="MPPREM"/>
+                        </Band>
+                        <Band id="body">
+                          <Cell text="bind:CTMN_METD_COD"/>
+                          <Cell col="1" text="bind:STD_INTE_SUM"/>
+                          <Cell col="2" text="bind:TRSF_RSN_YMD"/>
+                          <Cell col="3" text="bind:TRSF_XC_SCTN"/>
+                          <Cell col="4" text="bind:STD_2_INTE"/>
+                          <Cell col="5" text="bind:ACNT_INSN_YMD"/>
+                          <Cell col="6" text="bind:CTMN_METD_COD_NAM"/>
+                          <Cell col="7" text="bind:LAST_PYM_YYMM"/>
+                          <Cell col="8" text="bind:DPS_CORS_COD_NAM"/>
+                          <Cell col="9" text="bind:USE_YN"/>
+                          <Cell col="10" text="bind:BZ_NAM"/>
+                          <Cell col="11" text="bind:PLYNO"/>
+                          <Cell col="12" text="bind:GSPRE"/>
+                          <Cell col="13" text="bind:ITM_NAM"/>
+                          <Cell col="14" text="bind:TADT"/>
+                          <Cell col="15" text="bind:TRSF_TGT_AMT"/>
+                          <Cell col="16" text="bind:PYM_ORD"/>
+                          <Cell col="17" text="bind:STD_1_INTE"/>
+                          <Cell col="18" text="bind:NRPYM_NBZEXP_STD_INTE"/>
+                          <Cell col="19" text="bind:TRSF_ST"/>
+                          <Cell col="20" text="bind:AD_DYOTRM"/>
+                          <Cell col="21" text="bind:OTR_AMT"/>
+                          <Cell col="22" text="bind:NRPYM_NBZEXP"/>
+                          <Cell col="23" text="bind:AD_INTE"/>
+                          <Cell col="24" text="bind:STD_2_RITR"/>
+                          <Cell col="25" text="bind:PRDCD"/>
+                          <Cell col="26" text="bind:TRTPRE"/>
+                          <Cell col="27" text="bind:ORGT_YMD"/>
+                          <Cell col="28" text="bind:RNUM"/>
+                          <Cell col="29" text="bind:DLNG_AMT"/>
+                          <Cell col="30" text="bind:WRK_YMD"/>
+                          <Cell col="31" text="bind:DLNG_OFC_COD"/>
+                          <Cell col="32" text="bind:DPS_CORS_COD"/>
+                          <Cell col="33" text="bind:STD_1_RITR"/>
+                          <Cell col="34" text="bind:FDCD"/>
+                          <Cell col="35" text="bind:MPPREM"/>
+                        </Band>
+                      </Format>
+                    </Formats>
+                  </Grid>
+                  <Static id="sta_searchTime" taborder="1" text="서버/네트워크시간 &lt;fc v='#d7381e'&gt;0&lt;/fc&gt; 초, 렌더링시간 &lt;fc v='#d7381e'&gt;0&lt;/fc&gt; 초, 총 &lt;fc v='#d7381e'&gt;0&lt;/fc&gt; 건" left="10" top="0" height="20" right="10" textAlign="right" usedecorate="true"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage2" text="Json 통신">
+              <Layouts>
+                <Layout>
+                  <Grid id="Grid00" taborder="0" left="10" top="20" right="10" bottom="10" binddataset="ds_pension1">
+                    <Formats>
+                      <Format id="default">
+                        <Columns>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                        </Columns>
+                        <Rows>
+                          <Row band="head" size="24"/>
+                          <Row size="24"/>
+                        </Rows>
+                        <Band id="head">
+                          <Cell text="CTMN_METD_COD"/>
+                          <Cell col="1" text="STD_INTE_SUM"/>
+                          <Cell col="2" text="TRSF_RSN_YMD"/>
+                          <Cell col="3" text="TRSF_XC_SCTN"/>
+                          <Cell col="4" text="STD_2_INTE"/>
+                          <Cell col="5" text="ACNT_INSN_YMD"/>
+                          <Cell col="6" text="CTMN_METD_COD_NAM"/>
+                          <Cell col="7" text="LAST_PYM_YYMM"/>
+                          <Cell col="8" text="DPS_CORS_COD_NAM"/>
+                          <Cell col="9" text="USE_YN"/>
+                          <Cell col="10" text="BZ_NAM"/>
+                          <Cell col="11" text="PLYNO"/>
+                          <Cell col="12" text="GSPRE"/>
+                          <Cell col="13" text="ITM_NAM"/>
+                          <Cell col="14" text="TADT"/>
+                          <Cell col="15" text="TRSF_TGT_AMT"/>
+                          <Cell col="16" text="PYM_ORD"/>
+                          <Cell col="17" text="STD_1_INTE"/>
+                          <Cell col="18" text="NRPYM_NBZEXP_STD_INTE"/>
+                          <Cell col="19" text="TRSF_ST"/>
+                          <Cell col="20" text="OTR_AMT"/>
+                          <Cell col="21" text="NRPYM_NBZEXP"/>
+                          <Cell col="22" text="STD_2_RITR"/>
+                          <Cell col="23" text="PRDCD"/>
+                          <Cell col="24" text="TRTPRE"/>
+                          <Cell col="25" text="ORGT_YMD"/>
+                          <Cell col="26" text="DLNG_AMT"/>
+                          <Cell col="27" text="WRK_YMD"/>
+                          <Cell col="28" text="DLNG_OFC_COD"/>
+                          <Cell col="29" text="DPS_CORS_COD"/>
+                          <Cell col="30" text="STD_1_RITR"/>
+                          <Cell col="31" text="FDCD"/>
+                          <Cell col="32" text="MPPREM"/>
+                        </Band>
+                        <Band id="body">
+                          <Cell text="bind:CTMN_METD_COD"/>
+                          <Cell col="1" text="bind:STD_INTE_SUM"/>
+                          <Cell col="2" text="bind:TRSF_RSN_YMD"/>
+                          <Cell col="3" text="bind:TRSF_XC_SCTN"/>
+                          <Cell col="4" text="bind:STD_2_INTE"/>
+                          <Cell col="5" text="bind:ACNT_INSN_YMD"/>
+                          <Cell col="6" text="bind:CTMN_METD_COD_NAM"/>
+                          <Cell col="7" text="bind:LAST_PYM_YYMM"/>
+                          <Cell col="8" text="bind:DPS_CORS_COD_NAM"/>
+                          <Cell col="9" text="bind:USE_YN"/>
+                          <Cell col="10" text="bind:BZ_NAM"/>
+                          <Cell col="11" text="bind:PLYNO"/>
+                          <Cell col="12" text="bind:GSPRE"/>
+                          <Cell col="13" text="bind:ITM_NAM"/>
+                          <Cell col="14" text="bind:TADT"/>
+                          <Cell col="15" text="bind:TRSF_TGT_AMT"/>
+                          <Cell col="16" text="bind:PYM_ORD"/>
+                          <Cell col="17" text="bind:STD_1_INTE"/>
+                          <Cell col="18" text="bind:NRPYM_NBZEXP_STD_INTE"/>
+                          <Cell col="19" text="bind:TRSF_ST"/>
+                          <Cell col="20" text="bind:OTR_AMT"/>
+                          <Cell col="21" text="bind:NRPYM_NBZEXP"/>
+                          <Cell col="22" text="bind:STD_2_RITR"/>
+                          <Cell col="23" text="bind:PRDCD"/>
+                          <Cell col="24" text="bind:TRTPRE"/>
+                          <Cell col="25" text="bind:ORGT_YMD"/>
+                          <Cell col="26" text="bind:DLNG_AMT"/>
+                          <Cell col="27" text="bind:WRK_YMD"/>
+                          <Cell col="28" text="bind:DLNG_OFC_COD"/>
+                          <Cell col="29" text="bind:DPS_CORS_COD"/>
+                          <Cell col="30" text="bind:STD_1_RITR"/>
+                          <Cell col="31" text="bind:FDCD"/>
+                          <Cell col="32" text="bind:MPPREM"/>
+                        </Band>
+                      </Format>
+                    </Formats>
+                  </Grid>
+                  <Static id="sta_searchTime" taborder="1" text="서버/네트워크시간 &lt;fc v='#d7381e'&gt;0&lt;/fc&gt; 초, 렌더링시간 &lt;fc v='#d7381e'&gt;0&lt;/fc&gt; 초, 총 &lt;fc v='#d7381e'&gt;0&lt;/fc&gt; 건" left="10" top="0" height="20" right="10" textAlign="right" usedecorate="true"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+          </Tabpages>
+        </Tab>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_search">
+        <ColumnInfo>
+          <Column id="BZ_NAM" type="STRING" size="256"/>
+          <Column id="FDCD" type="STRING" size="256"/>
+          <Column id="TRSF_XC_SCTN" type="STRING" size="256"/>
+          <Column id="pageIndex" type="STRING" size="256"/>
+          <Column id="pageSize" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="FDCD"/>
+            <Col id="pageIndex">1</Col>
+            <Col id="pageSize">500</Col>
+            <Col id="BZ_NAM"/>
+            <Col id="TRSF_XC_SCTN"/>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_pension0">
+        <ColumnInfo>
+          <Column id="CTMN_METD_COD" type="string" size="256"/>
+          <Column id="STD_INTE_SUM" type="string" size="256"/>
+          <Column id="TRSF_RSN_YMD" type="string" size="256"/>
+          <Column id="TRSF_XC_SCTN" type="string" size="256"/>
+          <Column id="STD_2_INTE" type="string" size="256"/>
+          <Column id="ACNT_INSN_YMD" type="string" size="256"/>
+          <Column id="CTMN_METD_COD_NAM" type="string" size="256"/>
+          <Column id="LAST_PYM_YYMM" type="string" size="256"/>
+          <Column id="DPS_CORS_COD_NAM" type="string" size="256"/>
+          <Column id="USE_YN" type="string" size="256"/>
+          <Column id="BZ_NAM" type="string" size="256"/>
+          <Column id="PLYNO" type="string" size="256"/>
+          <Column id="GSPRE" type="string" size="256"/>
+          <Column id="ITM_NAM" type="string" size="256"/>
+          <Column id="TADT" type="string" size="256"/>
+          <Column id="TRSF_TGT_AMT" type="string" size="256"/>
+          <Column id="PYM_ORD" type="string" size="256"/>
+          <Column id="STD_1_INTE" type="string" size="256"/>
+          <Column id="NRPYM_NBZEXP_STD_INTE" type="string" size="256"/>
+          <Column id="TRSF_ST" type="string" size="256"/>
+          <Column id="AD_DYOTRM" type="string" size="256"/>
+          <Column id="OTR_AMT" type="string" size="256"/>
+          <Column id="NRPYM_NBZEXP" type="string" size="256"/>
+          <Column id="AD_INTE" type="string" size="256"/>
+          <Column id="STD_2_RITR" type="string" size="256"/>
+          <Column id="PRDCD" type="string" size="256"/>
+          <Column id="TRTPRE" type="string" size="256"/>
+          <Column id="ORGT_YMD" type="string" size="256"/>
+          <Column id="RNUM" type="string" size="256"/>
+          <Column id="DLNG_AMT" type="string" size="256"/>
+          <Column id="WRK_YMD" type="string" size="256"/>
+          <Column id="DLNG_OFC_COD" type="string" size="256"/>
+          <Column id="DPS_CORS_COD" type="string" size="256"/>
+          <Column id="STD_1_RITR" type="string" size="256"/>
+          <Column id="FDCD" type="string" size="256"/>
+          <Column id="MPPREM" type="string" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_pension1" onload="ds_pension1_onload" binddataobject="DataObject00" dataobjectpath="$.DataContainer.DS_TRS_LIST[*]">
+        <ColumnInfo>
+          <Column id="PLYNO" datapath="@.PLYNO" type="STRING" size="256"/>
+          <Column id="PRDCD" datapath="@.PRDCD" type="STRING" size="256"/>
+          <Column id="FDCD" datapath="@.FDCD" type="STRING" size="256"/>
+          <Column id="ITM_NAM" datapath="@.ITM_NAM" type="STRING" size="256"/>
+          <Column id="ORGT_YMD" datapath="@.ORGT_YMD" type="STRING" size="256"/>
+          <Column id="ACNT_INSN_YMD" datapath="@.ACNT_INSN_YMD" type="STRING" size="256"/>
+          <Column id="TRSF_RSN_YMD" datapath="@.TRSF_RSN_YMD" type="STRING" size="256"/>
+          <Column id="TADT" datapath="@.TADT" type="STRING" size="256"/>
+          <Column id="TRSF_XC_SCTN" datapath="@.TRSF_XC_SCTN" type="STRING" size="256"/>
+          <Column id="DLNG_OFC_COD" datapath="@.DLNG_OFC_COD" type="STRING" size="256"/>
+          <Column id="MPPREM" datapath="@.MPPREM" type="STRING" size="256"/>
+          <Column id="TRTPRE" datapath="@.TRTPRE" type="STRING" size="256"/>
+          <Column id="AD_INTE" datapath="@.AD_INTE" type="STRING" size="256"/>
+          <Column id="AD_DYOTRM" datapath="@.AD_DYOTRM" type="STRING" size="256"/>
+          <Column id="DLNG_AMT" datapath="@.DLNG_AMT" type="STRING" size="256"/>
+          <Column id="OTR_AMT" datapath="@.OTR_AMT" type="STRING" size="256"/>
+          <Column id="TRSF_TGT_AMT" datapath="@.TRSF_TGT_AMT" type="STRING" size="256"/>
+          <Column id="STD_1_INTE" datapath="@.STD_1_INTE" type="STRING" size="256"/>
+          <Column id="STD_2_INTE" datapath="@.STD_2_INTE" type="STRING" size="256"/>
+          <Column id="STD_1_RITR" datapath="@.STD_1_RITR" type="STRING" size="256"/>
+          <Column id="STD_2_RITR" datapath="@.STD_2_RITR" type="STRING" size="256"/>
+          <Column id="STD_INTE_SUM" datapath="@.STD_INTE_SUM" type="STRING" size="256"/>
+          <Column id="LAST_PYM_YYMM" datapath="@.LAST_PYM_YYMM" type="STRING" size="256"/>
+          <Column id="PYM_ORD" datapath="@.PYM_ORD" type="STRING" size="256"/>
+          <Column id="GSPRE" datapath="@.GSPRE" type="STRING" size="256"/>
+          <Column id="DPS_CORS_COD" datapath="@.DPS_CORS_COD" type="STRING" size="256"/>
+          <Column id="DPS_CORS_COD_NAM" datapath="@.DPS_CORS_COD_NAM" type="STRING" size="256"/>
+          <Column id="NRPYM_NBZEXP" datapath="@.NRPYM_NBZEXP" type="STRING" size="256"/>
+          <Column id="NRPYM_NBZEXP_STD_INTE" datapath="@.NRPYM_NBZEXP_STD_INTE" type="STRING" size="256"/>
+          <Column id="CTMN_METD_COD" datapath="@.CTMN_METD_COD" type="STRING" size="256"/>
+          <Column id="CTMN_METD_COD_NAM" datapath="@.CTMN_METD_COD_NAM" type="STRING" size="256"/>
+          <Column id="TRSF_ST" datapath="@.TRSF_ST" type="STRING" size="256"/>
+          <Column id="취소구분" datapath="@.취소구분" type="STRING" size="256"/>
+          <Column id="WRK_YMD" datapath="@.WRK_YMD" type="STRING" size="256"/>
+          <Column id="USE_YN" datapath="@.USE_YN" type="STRING" size="256"/>
+          <Column id="BZ_NAM" datapath="@.BZ_NAM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <DataObject id="DataObject00" onsuccess="DataObject00_onsuccess" onerror="DataObject00_onerror">
+        <Contents><![CDATA[{
+}]]></Contents>
+      </DataObject>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="div_search.form.cmb_fund" propid="value" datasetid="ds_search" columnid="FDCD"/>
+      <BindItem id="item1" compid="div_search.form.cmb_division" propid="value" datasetid="ds_search" columnid="TRSF_XC_SCTN"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[/**
+*  @FileName 	poc_pension.xfdl
+*  @Creator 	TOBESOFT
+*  @CreateDate 	2023/02/22
+*  @Desction   
+************** 소스 수정 이력 ***********************************************
+* Date					Modifier					Description
+*******************************************************************************
+* 2023/02/22			TOBESOFT					최초생성
+*******************************************************************************
+*/
+
+/*******************************************************************************************************************************
+ * FORM 변수 선언 영역
+*******************************************************************************************************************************/
+
+/*******************************************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose..)
+*******************************************************************************************************************************/
+this.poc_pension_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{	
+};
+
+/*******************************************************************************************************************************
+ * Transaction 서비스호출 처리 영역
+*******************************************************************************************************************************/
+
+this.XAPI_search = function()
+{
+	this.ds_pension0.clearData();
+	
+	this.Tab00.Tabpage1.form.sta_searchTime.set_text("서버/네트워크시간 <fc v='#d7381e'>0</fc> 초, 렌더링시간 <fc v='#d7381e'>0</fc> 초, 조회건수 <fc v='#d7381e'>0</fc> 건");
+
+	var strSvcId = "PENSION_XAPI",
+		strSvcUrl = "http://localhost:8080/selectPensionsaveListAllNexacro.do",
+		inData = "",
+		outData = "ds_pension0=output",
+		strArg = "",
+		callBackFnc = "fnCallback",
+		isAsync = true,
+		nDataType = 2;	//ssv
+	
+	this.starttime = new Date();
+	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync, nDataType);
+	
+};
+
+this.Json_search = function()
+{
+	this.ds_pension1.clearData();
+	
+	this.Tab00.Tabpage2.form.sta_searchTime.set_text("서버/네트워크시간 <fc v='#d7381e'>0</fc> 초, 렌더링시간 <fc v='#d7381e'>0</fc> 초, 조회건수 <fc v='#d7381e'>0</fc> 건");
+	
+	
+	this.starttime = new Date();
+	var json_param = {
+		"httpheader" : {"Content-Type": "application/json; charset=UTF-8"},
+		"async" : true
+	}
+	this.DataObject00.request("PENSION_JSON", "GET", "http://localhost:8080/data/연금저축.json", json_param);
+};
+
+
+
+
+/*******************************************************************************************************************************
+ * Callback 영역 (Transaction, popup, message..)
+*******************************************************************************************************************************/
+
+this.fnCallback = function(svcId, errCode, errMsg, elapsedtime)
+{
+	if (errCode < 0) {
+		alert(errMsg);
+	} else {
+		if (svcId == "PENSION_XAPI") {
+			var totalDataCount = this.ds_pension0.rowcount;
+			var endtime = new Date();
+			var totaltime = nexacro.round((endtime - this.starttime) / 1000, 3);
+			this.Tab00.Tabpage1.form.sta_searchTime.set_text("서버/네트워크시간 <fc v='#d7381e'>" + elapsedtime + "</fc> 초, 렌더링시간 <fc v='#d7381e'>" + nexacro.round(totaltime - elapsedtime, 3) + "</fc> 초, 총 <fc v='#d7381e'>" +  this.gfn_appendComma(totalDataCount) + "</fc>" + " 건")
+		} 
+		else {
+		
+		}
+	}
+}
+
+/*
+DataObject 통신 response events ...
+*/
+// 1. DataObject - onsuccess | onerror
+this.DataObject00_onsuccess = function(obj:nexacro.DataObject,e:nexacro.DataObjectEventInfo)
+{
+	// 성능측정
+	var endtime = new Date();
+	this.elapsedtime = nexacro.round((endtime - this.starttime) / 1000, 3);
+};
+this.DataObject00_onerror = function(obj:nexacro.DataObject,e:nexacro.DataObjectErrorEventInfo)
+{
+	// 성능측정
+	var endtime = new Date();
+	this.elapsedtime = nexacro.round((endtime - this.starttime) / 1000, 3);
+};
+// 2. Dataset - onload
+this.ds_pension1_onload = function(obj:nexacro.NormalDataset,e:nexacro.DSLoadEventInfo)
+{	
+	var totalDataCount = this.ds_pension1.rowcount;
+	var endtime = new Date();
+	var totaltime = nexacro.round((endtime - this.starttime) / 1000, 3);
+	
+	this.Tab00.Tabpage2.form.sta_searchTime.set_text("서버/네트워크시간 <fc v='#d7381e'>" + this.elapsedtime + "</fc> 초, 렌더링시간 <fc v='#d7381e'>" + nexacro.round(totaltime - this.elapsedtime, 3) + "</fc> 초, 총 <fc v='#d7381e'>" +  this.gfn_appendComma(totalDataCount) + "</fc>" + " 건")
+};
+
+/*******************************************************************************************************************************
+ * 사용자 Function 영역
+*******************************************************************************************************************************/
+
+/*******************************************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+*******************************************************************************************************************************/
+this.div_search_btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var tabIdx = this.Tab00.tabindex;
+	if(tabIdx == 0) {
+		trace("X-API SSV 통신")
+		this.XAPI_search();	
+	} 
+	else if (tabIdx == 1) {
+		trace("Json 통신")
+		this.Json_search();	
+	}
+};
+
+this.div_search_btn_clear_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.ds_pension0.clearData();
+	this.ds_pension1.clearData();
+};
+
+
+
+]]></Script>
+  </Form>
+</FDL>

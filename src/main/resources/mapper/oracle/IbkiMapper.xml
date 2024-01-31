@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ibkiMapper">
+    
+    <select id="getPensionCount" parameterType="hashMap" resultType="java.util.Map">
+    	SELECT COUNT(*) AS totalDataCount
+    	FROM TB_PENSION_SAVE
+		WHERE 1=1
+	      <if test='BZ_NAM != null and BZ_NAM neq ""'>	  
+	      	AND BZ_NAM = #{BZ_NAM}			
+	      </if>
+	      <if test='FDCD != null and FDCD neq ""'>		  
+	      	AND FDCD = #{FDCD}				
+	      </if>
+	      <if test='TRSF_XC_SCTN != null and TRSF_XC_SCTN neq ""'>
+	      	AND TRSF_XC_SCTN = #{TRSF_XC_SCTN}
+	      </if>		
+    	
+    </select>
+    
+    <select id="selectPensionsaveList" parameterType="hashMap" resultType="java.util.Map" fetchSize="1000">
+		<![CDATA[
+			SELECT * 
+			FROM 
+				( 
+					SELECT ROWNUM AS RNUM, Z.* 
+					FROM 
+						( 
+							SELECT * 
+							FROM TB_PENSION_SAVE
+							WHERE 1=1
+		]]>
+						      <if test='BZ_NAM != null and BZ_NAM neq ""'>	  
+						      	AND BZ_NAM = #{BZ_NAM}			
+						      </if>
+						      <if test='FDCD != null and FDCD neq ""'>		  
+						      	AND FDCD = #{FDCD}				
+						      </if>
+						      <if test='TRSF_XC_SCTN != null and TRSF_XC_SCTN neq ""'>
+						      	AND TRSF_XC_SCTN = #{TRSF_XC_SCTN}
+						      </if>					  
+		<![CDATA[    
+						) Z 
+					WHERE ROWNUM <= #{num_end_row} 
+				) 
+			WHERE #{num_start_row} <= RNUM
+		]]>
+    </select>
+        
+    <select id="selectPensionsaveListAll" resultType="java.util.Map" fetchSize="10000">
+		SELECT * 
+		FROM TB_PENSION_SAVE
+		WHERE 1=1
+    </select>
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="userMapper">
+    
+    <select id="selectSampleList" resultType="java.util.HashMap">
+      SELECT
+        *
+      FROM TESTTABLE2
+    </select>
+    
+    <insert id="insertSample" parameterType="java.util.HashMap">
+    	INSERT INTO TESTTABLE2
+    		(COLUMN0, COLUMN1, COLUMN2, COLUMN3, COLUMN4)
+    	VALUES
+    		(#{COLUMN0,jdbcType=VARCHAR}, #{COLUMN1,jdbcType=VARCHAR}, #{COLUMN2,jdbcType=VARCHAR}, #{COLUMN3,jdbcType=VARCHAR}, #{COLUMN4,jdbcType=VARCHAR})
+    </insert>
+    
+    <update id="updateSample" parameterType="java.util.Map">
+      UPDATE TESTTABLE2
+      SET COLUMN0=#{COLUMN0,jdbcType=VARCHAR}
+        , COLUMN1=#{COLUMN1,jdbcType=VARCHAR}
+        , COLUMN2=#{COLUMN2,jdbcType=VARCHAR}
+        , COLUMN3=#{COLUMN3,jdbcType=VARCHAR}
+        , COLUMN4=#{COLUMN4,jdbcType=VARCHAR}
+          WHERE COLUMN0=#{COLUMN0,jdbcType=VARCHAR}
+  	</update>
+  	
+  	<delete id="deleteSample" parameterType="java.util.Map">
+      DELETE FROM TESTTABLE2
+      WHERE COLUMN0=#{COLUMN0,jdbcType=VARCHAR}
+  	</delete>
+</mapper>

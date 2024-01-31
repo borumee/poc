@@ -1,0 +1,34 @@
+﻿{
+	"name": "Common-Module",
+	"moduletype": "component",
+	"version": "1.0",
+	"minnexacroversion": "21.0.0.100",
+	"description": "",
+	"license": "",
+	"objInfo": [	
+    "Common-Module/_metainfo_/CommonInfo.info",
+    "Common-Module/_metainfo_/FromToCalendar.info",
+    "Common-Module/_metainfo_/BusinessCalendar.info",
+    "Common-Module/_metainfo_/TransactionDateCombo.info",
+    "Common-Module/_metainfo_/WorkplaceSearch.info",
+    "Common-Module/_metainfo_/MultiCombo.info",
+    "Common-Module/_metainfo_/GroupWorkplaceSearch.info"
+	],
+	"scripts": [
+    "Common-Module/Common-Module.js"
+	],
+	"designscripts": [
+    "Common-Module/DesignCommon-Module.js"
+	],
+	"help": "",	
+	"xcss": "Common-Module/_xcss_/Common-Module.xcss",
+	"images": "Common-Module/_images_/",	
+	"licensefiles": "",
+	"icons": "",
+	"userfolder": [
+
+	],
+	"contentseditor": [
+
+	]
+}

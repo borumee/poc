@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="poc01" width="1050" height="850" titletext="New Form">
+    <Layouts>
+      <Layout height="850" width="1050">
+        <Static id="sta04_00" taborder="0" top="0" width="30" cssclass="sta_WF_GSize" visible="false" text="W30" right="0" bottom="0"/>
+        <Static id="Static00" taborder="1" text="고객정보 통합조회" left="6" top="30" width="190" height="30" cssclass="sta_WF_Title1st"/>
+        <Div id="Div00" taborder="2" left="6" top="74" height="80" right="30" cssclass="div_WF_SearchBox">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="고객번호" left="20" top="21" width="57" height="36" cssclass="sta_WF_SchLabel"/>
+              <Edit id="Edit00" taborder="1" left="Static00:10" top="21" width="160" height="36"/>
+              <Button id="Button00" taborder="3" text="조회" top="21" width="70" height="36" cssclass="btn_WF_search" right="30"/>
+              <Edit id="Edit00_00" taborder="2" left="Edit00:3" top="21" width="160" height="36"/>
+            </Layout>
+            <Layout name="Layout0">
+              <Edit id="Edit00" width="160" left="Static00:10" top="21" height="36"/>
+              <Edit id="Edit00_00" width="160" left="Edit00:3" top="21" height="36"/>
+            </Layout>
+            <Layout name="Layout1">
+              <Edit id="Edit00_00" left="Edit00:3" top="21" height="36" right="Button00:4"/>
+              <Edit id="Edit00" width="28.04%" left="Static00:10" top="21" height="36"/>
+              <Button id="Button00" top="21" width="70" height="36" right="20"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="Button00" taborder="3" left="46.48%" top="153" width="66" height="22" cssclass="btn_WF_BoxUp"/>
+        <Tab id="Tab00" taborder="4" tabindex="0" left="6" top="185" height="250" right="30" tabbuttonheight="32" tabbuttonstartgap="1">
+          <Tabpages>
+            <Tabpage id="Tabpage1" text="고객기본">
+              <Layouts>
+                <Layout>
+                  <Static id="Static00" taborder="2" text="고객기본정보1" left="20" top="20" width="90" height="16" cssclass="sta_WF_GroupTitle"/>
+                  <Div id="Div00" taborder="0" left="20" top="Static00:4" height="60" right="20" cssclass="div_WF_Groupbox">
+                    <Layouts>
+                      <Layout>
+                        <Static id="Static00" taborder="0" text="고객주민번호 : " left="26" top="15" width="100" height="30" cssclass="sta_WF_Title3rd"/>
+                        <Static id="Static01" taborder="1" text="123456-1******" left="Static00:0" top="15" width="95" height="30"/>
+                        <Static id="Static00_00" taborder="2" text="고객한글성명 : " left="256" top="15" width="100" height="30" cssclass="sta_WF_Title3rd"/>
+                        <Static id="Static01_00" taborder="3" text="홍길동" left="Static00_00:0" top="15" width="45" height="30"/>
+                        <Static id="Static00_00_00" taborder="4" text="고객영문성명 : " left="436" top="15" width="100" height="30" cssclass="sta_WF_Title3rd"/>
+                        <Static id="Static01_00_00" taborder="5" text="Hong Gil Dong" left="Static00_00_00:0" top="15" width="100" height="30"/>
+                        <Static id="Static00_00_00_00" taborder="6" text="고객국적 : " left="671" top="15" width="75" height="30" cssclass="sta_WF_Title3rd"/>
+                        <Combo id="Combo00" taborder="7" text="Combo00" left="Static00_00_00_00:0" top="15" width="15.66%" height="30"/>
+                      </Layout>
+                      <Layout name="Layout0">
+                        <Static id="Static00_00_00" left="26" top="55" width="100" height="30"/>
+                        <Static id="Static01_00_00" left="Static00_00_00:0" top="55" width="100" height="30"/>
+                        <Static id="Static00_00_00_00" left="45.39%" top="55" width="75" height="30"/>
+                        <Combo id="Combo00" left="Static00_00_00_00:0" top="55" height="30" right="30"/>
+                        <Static id="Static00_00" left="45.39%" top="15" width="100" height="30"/>
+                        <Static id="Static01_00" left="Static00_00:0" top="15" width="45" height="30"/>
+                      </Layout>
+                      <Layout name="Layout1">
+                        <Static id="Static00_00" left="30" top="55" width="100" height="30"/>
+                        <Static id="Static01_00" left="Static00_00:0" top="55" width="45" height="30"/>
+                        <Static id="Static00_00_00" left="30" top="95" width="100" height="30"/>
+                        <Static id="Static01_00_00" left="Static00_00_00:0" top="95" width="100" height="30"/>
+                        <Static id="Static00_00_00_00" left="30" top="135" width="75" height="30"/>
+                        <Combo id="Combo00" left="Static00_00_00_00:0" top="135" height="30" right="30"/>
+                        <Static id="Static00" left="30" top="15" width="100" height="30"/>
+                      </Layout>
+                    </Layouts>
+                  </Div>
+                  <Static id="Static00_00" taborder="3" text="고객기본정보2" left="20" top="Div00:10" width="90" height="16" cssclass="sta_WF_GroupTitle"/>
+                  <Div id="Div00_00" taborder="1" left="20" top="Static00_00:4" height="60" right="20" cssclass="div_WF_Groupbox">
+                    <Layouts>
+                      <Layout>
+                        <Static id="Static00" taborder="0" text="고객직업 : " left="26" top="13" width="72" height="30" cssclass="sta_WF_Title3rd"/>
+                        <Static id="Static00_00" taborder="1" text="고객연령 : " left="256" top="15" width="72" height="30" cssclass="sta_WF_Title3rd"/>
+                        <Static id="Static01_00" taborder="2" text="30세" left="Static00_00:0" top="15" width="45" height="30"/>
+                        <Static id="Static00_00_00" taborder="3" text="운전여부 : " left="436" top="15" width="72" height="30" cssclass="sta_WF_Title3rd"/>
+                        <Static id="Static00_00_00_00" taborder="4" text="생년월일 : " left="671" top="15" width="75" height="30" cssclass="sta_WF_Title3rd"/>
+                        <Radio id="Radio00" taborder="5" left="Static00:0" top="15" width="120" height="30" innerdataset="ds_radio01" codecolumn="code" datacolumn="data" direction="vertical"/>
+                        <Radio id="Radio01" taborder="6" left="Static00_00_00:0" top="15" width="120" height="30" innerdataset="ds_radio02" codecolumn="code" datacolumn="data" direction="vertical"/>
+                        <Calendar id="Calendar00" taborder="7" left="Static00_00_00_00:0" top="15" width="15.66%" height="30"/>
+                      </Layout>
+                      <Layout name="Layout0">
+                        <Static id="Static00_00_00" left="26" top="53" width="72" height="30"/>
+                        <Static id="Static00_00_00_00" left="45.39%" top="53" width="75" height="30"/>
+                        <Radio id="Radio01" left="Static00_00_00:0" top="53" width="120" height="30"/>
+                        <Calendar id="Calendar00" left="Static00_00_00_00:0" top="53" height="30" right="30"/>
+                        <Static id="Static00_00" left="45.39%" top="15" width="72" height="30"/>
+                        <Static id="Static01_00" left="Static00_00:0" top="15" width="45" height="30"/>
+                      </Layout>
+                      <Layout name="Layout1">
+                        <Static id="Static00_00" left="30" top="53" width="72" height="30"/>
+                        <Static id="Static01_00" left="Static00_00:0" top="53" width="45" height="30"/>
+                        <Static id="Static00_00_00" left="30" top="93" width="72" height="30"/>
+                        <Static id="Static00_00_00_00" left="30" top="133" width="75" height="30"/>
+                        <Radio id="Radio01" left="Static00_00_00:0" top="93" width="120" height="30"/>
+                        <Calendar id="Calendar00" left="Static00_00_00_00:0" top="133" height="30" right="30"/>
+                        <Static id="Static00" left="30" top="13" width="72" height="30"/>
+                      </Layout>
+                    </Layouts>
+                  </Div>
+                </Layout>
+                <Layout name="Layout0">
+                  <Div id="Div00" height="100" left="20" top="Static00:4" right="20"/>
+                  <Div id="Div00_00" height="100" left="20" top="Static00_00:4" right="20"/>
+                </Layout>
+                <Layout name="Layout1">
+                  <Div id="Div00" height="185" left="20" top="Static00:4" right="20"/>
+                  <Div id="Div00_00" height="185" left="20" top="Static00_00:4" right="20"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+          </Tabpages>
+        </Tab>
+        <Tab id="Tab01" taborder="5" tabindex="0" left="6" top="Tab00:20" onchanged="Tab01_onchanged" tabbuttongap="1" tabbuttonheight="32" right="30" bottom="30">
+          <Tabpages>
+            <Tabpage id="Tabpage1" text="고객상담 패턴 그래프">
+              <Layouts>
+                <Layout>
+                  <Div id="Div00" taborder="0" text="Div00" left="10" top="27" right="10" bottom="10"/>
+                </Layout>
+                <Layout name="Layout0"/>
+                <Layout name="Layout1"/>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage2" text="콜센터상담이력">
+              <Layouts>
+                <Layout/>
+                <Layout name="Layout0"/>
+                <Layout name="Layout1"/>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage3" text="지급이력">
+              <Layouts>
+                <Layout/>
+                <Layout name="Layout0"/>
+                <Layout name="Layout1"/>
+              </Layouts>
+            </Tabpage>
+          </Tabpages>
+        </Tab>
+      </Layout>
+      <Layout height="900" mobileorientation="Landscape" name="Layout0" type="default" width="950">
+        <Tab id="Tab00" height="330" left="20" top="185" right="30"/>
+        <Tab id="Tab01" left="20" top="Tab00:20" right="30" bottom="30"/>
+        <Button id="Button00" left="45.26%" top="153" width="66" height="22"/>
+      </Layout>
+      <Layout height="1000" mobileorientation="Landscape" name="Layout1" type="default" width="480">
+        <Tab id="Tab00" height="500" left="20" top="185" right="20"/>
+        <Static id="sta04_00" width="20" top="0" right="0" bottom="0"/>
+        <Div id="Div00" right="20" left="20" top="74" height="80"/>
+        <Tab id="Tab01" right="20" left="20" top="Tab00:20" bottom="30"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_radio01">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="data" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code">0</Col>
+            <Col id="data">주부</Col>
+          </Row>
+          <Row>
+            <Col id="code">1</Col>
+            <Col id="data">직장인</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_radio02">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="data" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code">0</Col>
+            <Col id="data">운전</Col>
+          </Row>
+          <Row>
+            <Col id="code">1</Col>
+            <Col id="data">미운전</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.Tab01_onchanged = function(obj:nexacro.Tab,e:nexacro.TabIndexChangeEventInfo)
+{
+	
+};
+]]></Script>
+  </Form>
+</FDL>

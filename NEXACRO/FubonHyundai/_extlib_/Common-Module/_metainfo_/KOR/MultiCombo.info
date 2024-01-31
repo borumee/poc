@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MetaInfo version="2.0">
+  <Object id="MultiCombo">
+    <ObjectInfo inheritance="nexacro.CompositeComponent" classname="nexacro.MultiCombo" shorttypename="MultiCombo" csstypename="MultiCombo" csscontrolname="MultiComboControl" group="Component" subgroup="Component ( default )" csspseudo="true" container="true" tabstop="true" cssstyle="true" defaultwidth="150" defaultheight="30" registration="allow" edittype="" useinitvalue="true" popup="false" edittypecomponent="" dblclickevent="onclick" requirement="IE10,IE11,Edge,Chrome,Safari,Firefox,Opera,Windows NRE,macOS NRE,Android NRE,iOS/iPadOS NRE,Android Default Web Browser,iOS/iPadOS Default Web Browser" description="MultiCombo 는 미리 설정된 아이템 리스트에서 여러 개의 아이템을 선택하기 위한 용도로 사용되는 컴포넌트입니다." finalclass="false"/>
+    <PropertyInfo>
+      <Property name="value" readonly="false" initonly="false" hidden="false" control="false" expr="false" bind="false" unused="false" mandatory="false" group="Action" edittype="String" description="MultiCombo 에서 선택된 아이템의 코드값을 갖는 속성입니다."/>
+      <Property name="text" readonly="false" initonly="false" hidden="false" control="false" expr="false" bind="false" unused="false" mandatory="false" group="Action" edittype="String" description="MultiCombo 에서 선택된 아이템의 데이터값을 갖는 속성입니다."/>
+      <Property name="datacolumn" readonly="false" initonly="false" hidden="false" control="false" expr="false" bind="false" unused="false" mandatory="false" group="Binding" edittype="InnerColumnID" description="MultiCombo 의 아이템 리스트에서 데이터값으로 사용될 Column을 설정하는 속성입니다."/>
+      <Property name="codecolumn" readonly="false" initonly="false" hidden="false" control="false" expr="false" bind="false" unused="false" mandatory="false" group="Binding" edittype="InnerColumnID" description="MultiCombo 의 아이템 리스트에서 코드값으로 사용될 Column을 설정하는 속성입니다."/>
+      <Property name="innerdataset" readonly="false" initonly="false" hidden="false" control="false" expr="false" bind="false" unused="false" mandatory="false" group="Binding" edittype="InnerDatasetID" description="MultiCombo 의 아이템 리스트를 구성할 DataSet 의 ID를 설정하는 속성입니다."/>
+      <Property name="checkcolumn" readonly="false" initonly="false" hidden="false" control="false" expr="false" bind="false" unused="false" mandatory="false" group="Binding" edittype="InnerColumnID" description="MultiCombo 의 아이템 리스트에서 체크박스로 사용될 Column을 설정하는 속성입니다."/>
+    </PropertyInfo>
+    <CSSInfo>
+      <PropertyInfo/>
+    </CSSInfo>
+    <StatusInfo/>
+    <MethodInfo/>
+    <EventHandlerInfo>
+      <EventHandler name="onchanged" group="Event" unused="false" description="MultiCombo 의 값이 변경된 후 발생하는 이벤트입니다." requirement="IE10,IE11,Edge,Chrome,Safari,Firefox,Opera,Windows NRE,macOS NRE,Android NRE,iOS/iPadOS NRE,Android Default Web Browser,iOS/iPadOS Default Web Browser">
+        <Syntax text="onchanged(obj:nexacro.MultiCombo, e:nexacro.ChangeEventInfo)">
+          <Return type="" description=""/>
+          <Arguments>
+            <Argument name="obj" type="nexacro.MultiCombo"/>
+            <Argument name="e" type="nexacro.ChangeEventInfo"/>
+          </Arguments>
+        </Syntax>
+      </EventHandler>
+    </EventHandlerInfo>
+  </Object>
+</MetaInfo>

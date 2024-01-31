@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="DataObject" width="1280" height="720" titletext="json 파일 통신샘플" onload="DataObject_onload">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="1280">
+        <Static id="Static00" taborder="0" text="화면1_상담Data" left="27" top="48" width="120" height="30"/>
+        <Static id="Static00_00" taborder="1" text="화면1_지급Data" left="570" top="48" width="120" height="30"/>
+        <Grid id="Grid00" taborder="2" left="27" top="82" width="520" height="329" binddataset="ds_consultingClient">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row band="head" size="24"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="cust_no"/>
+                <Cell col="1" text="cnsult_date"/>
+                <Cell col="2" text="counselor"/>
+                <Cell col="3" text="contract_no"/>
+                <Cell col="4" text="phone_in"/>
+                <Cell col="5" text="cnsult_type"/>
+                <Cell col="6" text="cnsult_detail"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:cust_no"/>
+                <Cell col="1" text="bind:cnsult_date"/>
+                <Cell col="2" text="bind:counselor"/>
+                <Cell col="3" text="bind:contract_no"/>
+                <Cell col="4" text="bind:phone_in"/>
+                <Cell col="5" text="bind:cnsult_type"/>
+                <Cell col="6" text="bind:cnsult_detail"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="Grid00_00" taborder="3" left="570" top="82" width="520" height="329" binddataset="ds_paymentsClient">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row band="head" size="24"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="cust_no"/>
+                <Cell col="1" text="pay_date"/>
+                <Cell col="2" text="pay_type"/>
+                <Cell col="3" text="recipient"/>
+                <Cell col="4" text="amount"/>
+                <Cell col="5" text="pay_reason"/>
+                <Cell col="6" text="contract_no"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:cust_no"/>
+                <Cell col="1" text="bind:pay_date"/>
+                <Cell col="2" text="bind:pay_type"/>
+                <Cell col="3" text="bind:recipient"/>
+                <Cell col="4" text="bind:amount"/>
+                <Cell col="5" text="bind:pay_reason"/>
+                <Cell col="6" text="bind:contract_no"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Div id="div_pagingConsulting" taborder="4" text="Div00" left="27" top="423" width="520" height="48" url="Comm::cmmPaging.xfdl"/>
+        <Div id="div_pagingPayments" taborder="5" text="Div00" left="570" top="423" width="520" height="48" url="Comm::cmmPaging.xfdl"/>
+        <Combo id="cmb_consultingPageSize" taborder="6" text="10" left="397" top="48" width="150" height="30" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" value="10" index="0">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">10</Col>
+                <Col id="datacolumn">10</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">30</Col>
+                <Col id="datacolumn">30</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">50</Col>
+                <Col id="datacolumn">50</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Combo>
+        <Combo id="cmb_paymentsPageSize" taborder="7" text="10" left="940" top="48" width="150" height="30" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" value="10" index="0">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">10</Col>
+                <Col id="datacolumn">10</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">30</Col>
+                <Col id="datacolumn">30</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">50</Col>
+                <Col id="datacolumn">50</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Combo>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  @FileName 	DataObject.xfdl
+*  @Creator 	TOBESOFT
+*  @CreateDate 	2023/02/21
+*  @Desction   
+************** 소스 수정 이력 ***********************************************
+* Date					Modifier					Description
+*******************************************************************************
+* 2023/02/21			TOBESOFT					최초생성
+*******************************************************************************
+*/
+
+/*******************************************************************************************************************************
+ * FORM 변수 선언 영역
+*******************************************************************************************************************************/
+/*
+dsRequest Arguments
+	svcId 	 - [필수] 통신을 구분하기위한 고유ID
+	url   	 - [필수] method::그룹::uri
+	inDs  	 - [옵션] dataset  입력 ([key=]inDS:{sType||rownum}) (GET 메소드 사용시 queryString으로 변환)
+	outDs 	 - [옵션] dataset  출력 (outDS=key)
+	args  	 - [옵션] argument 입력 (key=val)
+	callback - [옵션] 콜백함수 (기본 fn_apiCallback)
+*/
+this.SVC_CONSULTING   = { 	svcId : "상담" 	, url   : "GET::FUBON::data/고객정보/상담.json" 	, outDs : "ds_consulting=consulting"	}
+this.SVC_PAYMENTS	  = {	svcId : "지급" 	, url   : "GET::FUBON::data/고객정보/지급.json" 	, outDs : "ds_payments=payments"		}
+
+/*******************************************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose..)
+*******************************************************************************************************************************/
+this.DataObject_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{	
+
+
+	//페이징 세팅
+	//nPage = "1"; 선택 페이지
+	//nPageSize = "10"; //그리드 노출 글수
+	//nPageTotal = "0"; //전체 글수
+	//vPageFunc = "fn_search"; //본화면 조회함수명 
+	//this.div_paging.form.init(nPage, nPageSize, nPageTotal, vPageFunc)
+	this.div_pagingConsulting.form.init(1, this.cmb_consultingPageSize.value, 0, "fn_changeConsultingPage");
+	this.div_pagingPayments.form.init(1, this.cmb_paymentsPageSize.value, 0, "fn_changePaymentsPage");
+	
+
+
+	this.gfn_dsRequestAsync(this.SVC_CONSULTING);
+	this.gfn_dsRequestAsync(this.SVC_PAYMENTS);
+};
+
+/*******************************************************************************************************************************
+ * Transaction 서비스호출 처리 영역
+*******************************************************************************************************************************/
+
+/*******************************************************************************************************************************
+ * Callback 영역 (Transaction, popup, message..)
+*******************************************************************************************************************************/
+ /*
+ *	트랜잭션 후처리
+ * @param {String} strSvcId       : 서비스 ID
+ * @param {Number} nErrorCode     : 결과 값 (0:성공 -1:실패)
+ * @param {Object} objResolveData : response data
+ */ 
+this.fn_apiCallback = function(strSvcId, nErrorCode, objResolveData) {
+	if (nErrorCode < 0)	// 통신에러
+		return;
+	
+	//trace(JSON.stringify(objResolveData, null, 4));
+	// service id 에 따라 callback 분기처리
+	switch(strSvcId) {
+		case "상담" :		
+		
+			this.div_pagingConsulting.form.fn_resetPaging(this.cmb_consultingPageSize.value, this.ds_consulting.rowcount); 
+			this.fn_changeConsultingPage(1);
+ 			//trace(this.ds_consulting.saveXML());			
+			break;
+			
+		case "지급":		
+			this.div_pagingPayments.form.fn_resetPaging(this.cmb_paymentsPageSize.value, this.ds_payments.rowcount); 
+			this.fn_changePaymentsPage(1);
+			//trace(this.ds_payments.saveXML());	
+			break;
+
+		default:
+	}
+}
+
+/*******************************************************************************************************************************
+ * 사용자 Function 영역
+*******************************************************************************************************************************/
+/*
+ *	상담Data 버튼형 페이징 호출 함수
+ */
+this.fn_changeConsultingPage = function(idx) 
+{
+	var pageSize = this.cmb_consultingPageSize.value,
+		nStart   = parseInt((idx-1) * pageSize),
+		nEnd     = parseInt(nStart)  + parseInt(pageSize);
+		
+	console.log("ConsultingPage ::: "+nStart+" <= currow < "+nEnd)
+	this.ds_consulting.filter("currow >= " + nStart + " && currow < " + nEnd);
+	this.ds_consultingClient.copyData(this.ds_consulting, true);
+};
+
+/*
+ *	지급Data 버튼형 페이징 호출 함수
+ */
+this.fn_changePaymentsPage = function(idx) 
+{
+	var pageSize = this.cmb_paymentsPageSize.value,
+		nStart   = parseInt((idx-1) * pageSize),
+		nEnd     = parseInt(nStart)  + parseInt(pageSize);
+	
+	console.log("PaymentsPage ::: "+nStart+" <= currow < "+nEnd)
+	this.ds_payments.filter("currow >= " + nStart + " && currow < " + nEnd);
+	this.ds_paymentsClient.copyData(this.ds_payments, true);
+};
+
+/*******************************************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+*******************************************************************************************************************************/
+
+]]></Script>
+    <Objects>
+      <Dataset id="ds_consulting">
+        <ColumnInfo>
+          <Column id="cust_no" type="STRING" size="256" description="고객번호"/>
+          <Column id="cnsult_date" type="STRING" size="256" description="상담일시"/>
+          <Column id="counselor" type="STRING" size="256" description="상담사"/>
+          <Column id="contract_no" type="STRING" size="256" description="계약번호"/>
+          <Column id="phone_in" type="STRING" size="256" description="인입전화번호"/>
+          <Column id="cnsult_type" type="STRING" size="256" description="상담유형"/>
+          <Column id="cnsult_detail" type="STRING" size="256" description="상담상세내용"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_payments">
+        <ColumnInfo>
+          <Column id="cust_no" type="STRING" size="256" description="고객번호"/>
+          <Column id="pay_date" type="STRING" size="256" description="지급일자"/>
+          <Column id="pay_type" type="STRING" size="256" description="지급방법"/>
+          <Column id="recipient" type="STRING" size="256" description="수령인"/>
+          <Column id="amount" type="STRING" size="256" description="금액"/>
+          <Column id="pay_reason" type="STRING" size="256" description="지급사유"/>
+          <Column id="contract_no" type="STRING" size="256" description="계약번호"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_consultingClient">
+        <ColumnInfo>
+          <Column id="cust_no" type="STRING" size="256" description="고객번호"/>
+          <Column id="cnsult_date" type="STRING" size="256" description="상담일시"/>
+          <Column id="counselor" type="STRING" size="256" description="상담사"/>
+          <Column id="contract_no" type="STRING" size="256" description="계약번호"/>
+          <Column id="phone_in" type="STRING" size="256" description="인입전화번호"/>
+          <Column id="cnsult_type" type="STRING" size="256" description="상담유형"/>
+          <Column id="cnsult_detail" type="STRING" size="256" description="상담상세내용"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_paymentsClient">
+        <ColumnInfo>
+          <Column id="cust_no" type="STRING" size="256" description="고객번호"/>
+          <Column id="pay_date" type="STRING" size="256" description="지급일자"/>
+          <Column id="pay_type" type="STRING" size="256" description="지급방법"/>
+          <Column id="recipient" type="STRING" size="256" description="수령인"/>
+          <Column id="amount" type="STRING" size="256" description="금액"/>
+          <Column id="pay_reason" type="STRING" size="256" description="지급사유"/>
+          <Column id="contract_no" type="STRING" size="256" description="계약번호"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

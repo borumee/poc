@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ComponentPreset version="1.0">
+  <Category id="트리컴포넌트">
+    <Preset id="실사대상정보" classname="nexacro.Div" width="320" url="poc::poc03.xfdl" height="79.72%"/>
+  </Category>
+  <Category id="검색조건">
+    <Preset id="라벨" classname="nexacro.Static" text="검색조건" width="85" height="30" cssclass="sta_WF_textTitle02"/>
+    <Preset id="상단 버튼" classname="nexacro.Div" width="530" height="36">
+      <Layouts>
+        <Layout>
+          <Button id="btnInit" taborder="0" text="화면초기화(F3)" top="5" width="100" height="26" cssclass="btn_WF_function01" left="5" onclick="fnComBtnOnClick"/>
+          <Button id="btnSrch" taborder="1" text="검색(F4)" top="5" width="100" height="26" cssclass="btn_WF_function01" left="110" onclick="fnComBtnOnClick"/>
+          <Button id="btnSave" taborder="2" text="저장(F5)" top="5" width="100" height="26" cssclass="btn_WF_function01" left="215" onclick="fnComBtnOnClick"/>
+          <Button id="btnPrint" taborder="3" text="인쇄(F8)" top="5" width="100" height="26" cssclass="btn_WF_function01" left="320" onclick="fnComBtnOnClick"/>
+          <Button id="btnClose" taborder="4" text="종료(ESC)" top="5" cssclass="btn_WF_function01" left="425" width="100" height="26" onclick="fnComBtnOnClick"/>
+        </Layout>
+      </Layouts>
+    </Preset>
+    <Preset id="디테일1" classname="nexacro.Div" height="93" cssclass="div_WF_labelCon02" width="98.15%">
+      <Layouts>
+        <Layout>
+          <Static id="Static00" taborder="0" text="거래일자" left="5" top="5" width="100" height="38" cssclass="sta_WF_label02"/>
+          <Static id="Static00_00" taborder="2" text="사업장" left="5" top="48" width="100" cssclass="sta_WF_label02" height="38"/>
+          <FromToCalendar id="FTCal_1" taborder="1" left="110" top="5" width="260" height="38" monthtype="false" fromdate="20211111" todate="20211111"/>
+          <Edit id="edt01" taborder="3" left="110" top="48" height="38" width="180"/>
+          <Edit id="edt02" taborder="4" left="295" top="48" height="38" width="180"/>
+          <Button id="btnSrchPop" taborder="5" top="48" width="38" height="38" cssclass="btn_WF_search" onclick="Div01_Button00_onclick" left="480"/>
+        </Layout>
+        <Layout name="Layout0">
+          <Static id="Static00"/>
+        </Layout>
+        <Layout name="Layout2"/>
+      </Layouts>
+    </Preset>
+    <Preset id="디테일2" classname="nexacro.Div" height="93" cssclass="div_WF_labelCon02" text="" width="98.15%">
+      <Layouts>
+        <Layout>
+          <Static id="Static00" taborder="0" text="조정금액" left="5" top="5" width="100" height="38" cssclass="sta_WF_label02"/>
+          <Static id="Static00_00" taborder="1" text="조정사유" left="5" top="48" width="100" cssclass="sta_WF_label02" height="38"/>
+          <Edit id="edt03" taborder="2" left="110" top="48" height="38" width="180" inputfilter="none" oninput="divLable02_edt03_oninput"/>
+          <Button id="btnAuto" taborder="3" text="자동조정" top="4" width="100" height="40" cssclass="btn_WF_popBtn01" onclick="fnComBtnOnClick" left="295"/>
+          <Static id="Static00_01" taborder="4" text="등록일자" left="400" top="5" width="100" height="38" cssclass="sta_WF_label02"/>
+          <Calendar id="calYMD" taborder="5" left="505" top="5" width="150" height="38" dateformat="yyyy-MM-dd" value="20211220"/>
+          <MaskEdit id="msk01" taborder="6" left="110" top="5" width="180" height="38" format="#,#.###"/>
+        </Layout>
+        <Layout name="Layout0">
+          <Static id="Static00"/>
+        </Layout>
+        <Layout name="Layout2"/>
+      </Layouts>
+    </Preset>
+    <Preset id="디테일3" classname="nexacro.Div" text="Div00" width="32.41%" border="1px solid, 5px solid red, 1px solid, 1px solid" height="58.89%">
+      <Layouts>
+        <Layout>
+          <Button id="btnHideShow1" taborder="0" top="0" height="34" width="34" right="0" onclick="divBg1_btnHideShow1_onclick" cssclass="btn_WF_boxClose"/>
+          <Static id="Static00" taborder="1" text="그리드1" left="5" top="5" width="100" height="38" cssclass="sta_WF_label02"/>
+          <Grid id="Grid00" taborder="2" left="5" top="53" right="5" bottom="5" binddataset="dsGrd01" autofittype="col">
+            <Formats>
+              <Format id="default">
+                <Columns>
+                  <Column size="40"/>
+                  <Column size="40"/>
+                  <Column size="100"/>
+                  <Column size="100"/>
+                  <Column size="100"/>
+                </Columns>
+                <Rows>
+                  <Row size="24" band="head"/>
+                  <Row size="24"/>
+                </Rows>
+                <Band id="head">
+                  <Cell text="선택"/>
+                  <Cell col="1" text="A"/>
+                  <Cell col="2" text="발생금액(B)"/>
+                  <Cell col="3" text="분배금액(C)"/>
+                  <Cell col="4" text="B-C"/>
+                </Band>
+                <Band id="body">
+                  <Cell text="bind:Column0" displaytype="checkboxcontrol" edittype="checkbox"/>
+                  <Cell col="1" text="bind:Column1" textAlign="right"/>
+                  <Cell col="2" text="bind:Column2" textAlign="right" displaytype="number"/>
+                  <Cell col="3" text="bind:Column3" textAlign="right" displaytype="number"/>
+                  <Cell col="4" text="bind:Column4" textAlign="right" displaytype="number"/>
+                </Band>
+              </Format>
+            </Formats>
+          </Grid>
+        </Layout>
+      </Layouts>
+    </Preset>
+  </Category>
+  <Category id="워크플로우">
+    <Preset id="시작" classname="nexacro.Static" text="시작" width="93" height="44" cssclass="sta_WF_flowface01"/>
+    <Preset id="처리" classname="nexacro.Static" text="처리" width="144" height="42" cssclass="sta_WF_flowface05"/>
+    <Preset id="통합기준정보" classname="nexacro.Div" width="144" height="74">
+      <Layouts>
+        <Layout>
+          <Static id="staTitle" taborder="0" text="통합기준정보" left="0" top="0" width="144" height="24" cssclass="sta_WF_flowface04"/>
+          <Static id="staDetail" taborder="1" text="11-0628&#13;&#10;비표준2차상품등록" left="0" top="Static00:-2" width="144" height="50" cssclass="sta_WF_flowface04"/>
+        </Layout>
+      </Layouts>
+    </Preset>
+    <Preset id="판단" classname="nexacro.Static" text="판단" width="107" height="42" cssclass="sta_WF_flowface03"/>
+    <Preset id="텍스트" classname="nexacro.Static" text="텍스트" width="80" height="36" cssclass="sta_WF_flowText"/>
+    <Preset id="가로선" classname="nexacro.Static" width="120" height="2" cssclass="sta_WF_flowLine"/>
+    <Preset id="세로선" classname="nexacro.Static" width="2" height="70" cssclass="sta_WF_flowLine"/>
+    <Preset id="왼쪽화살표" classname="nexacro.Div" width="127" height="13">
+      <Layouts>
+        <Layout>
+          <Static id="staFlowLeft" taborder="0" left="0" top="0" width="7" height="13" cssclass="sta_WF_flowLeft"/>
+          <Static id="staFlowLine" taborder="1" left="7" top="5" height="2" cssclass="sta_WF_flowLine" right="0"/>
+        </Layout>
+      </Layouts>
+    </Preset>
+    <Preset id="오른쪽화살표" classname="nexacro.Div" width="127" height="13">
+      <Layouts>
+        <Layout>
+          <Static id="staFlowLine" taborder="0" left="0" top="5" height="2" cssclass="sta_WF_flowLine" right="7"/>
+          <Static id="staFlowRight" taborder="1" top="0" width="7" height="13" cssclass="sta_WF_flowRight" right="0"/>
+        </Layout>
+      </Layouts>
+    </Preset>
+    <Preset id="위쪽화살표" classname="nexacro.Div" width="13" height="127">
+      <Layouts>
+        <Layout>
+          <Static id="staFlowTop" taborder="0" left="0" top="0" width="13" height="7" cssclass="sta_WF_flowTop"/>
+          <Static id="staFlowLine" taborder="1" left="5" top="7" width="2" cssclass="sta_WF_flowLine" bottom="0"/>
+        </Layout>
+      </Layouts>
+    </Preset>
+    <Preset id="아래화살표" classname="nexacro.Div" width="13" height="127">
+      <Layouts>
+        <Layout>
+          <Static id="staFlowLine" taborder="0" left="5" top="0" width="2" cssclass="sta_WF_flowLine" bottom="7"/>
+          <Static id="staFlowBottom" taborder="1" left="0" width="13" height="7" cssclass="sta_WF_flowBottom" bottom="0"/>
+        </Layout>
+      </Layouts>
+    </Preset>
+    <Preset id="종료" classname="nexacro.Static" text="END" width="82" height="42" cssclass="sta_WF_flowface02"/>
+  </Category>
+</ComponentPreset>

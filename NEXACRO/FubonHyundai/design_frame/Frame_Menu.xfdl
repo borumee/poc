@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Frame_Menu" width="1280" height="44" titletext="New Form" onload="Frame_Menu_onload" background="#DCDFE9">
+    <Layouts>
+      <Layout height="44" width="1280" flexcrossaxisalign="center" type="horizontal" horizontalgap="10" flexmainaxisalign="spacebetween">
+        <Div id="divHashTag" taborder="1" top="0" height="45" formscrollbartype="none none" width="230" right="0">
+          <Layouts>
+            <Layout>
+              <Edit id="edtHashTag" taborder="0" left="75" top="9" height="27" width="65.22%" onkeydown="divHashTag_edtHashTag_onkeydown"/>
+              <Button id="btnSrch" taborder="1" top="12" width="20" height="20" onclick="divHashTag_btnSrch_onclick" cssclass="btn_WF_searchIcon" text="" left="edtHashTag:-25"/>
+              <Static id="Static00" taborder="2" text="메뉴검색" left="10" top="0" bottom="0" width="60"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divMenuList" taborder="0" left="0" text="" formscrollbartype="none none" right="divHashTag:4.35%" height="36" bottom="0">
+          <Layouts>
+            <Layout/>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.Frame_Menu_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var objApp = nexacro.getApplication();
+	
+	this.dsMenu.clearData();
+	
+	if (objApp.MENU_ID == "M0000") {
+		this.dsMenu.copyData(objApp.gdsMyMenu);
+	} else {
+		objApp.gdsMenu.filter("MENU_ID == '" + objApp.MENU_ID + "' || " +
+		                      "HIPO_MENU_ID == '" + objApp.MENU_ID + "'");
+		
+		this.dsMenu.copyData(objApp.gdsMenu, true);
+		objApp.gdsMenu.filter("");
+	}
+	
+	this.createMenuButton(this.divMenuList);
+};
+
+/**	
+* @desc 해시 태그 검색 Key Event
+* @return none
+*/
+this.divHashTag_edtHashTag_onkeydown = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if (e.keycode == 13) {
+		this.divHashTag.form.btnSrch.click();
+	}
+};
+
+/**	
+* @desc 메뉴 버튼 생성
+* @return none
+*/
+this.createMenuButton = function (target)
+{
+	var ds = this.dsMenu,
+		pos = {left: 10, top: 0, width: 90, height: 33, right: 0, bottom: null};
+	
+	for (var i=0;i<ds.getRowCount();i++) {
+		var menuLvl = ds.getColumn(i, "LEVL"),
+			menuId = ds.getColumn(i, "MENU_ID"),
+			menuNm = ds.getColumn(i, "MENU_NM"),
+			objButton = new Button("btnMenu_"+menuId, pos.left, pos.top, pos.width, pos.height, pos.right, pos.bottom);
+		
+		if (menuLvl != 0) {
+			objButton.set_cssclass("btn_WF_midMenu");
+			objButton.set_height(36);
+		
+			objButton.menuId = menuId;
+			objButton.set_text(menuNm.length>12?menuNm.substr(0, 10)+"...":menuNm);
+			objButton.set_tooltiptext(menuNm);
+			objButton.addEventHandler("onclick", this.btnMenu_onclick, this);
+			
+			target.addChild("btnMenu_"+menuId, objButton);
+			objButton.show();
+			
+			pos.left += objButton.width + 1;
+		}
+	}
+};
+
+/**	
+* @desc 메뉴 버튼 눌렸을 때 처리
+* @return none
+*/
+this.btnMenu_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var ds = this.dsMenu;
+	var row = ds.findRow("MENU_ID", obj.menuId);
+	var p = this.getOwnerFrame().form;
+	
+	p["fnOpenMenu"].call(p, obj.menuId);
+};
+
+/**	
+* @desc 해시 테그 호출
+* @return none
+*/
+this.divHashTag_btnSrch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//var ds = this.dsMenu;
+	var ds = nexacro.getApplication().gdsMenu;
+	var arr = [];
+	var sHashVal, sMenuId, sOpenMenuIdLvl1, i, j, p, nRow;
+	
+	if (!this.gfn_isEmpty(this.divHashTag.form.edtHashTag.value)) 
+	{
+		for (i = 0; i <= ds.getRowCount(); i++)
+		{
+			sHashVal = ds.getColumn(i, "HashTag");
+			
+			if (!this.gfn_isEmpty(sHashVal)) 
+			{
+				arr = sHashVal.split(",");
+				
+				for (j = 0 ; j <= arr.length; j++)
+				{
+					if (arr[j] == this.divHashTag.form.edtHashTag.value) {
+						sMenuId = ds.getColumn(i, "MENU_ID");
+						//trace("Step-1 = " + sMenuId);
+						nRow = ds.findRow("MENU_ID", sMenuId);
+						sOpenMenuIdLvl1 = ds.getColumn(nRow, "HIPO_MENU_ID");
+						//trace("Step-2 = " + sOpenMenuIdLvl1);
+						nexacro.getApplication().MENU_ID = sOpenMenuIdLvl1;
+						
+						p = nexacro.getApplication().mainframe.VFrameSet.WorkFrame.form;
+						p["fnOpenMenu"].call(p, sMenuId);
+					}					
+				}
+			}
+		}
+	}
+};]]></Script>
+    <Objects>
+      <Dataset id="dsMenu"/>
+    </Objects>
+  </Form>
+</FDL>

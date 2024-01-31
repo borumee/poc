@@ -1,0 +1,1 @@
+(function(){return function(_a){var _b;this.addIncludeScript(_a,"ximport::lib_GlobalScript.xjs");this.registerScript(_a,function(){this.executeIncludeScript("ximport::lib_GlobalScript.xjs");});this.loadIncludeScript(_a);_b=null;};})();

@@ -1,0 +1,497 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="poc13_2" width="920" height="800" titletext="화면 캡처(특장점)" onload="poc13_2_onload">
+    <Layouts>
+      <Layout height="800" width="920">
+        <Static id="Static01_00" taborder="0" left="10" top="50" height="60" right="10" cssclass="sta_WF_searchBg"/>
+        <Static id="Static02" taborder="1" text="Row count" left="30" top="60" width="68" height="40" cssclass="sta_WF_labelTxt01" messageid="grid.rowcount"/>
+        <Combo id="Combo00" taborder="2" left="118" top="60" width="150" height="40" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" index="0" text="10,000" value="10000" itemheight="40">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">30000</Col>
+                <Col id="datacolumn">30,000</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">100000</Col>
+                <Col id="datacolumn">100,000</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Combo>
+        <Button id="btnSrch" taborder="3" top="63" width="34" height="34" cssclass="btn_WF_search" right="20" onclick="btnSrch_onclick"/>
+        <Static id="Static03" taborder="4" text="Inquiry result" left="10" top="120" width="120" height="30" cssclass="sta_WF_conTitle" messageid="inquiry.result"/>
+        <Static id="Static00" taborder="5" text="Server/Network &lt;fc v='red'&gt;0&lt;/fc&gt; sec, UI Rendering &lt;fc v='red'&gt;0&lt;/fc&gt; sec, &lt;fc v='red'&gt;0&lt;/fc&gt; rows" left="10" height="40" usedecorate="true" bottom="10" right="10"/>
+        <NxPivot id="NxPivot00" taborder="6" left="10" top="160" binddataset="dsList" bottom="60" onrender="NxPivot00_onrender" gridbodyheight="36" gridheadheight="36" gridsummheight="36" right="10">
+          <Contents><![CDATA[{"config":{
+		"fields": [],
+		"colAxis": [
+			{
+				"id": "col1",
+				"itemText": "Date",
+				"type": "date",
+				"itemWidth": "100",
+				"sort": "ASC",
+				"aggregator": "CNT"
+			},
+			{
+				"id": "col9",
+				"itemText": "Channel",
+				"type": "string",
+				"itemWidth": "100",
+				"sort": "ASC",
+				"aggregator": "CNT"
+			}
+		],
+		"rowAxis": [
+			{
+				"id": "col3",
+				"itemText": "Sales Department",
+				"type": "string",
+				"itemWidth": "100",
+				"sort": "ASC",
+				"aggregator": "CNT"
+			},
+			{
+				"id": "col5",
+				"itemText": "Department",
+				"type": "string",
+				"itemWidth": "100",
+				"sort": "ASC",
+				"aggregator": "CNT"
+			}
+		],
+		"values": [
+			{
+				"id": "col12",
+				"itemText": "Total Sales",
+				"type": "number",
+				"itemWidth": "100",
+				"sort": "ASC",
+				"aggregator": "SUM"
+			},
+			{
+				"id": "col13",
+				"itemText": "Total Return Sales",
+				"type": "number",
+				"itemWidth": "100",
+				"sort": "ASC",
+				"aggregator": "SUM"
+			},
+			{
+				"id": "col14",
+				"itemText": "Overcharge Price",
+				"type": "number",
+				"itemWidth": "100",
+				"sort": "ASC",
+				"aggregator": "SUM"
+			},
+			{
+				"id": "col15",
+				"itemText": "Promotion Amount",
+				"type": "number",
+				"itemWidth": "100",
+				"sort": "ASC",
+				"aggregator": "SUM"
+			},
+			{
+				"id": "col16",
+				"itemText": "Net Sales",
+				"type": "number",
+				"itemWidth": "100",
+				"sort": "ASC",
+				"aggregator": "SUM"
+			}
+		],
+		"filters": []
+	},
+	"panel":{
+		"toolbar": {
+			"size": "28",
+			"padding": "3 3 3 3",
+			"gap": "2",
+			"buttonsize": "20",
+			"cssclass": "NxPivot_toolbarArea",
+			"lbuttons": {
+				"9d5d6862-9a9f-dc4f-383a-ebaacda08ec1": {
+					"type": "rowsstatus",
+					"id": "addnew",
+					"toggle": "1",
+					"togglevalue": "0",
+					"tooltip": "expand row,collapse row",
+					"cssclass": "NxPivot_toolbarButton_rowstatus_expand,NxPivot_toolbarButton_rowstatus_collapse",
+					"align": "left"
+				},
+				"e98d42fb-8763-cba2-08f8-ebaad54eb13a": {
+					"type": "columnsstatus",
+					"id": "addnew",
+					"toggle": "1",
+					"togglevalue": "0",
+					"tooltip": "expand column, collapse column",
+					"cssclass": "NxPivot_toolbarButton_colstatus_expand,NxPivot_toolbarButton_colstatus_collapse",
+					"align": "left"
+				}
+			},
+			"rbuttons": {
+				"d5aa4f21-94f5-083d-4197-ebaadcae1c59": {
+					"type": "toolbarstatus",
+					"id": "addnew",
+					"toggle": "1",
+					"togglevalue": "0",
+					"tooltip": "collapse panel, expand panel",
+					"cssclass": "NxPivot_toolbarButton_show, NxPivot_toolbarButton_hide",
+					"align": "right"
+				},
+				"938f5595-2cda-51f5-409a-ebaae39fd6e3": {
+					"type": "execute",
+					"id": "addnew",
+					"toggle": "0",
+					"tooltip": "execute",
+					"cssclass": "NxPivot_toolbarButton_execute",
+					"align": "right"
+				},
+				"7a5dea33-a3ce-7e3d-57fb-ebaaeafedc2d": {
+					"type": "initialization",
+					"id": "addnew",
+					"toggle": "0",
+					"tooltip": "init",
+					"cssclass": "NxPivot_toolbarButton_init",
+					"align": "right"
+				},
+				"9c1d7a87-78a8-8c26-3789-ebaaf28e5bd1": {
+					"type": "autoexecute",
+					"id": "addnew",
+					"toggle": "1",
+					"togglevalue": "0",
+					"tooltip": "manual execute,auto execute",
+					"cssclass": "NxPivot_toolbarButton_manual,NxPivot_toolbarButton_auto",
+					"align": "right"
+				}
+			}
+		},
+		"items": {
+			"size": "120",
+			"cssclass1": "NxPivot_axisArea1",
+			"cssclass2": "NxPivot_axisArea2",
+			"padding": "5 5 5 5",
+			"gap": "3",
+			"titlebarsize": "20",
+			"titlebarcssclass": "NxPivot_axisArea_title",
+			"indicatorwidth": "16",
+			"indicatorheight": "42",
+			"indicatorcssclass": "NxPivot_drag_indicator",
+			"item": {
+				"width": "150",
+				"height": "35",
+				"padding": "6 6 6 6",
+				"gap": "4",
+				"cssclass": "NxPivot_axisArea_item",
+				"sortasccssclass": "NxPivot_axisArea_item_asc",
+				"sortdesccssclass": "NxPivot_axisArea_item_desc",
+				"filtercssclass": "NxPivot_axisArea_item_filter",
+				"aggregatorcssclass": "NxPivot_axisArea_item_aggregator",
+				"settingcssclass": "NxPivot_axisArea_item_setting",
+				"namecssclass": "NxPivot_axisArea_item_name",
+				"sortsize": "14",
+				"filtersize": "14",
+				"aggregatorsize": "20",
+				"buttonsize": "14"
+			}
+		}
+	},
+	"settingpopup":{
+		"cssclass": "NxPivot_popup",
+		"width": "200",
+		"height": "200",
+		"padding": "10 10 10 10",
+		"buttonwidth": "50",
+		"buttonheight": "25",
+		"buttonalign": "center",
+		"okbuttoncssclass": "NxPivot_popup_submit",
+		"cancelbuttoncssclass": "NxPivot_popup_close",
+		"labelcssclass": "NxPivot_popup_subtitle",
+		"dateformat": "yyyy-MM-dd"
+	}}]]></Contents>
+        </NxPivot>
+        <Button id="btnCap" taborder="7" top="63" width="34" height="34" cssclass="btn_WF_print" right="btnSrch:3" onclick="btnCap_onclick"/>
+        <Radio id="Radio00" taborder="9" top="60" width="90" height="40" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" direction="vertical" right="btnCap:10" value="1" text="이미지 출력" index="0">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">1</Col>
+                <Col id="datacolumn">이미지 출력</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Radio>
+        <CheckBox id="chkAll" taborder="8" text="화면 전체" top="60" width="80" height="40" right="Radio00:5" textAlign="right" value="true"/>
+        <Static id="Static00_00" taborder="10" text="화면 캡처" left="0" top="0" height="40" right="0" cssclass="sta_WF_pageTitle"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.poc13_2_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	if (system.navigatorname != "nexacro")
+	{
+		var strIntegrity = "sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/";
+		var strCrossorigin = "anonymous";
+		
+		//IE 브라우저 처리 설정
+		if (system.navigatorname == "IE") {
+			this.js_include("https://cdn.jsdelivr.net/bluebird/latest/bluebird.js");
+		}
+		
+		//html2canvas - 0.5.0-beta4 버전이 그나마 Canvas 처리를 정상적 처리
+		this.js_include("https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js");
+	}	
+};
+
+this.clearResult = function()
+{
+	this.Static00.set_text("서버/네트워크시간 <fc v='#d7381e'>0</fc> 초, 렌더링시간 <fc v='#d7381e'>0</fc> 초, 조회건수 <fc v='#d7381e'>0</fc> 건");
+};
+
+this.btnSrch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.dsList.clearData();
+	
+	this.clearResult();
+	
+	var strSvcId = "search",
+		strSvcUrl = "svcUrl::pivotdata.do",
+		inData = "",
+		outData = "dsList=output",
+		strArg = "rowcount='" + this.Combo00.value + "'",
+		callBackFnc = "fnCallback",
+		isAsync = true,
+		nDataType = 2;
+	
+	this.starttime = new Date();
+	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync, nDataType);
+};
+
+this.btnCap_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sChkFlag = this.chkAll.value;
+	var objTarget;
+	
+	if (sChkFlag == true) {
+		objTarget = this;
+	} else {
+		objTarget = this.NxPivot00;
+	}
+		
+	if (this.Radio00.value == 1)
+	{
+		var strFileName = objTarget.name+".png";
+		
+// 		if (system.navigatorname == "nexacro") //전용 브라우저
+// 		{		
+// 			/* 내문서가 아닌 다른폴더를 사용하려면 Environment > filesecurelevel 을 all 로 설정*/
+// 			var objFileDialog = null;
+// 			
+// 			if (!this.isValidObject("_ImageFD")) {
+// 				objFileDialog = new nexacro.FileDialog("_ImageFD");
+// 				this.addChild("_ImageFD",objFileDialog);
+// 				
+// 				objFileDialog.set_filter('PNG Portable Network Graphics (*.png)|*.png');
+// 				objFileDialog.setEventHandler("onclose",this._ImageFD_onclose,this);
+// 			} else {
+// 				objFileDialog = this.all["_ImageFD"];
+// 			}
+// 			
+// 			objFileDialog._targetComp= objTarget;
+// 			objFileDialog.open("이미지저장",FileDialog.SAVE ,"%MYDOCUMENT%",strFileName);
+// 		}
+// 		else //Web IE/Chrome
+// 		{		
+			this.fn_WebImageSave(objTarget,strFileName);	
+//		}
+	}
+// 	else
+// 	{
+// 		system.exportPDF(objTarget, "document.pdf");
+// 	}
+};
+
+this.fnCallback = function(svcId, errCode, errMsg, elapsedTime)
+{
+	if (errCode < 0) {
+		alert(errMsg);
+	} else {
+		if (svcId == "search") {
+			this.endtime = new Date();
+			
+			this.NxPivot00.updateToDataset();
+			this.NxPivot00.render();
+		}
+	}
+};
+
+this.NxPivot00_onrender = function(obj:nexacro.NxPivot, e:nexacro.EventInfo)
+{
+	this.rendertime = new Date();
+	
+	var nTranTime = nexacro.round((this.endtime - this.starttime) / 1000, 3);
+	var nRenderTime = nexacro.round((this.rendertime - this.endtime) / 1000, 3);
+	
+	this.Static00.set_text("서버/네트워크시간 <fc v='#d7381e'>" + nTranTime + "</fc> 초, 렌더링시간 <fc v='#d7381e'>" + nRenderTime + "</fc> 초, 조회건수 <fc v='#d7381e'>" +  this.dsList.rowcount + "</fc>" + " 건");
+};
+
+//외부 js 선언
+this.js_include = function(FileDir, strIntegrity, strCrossorigin) 
+{ 
+    var includejs = document.createElement("script");
+    includejs.src = FileDir;
+    
+    if (strIntegrity) includejs.integrity = strIntegrity;
+    if (strCrossorigin) includejs.crossOrigin = strCrossorigin;
+    
+    document.head.appendChild(includejs);
+};
+
+/*********************************************************************************************
+전용 브라우저
+**********************************************************************************************/
+//파일다이얼로그창 닫힐때
+this._ImageFD_onclose = function(obj:nexacro.FileDialog,e:nexacro.FileDialogEventInfo)
+{
+	if (e.virtualfiles)
+	{
+		if (e.virtualfiles.length > 0) {
+			var vFile = e.virtualfiles[0];
+			
+			vFile._targetComp = obj._targetComp;
+			vFile.setEventHandler("onsuccess",this._ImageVfile_onsuccess,this);
+			vFile.open(vFile.fullpath, VirtualFile.openWrite | VirtualFile.openBinary);
+		}
+	}
+};
+
+//파일이 쓰기모드로 열였을시 이미지 데이터를 쓰고 닫기
+this._ImageVfile_onsuccess = function(obj:nexacro.VirtualFile,e:nexacro.VirtualFileEventInfo)
+{
+	if (e.reason == 1) //open
+	{	
+ 		var objImage = system.saveToImageBase64String(obj._targetComp, false, "PNG");
+		objImage = nexacro.DataUtils.toBlobFromText(objImage.split(",")[1]);
+		
+		var rtn = obj.write(objImage);
+		
+		if (rtn) {
+			obj.close();
+			alert("저장완료");
+		} else {
+			obj.close();
+			alert("저장실패");
+		}
+	}
+};
+
+/*********************************************************************************************
+HTML5
+**********************************************************************************************/
+//웹 일경우 해당컴포넌트 이미지 파일로 다운로드
+this.fn_WebImageSave = function(objComp, strFileName)
+{
+	var ele = document.getElementById(objComp.getElement().handle.id);
+
+	if (!ele) {
+		trace('ele is not exist.')
+		return false
+	}			
+
+	html2canvas(ele, 
+	{
+		onrendered : function(canvas) {
+			var strImageData = canvas.toDataURL('image/png').split(",")[1]; //Image 코드로 져오기(image 추가)
+			var isIE = (navigator.appName === 'Netscape' && navigator.userAgent.search('Trident') !== -1) || navigator.userAgent.toLowerCase().indexOf("msie") !== -1;
+			var blobBin = html2canvas.utils.decode64(strImageData);	
+			var array = [];
+			var i;
+			
+			for (i = 0; i < blobBin.length; i++) 
+			{
+				array.push(blobBin.charCodeAt(i));
+			}
+			
+			var blob = new Blob([new Uint8Array(array)], {type: 'image/png'});			
+			
+			if (isIE) 
+			{
+				window.navigator.msSaveBlob(blob, strFileName);
+			}
+			else
+			{
+				var objURL = window.URL.createObjectURL(blob);
+						
+				// 이전에 생성된 메모리 해제
+				if (window.__Xr_objURL_forCreatingFile__) {
+					window.URL.revokeObjectURL(window.__Xr_objURL_forCreatingFile__);
+				}
+				
+				window.__Xr_objURL_forCreatingFile__ = objURL;
+				
+				var a = document.createElement('a');
+				a.download = strFileName;
+				a.href = objURL;
+				a.click();
+			}
+		}
+	});
+};]]></Script>
+    <Objects>
+      <Dataset id="Dataset00">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+          <Column id="Column2" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column0">1</Col>
+            <Col id="Column2">111</Col>
+            <Col id="Column1">11</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">2</Col>
+            <Col id="Column1">22</Col>
+            <Col id="Column2">222</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">3</Col>
+            <Col id="Column1">33</Col>
+            <Col id="Column2">333</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsList" onload="dsList_onload">
+        <ColumnInfo>
+          <Column id="col1" type="STRING" size="50"/>
+          <Column id="col2" type="STRING" size="50"/>
+          <Column id="col3" type="STRING" size="50"/>
+          <Column id="col4" type="STRING" size="50"/>
+          <Column id="col5" type="STRING" size="50"/>
+          <Column id="col6" type="STRING" size="50"/>
+          <Column id="col7" type="STRING" size="50"/>
+          <Column id="col8" type="STRING" size="50"/>
+          <Column id="col9" type="STRING" size="50"/>
+          <Column id="col10" type="STRING" size="50"/>
+          <Column id="col11" type="STRING" size="50"/>
+          <Column id="col12" type="INT" size="8"/>
+          <Column id="col13" type="INT" size="8"/>
+          <Column id="col14" type="INT" size="8"/>
+          <Column id="col15" type="INT" size="8"/>
+          <Column id="col16" type="INT" size="8"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

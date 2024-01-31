@@ -1,0 +1,52 @@
+<HTML>
+<HEAD>
+<TITLE>MiPlatform</TITLE>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA -Compatible" content="requiresActiveX=true">
+
+<SCRIPT LANGUAGE=JavaScript>
+	function getParameter(name) {
+	    var rtnval = '';
+	    var nowAddress = window.location.href;
+	    var parameters = (nowAddress.slice(nowAddress.indexOf('?') + 1, nowAddress.length)).split('&');
+	    //console.log(parameters)
+	    for (var i = 0; i < parameters.length; i++) {
+	        var varName = parameters[i].split('=')[0];
+	        if (varName.toUpperCase() == name.toUpperCase()) {
+	            rtnval = parameters[i].split('=')[1];
+	            break;
+	        }
+	    }
+	    return rtnval;
+	}
+	
+	//console.log(getParameter('id'))
+	//console.log(decodeURI(getParameter('param')))
+
+
+    function fn_load() {
+        if (navigator.userAgent.indexOf("MSIE") > -1 || navigator.userAgent.indexOf("Trident") !=-1) {
+            //window.location = "./install/x_installChrome.html?id="+ getParameter('id') + "&pw=" + getParameter('pw');
+        	window.location = "./install/x_installChrome.html?id="+ getParameter('id') + "&param=" + decodeURI(getParameter('param'));
+        } else if ( /Chrome/i.test(navigator.userAgent) ) {			
+			//window.location = "./install/x_installChrome.html";
+        	//window.location = "./install/x_installChrome.html?id="+ getParameter('id') + "&pw=" + getParameter('pw');
+        	window.location = "./install/x_installChrome.html?id="+ getParameter('id') + "&param=" + decodeURI(getParameter('param'));
+		}
+		else {
+            //window.location = "./install/x_installChrome.html";
+			//window.location = "./install/x_installChrome.html?id="+ getParameter('id') + "&pw=" + getParameter('pw');
+			window.location = "./install/x_installChrome.html?id="+ getParameter('id') + "&param=" + decodeURI(getParameter('param'));
+        }
+
+        return;
+    }
+
+</SCRIPT>
+
+
+
+<BODY leftmargin=0 topmargin=0 scroll="no" onload="fn_load();">
+
+</BODY>
+</HTML>

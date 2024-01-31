@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Frame_XPush" width="1280" height="720" titletext="New Form" onload="Frame_XPush_onload">
+    <Layouts>
+      <Layout height="720" width="1280"/>
+    </Layouts>
+    <Objects>
+      <XPush id="XPush" onerror="XPush_onerror" onsuccess="XPush_onsuccess"/>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.Frame_XPush_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	
+	// X-PUSH Connect
+	this.fn_xpushConnect();
+};
+
+
+/************************************************************************
+ * X-PUSH
+ ************************************************************************/
+
+/*
+ *	connect to X-PUSH
+ */
+this.fn_xpushConnect = function()
+{
+	this.XPush.set_layouturl("web::pushUrl/push_message_layout.xml");
+	this.XPush.set_iplist(nexacro.getEnvironment().services["xpush"].url);
+	this.XPush.set_projectid("PRO#1");
+	this.XPush.set_protocolversion("3");
+	this.XPush.connect("tobesoft", "xpush");
+};
+
+
+this.XPush_onsuccess = function(obj:nexacro.XPush,e:nexacro.XPushEventInfo)
+{
+	var app = nexacro.getApplication();
+	
+	if (e.action == nexacro.XPushAction.AUTH) {
+		console.log("Push Connect -- " + this.XPush.getCurrentIP()+":"+this.XPush.getCurrentPort());
+		
+		// 조직별 구독
+		this.XPush.subscribe("MSG", app.empInfo["OFFICE_NO"], this, app.gds_push, "append", "fn_PushCallback");
+		// 개인별 구독
+		this.XPush.subscribe("MSG", app.empInfo["EMP_NO"],    this, app.gds_push, "append", "fn_PushCallback");
+	}
+};
+
+this.XPush_onerror = function(obj:nexacro.XPush,e:nexacro.XPushErrorEventInfo)
+{
+	trace("XPush_onerror statuscode["+e.statuscode+"] errortype["+e.errortype+"] errormsg["+e.errormsg+"]");
+	//toast.error(this, e.errormsg);
+	
+	switch(e.statuscode) {
+	case -100:	// Push 서버가 “Byec”를 보냈거나 서버와의 규약에 따라 종료되었습니다.
+		this.XPush.connect("tobesoft", "xpush");
+		break;
+	default:
+	}	
+};
+
+/*
+ *	X-PUSH CallBack
+ */ 
+this.fn_PushCallback = function(Row, ChangeColumn, AllColumns, Type, ActionType, MessageId)
+{	
+	var app      = nexacro.getApplication(),
+		workForm = app.mainframe.VFrameSet.WorkFrame.form,
+		mainForm = app.mainframe.VFrameSet.MainFrame.form,
+		row      = parseInt(app.gds_push.getRowCount()) - 1,
+		title    = app.gds_push.getColumn(row, "sender") + "\n" + app.gds_push.getColumn(row, "title"),
+		Content  = app.gds_push.getColumn(row, "content"),
+		sender   = app.gds_push.getColumn(row, "sender");
+	
+	if (app.themeCode == 'xcssrc::IBKbasic_theme.xcss') {
+		toast.error(workForm, title);	
+		toast.error(mainForm, title);	
+	} else {
+		toast.warn(workForm, title);	
+		toast.warn(mainForm, title);	
+	}
+	nexacro.flashWindow("count", 10, 500);
+	
+	// 푸시 메시지 팝업이 열려있다면 추가메소드 호출
+	var arrPopup = nexacro.getPopupFrames(this.getOwnerFrame());
+	if(arrPopup["xpushMessagePop"]) {
+		arrPopup["xpushMessagePop"].form.fn_addPushMsg(app.gds_push, row);
+	}
+};
+]]></Script>
+  </Form>
+</FDL>

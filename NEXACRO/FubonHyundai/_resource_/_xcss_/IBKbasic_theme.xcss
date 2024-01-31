@@ -1,0 +1,2152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XCSS version="1.0"><![CDATA[/*** xcss Light thmeme ***/
+/* Mdi */
+.Button.btn_MDI_Home
+{
+	-nexa-border : 0px none;
+	-nexa-padding : 0px 16px 0px 0px;
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_HomeN.png");
+	background : transparent;
+	border-radius : 0px;
+}
+.Button.btn_MDI_Home[status=mouseover],
+.Button.btn_MDI_Home[status=focused],
+.Button.btn_MDI_Home[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_HomeO.png");
+	background : transparent;
+}
+.Button.btn_MDI_Home[userstatus=pushed]
+{
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_HomeO.png");
+	background : transparent;
+}
+.Button.btn_MDI_Home[status=disabled]
+{
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_HomeD.png");
+	background : transparent;
+}
+
+.Button.btn_MDI_HomeS,
+.Button.btn_MDI_HomeS[status=mouseover],
+.Button.btn_MDI_HomeS[status=focused],
+.Button.btn_MDI_HomeS[userstatus=selected],
+.Button.btn_MDI_HomeS[userstatus=pushed],
+.Button.btn_MDI_HomeS[status=disabled]
+{
+	-nexa-border : 0px none;
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_HomeS.png");
+	background : transparent;
+	border-radius : 0px;
+}
+.Button.btn_MDI_Tab
+{
+	-nexa-border : 1px solid transparent, 0px none, 0px none, 0px none;
+	-nexa-padding : 0px 40px 0px 15px;
+	background : transparent;
+	border-radius : 0px;
+	color : #666666;
+	font : 12px "Malgun Gothic","Tahoma";
+}
+.Button.btn_MDI_Tab[status=mouseover],
+.Button.btn_MDI_Tab[userstatus=pushed],
+.Button.btn_MDI_Tab[status=focused]
+{
+	-nexa-border : 1px solid transparent, 0px none, 0px none, 0px none;
+	-nexa-text-decoration : underline;
+	background : transparent;
+	color : #333333;
+}
+.Button.btn_MDI_Tab[userstatus=selected]
+{
+	-nexa-border : 1px solid #02a3ff, 0px none, 0px none, 0px none;
+	background : transparent;
+	color : #333333;
+}
+.Button.btn_MDI_Tab[status=disabled]
+{
+	background : transparent;
+	color : #cccccc;
+}
+.Button.btn_MDI_TabS,
+.Button.btn_MDI_TabS[status=mouseover],
+.Button.btn_MDI_TabS[userstatus=pushed],
+.Button.btn_MDI_TabS[status=focused],
+.Button.btn_MDI_TabS[userstatus=selected],
+.Button.btn_MDI_TabS[status=disabled]
+{
+	/**** 원본색상 
+	color : #02a3ff; ****/
+	-nexa-border : 1px solid #1e88e5,0px none,0px none;
+	-nexa-padding : 0px 40px 0px 15px;
+	background : #ffffff;
+	border-radius : 0px;
+	color : #1b3894;
+	font : 12px "Malgun Gothic","Tahoma";
+}
+.Button.btn_MDI_TabS_B,
+.Button.btn_MDI_TabS_B[status=mouseover],
+.Button.btn_MDI_TabS_B[userstatus=pushed],
+.Button.btn_MDI_TabS_B[status=focused],
+.Button.btn_MDI_TabS_B[userstatus=selected],
+.Button.btn_MDI_TabS_B[status=disabled]
+{
+	/**** 원본색상 
+	color : #02a3ff; ****/
+	-nexa-border : 0px none,0px none,1px solid #1e88e5;
+	-nexa-padding : 0px 40px 0px 15px;
+	background : #ffffff;
+	border-radius : 0px;
+	color : #1b3894;
+	font : 12px "Malgun Gothic","Tahoma";
+}
+.Button.btn_MDI_TabClose,
+.Button.btn_MDI_TabClose[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	-nexa-padding : 0px;
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_TabCloseN.png");
+	background : transparent;
+}
+.Button.btn_MDI_TabClose[status=mouseover],
+.Button.btn_MDI_TabClose[status=focused]
+{
+	-nexa-border : 0px none;
+	-nexa-padding : 0px;
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_TabCloseO.png");
+	background : transparent;
+}
+.Button.btn_MDI_TabClose[userstatus=pushed]
+{
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_TabCloseO.png");
+	background : transparent;
+}
+.Button.btn_MDI_TabClose[status=disabled]
+{
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_TabCloseD.png");
+	background : transparent;
+}
+.Button.btn_MDI_Prev
+{
+	-nexa-border : 0px none;
+	-nexa-padding : 0px;
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_TabPrevN.png");
+	background : URL("imagerc::Frame/bg_MDI_TabLine.png") no-repeat right center transparent;
+}
+.Button.btn_MDI_Prev[status=mouseover],
+.Button.btn_MDI_Prev[status=focused],
+.Button.btn_MDI_Prev[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	-nexa-padding : 0px;
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_TabPrevO.png");
+	background : URL("imagerc::Frame/bg_MDI_TabLine.png") no-repeat right center transparent;
+}
+.Button.btn_MDI_Prev[userstatus=pushed]
+{
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_TabPrevO.png");
+	background : URL("imagerc::Frame/bg_MDI_TabLine.png") no-repeat right center transparent;
+}
+.Button.btn_MDI_Prev[status=disabled]
+{
+	-nexa-border : 0px none;
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_TabPrevD.png");
+	background : URL("imagerc::Frame/bg_MDI_TabLine.png") no-repeat right center transparent;
+}
+.Button.btn_MDI_Next
+{
+	-nexa-border : 0px none;
+	-nexa-padding : 0px;
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_TabNextN.png");
+	background : transparent;
+}
+.Button.btn_MDI_Next[status=mouseover],
+.Button.btn_MDI_Next[status=focused],
+.Button.btn_MDI_Next[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	-nexa-padding : 0px;
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_TabNextO.png");
+	background : transparent;
+}
+.Button.btn_MDI_Next[userstatus=pushed]
+{
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_TabNextO.png");
+	background : transparent;
+}
+.Button.btn_MDI_Next[status=disabled]
+{
+	-nexa-border : 0px none;
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_TabNextD.png");
+	background : transparent;
+}
+.Button.btn_MDI_List
+{
+	-nexa-border : 0px none;
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_openList.png");
+	-nexa-padding : 0px;
+	background : transparent;
+}
+.Button.btn_MDI_List[status=mouseover],
+.Button.btn_MDI_List[userstatus=pushed],
+.Button.btn_MDI_List[status=focused],
+.Button.btn_MDI_List[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_openList_O.png");
+	background : transparent;
+}
+.Button.btn_MDI_List[status=disabled]
+{
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_openList.png");
+	opacity : 0.3;
+}
+.Button.btn_MDI_Pop
+{
+	-nexa-border : 0px none;
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_all.png");
+	-nexa-padding : 0px;
+	background : transparent;
+}
+.Button.btn_MDI_Pop[status=mouseover],
+.Button.btn_MDI_Pop[userstatus=pushed],
+.Button.btn_MDI_Pop[status=focused],
+.Button.btn_MDI_Pop[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_all_O.png");
+	background : transparent;
+}
+.Button.btn_MDI_Pop[status=disabled]
+{
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_all.png");
+	opacity : 0.3;
+}
+.Button.btn_MDI_Cas
+{
+	-nexa-border : 0px none;
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_cascade.png");
+	-nexa-padding : 0px;
+	background : transparent;
+}
+.Button.btn_MDI_Cas[status=mouseover],
+.Button.btn_MDI_Cas[userstatus=pushed],
+.Button.btn_MDI_Cas[status=focused],
+.Button.btn_MDI_Cas[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_cascade_O.png");
+	background : transparent;
+}
+.Button.btn_MDI_Cas[status=disabled]
+{
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_cascade.png");
+	opacity : 0.3;
+}
+.Button.btn_MDI_2V
+{
+	-nexa-border : 0px none;
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_vert.png");
+	-nexa-padding : 0px;
+	background : transparent;
+}
+.Button.btn_MDI_2V[status=mouseover],
+.Button.btn_MDI_2V[userstatus=pushed],
+.Button.btn_MDI_2V[status=focused],
+.Button.btn_MDI_2V[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_vert_O.png");
+	background : transparent;
+}
+.Button.btn_MDI_2V[status=disabled]
+{
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_vert.png");
+	opacity : 0.3;
+}
+.Button.btn_MDI_2H
+{
+	-nexa-border : 0px none;
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_horz.png");
+	-nexa-padding : 0px;
+	background : transparent;
+}
+.Button.btn_MDI_2H[status=mouseover],
+.Button.btn_MDI_2H[userstatus=pushed],
+.Button.btn_MDI_2H[status=focused],
+.Button.btn_MDI_2H[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_horz_O.png");
+	background : transparent;
+}
+.Button.btn_MDI_2H[status=disabled]
+{
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_horz.png");
+	opacity : 0.3;
+}
+.Button.btn_MDI_Close
+{
+	-nexa-border : 0px none;
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_close2.png");
+	-nexa-padding : 0px;
+	background : transparent;
+}
+.Button.btn_MDI_Close[status=mouseover],
+.Button.btn_MDI_Close[userstatus=pushed],
+.Button.btn_MDI_Close[status=focused],
+.Button.btn_MDI_Close[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_close2_O.png");
+	background : transparent;
+}
+.Button.btn_MDI_Close[status=disabled]
+{
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_close2.png");
+	opacity : 0.3;
+}
+.Button.btn_MDI_Guide,
+.Button.btn_MDI_Guide[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_GuideN.png");
+	-nexa-padding : 0px;
+	background : transparent;
+}
+.Button.btn_MDI_Guide[status=mouseover],
+.Button.btn_MDI_Guide[userstatus=pushed],
+.Button.btn_MDI_Guide[status=focused]
+{
+	-nexa-border : 0px none;
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_GuideO.png");
+	background : transparent;
+}
+.Button.btn_MDI_Guide[status=disabled]
+{
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_GuideD.png");
+}
+.Button.btn_MDI_MyMnu,
+.Button.btn_MDI_MyMnu[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_MyMnuN.png");
+	-nexa-padding : 0px;
+	background : transparent;
+}
+.Button.btn_MDI_MyMnu[status=focused]
+{
+	-nexa-border : 0px none;
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_MyMnuN.png");
+	-nexa-padding : 0px;
+	background : transparent;	
+}
+.Button.btn_MDI_MyMnu[status=mouseover],
+.Button.btn_MDI_MyMnu[userstatus=pushed]
+{
+	-nexa-border : 0px none;
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_MyMnuO.png");
+	background : transparent;
+}
+.Button.btn_MDI_MyMnu[status=disabled]
+{
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_MyMnuD.png");
+}
+.Button.btn_MDI_MyMnuS,
+.Button.btn_MDI_MyMnuS[status=mouseover],
+.Button.btn_MDI_MyMnuS[userstatus=pushed],
+.Button.btn_MDI_MyMnuS[status=focused],
+.Button.btn_MDI_MyMnuS[userstatus=selected],
+.Button.btn_MDI_MyMnuS[status=disabled]
+{
+	-nexa-border : 0px none;
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_MyMnuO.png");
+	-nexa-padding : 0px;
+	background : transparent;
+}
+.Button.btn_MDI_ListS,
+.Button.btn_MDI_ListS[status=mouseover],
+.Button.btn_MDI_ListS[userstatus=pushed],
+.Button.btn_MDI_ListS[status=focused],
+.Button.btn_MDI_ListS[userstatus=selected],
+.Button.btn_MDI_ListS[status=disabled]
+{
+	-nexa-border : 0px none;
+	-nexa-icon : URL("imagerc::Frame/btn_MDI_openList_O.png");
+	-nexa-padding : 0px;
+	background : transparent;
+}
+.Static.sta_MDI_Line
+{
+	-nexa-border : 0px none, 0px none, 0px none, 1px solid #d2d0d0;
+}
+.Button.btn_MF_tabClose,
+.Button.btn_MF_tabClose[status=disabled],
+.Button.btn_MF_tabClose[status=focused]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/btn_MDI_TabCloseN.png');
+}
+.Button.btn_MF_tabClose[status=mouseover],
+.Button.btn_MF_tabClose[userstatus=pushed],
+.Button.btn_MF_tabClose[userstatus=selected]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/btn_MDI_TabCloseO.png');
+}
+.Button.btn_MF_tab,
+.Button.btn_MF_tab[status=disabled],
+.Button.btn_MF_tab[status=focused]
+{
+	background : url('imagerc::Frame/btn_MDI_BtnLine.png') no-repeat right center;	
+	-nexa-border : 0px none;
+	color : #a5a5a5;
+}
+.Button.btn_MF_tab[status=mouseover],
+.Button.btn_MF_tab[userstatus=pushed],
+.Button.btn_MF_tab[userstatus=selected]
+{
+	background : url('imagerc::Frame/btn_MDI_BtnLine.png') no-repeat right center;	
+	-nexa-border : 0px none;
+	color : #a5a5a5;
+	-nexa-text-decoration : underline;
+}
+.Button.btn_MF_tabS,
+.Button.btn_MF_tabS[status=disabled],
+.Button.btn_MF_tabS[status=mouseover],
+.Button.btn_MF_tabS[status=focused],
+.Button.btn_MF_tabS[userstatus=pushed],
+.Button.btn_MF_tabS[userstatus=selected]
+{
+	background : url('imagerc::Frame/btn_MDI_BtnLine.png') no-repeat right center;	
+	-nexa-border : 0px none;
+	color : #111111;
+	font : bold 13px/normal "Malgun Gothic";
+}
+
+/* Top Frame */
+
+.Static.sta_TF_logo
+{
+	background : url('imagerc::Frame/sta_WF_Logo.png') no-repeat left center;
+	cursor : pointer;
+}
+
+.Button.btn_TF_menuUser,
+.Button.btn_TF_menuUser[status=focused]
+{	
+	-nexa-border : 0px none;
+	background : url('imagerc::Frame/img_TF_user2.png') no-repeat center transparent;
+}
+.Button.btn_TF_menuUser[status=mouseover],
+.Button.btn_TF_menuUser[userstatus=pushed],
+.Button.btn_TF_menuUser[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background : url('imagerc::Frame/img_TF_user2O.png') no-repeat center transparent;
+}
+.Button.btn_TF_menuUser[status=disabled]
+{
+	-nexa-border : 0px none;
+	background : url('imagerc::Frame/img_TF_userD.png') no-repeat center transparent;
+}
+.Button.btn_TF_menuSetting,
+.Button.btn_TF_menuSetting[status=focused]
+{	
+	-nexa-border : 0px none;
+	background : url('imagerc::Frame/img_TF_settings2.png') no-repeat center transparent;
+}
+.Button.btn_TF_menuSetting[status=mouseover],
+.Button.btn_TF_menuSetting[userstatus=pushed],
+.Button.btn_TF_menuSetting[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background : url('imagerc::Frame/img_TF_settings2O.png') no-repeat center transparent;
+}
+.Button.btn_TF_menuSetting[status=disabled]
+{
+	-nexa-border : 0px none;
+	background : url('imagerc::Frame/img_TF_settingsD.png') no-repeat center transparent;
+}
+.Button.btn_TF_menuNotice,
+.Button.btn_TF_menuNotice[status=focused]
+{	
+	-nexa-border : 0px none;
+	background : url('imagerc::Frame/img_TF_notice2.png') no-repeat center transparent;
+}
+.Button.btn_TF_menuNotice[status=mouseover],
+.Button.btn_TF_menuNotice[userstatus=pushed],
+.Button.btn_TF_menuNotice[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background : url('imagerc::Frame/img_TF_notice2O.png') no-repeat center transparent;
+}
+.Button.btn_TF_menuNotice[status=disabled]
+{
+	-nexa-border : 0px none;
+	background : url('imagerc::Frame/img_TF_noticeD.png') no-repeat center transparent;
+}
+.Button.btn_TF_menuNoticeOn,
+.Button.btn_TF_menuNoticeOn[status=focused]
+{	
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/img_TF_noticeOn.png');
+}
+.Button.btn_TF_menuNoticeOn[status=mouseover],
+.Button.btn_TF_menuNoticeOn[userstatus=pushed],
+.Button.btn_TF_menuNoticeOn[userstatus=selected]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/img_TF_noticeOnO.png');
+}
+.Button.btn_TF_menuNoticeOn[status=disabled]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/img_TF_noticeOnD.png');
+}
+.Button.btn_TF_leftMenu,
+.Button.btn_TF_leftMenu[status=focused]
+{	
+	-nexa-border : 0px none;
+	background : url('imagerc::Frame/img_TF_leftMenu2.png') no-repeat center transparent;
+}
+.Button.btn_TF_leftMenu[status=mouseover],
+.Button.btn_TF_leftMenu[userstatus=pushed],
+.Button.btn_TF_leftMenu[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background : url('imagerc::Frame/img_TF_leftMenu2O.png') no-repeat center transparent;
+}
+.Button.btn_TF_leftMenu[status=disabled]
+{
+	-nexa-border : 0px none;
+	background : url('imagerc::Frame/img_TF_leftMenuD.png') no-repeat center transparent;
+}
+.Button.btn_TF_textMenu,
+.Button.btn_TF_textMenu[status=focused]
+{	
+	background : url('imagerc::Frame/img_WF_menuBar.png') no-repeat right center;
+	-nexa-border : 0px none;
+	font : bold 14px/normal "Malgun Gothic";
+	color : #ffffff;
+}
+.Button.btn_TF_textMenu[status=mouseover],
+.Button.btn_TF_textMenu[userstatus=pushed],
+.Button.btn_TF_textMenu[userstatus=selected]
+{
+	background : url('imagerc::Frame/img_WF_menuBar.png') no-repeat right center;
+	-nexa-border : 0px none;
+	color : #9AB3E0;
+}
+.Button.btn_TF_textMenu[status=disabled]
+{
+	background : url('imagerc::Frame/img_WF_menuBar.png') no-repeat right center;
+	-nexa-border : 0px none;
+	color : #325F97;
+}
+
+/* Left Frame */
+
+.Button.btn_LF_lv1Open,
+.Button.btn_LF_lv1Open[status=mouseover],.Button.btn_LF_lv1Open[status=focused],
+.Button.btn_LF_lv1Open[userstatus=pushed],.Button.btn_LF_lv1Open[userstatus=selected]
+{
+	background : url('imagerc::Frame/img_LF_menuOpen.png') no-repeat right center #0793CF;
+	-nexa-border : 0px none;
+	color : #ffffff;
+	-nexa-text-align : left;
+	-nexa-padding : 0px 0px 0px 20px;
+	font : bold 14px "Malgun Gothic";
+}
+.Button.btn_LF_lv1Open[status=disabled]
+{
+	background : url('imagerc::Frame/img_LF_menuOpenD.png') no-repeat right center #0793CF;
+	-nexa-border : 0px none;
+	color : #3B5F8D;
+	cursor : default;
+}
+.Button.btn_LF_lv1Close,
+.Button.btn_LF_lv1Close[status=mouseover],.Button.btn_LF_lv1Close[status=focused],
+.Button.btn_LF_lv1Close[userstatus=pushed],.Button.btn_LF_lv1Close[userstatus=selected]
+{
+	background : url('imagerc::Frame/img_LF_menuClose.png') no-repeat right center #0793CF;
+	-nexa-border : 0px none;
+	color : #ffffff;
+	-nexa-text-align : left;
+	-nexa-padding : 0px 0px 0px 20px;
+	font : bold 14px "Malgun Gothic";
+}
+.Button.btn_LF_lv1Close[status=disabled]
+{
+	background : url('imagerc::Frame/img_LF_menuCloseD.png') no-repeat right center #0793CF;
+	-nexa-border : 0px none;
+	color : #3B5F8D;
+	cursor : default;
+}
+.Button.btn_LF_lv2,
+.Button.btn_LF_lv2[status=focused]
+{
+	background : #f1f1f1;
+	-nexa-border : 0px none;
+	color : #222222;
+	font : 13px "Malgun Gothic";
+	-nexa-icon : url('imagerc::Frame/img_LF_subIcon.png');
+	-nexa-text-align : left;
+	-nexa-icon-position : left;
+	-nexa-text-padding : 0px 0px 0px 5px;
+}
+.Button.btn_LF_lv2[status=mouseover]
+{
+	background : #e8e8e8;
+	-nexa-border : 0px none;
+	color : #222222;
+	-nexa-icon : url('imagerc::Frame/img_LF_subIcon.png');
+}
+
+.Button.btn_LF_lv2[userstatus=pushed],
+.Button.btn_LF_lv2[userstatus=selected]
+{
+	background : #e1e1e1;
+	-nexa-border : 0px none;
+	color : #222222;
+	-nexa-icon : url('imagerc::Frame/img_LF_subIcon.png');
+}
+.Button.btn_LF_lv2[status=disabled]
+{
+	background : #CDE0FB;
+	-nexa-border : 0px none;
+	color : #9AA6B7;
+	-nexa-icon : url('imagerc::Frame/img_LF_subIcon.png');
+}
+/*왼쪽메뉴BG변경*/
+.Div.div_LF_Bg
+{	background : #F1F1F1;
+}
+/* Right_Quick menu */
+
+.Div.div_RF_iconBg
+{
+	background : #E5EEF9;
+	border-radius : 16px;	
+}
+.Button.btn_RF_icon01,
+.Button.btn_RF_icon01[status=focused]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/img_RF_quick01.png');
+	opacity : 0.9;
+}
+.Button.btn_RF_icon01[status=mouseover],
+.Button.btn_RF_icon01[userstatus=pushed],
+.Button.btn_RF_icon01[userstatus=selected]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/img_RF_quick01.png');
+	opacity : 1;
+}
+.Button.btn_RF_icon01[status=disabled]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/img_RF_quick01.png');
+	opacity : 0.5;
+}
+.Button.btn_RF_icon02,
+.Button.btn_RF_icon02[status=focused]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/img_RF_quick02.png');
+	opacity : 0.9;
+}
+.Button.btn_RF_icon02[status=mouseover],
+.Button.btn_RF_icon02[userstatus=pushed],
+.Button.btn_RF_icon02[userstatus=selected]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/img_RF_quick02.png');
+	opacity : 1;
+}
+.Button.btn_RF_icon02[status=disabled]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/img_RF_quick02.png');
+	opacity : 0.5;
+}
+.Button.btn_RF_icon03,
+.Button.btn_RF_icon03[status=focused]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/img_RF_quick03.png');
+	opacity : 0.9;
+}
+.Button.btn_RF_icon03[status=mouseover],
+.Button.btn_RF_icon03[userstatus=pushed],
+.Button.btn_RF_icon03[userstatus=selected]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/img_RF_quick03.png');
+	opacity : 1;
+}
+.Button.btn_RF_icon03[status=disabled]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/img_RF_quick03.png');
+	opacity : 0.5;
+}
+.Button.btn_RF_icon04,
+.Button.btn_RF_icon04[status=focused]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/img_RF_quick04.png');
+	opacity : 0.9;
+}
+.Button.btn_RF_icon04[status=mouseover],
+.Button.btn_RF_icon04[userstatus=pushed],
+.Button.btn_RF_icon04[userstatus=selected]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/img_RF_quick04.png');
+	opacity : 1;
+}
+.Button.btn_RF_icon04[status=disabled]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/img_RF_quick04.png');
+	opacity : 0.5;
+}
+.Button.btn_RF_icon05,
+.Button.btn_RF_icon05[status=focused]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/img_RF_quick05.png');
+	opacity : 0.9;
+}
+.Button.btn_RF_icon05[status=mouseover],
+.Button.btn_RF_icon05[userstatus=pushed],
+.Button.btn_RF_icon05[userstatus=selected]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/img_RF_quick05.png');
+	opacity : 1;
+}
+.Button.btn_RF_icon05[status=disabled]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/img_RF_quick05.png');
+	opacity : 0.5;
+}
+.Button.btn_RF_icon06,
+.Button.btn_RF_icon06[status=focused]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/img_RF_quick06.png');
+	opacity : 0.9;
+}
+.Button.btn_RF_icon06[status=mouseover],
+.Button.btn_RF_icon06[userstatus=pushed],
+.Button.btn_RF_icon06[userstatus=selected]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/img_RF_quick06.png');
+	opacity : 1;
+}
+.Button.btn_RF_icon06[status=disabled]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/img_RF_quick06.png');
+	opacity : 0.5;
+}
+.Button.btn_RF_icon07,
+.Button.btn_RF_icon07[status=focused]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/img_RF_quick07.png');
+	opacity : 0.9;
+}
+.Button.btn_RF_icon07[status=mouseover],
+.Button.btn_RF_icon07[userstatus=pushed],
+.Button.btn_RF_icon07[userstatus=selected]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/img_RF_quick07.png');
+	opacity : 1;
+}
+.Button.btn_RF_icon07[status=disabled]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/img_RF_quick07.png');
+	opacity : 0.5;
+}
+.Button.btn_RF_icon08,
+.Button.btn_RF_icon08[status=focused]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/img_RF_quick08.png');
+	opacity : 0.9;
+}
+.Button.btn_RF_icon08[status=mouseover],
+.Button.btn_RF_icon08[userstatus=pushed],
+.Button.btn_RF_icon08[userstatus=selected]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/img_RF_quick08.png');
+	opacity : 1;
+}
+.Button.btn_RF_icon08[status=disabled]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/img_RF_quick08.png');
+	opacity : 0.5;
+}
+.Static.sta_WF_label01
+{
+	-nexa-padding 	: 0px 0px 0px 10px;
+	background 	: #F1F1F1;
+	-nexa-border 	: 0px none,1px solid #BEBEBE,0px none,0px none;
+	color 		: #333333;
+	-nexa-text-align : left;	
+}
+.Static.sta_WF_label02
+{
+	-nexa-padding 	: 0px 0px 0px 10px;
+	-nexa-border 	: 1px solid #BEBEBE;
+	-nexa-text-align : left;
+	color 		: #333333;
+	background : #F1F1F1;
+}
+.Static.sta_WF_label03
+{
+	background : #ffffff;
+	-nexa-border : 1px solid #BEBEBE;
+	color : #222222;
+	-nexa-text-align : center;	
+}
+.Div.div_WF_labelCon01
+{
+	background : #ffffff;
+	-nexa-border : 1px solid #BEBEBE;	
+}
+.Div.div_WF_labelCon02
+{
+	background : #EEF6FF;
+	-nexa-border : 1px solid #C7DEF3;
+}
+.Static.sta_WF_pageTitle
+{
+	background : url('imagerc::Frame/img_WF_bullet01.png') no-repeat left center;
+	-nexa-border : 0px none,0px none,1px solid #BEBEBE;
+	-nexa-padding : 0px 0px 0px 45px;
+	font : bold 13px "Malgun Gothic";
+}
+.Static.sta_WF_conTitle
+{
+	-nexa-padding 	: 10px 0px 0px 16px;
+	color 		: #004F9C;
+	font 		: bold 14px "Malgun Gothic";
+	background 	: URL('imagerc::Frame/img_WF_Title.png') no-repeat left center;
+}
+.Button.btn_WF_function01,
+.Button.btn_WF_function01[status=focused]
+{
+	background : #E5EEF9;
+	-nexa-border : 1px solid #7F9DC1;
+}
+.Button.btn_WF_function01[status=mouseover]
+{
+	background : #CBDDEE;
+	-nexa-border : 1px solid #7F9DC1;
+}
+.Button.btn_WF_function01[userstatus=pushed],
+.Button.btn_WF_function01[userstatus=selected]
+{
+	background : #BFD0E3;
+	-nexa-border : 1px solid #7F9DC1;
+}
+.Button.btn_WF_function01[status=disabled]
+{
+	background : #E5EEF9;
+	-nexa-border : 1px solid #7F9DC1;
+	color : #A8B6C4;
+}
+.Button.btn_WF_function02,
+.Button.btn_WF_function02[status=focused]
+{
+	background : #1E82EF;
+	-nexa-border : 1px solid #0C68CC;
+	color : #ffffff;
+}
+.Button.btn_WF_function02[status=mouseover]
+{
+	background : #1472D8;
+	-nexa-border : 1px solid #0C68CC;
+}
+.Button.btn_WF_function02[userstatus=pushed],
+.Button.btn_WF_function02[userstatus=selected]
+{
+	background : #0E64C1;
+	-nexa-border : 1px solid #0C68CC;
+}
+.Button.btn_WF_function02[status=disabled]
+{
+	background : #1E82EF;
+	-nexa-border : 1px solid #0C68CC;
+	color : #85B6EB;
+}
+.Static.sta_WF_SchLabel
+{
+	color 			: #333333;
+	font 			: bold 14px "Malgun Gothic";
+	-nexa-padding 		: 0px 5px 0px 0px;
+}
+.Static.sta_WF_warning
+{
+	color : #E76200;
+	font 			: 12px "Malgun Gothic";
+}
+.Static.sta_WF_warning01
+{
+	color : #df1616;
+	-nexa-text-decoration : underline;
+}
+
+.Button.btn_WF_searchTxt,
+.Button.btn_WF_searchTxt[status=focused]
+{
+	background : #0092D1;
+	color : #ffffff;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/img_WF_search.png');
+	-nexa-text-padding : 0px 0px 0px 0px;
+}
+.Button.btn_WF_searchTxt[status=mouseover],
+.Button.btn_WF_searchTxt[userstatus=pushed],
+.Button.btn_WF_searchTxt[userstatus=selected]
+{
+	background : #1BA7E3;	
+	color : #ffffff;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/img_WF_search.png');
+}
+.Button.btn_WF_searchTxt[status=disabled]
+{
+	background : #0092D1;
+	color : #ffffff;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/img_WF_search.png');
+	opacity : 0.7;
+}
+.Button.btn_WF_search,
+.Button.btn_WF_search[status=focused]
+{
+	background : #0076C0;
+	color : #ffffff;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/img_WF_search.png');
+	border-radius : 5px;
+	font : 15px "Malgun Gothic";
+}
+.Button.btn_WF_search[status=mouseover],
+.Button.btn_WF_search[userstatus=pushed],
+.Button.btn_WF_search[userstatus=selected]
+{
+	background : #0B8AD9;	
+	color : #ffffff;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/img_WF_search.png');
+}
+.Button.btn_WF_search[status=disabled]
+{
+	background : #0076C0;
+	color : #ffffff;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/img_WF_search.png');
+	opacity : 0.5;
+}
+.Button.btn_WF_searchNew,
+.Button.btn_WF_searchNew[status=focused]
+{
+	background : #E76200;
+	color : #ffffff;
+	-nexa-border : 0px none;
+	-nexa-text-padding : 0px 0px 0px 5px;	
+}
+.Button.btn_WF_searchNew[status=mouseover],
+.Button.btn_WF_searchNew[userstatus=pushed],
+.Button.btn_WF_searchNew[userstatus=selected]
+{
+	background : #FB842C;	
+	color : #ffffff;
+	-nexa-border : 0px none;
+}
+.Button.btn_WF_searchNew[status=disabled]
+{
+	background : #E76200;
+	color : #ffffff;
+	-nexa-border : 0px none;
+	opacity : 0.7;
+}
+/* 검색버튼 */
+.Button.btn_WF_SchSmall,
+.Button.btn_WF_SchSmall[status=focused]
+{
+	-nexa-border : 1px solid #d5d5d5;
+	-nexa-padding 		: 0px 0px 0px 0px;
+	background 		: URL('imagerc::Frame/btn_WF_SearchN.png') no-repeat center center #ffffff;
+}
+.Button.btn_WF_SchSmall[status=mouseover],.Button.btn_WF_SchSmall[userstatus=pushed],
+.Button.btn_WF_SchSmall[userstatus=selected]
+{
+	-nexa-border 		: 1px solid #5a86cd;
+	background 		: URL('imagerc::Frame/btn_WF_SearchO.png') no-repeat center center #ffffff;
+}
+.Button.btn_WF_SchSmall[status=disabled]
+{
+	-nexa-border 		: 1px solid #CECECE;
+	background 		: URL('imagerc::Frame/btn_WF_SearchD.png') no-repeat center center #ffffff;
+}
+/* 검색버튼2 */
+.Button.btn_WF_SchSmall2,
+.Button.btn_WF_SchSmall2[status=focused]
+{
+	-nexa-border : 1px solid #d5d5d5;
+	-nexa-padding 		: 0px 0px 0px 0px;
+	background 		: URL('imagerc::Frame/btn_WF_Search2N.png') no-repeat center center #ffffff;
+}
+.Button.btn_WF_SchSmall2[status=mouseover],.Button.btn_WF_SchSmall2[userstatus=pushed],
+.Button.btn_WF_SchSmall2[userstatus=selected]
+{
+	-nexa-border 		: 1px solid #5a86cd;
+	background 		: URL('imagerc::Frame/btn_WF_Search2O.png') no-repeat center center #ffffff;
+}
+.Button.btn_WF_SchSmall2[status=disabled]
+{
+	-nexa-border 		: 1px solid #CECECE;
+	background 		: URL('imagerc::Frame/btn_WF_Search2D.png') no-repeat center center #ffffff;
+}
+.Div.div_pop_topArea
+{
+	background : #F1F1F1;
+	-nexa-border : 0px none,0px none,1px solid #b7c0cb;	
+}
+.Button.btn_WF_popBtn01,
+.Button.btn_WF_popBtn01[status=focused]
+{
+	background : #456A9A;
+	-nexa-border : 1px solid #2B5995;
+	color : #ffffff;
+}
+.Button.btn_WF_popBtn01[status=mouseover]
+{
+	background : #3B5E8B;
+	-nexa-border : 1px solid #2B5995;
+}
+.Button.btn_WF_popBtn01[userstatus=pushed],
+.Button.btn_WF_popBtn01[userstatus=selected]
+{
+	background : #345784;
+	-nexa-border : 1px solid #2B5995;
+}
+.Button.btn_WF_popBtn01[status=disabled]
+{
+	background : #456A9A;
+	-nexa-border : 1px solid #2B5995;
+	color : #789AC7;
+}
+.Button.btn_WF_popBtn02,
+.Button.btn_WF_popBtn02[status=focused]
+{
+	background : #ffffff;
+	-nexa-border : 1px solid #7A98BC;
+	color : #333333;
+}
+.Button.btn_WF_popBtn02[status=mouseover]
+{
+	background : #ffffff;
+	-nexa-border : 1px solid #3B5E8B;
+}
+.Button.btn_WF_popBtn02[userstatus=pushed],
+.Button.btn_WF_popBtn02[userstatus=selected]
+{
+	background : #ffffff;
+	-nexa-border : 1px solid #345784;
+}
+.Button.btn_WF_popBtn02[status=disabled]
+{
+	background : #ffffff;
+	-nexa-border : 1px solid #7A98BC;
+	color : #B9B9B9;
+}
+.Static.sta_WF_mainArea
+{
+	background : url('imagerc::Frame/img_WF_mainImage.png') no-repeat center;
+}
+.Static.sta_WF_loginTitle
+{
+	background :  url('imagerc::Frame/sta_Login_Title.png') no-repeat center transparent;	
+}
+.Static.sta_WF_loginBox
+{
+	background : #f1f1f1;
+	border-radius : 0px 0px 0px 20px;
+}
+.Static.sta_WF_loginBg
+{
+	background : url('imagerc::Frame/sta_Login_Bg.png') no-repeat center #004F9C;
+}
+.Static.sta_WF_requestTxt
+{
+	font : normal 700 14px/20px "Malgun Gothic";
+	background : url('imagerc::Frame/img_WF_request.png') no-repeat left center;
+	-nexa-padding : 0px 0px 0px 50px;
+}
+.Static.sta_WF_popupBg
+{
+	-nexa-border : 1px solid #f0f1f3;
+}
+.Combo.cmb_WF_required
+{
+	background : url('imagerc::Frame/img_WF_required.png') no-repeat left top #FFFAE3;
+	-nexa-border : 1px solid #d5d5d5;
+}
+.Combo.cmb_WF_Product
+{
+	background : #FFE3E3;
+}
+
+.Edit.edit_WF_required
+{
+	background : url('imagerc::Frame/img_WF_required.png') no-repeat left top #FFFAE3;
+	-nexa-border : 1px solid #d5d5d5;
+	-nexa-padding : 1px 9px 0px 9px;
+}
+
+/** Add css **/
+
+.Static.sta_LF_todo
+{
+	background : linear-gradient(to left bottom,#0092d1,#3eb9ee 100%) #0092d1;
+	color : #ffffff;
+	-nexa-text-align : center;	
+	font : bold 16px "Malgun Gothic";
+}
+.Button.btn_WF_searchIcon,
+.Button.btn_WF_searchIcon[status=focused]
+{
+	color : #ffffff;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/img_WF_searchIcon.png');
+	-nexa-padding : 0px;
+	background : transparent;
+}
+.Button.btn_WF_searchIcon[status=mouseover],
+.Button.btn_WF_searchIcon[userstatus=pushed],
+.Button.btn_WF_searchIcon[userstatus=selected]
+{
+	color : #ffffff;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/img_WF_searchIconO.png');
+	-nexa-padding : 0px;
+	background : transparent;
+}
+.Button.btn_WF_searchIcon[status=disabled]
+{
+	color : #ffffff;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/img_WF_searchIconD.png');
+	-nexa-padding : 0px;
+	background : transparent;
+	opacity : 0.7;
+}
+.Button.btn_WF_midMenu,
+.Button.btn_WF_midMenu[status=focused]
+{
+	background : #5C95D2;
+	color : #ffffff;
+	-nexa-border : 0px none;
+	border-radius : 5px 5px 0px 0px;
+}
+.Button.btn_WF_midMenu[status=mouseover],
+.Button.btn_WF_midMenu[userstatus=pushed],
+.Button.btn_WF_midMenu[userstatus=selected]
+{
+	background : #3773B4;	
+	color : #ffffff;
+	-nexa-border : 0px none;
+}
+.Button.btn_WF_midMenu[status=disabled]
+{
+	background : #7999C2;	
+	color : #95B3D4;
+	-nexa-border : 0px none;
+}
+.Static.sta_WF_textTitle
+{
+	background : url('imagerc::Frame/img_WF_bullet01_1.png') no-repeat left center;
+	font : bold 13px "Malgun Gothic";
+	-nexa-padding : 0px 0px 0px 25px;
+}
+.Static.sta_WF_textTitle02
+{
+	background : url('imagerc::Frame/img_WF_bullet02.png') no-repeat left center;
+	font : bold 13px "Malgun Gothic";
+	-nexa-padding : 0px 0px 0px 23px;
+}
+/* Main button */
+.Button.btn_WF_mainBtn01,
+.Button.btn_WF_mainBtn01[status=focused]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::img_WF_mainBtn1.png');
+	-nexa-icon-position : top;
+	color : #111111;
+	font : bold 16px "Malgun Gothic";
+	-nexa-text-padding : 10px 0px 0px;
+}
+.Button.btn_WF_mainBtn01[status=mouseover],
+.Button.btn_WF_mainBtn01[userstatus=pushed],
+.Button.btn_WF_mainBtn01[userstatus=selected]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::img_WF_mainBtn1.png');
+	color : #1e82ef;
+}
+.Button.btn_WF_mainBtn01[status=disabled]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::img_WF_mainBtn1.png');
+	opacity : 0.5;
+}
+.Button.btn_WF_mainBtn02,
+.Button.btn_WF_mainBtn02[status=focused]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::img_WF_mainBtn2.png');
+	-nexa-icon-position : top;
+	color : #111111;
+	font : bold 16px "Malgun Gothic";
+	-nexa-text-padding : 10px 0px 0px;
+}
+.Button.btn_WF_mainBtn02[status=mouseover],
+.Button.btn_WF_mainBtn02[userstatus=pushed],
+.Button.btn_WF_mainBtn02[userstatus=selected]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::img_WF_mainBtn2.png');
+	color : #1e82ef;
+}
+.Button.btn_WF_mainBtn02[status=disabled]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::img_WF_mainBtn2.png');
+	opacity : 0.5;
+}
+.Button.btn_WF_mainBtn03,
+.Button.btn_WF_mainBtn03[status=focused]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::img_WF_mainBtn3.png');
+	-nexa-icon-position : top;
+	color : #111111;
+	font : bold 16px "Malgun Gothic";
+	-nexa-text-padding : 10px 0px 0px;
+}
+.Button.btn_WF_mainBtn03[status=mouseover],
+.Button.btn_WF_mainBtn03[userstatus=pushed],
+.Button.btn_WF_mainBtn03[userstatus=selected]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::img_WF_mainBtn3.png');
+	color : #1e82ef;
+}
+.Button.btn_WF_mainBtn03[status=disabled]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::img_WF_mainBtn3.png');
+	opacity : 0.5;
+}
+.Button.btn_WF_mainBtn04,
+.Button.btn_WF_mainBtn04[status=focused]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::img_WF_mainBtn4.png');
+	-nexa-icon-position : top;
+	color : #111111;
+	font : bold 16px "Malgun Gothic";
+	-nexa-text-padding : 20px 0px 0px;
+}
+.Button.btn_WF_mainBtn04[status=mouseover],
+.Button.btn_WF_mainBtn04[userstatus=pushed],
+.Button.btn_WF_mainBtn04[userstatus=selected]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::img_WF_mainBtn4.png');
+	color : #1e82ef;
+}
+.Button.btn_WF_mainBtn04[status=disabled]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::img_WF_mainBtn4.png');
+	opacity : 0.5;
+}
+.Button.btn_WF_mainBtn05,
+.Button.btn_WF_mainBtn05[status=focused]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::img_WF_mainBtn05.png');
+	-nexa-icon-position : top;
+	color : #111111;
+	font : bold 16px "Malgun Gothic";
+	-nexa-text-padding : 10px 0px 0px;
+}
+.Button.btn_WF_mainBtn05[status=mouseover],
+.Button.btn_WF_mainBtn05[userstatus=pushed],
+.Button.btn_WF_mainBtn05[userstatus=selected]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::img_WF_mainBtn05.png');
+	color : #1e82ef;
+}
+.Button.btn_WF_mainBtn05[status=disabled]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::img_WF_mainBtn05.png');
+	opacity : 0.5;
+}
+
+.Static.sta_LF_todoList
+{
+	-nexa-border : 0px none;
+	color 	     : #333333;
+	font 	     : bold 14px "Malgun Gothic";
+	-nexa-padding : 0px 0px 0px 15px;
+	background : url('imagerc::Frame/img_WF_Menuicon1.png') no-repeat left center transparent;
+}
+.Static.sta_WF_mainTitle
+{
+	background : #DCDFE9;
+}
+.Div.div_WF_mainGroup
+{
+	border-radius : 15px;
+	-nexa-border : 1px solid #D0D5DD;
+}
+.Button.btn_WF_group01,
+.Button.btn_WF_group01[status=focused]
+{
+	background : url('imagerc::img_WF_right01.png') no-repeat right center #f5f8fd;
+	color : #111111;
+	font : 15px "Malgun Gothic";
+	-nexa-border : 0px none,0px none,1px solid #C3C8D2;
+	-nexa-text-align : left;
+	-nexa-padding : 0px 0px 0px 30px;
+}
+.Button.btn_WF_group01[status=mouseover],
+.Button.btn_WF_group01[userstatus=pushed],
+.Button.btn_WF_group01[userstatus=selected]
+{
+	background : url('imagerc::img_WF_right01.png') no-repeat right center #E9F1FF;
+	color : #111111;
+	-nexa-border : 0px none,0px none,1px solid #C3C8D2;
+}
+.Button.btn_WF_group01[status=disabled]
+{
+	background : url('imagerc::img_WF_right01.png') no-repeat right center #f5f8fd;
+	color : #BFBFBF;
+	-nexa-border : 0px none,0px none,1px solid #C3C8D2;
+}
+.Button.btn_WF_group02,
+.Button.btn_WF_group02[status=focused]
+{
+	background : url('imagerc::img_WF_right02.png') no-repeat right center #E9ECF2;
+	color : #111111;
+	font : 15px "Malgun Gothic";
+	-nexa-border : 0px none,0px none,1px solid #CDD1D9;
+	-nexa-text-align : left;
+	-nexa-padding : 0px 0px 0px 30px;
+}
+.Button.btn_WF_group02[status=mouseover],
+.Button.btn_WF_group02[userstatus=pushed],
+.Button.btn_WF_group02[userstatus=selected]
+{
+	background : url('imagerc::img_WF_right02.png') no-repeat right center #D9DFEB;
+	color : #111111;
+	-nexa-border : 0px none,0px none,1px solid #CDD1D9;
+}
+.Button.btn_WF_group02[status=disabled]
+{
+	background : url('imagerc::img_WF_right02.png') no-repeat right center #E9ECF2;
+	color : #BFBFBF;
+	-nexa-border : 0px none,0px none,1px solid #CDD1D9;
+}
+.Button.btn_WF_group03,
+.Button.btn_WF_group03[status=focused]
+{
+	background : url('imagerc::img_WF_right03.png') no-repeat right center #D2E2F8;
+	color : #111111;
+	font : 15px "Malgun Gothic";
+	-nexa-border : 0px none,0px none,1px solid #A4BEDF;
+	-nexa-text-align : left;
+	-nexa-padding : 0px 0px 0px 30px;
+}
+.Button.btn_WF_group03[status=mouseover],
+.Button.btn_WF_group03[userstatus=pushed],
+.Button.btn_WF_group03[userstatus=selected]
+{
+	background : url('imagerc::img_WF_right03.png') no-repeat right center #C7DCF8;
+	color : #111111;
+	-nexa-border : 0px none,0px none,1px solid #A4BEDF;
+}
+.Button.btn_WF_group03[status=disabled]
+{
+	background : url('imagerc::img_WF_right03.png') no-repeat right center #D2E2F8;
+	color : #BFBFBF;
+	-nexa-border : 0px none,0px none,1px solid #A4BEDF;
+}
+.Static.sta_WF_bgLogo
+{
+	background : url('imagerc::Frame/sta_WF_bgLogo.png') no-repeat center;
+	opacity : 0.7;
+}
+
+
+.Grid.grd_WF_Nobg .body .row .cell,.Grid.grd_WF_Nobg .body .row .cell[status=mouseover],
+.Grid.grd_WF_Nobg .body .row .cell[userstatus=selected],.Grid.grd_WF_Nobg .body .row .cell[status=disabled]
+{
+	color : #333333;
+	-nexa-border : 1px solid #dbdee2,1px solid #dbdee2,0px none,1px solid #dbdee2;
+	-nexa-padding : 4px 4px 4px 4px;
+	-nexa-text-align : center;
+	background : #ffffff;
+}
+
+/* Grid cell checkbox 일부선택 */
+.Grid .body .row .cell.chk_WF_selection .cellcheckbox
+{
+	-nexa-icon : URL('imagerc::chk_WF_selection.png');
+	-nexa-text-padding : 0px 0px 0px 6px;
+}
+
+.Grid .body .row .cell.chk_WF_selection .cellcheckbox[status=mouseover]
+{
+	-nexa-icon : URL('imagerc::chk_WF_selectionO.png');
+}
+
+.Grid .body .row .cell.chk_WF_selection .cellcheckbox[status=readonly]
+{
+	-nexa-icon : URL('imagerc::chk_WF_selectionD.png');
+}
+
+.Grid .body .row .cell.chk_WF_selection .cellcheckbox[userstatus=selected]
+{
+	-nexa-icon : URL('imagerc::chk_WF_selectionS.png');
+}
+
+.Grid .body .row .cell.chk_WF_selection .cellcheckbox[status=disabled]
+{
+	color : #999999;
+	-nexa-icon : URL('imagerc::chk_WF_selectionD.png');
+}
+
+.Grid .body .row .cell.chk_WF_selection .cellcheckbox[status=disabled][userstatus=selected]
+{
+	color : #999999;
+	-nexa-icon : URL('imagerc::chk_WF_selectionDS.png');
+}
+
+.Grid .body .row .cell.chk_WF_selection .celltreeitem .treeitemcheckbox
+{
+	-nexa-icon : URL('imagerc::chk_WF_selection.png');
+	-nexa-icon-position : left;
+	-nexa-text-align : left;
+}
+.Grid .body .row .cell.chk_WF_selection .celltreeitem .treeitemcheckbox[status=mouseover]
+{
+	-nexa-icon : URL('imagerc::chk_WF_selectionO.png');
+	-nexa-icon-position : left;	
+	-nexa-text-align : left;
+}
+.Grid .body .row .cell.chk_WF_selection .celltreeitem .treeitemcheckbox[status=readonly]
+{
+	-nexa-icon : URL('imagerc::chk_WF_selectionD.png');
+	-nexa-icon-position : left;
+	-nexa-text-align : left;
+}
+.Grid .body .row .cell.chk_WF_selection .celltreeitem .treeitemcheckbox[userstatus=selected]
+{
+	-nexa-icon : URL('imagerc::chk_WF_selectionS.png');
+	-nexa-icon-position : left;
+	-nexa-text-align : left;
+}
+.Grid .body .row .cell.chk_WF_selection .celltreeitem .treeitemcheckbox[status=disabled]
+{
+	color : #999999;
+	-nexa-icon : URL('imagerc::chk_WF_selectionD.png');
+	-nexa-icon-position : left;
+	-nexa-text-align : left;
+}
+.Grid .body .row .cell.chk_WF_selection .celltreeitem .treeitemcheckbox[status=disabled][userstatus=selected]
+{
+	color : #999999;
+	-nexa-icon : URL('imagerc::chk_WF_selectionDS.png');
+	-nexa-icon-position : left;
+	-nexa-text-align : left;
+}
+.Static.sta_TF_textAdmin
+{
+	font : 14px/normal "Malgun Gothic";
+	color : #D1E2F1;
+	-nexa-text-align : right;
+}
+.Grid .body .row .cell.chk_WF_selection[status=focused] .celltreeitem .treeitemcheckbox
+{
+	-nexa-icon-position : left;
+	-nexa-text-align : left;
+}
+.Grid .body .row .cell.chk_WF_selection[status=mouseover] .celltreeitem .treeitemcheckbox
+{
+	-nexa-icon-position : left;
+	-nexa-text-align : left;
+}
+.Grid .body .row .cell.chk_WF_selection[userstatus=selected] .celltreeitem .treeitemcheckbox
+{
+	-nexa-icon-position : left;
+	-nexa-text-align : left;
+}
+.Button.btn_TF_functionMenu,
+.Button.btn_TF_functionMenu[status=focused]
+{
+	background : transparent;
+	-nexa-border : 0px none;	
+	color : #ffffff;
+	font : bold 16px "Malgun Gothic";
+	opacity : 0.7;
+}
+.Button.btn_TF_functionMenu[status=mouseover],
+.Button.btn_TF_functionMenu[userstatus=pushed],
+.Button.btn_TF_functionMenu[userstatus=selected]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	color : #ffffff;
+	opacity : 1;
+	-nexa-text-decoration : underline;
+}
+.Button.btn_TF_functionMenu[status=disabled]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	color : #ffffff;
+	opacity : 0.3;
+}
+
+/** Theme 변경 대상 **/
+.Static.sta_TF_base
+{
+	background : #3B4B5B;
+	-nexa-border : 0px none;
+}
+.Static.sta_LF_base
+{
+	background : #3B4B5B;
+}
+/* celltreeitem: */
+.Grid.grd_LF_menuList
+{
+	-nexa-border : 0px none;
+	background : #ffffff;
+}
+.Grid.grd_LF_menuList .head .row .cell
+{
+	background : #0793CF;
+	color : #ffffff;
+	-nexa-border : 0px none,0px none,1px solid #ffffff;
+}
+.Grid.grd_LF_menuList .body .row .cell
+{
+	background : #f1f1f1;
+	-nexa-border : 0px none,0px none,1px solid #ffffff;
+	-nexa-padding : 0px;
+	cursor : pointer;	
+}
+.Grid.grd_LF_menuList .body .row .cell[status=focused],
+.Grid.grd_LF_menuList .body .row .cell[userstatus=selected]
+{
+	background : #e1e1e1;
+}
+.Grid.grd_LF_menuList .body .row .cell[status=mouseover]
+{
+	background : #e8e8e8;
+}
+.Grid.grd_LF_menuList .body .row .cell .celltreeitem
+{
+	background : #f1f1f1;
+}
+.Grid.grd_LF_menuList .body .row .cell .celltreeitem[status=focused]
+{
+	background : #e1e1e1;
+}
+.Grid.grd_LF_menuList .body .row .cell .celltreeitem[status=mouseover]
+{
+	background : #e8e8e8;
+}
+.Grid.grd_LF_menuList .body .row .cell .celltreeitem .treeitemtext
+{
+	font : 13px "Malgun Gothic";
+	color : #222222;
+}
+.Grid.grd_LF_menuList .body .row .cell .celltreeitem .treeitemtext[status=disabled]
+{
+	color : #999999;
+}
+
+.Grid.grd_LF_menuList .body .row .cell .celltreeitem .treeitembutton[userstatus=expand]
+{
+	-nexa-icon : URL('imagerc::Frame/img_LF_btnExpand_L.png');
+}
+
+.Grid.grd_LF_menuList .body .row .cell .celltreeitem .treeitembutton[userstatus=collapse]
+{
+	-nexa-icon : URL('imagerc::Frame/img_LF_btnCollapse_L.png');
+}
+
+.Grid.grd_LF_menuList .body .row .cell .celltreeitem .treeitemimage
+{
+	-nexa-icon : URL('imagerc::Frame/img_WF_Treeitem.png');
+}
+
+.Grid.grd_LF_menuList .body .row .cell .celltreeitem .treeitemimage[userstatus=expand]
+{
+	-nexa-icon : URL('imagerc::Frame/img_LF_imgExpand.png');
+}
+
+.Grid.grd_LF_menuList .body .row .cell .celltreeitem .treeitemimage[userstatus=collapse]
+{
+	-nexa-icon : URL('imagerc::Frame/img_LF_imgExpand.png');
+}
+
+.Grid.grd_LF_menuList .body .row .cell .celltreeitem .treeitemimage[userstatus=leaf]
+{
+	-nexa-icon : URL('imagerc::Frame/img_LF_imgLeaf_L.png');
+}
+
+.Button.btn_WF_boxOpen,
+.Button.btn_WF_boxOpen[status=focused],
+.Button.btn_WF_boxOpen[status=mouseover],
+.Button.btn_WF_boxOpen[userstatus=pushed],
+.Button.btn_WF_boxOpen[userstatus=selected]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : URL('imagerc::btn_WF_boxOpen.png');
+}
+.Button.btn_WF_boxClose,
+.Button.btn_WF_boxClose[status=focused],
+.Button.btn_WF_boxClose[status=mouseover],
+.Button.btn_WF_boxClose[userstatus=pushed],
+.Button.btn_WF_boxClose[userstatus=selected]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : URL('imagerc::btn_WF_boxClose.png');
+}
+.Static.sta_WF_logoSymbol
+{
+	background : url('imagerc::img_WF_logoSymbol.png') no-repeat center;	
+}
+.Static.sta_WF_msgTitle
+{
+	font : bold 13px "Malgun Gothic";
+	color : #222222;
+}
+.Static.sta_WF_msgText
+{
+	font : normal 13px/16px "Malgun Gothic";
+	color : #222222;
+	-nexa-vertical-align : top;
+}
+.Static.sta_WF_msgBg
+{
+	background : #ffffff;	
+	-nexa-border : 1px solid #B4B1B1;
+}
+
+.Button.btn_WF_ProcessS,.Button.btn_WF_ProcessS[status=mouseover],
+.Button.btn_WF_ProcessS[userstatus=selected],.Button.btn_WF_ProcessS[status=focused]
+{
+	color 	   : #0092D1;
+	font : bold 13px "Malgun Gothic";
+	-nexa-text-align : center;
+	-nexa-border : 0px,0px,5px solid #1BA7E3,0px;
+	-nexa-icon : url('imagerc::Frame/sta_WF_Process.png');
+	-nexa-icon-position : left;
+	background : transparent;
+	
+}
+.Static.sta_WF_Process
+{
+	color 	   : #888888;
+	font : bold 13px "Malgun Gothic";
+	-nexa-text-align : center;
+	-nexa-border : 0px,0px,5px solid #D7D9E3,0px;
+}
+.Button.btn_MF_msgClose,
+.Button.btn_MF_msgClose[status=disabled],
+.Button.btn_MF_msgClose[status=mouseover],
+.Button.btn_MF_msgClose[status=focused],
+.Button.btn_MF_msgClose[userstatus=pushed],
+.Button.btn_MF_msgClose[userstatus=selected]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::img_MF_msgClose.png');
+}
+.Static.sta_WF_searchBg
+{
+	background : #e5eef9;
+	-nexa-border : 1px solid #D5D5D5;
+}
+.Grid.grd_MDI_List
+{
+	-nexa-border : 5px solid #5c95d2,1px solid #949393,1px solid #949393;
+}
+.Grid.grd_MDI_List .body .row .cell,
+.Grid.grd_MDI_List .body .row .cell[status=focused]
+{
+	-nexa-border : 0px none,0px none,1px dotted #869bb4;
+	cursor : pointer;
+}
+.Grid.grd_MDI_List .body .row .cell[status=mouseover]
+{
+	background : #ffffff;
+	color : #1e82ef;
+}
+.Grid.grd_MDI_List .body .row .cell[userstatus=selected]
+{
+	background : #ffffff;
+	color : #004b9e;
+	font : bold 13px "Malgun Gothic";
+}
+.Grid.grd_MDI_List .body .row .cell[status=disabled]
+{
+	background : #ffffff;
+}
+.Grid .body .row .cell.grd_openList,
+.Grid .body .row .cell.grd_openList[status=focused],
+.Grid .body .row .cell.grd_openList[status=mouseover],
+.Grid .body .row .cell.grd_openList[userstatus=selected],
+.Grid .body .row .cell.grd_openList[status=disabled]
+{
+	background : url('imagerc::img_WF_listTitle.png') no-repeat left center;	
+	-nexa-padding : 0px 0px 0px 38px;
+}
+.Grid .body .row .cell.grd_listClose
+{
+	-nexa-text-align : center;
+}
+.Grid .body .row .cell.grd_listClose .cellbutton,
+.Grid .body .row .cell.grd_listClose .cellbutton[status=focused],
+.Grid .body .row .cell.grd_listClose .cellbutton[userstatus=selected]
+{
+	background : transparent;	
+	-nexa-border : 0px none;	
+	-nexa-icon : URL('imagerc::img_WF_listClose.png');
+}
+.Grid .body .row .cell.grd_listClose .cellbutton[status=mouseover],
+.Grid .body .row .cell.grd_listClose .cellbutton[userstatus=pushed]
+{
+	background : transparent;	
+	-nexa-border : 0px none;	
+	-nexa-icon : URL('imagerc::img_WF_listCloseO.png');
+}
+.Grid .body .row .cell.grd_listClose .cellbutton[status=disabled]
+{
+	background : transparent;	
+	-nexa-border : 0px none;
+	-nexa-icon : URL('imagerc::img_WF_listClose.png');
+}
+.Grid .body .row .cell.grd_subtotal,
+.Grid .body .row .cell.grd_subtotal[status=focused],
+.Grid .body .row .cell.grd_subtotal[status=mouseover],
+.Grid .body .row .cell.grd_subtotal[userstatus=selected]
+{
+	background : #E2F5DC;
+}
+.Edit.edit_WF_readonly,
+.Edit.edit_WF_readonly[status=focused],
+.Edit.edit_WF_readonly[status=readonly]
+{
+	background : #ffffff;
+	-nexa-border : 1px solid #d5d5d5;
+	-nexa-padding : 1px 9px 0px 9px;
+}
+.Div.div_WF_topDesign
+{
+	background : #144582;
+	-nexa-border : 0px none,0px none,1px solid #0F3564;
+	color : #ffffff;
+}
+.Static.sta_WF_contents
+{
+	-nexa-border : 1px solid #bebebe;
+}
+.Button.btn_WF_popupClose
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : URL("imagerc::img_WF_popupClose.png");
+	-nexa-padding : 0px;	
+}
+.Button.btn_WF_popupClose[status=mouseover],
+.Button.btn_WF_popupClose[userstatus=pushed],
+.Button.btn_WF_popupClose[status=focused],
+.Button.btn_WF_popupClose[userstatus=selected]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : URL("imagerc::img_WF_popupCloseO.png");
+}
+.Button.btn_WF_popupClose[status=disabled]
+{
+	background : transparent;
+	-nexa-icon : URL("imagerc::img_WF_popupClose.png");
+	opacity : 0.3;
+}
+.Calendar.calendar_WF_readonly
+{
+	background : #ffffff;
+	-nexa-border : 1px solid #d5d5d5;
+	-nexa-padding : 1px 9px 0px 9px;
+}
+.Calendar.calendar_WF_readonly[status=focused]
+{
+	background : #ffffff;
+	-nexa-border : 1px solid #d5d5d5;
+	-nexa-padding : 1px 9px 0px 9px;
+}
+.Calendar.calendar_WF_readonly[status=readonly]
+{
+	background : #ffffff;
+	-nexa-border : 1px solid #d5d5d5;
+	-nexa-padding : 1px 9px 0px 9px;
+}
+.Button.btn_WF_print,
+.Button.btn_WF_print[status=focused]
+{
+	background : #7999C2;
+	color : #ffffff;
+	-nexa-border : 1px solid #517EB7;
+	-nexa-icon : url('imagerc::img_WF_btnPrint.png');
+}
+.Button.btn_WF_print[status=mouseover],
+.Button.btn_WF_print[userstatus=pushed],
+.Button.btn_WF_print[userstatus=selected]
+{
+	background : #648BBC;	
+	color : #ffffff;
+	-nexa-border : 1px solid #517EB7;
+	-nexa-icon : url('imagerc::img_WF_btnPrint.png');
+}
+.Button.btn_WF_print[status=disabled]
+{
+	background : #7999C2;	
+	color : #ffffff;
+	-nexa-border : 1px solid #517EB7;
+	-nexa-icon : url('imagerc::img_WF_btnPrint.png');
+	opacity : 0.7;
+}
+.Grid .body .row .cell.grid_underline
+{
+	color : #333333;
+	-nexa-border : 1px solid #dbdee2, 1px solid #dbdee2, 2px solid #43179C;
+	-nexa-padding : 4px 4px 4px 4px;
+}
+
+/* workflow */
+.Static.sta_WF_flowface01
+{
+	background : url('imagerc::img_WF_flowface01.png') no-repeat center;
+	-nexa-text-align : center;
+	-nexa-padding : 0px 7px 0px 0px;	
+	color : #222222;
+}
+.Static.sta_WF_flowface02
+{
+	background : url('imagerc::img_WF_flowface02.png') no-repeat center;
+	-nexa-text-align : center;	
+	color : #222222;
+}
+.Static.sta_WF_flowface03
+{
+	background : url('imagerc::img_WF_flowface03.png') no-repeat center;
+	-nexa-text-align : center;	
+	color : #222222;
+}
+.Static.sta_WF_flowface04
+{
+	background : #FFFDC4;
+	-nexa-border : 2px solid #8E8E8E;
+	-nexa-text-align : center;	
+	color : #222222;	
+}
+.Static.sta_WF_flowface05
+{
+	background : #FBFDFF;
+	-nexa-border : 2px solid #8E8E8E;
+	-nexa-text-align : center;	
+	color : #222222;	
+}
+.Static.sta_WF_flowLeft
+{
+	background : url('imagerc::img_WF_flowLeft.png') no-repeat right center;
+}
+.Static.sta_WF_flowRight
+{
+	background : url('imagerc::img_WF_flowRight.png') no-repeat left center;
+}
+.Static.sta_WF_flowTop
+{
+	background : url('imagerc::img_WF_flowTop.png') no-repeat center bottom;
+}
+.Static.sta_WF_flowBottom
+{
+	background : url('imagerc::img_WF_flowBottom.png') no-repeat center top;
+}
+.Static.sta_WF_flowText
+{
+	-nexa-text-align : center;	
+	color : #222222;
+	font : bold 13px "Malgun Gothic";
+}
+.Static.sta_WF_flowLine
+{
+	background : #757575;
+}
+.Div.div_WF_bgColor
+{
+	background : #f9fafe;
+	-nexa-border : 1px solid #999A9C;	
+}
+.Static.sta_WF_splitterV
+{
+	background : url('imagerc::img_WF_splitterV.png') no-repeat center;
+}
+.Static.sta_WF_splitterH
+{
+	background : url('imagerc::img_WF_splitterH.png') no-repeat center;
+}
+/* Guide */
+.Static.sta_WF_GSize
+{
+	-nexa-text-align 	: center;
+	background		: #ff0000;
+	color			: #000000;
+	font			: 11px "Dotum";
+	opacity 		: 0.4;
+}
+
+/*** Add ***/
+.Static.sta_WF_FnArea
+{
+	background : url('imagerc::Frame/sta_WF_FnArea.png') no-repeat center;
+}
+.Button.btn_TF_FnKOR,
+.Button.btn_TF_FnKOR[status=focused]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/btn_TF_FnKOR.png');
+}
+.Button.btn_TF_FnKOR[status=mouseover],
+.Button.btn_TF_FnKOR[userstatus=pushed],
+.Button.btn_TF_FnKOR[userstatus=selected]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/btn_TF_FnKOR_O.png');
+}
+.Button.btn_TF_FnKOR[status=disabled]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/btn_TF_FnKOR.png');
+	opacity : 0.3;
+}
+.Button.btn_TF_FnENG,
+.Button.btn_TF_FnENG[status=focused]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/btn_TF_FnENG.png');
+}
+.Button.btn_TF_FnENG[status=mouseover],
+.Button.btn_TF_FnENG[userstatus=pushed],
+.Button.btn_TF_FnENG[userstatus=selected]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/btn_TF_FnENG_O.png');
+}
+.Button.btn_TF_FnENG[status=disabled]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/btn_TF_FnENG.png');
+	opacity : 0.3;
+}
+.Button.btn_TF_FnThemeL,
+.Button.btn_TF_FnThemeL[status=focused]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/btn_TF_FnThemeL.png');
+}
+.Button.btn_TF_FnThemeL[status=mouseover],
+.Button.btn_TF_FnThemeL[userstatus=pushed],
+.Button.btn_TF_FnThemeL[userstatus=selected]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/btn_TF_FnThemeL_O.png');
+}
+.Button.btn_TF_FnThemeL[status=disabled]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/btn_TF_FnThemeL.png');
+	opacity : 0.3;
+}
+.Button.btn_TF_FnThemeD,
+.Button.btn_TF_FnThemeD[status=focused]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/btn_TF_FnThemeD.png');
+}
+.Button.btn_TF_FnThemeD[status=mouseover],
+.Button.btn_TF_FnThemeD[userstatus=pushed],
+.Button.btn_TF_FnThemeD[userstatus=selected]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/btn_TF_FnThemeD_O.png');
+}
+.Button.btn_TF_FnThemeD[status=disabled]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/btn_TF_FnThemeD.png');
+	opacity : 0.3;
+}
+.Button.btn_LF_OpenMenu,
+.Button.btn_LF_OpenMenu[status=focused],
+.Button.btn_LF_OpenMenu[status=mouseover],
+.Button.btn_LF_OpenMenu[userstatus=pushed],
+.Button.btn_LF_OpenMenu[userstatus=selected]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/btn_LF_OpenMenu.png');
+}
+
+.Button.btn_LF_OpenMenu[status=disabled]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/btn_LF_OpenMenu.png');
+	opacity : 0.3;
+}
+.Button.btn_LF_CloseMenu,
+.Button.btn_LF_CloseMenu[status=focused],
+.Button.btn_LF_CloseMenu[status=mouseover],
+.Button.btn_LF_CloseMenu[userstatus=pushed],
+.Button.btn_LF_CloseMenu[userstatus=selected]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/btn_LF_CloseMenu.png');
+}
+
+.Button.btn_LF_CloseMenu[status=disabled]
+{
+	background : transparent;
+	-nexa-border : 0px none;
+	-nexa-icon : url('imagerc::Frame/btn_LF_CloseMenu.png');
+	opacity : 0.3;
+}
+.Button.btn_LF_LeftTitle,
+.Button.btn_LF_LeftTitle[status=focused],
+.Button.btn_LF_LeftTitle[status=mouseover],
+.Button.btn_LF_LeftTitle[userstatus=pushed],
+.Button.btn_LF_LeftTitle[userstatus=selected],
+.Button.btn_LF_LeftTitle[status=disabled]
+{
+	background : #20303A;
+	-nexa-border : 0px none;	
+	color : #F2FAFF;
+	font : 15px "Malgun Gothic";
+}
+.Button.btn_LF_LeftMenu,
+.Button.btn_LF_LeftMenu[status=focused],
+.Button.btn_LF_LeftMenu[status=mouseover],
+.Button.btn_LF_LeftMenu[userstatus=pushed],
+.Button.btn_LF_LeftMenu[userstatus=selected]
+{
+	background : transparent;
+	-nexa-border : 0px none;		
+	font : bold 15px "Malgun Gothic";
+	-nexa-text-align : left;	
+	-nexa-text-padding : 0px 0px 0px 10px;	
+	-nexa-icon : url('imagerc::Frame/img_LF_MenuBulletD.png');
+	color : #EEEEEE;
+}
+.Button.btn_LF_LeftMenu[status=disabled]
+{
+	background : transparent;
+	-nexa-border : 0px none;	
+	-nexa-icon : url('imagerc::Frame/img_LF_MenuBulletD.png');
+	opacity : 0.5;
+}]]></XCSS>

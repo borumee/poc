@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="poc15" width="1280" height="720" titletext="엑셀 업 다운(XENI)">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="1280">
+        <Div id="Div00" taborder="6" left="20" top="134" height="80" right="20" cssclass="div_WF_SearchBox">
+          <Layouts>
+            <Layout>
+              <Static id="staLoad" taborder="0" text="데이터 로드 시작 시간 : 0  완료시간 : 0  처리건수 : 0" left="20" top="8" width="700" height="30" cssclass="sta_WF_Title3rd"/>
+              <Static id="staDown" taborder="1" text="데이터 저장 시작 시간 : 0  완료시간 : 0  처리건수 : 0" left="20" top="43" width="700" height="30" cssclass="sta_WF_Title3rd"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Grid id="Grid00" taborder="0" left="20" top="Div00:20" bottom="20" right="20" binddataset="Dataset01" cellsizingtype="col" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="고객번호"/>
+                <Cell col="1" text="발신&#13;&#10;전화번호"/>
+                <Cell col="2" text="제목"/>
+                <Cell col="3" text="메시지내용"/>
+                <Cell col="4" text="수신인&#13;&#10;휴대전화번호"/>
+                <Cell col="5" text="안내코드"/>
+                <Cell col="6" text="MANAGER_NAME"/>
+                <Cell col="7" text="G_DATE"/>
+                <Cell col="8" text="G_TIME"/>
+                <Cell col="9" text="G_CANNEL"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CUST_NO"/>
+                <Cell col="1" text="bind:PHONE_OUT"/>
+                <Cell col="2" text="bind:TITLE"/>
+                <Cell col="3" text="bind:CONTENTS"/>
+                <Cell col="4" text="bind:PHONE_IN"/>
+                <Cell col="5" text="bind:G_CODE"/>
+                <Cell col="6" text="bind:MANAGER_NAME"/>
+                <Cell col="7" text="bind:G_DATE"/>
+                <Cell col="8" text="bind:G_TIME"/>
+                <Cell col="9" text="bind:G_CANNEL"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="Button00" taborder="1" text="DownLoad 수행" top="74" width="150" height="40" onclick="Button01_onclick" cssclass="btn_WF_function02" right="20"/>
+        <Button id="Button02" taborder="2" text="UpLoad 수행" top="74" width="150" height="40" onclick="Button02_onclick" escapebutton="true" cssclass="btn_WF_function02" right="173"/>
+        <Button id="btn_search" taborder="3" text="샘플Data" top="74" height="40" onclick="btn_search_onclick" cssclass="btn_WF_function02" width="150" right="Button02:10"/>
+        <Combo id="cmb_count" taborder="4" text="10" top="74" width="150" height="40" right="btn_search:0" value="10" index="0" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">10000</Col>
+                <Col id="datacolumn">10000</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">50000</Col>
+                <Col id="datacolumn">50000</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">100000</Col>
+                <Col id="datacolumn">100000</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Combo>
+        <Static id="Static00" taborder="5" text="LMS 안내" left="20" top="30" width="190" height="30" cssclass="sta_WF_Title1st"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="Dataset01">
+        <ColumnInfo>
+          <Column id="CUST_NO" type="STRING" size="256"/>
+          <Column id="PHONE_OUT" type="STRING" size="256"/>
+          <Column id="TITLE" type="STRING" size="256"/>
+          <Column id="CONTENTS" type="STRING" size="256"/>
+          <Column id="PHONE_IN" type="STRING" size="256"/>
+          <Column id="G_CODE" type="STRING" size="256"/>
+          <Column id="MANAGER_NAME" type="STRING" size="256"/>
+          <Column id="G_DATE" type="STRING" size="256"/>
+          <Column id="G_TIME" type="STRING" size="256"/>
+          <Column id="G_CANNEL" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <ExcelExportObject id="ExcelExportObject00" exportuitype="exportprogress" exportactivemode="active" onerror="ExcelExportObject00_onerror" onprogress="ExcelExportObject00_onprogress"/>
+      <ExcelImportObject id="ExcelImportObject00" onsuccess="ExcelImportObject00_onsuccess" onerror="ExcelImportObject00_onerror"/>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::CompsUtils.xjs";
+
+this.uploadStart = "";
+this.uploadEnd = "";
+this.downStart = "";
+this.downEnd = "";
+
+/************************************************************************
+ * excel import
+ ************************************************************************/
+this.Button02_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.Dataset01.clearData();
+	
+	//this.ExcelImportObject00.set_accept("application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+	this.ExcelImportObject00.set_importfilemode("local");
+	this.ExcelImportObject00.set_importtype(nexacro.ImportTypes.EXCEL2007);
+	this.ExcelImportObject00.set_importurl("svcUrl::XExportImport.do");
+	
+	//업로드 시작
+	//this.uploadStart = this.fn_getDate();
+	
+	this.ExcelImportObject00.importData("", "[Command=getsheetdata;Output=output;Head=!A1:J1;Body=!A2;]", "Dataset01=output");
+};
+
+this.ExcelImportObject00_onsuccess = function(obj:nexacro.ExcelImportObject,e:nexacro.ExcelImportEventInfo)
+{
+	//업로드 끝
+	this.uploadStart = this.ExcelImportObject00.importStartTime;
+	this.uploadEnd = new Date();
+	console.log(nexacro.round((this.uploadEnd - this.uploadStart) / 1000, 3))
+	let loadTime = "처리건수 : "+this.Dataset01.getRowCount()+"  총시간 : "+nexacro.round((this.uploadEnd - this.uploadStart) / 1000, 3);
+	this.staLoad.set_text(loadTime);
+};
+
+this.ExcelImportObject00_onerror = function(obj:nexacro.ExcelImportObject,e:nexacro.ExcelImportErrorEventInfo)
+{
+	alert(e.errormsg);
+};
+
+
+
+/************************************************************************
+ * excel export
+ ************************************************************************/
+this.Button01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.Grid00.set_enableredraw(false);
+	
+	this.ExcelExportObject00.clear();
+	
+	this.ExcelExportObject00.set_exporttype(nexacro.ExportTypes.EXCEL2007);
+	this.ExcelExportObject00.set_exportactivemode("active");
+	this.ExcelExportObject00.set_transferrowcount(2000);
+	this.ExcelExportObject00.set_exportuitype("exportprogress");
+	this.ExcelExportObject00.set_exporteventtype("totalrecord");
+	this.ExcelExportObject00.set_exporturl("svcUrl::XExportImport.do");
+	this.ExcelExportObject00.set_exportfilename("시나리오15_데이터다운로드");
+	
+	this.ExcelExportObject00.addExportItem(nexacro.ExportItemTypes.GRID, this.Grid00, "Sheet1!A1", "allband", "allrecord", "nosuppress");
+	
+	//다운로드 시작
+	this.downStart = new Date();
+	
+	this.ExcelExportObject00.exportData();
+	
+};
+
+this.ExcelExportObject00_onerror = function(obj:nexacro.ExcelExportObject,e:nexacro.ExcelExportErrorEventInfo)
+{
+	alert(e.errormsg);
+};
+
+this.ExcelExportObject00_onprogress = function(obj:nexacro.ExcelExportObject,e:nexacro.ExcelExportProgressEventInfo)
+{
+	//if (e.recordindex == 19999) {
+		//다운로드 끝
+		this.downEnd = new Date();
+		
+		let loadTime = "처리건수 : "+this.Dataset01.getRowCount()+"  총시간 : "+nexacro.round((this.downEnd - this.downStart) / 1000, 3);;
+		this.staDown.set_text(loadTime);
+		
+		//this.Grid00.set_formatid("");
+		this.Grid00.set_enableredraw(true);
+	//}
+};
+
+
+
+
+
+/************************************************************************
+ * 샘플데이터 transaction
+ ************************************************************************/
+
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnSearch();
+};
+
+// 서비스 호출
+this.fnSearch = function()
+{
+	var strSvcId    = "search",
+		strSvcUrl   = "svcUrl::excel-data.do",
+		inData      = "",
+		outData     = "Dataset01=output",
+		strArg      = "rowcount="+this.cmb_count.value,
+		callBackFnc = "fnCallback",
+		isAsync     = true,
+		nDataType   = 2;
+
+	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync, nDataType);
+};
+
+this.fnCallback = function(svcId, errCode, errMsg, elapsedTime)
+{
+	if (errCode < 0) {
+		alert(errMsg);
+	} else {
+		if (svcId == "search") {
+			trace(this.Dataset01.saveXML());
+		} else if (svcId == "search00") {
+
+		}
+	}
+}
+
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="poc_pension" width="1280" height="720" titletext="DataObject json파일읽기" onload="poc_pension_onload">
+    <Layouts>
+      <Layout height="720" width="1280">
+        <Static id="Static00" taborder="0" text="연금저축 거래 정보 조회" left="10" top="10" height="37" right="10"/>
+        <Div id="div_search" taborder="1" text="Div00" left="10" top="45" height="75" right="10" background="#cccccc">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="2" text="펀드" left="33" top="24" width="40" height="30"/>
+              <Combo id="cmb_fund" taborder="0" left="Static00:0" top="24" width="150" height="30" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" text="전체" value="" index="0">
+                <Dataset id="innerdataset">
+                  <ColumnInfo>
+                    <Column id="codecolumn" size="256"/>
+                    <Column id="datacolumn" size="256"/>
+                  </ColumnInfo>
+                  <Rows>
+                    <Row>
+                      <Col id="datacolumn">전체</Col>
+                      <Col id="codecolumn"/>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">ABA200</Col>
+                      <Col id="codecolumn">ABA200</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">ABA400</Col>
+                      <Col id="codecolumn">ABA400</Col>
+                    </Row>
+                  </Rows>
+                </Dataset>
+              </Combo>
+              <Static id="Static01" taborder="3" text="구분" left="260" top="24" width="40" height="30"/>
+              <Combo id="cmb_division" taborder="1" text="전체" left="Static01:0" top="24" width="150" height="30" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" value="" index="0">
+                <Dataset id="innerdataset">
+                  <ColumnInfo>
+                    <Column id="codecolumn" size="256"/>
+                    <Column id="datacolumn" size="256"/>
+                  </ColumnInfo>
+                  <Rows>
+                    <Row>
+                      <Col id="datacolumn">전체</Col>
+                      <Col id="codecolumn"/>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">자금이체</Col>
+                      <Col id="codecolumn">이체</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">정산</Col>
+                      <Col id="codecolumn">정산</Col>
+                    </Row>
+                  </Rows>
+                </Dataset>
+              </Combo>
+              <Button id="btn_search" taborder="4" text="조회" top="14" width="120" height="50" right="143" onclick="div_search_btn_search_onclick"/>
+              <Button id="btn_clear" taborder="5" text="새화면" top="14" width="120" height="50" right="10" onclick="div_search_btn_clear_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Tab id="Tab00" taborder="2" tabindex="0" left="10" top="130" right="10" bottom="10">
+          <Tabpages>
+            <Tabpage id="Tabpage1" text="신계약">
+              <Layouts>
+                <Layout>
+                  <Div id="Div00" taborder="0" text="Div00" left="0" top="0" right="0" bottom="0"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage2" text="보전">
+              <Layouts>
+                <Layout>
+                  <Div id="Div00" taborder="0" text="Div00" left="0" top="0" right="0" bottom="0"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage3" text="보험금">
+              <Layouts>
+                <Layout>
+                  <Div id="Div00" taborder="0" text="Div00" left="0" top="0" right="0" bottom="0"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage4" text="사업비">
+              <Layouts>
+                <Layout>
+                  <Div id="Div00" taborder="0" text="Div00" left="0" top="0" right="0" bottom="0"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+          </Tabpages>
+        </Tab>
+        <Combo id="cmb_count" taborder="3" text="Combo01" top="130" width="150" height="30" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" right="10">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="datacolumn">500</Col>
+                <Col id="codecolumn">500</Col>
+              </Row>
+              <Row>
+                <Col id="datacolumn">1000</Col>
+                <Col id="codecolumn">1000</Col>
+              </Row>
+              <Row>
+                <Col id="datacolumn">5000</Col>
+                <Col id="codecolumn">5000</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Combo>
+        <Static id="sta_searchTime" taborder="4" text="서버/네트워크시간 &lt;fc v='#d7381e'&gt;0&lt;/fc&gt; 초, 총 &lt;fc v='#d7381e'&gt;0&lt;/fc&gt; 건" left="400" top="130" height="30" right="cmb_count:10" textAlign="right" usedecorate="true"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_search">
+        <ColumnInfo>
+          <Column id="BZ_NAM" type="STRING" size="256"/>
+          <Column id="FDCD" type="STRING" size="256"/>
+          <Column id="TRSF_XC_SCTN" type="STRING" size="256"/>
+          <Column id="pageIndex" type="STRING" size="256"/>
+          <Column id="pageSize" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="FDCD"/>
+            <Col id="pageIndex">1</Col>
+            <Col id="pageSize">500</Col>
+            <Col id="BZ_NAM"/>
+            <Col id="TRSF_XC_SCTN"/>
+          </Row>
+        </Rows>
+      </Dataset>
+      <DataObject id="DO_TRASACTION" onload="DO_TRASACTION_onload" onerror="DO_TRASACTION_onerror" onsuccess="DO_TRASACTION_onsuccess">
+        <Contents><![CDATA[{
+}]]></Contents>
+      </DataObject>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="div_search.form.cmb_fund" propid="value" datasetid="ds_search" columnid="FDCD"/>
+      <BindItem id="item1" compid="div_search.form.cmb_division" propid="value" datasetid="ds_search" columnid="TRSF_XC_SCTN"/>
+      <BindItem id="item2" compid="cmb_count" propid="value" datasetid="ds_search" columnid="pageSize"/>
+      <BindItem id="item3" compid="cmb_count" propid="text" datasetid="ds_search" columnid="pageSize"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[/**
+*  @FileName 	poc_pension.xfdl
+*  @Creator 	TOBESOFT
+*  @CreateDate 	2023/02/22
+*  @Desction   
+************** 소스 수정 이력 ***********************************************
+* Date					Modifier					Description
+*******************************************************************************
+* 2023/02/22			TOBESOFT					최초생성
+*******************************************************************************
+*/
+
+/*******************************************************************************************************************************
+ * FORM 변수 선언 영역
+*******************************************************************************************************************************/
+
+/*******************************************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose..)
+*******************************************************************************************************************************/
+this.poc_pension_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{	
+	this.Tab00.Tabpage1.form.Div00.set_url("sample::poc_pension_jsonFile_tab.xfdl");
+	this.Tab00.Tabpage2.form.Div00.set_url("sample::poc_pension_jsonFile_tab.xfdl");
+	this.Tab00.Tabpage3.form.Div00.set_url("sample::poc_pension_jsonFile_tab.xfdl");
+	this.Tab00.Tabpage4.form.Div00.set_url("sample::poc_pension_jsonFile_tab.xfdl");
+};
+
+/*******************************************************************************************************************************
+ * Transaction 서비스호출 처리 영역
+*******************************************************************************************************************************/
+this.fn_search = function()
+{
+	this.sta_searchTime.set_text("서버/네트워크시간 <fc v='#d7381e'>0</fc> 초, 총 <fc v='#d7381e'>0</fc> 건");
+	
+	var json_param = {
+		"httpheader" : {"Content-Type": "application/json; charset=UTF-8"},
+		"async" : true
+	}
+	this.starttime = new Date();
+	this.DO_TRASACTION.request("PENSION_JSON", "GET", "svcUrl::data/연금저축.json", json_param);
+};
+
+/*******************************************************************************************************************************
+ * Callback 영역 (Transaction, popup, message..)
+*******************************************************************************************************************************/
+this.DO_TRASACTION_onsuccess = function(obj:nexacro.DataObject,e:nexacro.DataObjectEventInfo)
+{
+	if (e.statuscode == 200) {
+	
+	} else {
+        e.preventDefault();
+    }
+};
+this.DO_TRASACTION_onerror = function(obj:nexacro.DataObject,e:nexacro.DataObjectErrorEventInfo)
+{		
+	alert(e.errormsg)
+};
+this.DO_TRASACTION_onload = function(obj:nexacro.DataObject,e:nexacro.DataObjectLoadEventInfo)
+{
+	//trace("DO_TRASACTION_onload :: " + e.reason)
+	if (e.reason === 0) {
+	
+	} else if (e.reason === 1) {
+	
+	} else if (e.reason === 2) {
+		// 조회 성능측정 표시
+		var totalDataCount = obj.data.DataContainer.DS_TRS_LIST.length;
+		var endtime = new Date();
+		var totaltime = nexacro.round((endtime - this.starttime) / 1000, 3);			
+		this.sta_searchTime.set_text("서버/네트워크시간 <fc v='#d7381e'>" + totaltime + "</fc> 초, 총 <fc v='#d7381e'>" +  this.gfn_appendComma(totalDataCount) + "</fc>" + " 건")
+		
+		// 탭페이지 그리드 바인딩
+		this.Tab00.Tabpage1.form.Div00.form.fn_bindGrid(1);
+		this.Tab00.Tabpage2.form.Div00.form.fn_bindGrid(1);
+		this.Tab00.Tabpage3.form.Div00.form.fn_bindGrid(1);
+		this.Tab00.Tabpage4.form.Div00.form.fn_bindGrid(1);
+	}
+};
+
+/*******************************************************************************************************************************
+ * 사용자 Function 영역
+*******************************************************************************************************************************/
+
+/*******************************************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+*******************************************************************************************************************************/
+this.div_search_btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// 연금저축.json 조회
+	
+	if(this.gfn_isEmpty(this.DO_TRASACTION.data)) {
+		// 전체 데이터 조회 필요			
+		trace(":::: 데이터 조회");
+		this.fn_search();
+		
+	} else {
+		// 전체 데이터 조회 완료 상태
+		trace(":::: 전체 데이터 조회 완료")
+		
+		// 탭페이지 그리드 바인딩
+		this.Tab00.Tabpage1.form.Div00.form.fn_bindGrid(1);
+		this.Tab00.Tabpage2.form.Div00.form.fn_bindGrid(1);
+		this.Tab00.Tabpage3.form.Div00.form.fn_bindGrid(1);
+		this.Tab00.Tabpage4.form.Div00.form.fn_bindGrid(1);
+	}
+};
+
+this.div_search_btn_clear_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.DO_TRASACTION.set_data({});	
+	this.sta_searchTime.set_text("서버/네트워크시간 <fc v='#d7381e'>0</fc> 초, 총 <fc v='#d7381e'>0</fc> 건");
+
+	this.Tab00.Tabpage1.form.Div00.form.fn_clearData();
+	this.Tab00.Tabpage2.form.Div00.form.fn_clearData();
+	this.Tab00.Tabpage3.form.Div00.form.fn_clearData();
+	this.Tab00.Tabpage4.form.Div00.form.fn_clearData();
+};
+
+
+
+
+
+]]></Script>
+  </Form>
+</FDL>

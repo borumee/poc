@@ -1,0 +1,578 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Script version="1.0" type="xscript5.1"><![CDATA[/**
+  * @file CompsUtils
+  * @desc 컴포넌트 유틸리티 함수
+  * @Author  Hiromoto Tateishi
+  * @version 1.0.0
+*/
+
+/**	
+* @desc 토글 버튼 클릭 처리
+* @return none
+*/
+this.toggleChips = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	obj.toggleSelectStatus();
+
+	var status = obj.getSelectStatus();
+	if(status){
+		obj.set_text(obj.chips_text_1);
+	}else{
+		obj.set_text(obj.chips_text_2);
+	}
+	if(obj.chips_type.indexOf("icon") > -1){
+		if(status){
+			obj.set_icon(obj.chips_icon_1);
+		}else{
+			if(obj.chips_type == "icon_use"){
+				obj.set_icon(obj.chips_icon_2);
+			}else{
+				obj.set_icon("");
+			}
+		}
+	}
+	this.resetScroll();
+};
+/**	
+* @desc 토글 버튼 초기화
+* @param obj {String} - Button
+* @param type {String} - icon_use 아이콘 있음
+* @param text_1 {String} - 기본 텍스트
+* @param text_2 {String} - 토글 텍스트
+* @param icon_1 {String} - 기본 아이콘
+* @param icon_2 {String} - 토글 아이콘
+* @return none
+*/
+this.initChips = function (obj:nexacro.Button,type,text_1,text_2,icon_1,icon_2)
+{
+	obj.chips_type = type;
+	obj.chips_icon_1 = icon_1;
+	obj.chips_icon_2 = icon_2;
+	obj.chips_text_1 = text_1;
+	obj.chips_text_2 = text_2;
+	
+	obj.addEventHandler("onclick",this.toggleChips,this);
+};
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+/**	
+* @desc 슬라이더 UI 드래그 이벤트
+* @return none
+*/
+this.SliderButton_ondrag = function(obj:nexacro.Button,e:nexacro.DragEventInfo)
+{
+	obj.isDrag = true;
+	obj.set_cssclass("btn_silder_" + obj.bcolor + "_shadow,btn_silder_" + obj.bcolor);
+	return true;
+};
+/**	
+* @desc 슬라이더 UI 버튼 이동 처리
+* @return none
+*/
+this.moveSliderButton = function (objBtn:nexacro.Button,cx,popup)
+{
+	var objPB = this.components[objBtn.pbid];
+
+	var xl = objPB.getOffsetLeft();
+	var y = objPB.getOffsetTop() - 8;
+	var xr = xl + objPB.getOffsetWidth();
+	if(cx < xl)
+		cx = xl;
+	if(cx > xr)
+		cx = xr;
+	
+	var wpx = cx - xl;
+	var one = objPB.getOffsetWidth() / objPB.max;
+	var pos = Math.round(wpx / one);
+	
+	var x = Math.round(one * pos) + xl - 8;
+	objBtn.move(x,y);
+	
+	objPB.set_pos(pos);
+
+	if(popup != "popup")
+		return;
+
+	var objSt = this.components[objBtn.pbid + "_popup"];
+	objSt.move(x - 13,y - 43);
+	objSt.set_text(objPB.pos);
+	objSt.set_visible(true);
+};
+/**	
+* @desc 슬라이더 UI 드래그 무브 이벤트
+* @return none
+*/
+this.SliderButton_ondragmove = function(obj:nexacro.Form,e:nexacro.DragEventInfo)
+{
+	var objBtn = e.sourceobject;
+	var objPB = this.components[objBtn.pbid];
+
+	if(objBtn.isDrag && objBtn.isDrag == true){
+		this.moveSliderButton(objBtn,e.clientx,objBtn.type);
+	}
+};
+/**	
+* @desc 슬라이더 UI 드롭 이벤트
+* @return none
+*/
+this.SliderButton_ondrop = function(obj:nexacro.Form,e:nexacro.DragEventInfo)
+{
+	var objBtn = e.sourceobject;
+	objBtn.set_cssclass("btn_silder_" + objBtn.bcolor);
+
+	if(objBtn.type != "popup")
+		return;
+
+	var objSt = this.components[objBtn.pbid + "_popup"];
+	objSt.set_visible(true);
+};
+/**	
+* @desc 슬라이더 UI 부팅 이벤트
+* @return none
+*/
+this.SliderButton_onlbuttondown = function(obj:nexacro.Button,e:nexacro.MouseEventInfo)
+{
+	var objPB = this.components[obj.pbid];
+
+	obj.set_cssclass("btn_silder_" + obj.bcolor + "_shadow,btn_silder_" + obj.bcolor);
+
+	if(obj.type != "popup")
+		return;
+
+	var objSt = this.components[obj.pbid + "_popup"];
+	objSt.move(obj.getOffsetLeft() - 13,obj.getOffsetTop() - 43);
+	objSt.set_visible(true);
+	objSt.set_text(objPB.pos);
+};
+/**	
+* @desc 슬라이더 UI 종료 이벤트
+* @return none
+*/
+this.SliderButton_onlbuttonup = function(obj:nexacro.Button,e:nexacro.MouseEventInfo)
+{
+	obj.set_cssclass("btn_silder_" + obj.bcolor);
+
+	if(obj.type != "popup")
+		return;
+
+	var objSt = this.components[obj.pbid + "_popup"];
+	objSt.set_visible(false);
+};
+/**	
+* @desc 슬라이더 UI 클릭 이벤트
+* @return none
+*/
+this.Slider_onclick = function(obj:nexacro.ProgressBar,e:nexacro.ClickEventInfo)
+{
+	var objBtn = this.components[obj.id + "_btn"];
+	this.moveSliderButton(objBtn,e.canvasx + obj.getOffsetLeft());
+};
+/**	
+* @desc 슬라이더 UI 초기화
+* @param color {String} - 색깔
+* @param type {String} - 타이프
+* @return none
+*/
+this.initSlider = function(obj:nexacro.ProgressBar,color,type)
+{
+	if(!color)	color = "green";
+	if(!type) type = "none";
+	
+	var one = obj.getOffsetWidth() / obj.max;
+	var left = Math.round(one * obj.pos) + obj.getOffsetLeft() - 8;
+	
+	var objBtn = new Button();
+	var btnid = obj.id + "_btn"
+	objBtn.init( btnid, left, obj.getOffsetTop() - 8, 17, 17, null, null);
+	objBtn.set_cssclass("btn_silder_"+ color);
+	this.addChild(btnid , objBtn);
+	objBtn.show(); 
+
+	objBtn.pbid = obj.id;
+	objBtn.bcolor = color;
+	objBtn.type = type;
+	objBtn.isDrag = false;
+	
+	objBtn.addEventHandler("onlbuttonup",this.SliderButton_onlbuttonup,this);
+	objBtn.addEventHandler("onlbuttondown",this.SliderButton_onlbuttondown,this);
+	objBtn.addEventHandler("ondrag",this.SliderButton_ondrag,this);
+	obj.addEventHandler("onclick",this.Slider_onclick,this);
+	this.addEventHandler("ondragmove",this.SliderButton_ondragmove,this);
+	this.addEventHandler("ondrop",this.SliderButton_ondrop,this);
+	
+	if(objBtn.type != "popup")
+		return;
+		
+	var objSt = new Static();
+	var stid = obj.id + "_popup"
+	objSt.init( stid, objBtn.getOffsetLeft() - 13, objBtn.getOffsetTop() -43, 40, 40, null, null);
+	objSt.set_cssclass("st_slider_popup_"+ color);
+	this.addChild(stid , objSt);
+	objSt.show();
+	objSt.set_visible(false);
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+/**	
+* @desc 라벨 표시
+* @param none
+* @return none
+*/
+this.dispTextFiledTitle = function(obj,e:nexacro.SetFocusEventInfo)
+{
+	var ttlid = "stttl_" + obj.id;
+
+	this.components[ttlid].set_visible(true);
+};
+/**	
+* @desc 라벨 소거
+* @param none
+* @return none
+*/
+this.deleteTextFiledTitle = function(obj,e:nexacro.KillFocusEventInfo)
+{
+	var val = obj.value;
+	var ttlid = "stttl_" + obj.id;
+
+	if(val == null || val === "undefined" || val == ""){
+		this.components[ttlid].set_visible(false);
+		obj.set_value(null);
+	}else{
+		this.components[ttlid].set_visible(true);
+	}
+};
+/**	
+* @desc 라벨 표시 초기화
+* @param obj {Object} - 대상 컴포넌트
+* @param type {String} - 타이프
+* @param parent {Object} - 부모 컨테이너
+* @return none
+*/
+this.initTextFiledTitle = function(obj,type,parent)
+{
+	var objTtl  = new Static();
+	var ttlid = "stttl_" + obj.id;
+	var ey = obj.getOffsetTop();
+	var ex = obj.getOffsetLeft();
+	
+	switch(type) {
+	case "filled":
+		objTtl.init( ttlid, ex + 13, ey + 0, 100, 20, null, null);
+		objTtl.set_cssclass("st_textfield_title");
+		break;
+	case "outlined":
+		objTtl.init( ttlid, ex + 13, ey - 13, 100, 20, null, null);
+		objTtl.set_cssclass("st_textfield_title_w");
+		break;
+	default:
+	}
+	if(parent){
+		parent.addChild(ttlid , objTtl);
+	}else{
+		this.addChild(ttlid , objTtl);
+	}
+	objTtl.show(); 
+
+	objTtl.set_text(obj.displaynulltext);
+	objTtl.set_fittocontents("width");
+	objTtl.set_visible(false);
+	objTtl.set_positionstep(obj.positionstep);
+
+	obj.addEventHandler("onsetfocus", this.dispTextFiledTitle, this)
+	obj.addEventHandler("onkillfocus", this.deleteTextFiledTitle, this)
+};
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+/**	
+* @desc 인디케이터 초기화
+* @param obj {Object} - 대상
+* @param duration {String} - 효과
+* @param deley {Number} - 지연
+* @return none
+*/
+this.initIndicator = function (obj,duration,deley)
+{
+	if(!duration) duration = 1000;
+	if(!deley) deley = 300;
+	var name = "ani_indicator" + obj.id;
+    var aniObj = new nexacro.Animation(name, this);
+    this.addChild(name, aniObj);
+    aniObj.set_loop(true);
+	aniObj.set_loopcount(1);
+	aniObj.set_duration(duration);
+    aniObj.set_delay(deley);
+    aniObj.set_easing("easeoutsine");
+    aniObj.set_direction("repeate");
+	var r = obj.parent.getOffsetWidth() + obj.getOffsetWidth();
+	var l = obj.getOffsetWidth();
+	var str = "left:[-" + l + "," + r + "]";
+	aniObj.addTarget(obj.id, obj , str);
+	aniObj.play();
+};
+/**	
+* @desc 인디케이터 재부팅
+* @param obj {Object} - 대상
+* @return none
+*/
+this.restartInndicator = function (obj)
+{
+	var name = "ani_indicator" + obj.id;
+	var aniObj = this.objects[name];
+	var r = obj.parent.getOffsetWidth() + obj.getOffsetWidth();
+	var l = obj.getOffsetWidth();
+	var str = "left:[-" + l + "," + r + "]";
+	if(!aniObj)	return;
+	aniObj.removeTarget(obj.id);
+	aniObj.addTarget(obj.id, obj , str);
+	aniObj.play();
+};
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+/**	
+* @desc 풍선 표시
+* @param obj {Object} - 표시대상
+* @param color {String} - 색
+* @return none
+*/
+this.drawBalloonArrow = function (obj,color)
+{
+	switch(color){
+	case "green":
+		color = "#5bc90c";
+		break;
+	case "grey":
+		color = "#90a4ae";
+		break;
+	}
+	var l1='<polygon points="0 0,40 0,20 20" stroke="'+color+'" fill="'+color+'" stroke-width="1"/>';
+	var svg='<svg xmlns="http://www.w3.org/2000/svg">'+ l1 + '</svg>';
+	var b64 = nexacro.base64Encode(svg);
+	var url = 'url(\'data:image/svg+xml;base64,'+b64+'\')';
+	obj.set_background(url+'transparent');
+};
+/**	
+* @desc 풍선 초기화
+* @param color {String} - 색
+* @return none
+*/
+this.initBalloon = function (color)
+{
+	if(!color)	color = "green";
+	
+	var objSt = new Static();
+	objSt.init( "stBalloonText", 0, 0, 200, 40, null, null);
+	objSt.set_cssclass("st_balloon_"+ color);
+	this.addChild("stBalloonText" , objSt);
+	objSt.set_visible(false);
+	objSt.set_fittocontents("width");
+	objSt.set_minwidth(100);
+	objSt.show(); 	
+
+	var objSt2 = new Static();
+	objSt2.init( "stBalloonArrow", 0, 0, 40, 20, null, null);
+	this.addChild("stBalloonArrow" , objSt2);
+	this.drawBalloonArrow(objSt2,color);
+	objSt2.set_visible(false);
+	objSt2.show(); 	
+
+	this.initAniobj("balloonani","easeoutcirc",700);
+};
+/**	
+* @desc 풍선 정보의 부가
+* @param obj {Object} - 표시대상
+* @param text {String} - 표시 텍스트
+* @return none
+*/
+this.setBalloon = function (obj,text)
+{
+	obj.balloon_text = text;
+	obj.addEventHandler("onmouseenter", this.balloon_onmouseenter, this)
+	obj.addEventHandler("onmouseleave", this.balloon_onmouseleave, this)
+}
+/**	
+* @desc 풍선용 마우스 엔터 이벤트
+* @param none
+* @return none
+*/
+this.balloon_onmouseenter = function(obj:nexacro.Button,e:nexacro.MouseEventInfo)
+{
+	var stObj1 = this.components["stBalloonText"];
+	var stObj2 = this.components["stBalloonArrow"];
+
+	stObj1.set_text(obj.balloon_text);
+	this.resetScroll();
+	stObj2.move(obj.getOffsetLeft()+obj.getOffsetWidth()/2 - stObj2.getOffsetWidth() / 2,obj.getOffsetTop() - 20);
+	stObj1.move(obj.getOffsetLeft()+obj.getOffsetWidth()/2 - stObj1.getOffsetWidth() / 2,obj.getOffsetTop() - 18);
+	stObj1.setOffsetHeight(0);
+	var str = "height:40,top:["+(obj.getOffsetTop() - 18)+","+parseInt(obj.getOffsetTop() - 18 - 40)+"]";
+	stObj1.set_visible(true);
+	stObj2.set_visible(true);
+	this.playAniItem("balloonani",stObj1,str);
+};
+/**	
+* @desc 풍선용 마우스 리브 이벤트
+* @param none
+* @return none
+*/
+this.balloon_onmouseleave = function(obj:nexacro.Button,e:nexacro.MouseEventInfo)
+{
+	this.components["stBalloonText"].set_visible(false);
+	this.components["stBalloonArrow"].set_visible(false);
+};
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+/**	
+* @desc 배경색을 원형으로 칠하다
+* @param cx {Number} - x
+* @param cy {Number} - y
+* @param color {String} - 색
+* @return none
+*/
+this.setBgcByCircle = function (cx,cy,color)
+{
+	var obj = this.components["stSetBgcCircle"];
+	if(obj){
+		obj.move(cx,cy,0,0);
+	}else{
+		obj = new Static();
+		obj.init("stSetBgcCircle", cx, cy, 0, 0, null, null);
+		obj.set_borderRadius("500px 500px"); 
+		this.addChild("stSetBgcCircle", obj);
+		obj.show(); 
+		obj.sendToBack();
+	}
+	obj.set_background(color);
+	this.initAniobj("setbgcani","easeinquart",900,this.callbackSetBgcAni);	
+
+	var w = this.getOffsetWidth();
+	var l = this.hscrollbar.pos;
+	var h = this.getOffsetHeight();
+	var t = this.vscrollbar.pos;
+
+	var str = "left:"+(+l-1000)+",top:"+(+t-1000)+",width:"+(+l+w+2000)+",height:"+(+t+h+2000);
+	this.playAniItem("setbgcani",obj,str);
+};
+/**	
+* @desc 다 바른 후의 콜백 함수
+* @param none
+* @return none
+*/
+this.callbackSetBgcAni = function (obj:nexacro.Animation,e:nexacro.AnimationEventInfo)
+{
+	var comp = this.all["stSetBgcCircle"];
+	var color = comp.background;
+	this.set_background(color);
+	
+	this.removeChild("stSetBgcCircle");
+	comp.destroy(); 
+	comp = null;
+};
+/**	
+* @desc ？？？
+* @param none
+* @return none
+*/
+this.setCloseCircle = function (obj,cb)
+{
+	obj.bringToFront();
+	var l = obj.getOffsetLeft();
+	var t = obj.getOffsetTop();
+
+	var aniObj = this.initAniobj("setcloseani","easeinback",900,cb);	
+	var str = "top:3000";
+	for(var i=0;i<this.components.length;i++){
+		var comp = this.components[i];
+		if(comp.id != obj.id){
+			this.addAniItem("setcloseani",comp,str);
+		}
+	}
+	this.playAniObj(aniObj);
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+/**	
+* @desc Grid용 정렬함수
+* @param objGrid {Object} - 대상 Grid
+* @param col {String} - 대상 컬럼
+* @return none
+*/
+this.targetCol="";
+this.gridSort = function(objGrid:Grid, col)
+{
+    var objDataset ;
+    var strHeadText ;
+    var strTitle ;
+    var strMark ;
+    var i;
+
+    objDataset = objGrid.getBindDataset() ; // 바인드 되어있는 데이터셋을 획득
+    if(objDataset == null) return ;
+
+	var s = objDataset.keystring;
+	
+	if(s != ""){
+		strMark = s.substr(2,1);
+		strTitle = s.substring(3);
+	}
+
+	if(this.targetCol != col){
+		this.targetCol = col;
+		strMark = "";
+	}
+    // 바인드 정보에서 해당 컬럼 ID를 취득한다.
+    var BodyColId = (objGrid.getCellProperty("body", col,"text")).toString().split(":");
+    for (var i = 0; i < objGrid.getCellCount("head"); i++) {
+        if(i==col){
+            if (strMark == "+") {
+                objGrid.setCellProperty( "head", i, "background", "url('imagerc::icon_sort_up.png') no-repeat 95% center");
+                objDataset.set_keystring("S:-"+BodyColId[1]);
+            } else if (strMark == "-") {
+                objGrid.setCellProperty( "head", i, "background", "url('imagerc::icon_sort_down.png') no-repeat 95% center");
+                objDataset.set_keystring("S:+"+BodyColId[1]);
+            } else {
+                objGrid.setCellProperty( "head", i, "background", "url('imagerc::icon_sort_down.png') no-repeat 95% center");
+                objDataset.set_keystring("S:+"+BodyColId[1]);
+            }
+        } else {
+            objGrid.setCellProperty( "head", i, "background", "url('imagerc::icon_sort_none.png') no-repeat 95% center");
+        }
+    }
+    objDataset.set_rowposition(-1);
+}
+
+////////////////////////////
+/**	
+* @desc 현재 시간 시 분 초로 가져오는 함수
+* @param none
+* @return string
+*/
+this.fn_getDate = function ()
+{
+	let today = new Date();   
+
+	let hours = today.getHours().toString().padLeft(2, '0'); // 시
+	let minutes = today.getMinutes().toString().padLeft(2, '0');  // 분
+	let seconds = today.getSeconds().toString().padLeft(2, '0');  // 초
+	let milliseconds = today.getMilliseconds().toString().padLeft(3, '0'); //밀리초
+	
+	//return hours+" 시 "+minutes+" 분 "+seconds+"."+milliseconds+" 초";
+	return hours+":"+minutes+":"+seconds+"."+milliseconds;
+};
+
+///////////////////////////
+/**	
+* @desc 소수점 반올림
+* @param ds {Object} - 대상 Dataset
+* @param col {String} - 대상 컬럼
+* @param fix {String} - 반올림 자리 수
+* @return none
+*/
+this.fn_grdToFixed = function (ds, col, fix)
+{
+	let nRow = ds.getRowCount();
+	let ntmp;
+	for(let i=0; i<nRow; ++i){
+		ntmp = parseFloat(ds.getColumn(i,col));
+		ds.setColumn(i,col,ntmp.toFixed(fix));
+	}
+};]]></Script>

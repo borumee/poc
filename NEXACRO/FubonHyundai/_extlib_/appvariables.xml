@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AppVariables version="2.0">
+  <Datasets>
+    <Dataset id="gds_subMenu">
+      <ColumnInfo>
+        <Column id="imgId" type="STRING" size="255"/>
+        <Column id="pgmUrlNm" type="STRING" size="255"/>
+        <Column id="mnuLvlCnt" type="FLOAT" size="255"/>
+        <Column id="pgmId" type="STRING" size="255"/>
+        <Column id="mnuNm" type="STRING" size="255"/>
+        <Column id="mnuId" type="STRING" size="255"/>
+        <Column id="sqlAction" type="STRING" size="255"/>
+        <Column id="sysCd" type="STRING" size="255"/>
+        <Column id="srtOdr" type="FLOAT" size="255"/>
+        <Column id="hnkMnuId" type="STRING" size="255"/>
+      </ColumnInfo>
+      <Rows>
+			</Rows>
+    </Dataset>
+    <Dataset id="gds_leftMenu">
+      <ColumnInfo>
+        <Column id="imgId" type="STRING" size="255"/>
+        <Column id="pgmUrlNm" type="STRING" size="255"/>
+        <Column id="mnuLvlCnt" type="FLOAT" size="255"/>
+        <Column id="pgmId" type="STRING" size="255"/>
+        <Column id="mnuNm" type="STRING" size="255"/>
+        <Column id="mnuId" type="STRING" size="255"/>
+        <Column id="sqlAction" type="STRING" size="255"/>
+        <Column id="sysCd" type="STRING" size="255"/>
+        <Column id="srtOdr" type="FLOAT" size="255"/>
+        <Column id="hnkMnuId" type="STRING" size="255"/>
+      </ColumnInfo>
+      <Rows>
+			</Rows>
+    </Dataset>
+    <Dataset id="gds_openForm">
+      <ColumnInfo>
+        <Column id="MENU_ID" type="STRING" size="256"/>
+        <Column id="MENU_NAME" type="STRING" size="256"/>
+        <Column id="FORM_ID" type="STRING" size="256"/>
+        <Column id="IMAGE_ID" type="STRING" size="256"/>
+        <Column id="LOCK_FLAG" type="STRING" size="256"/>
+      </ColumnInfo>
+      <Rows>
+			</Rows>
+    </Dataset>
+    <Dataset id="gds_menu">
+      <ColumnInfo>
+        <Column id="imgId" type="STRING" size="255"/>
+        <Column id="pgmUrlNm" type="STRING" size="255"/>
+        <Column id="mnuLvlCnt" type="FLOAT" size="255"/>
+        <Column id="pgmId" type="STRING" size="255"/>
+        <Column id="mnuNm" type="STRING" size="255"/>
+        <Column id="mnuId" type="STRING" size="255"/>
+        <Column id="sqlAction" type="STRING" size="255"/>
+        <Column id="sysCd" type="STRING" size="255"/>
+        <Column id="srtOdr" type="FLOAT" size="255"/>
+        <Column id="hnkMnuId" type="STRING" size="255"/>
+      </ColumnInfo>
+      <Rows>
+			</Rows>
+    </Dataset>
+    <Dataset id="gds_holiday">
+      <ColumnInfo>
+        <Column id="rdyDt" type="STRING" size="256"/>
+        <Column id="rdyNm" type="STRING" size="256"/>
+        <Column id="rdyClCd" type="STRING" size="256"/>
+      </ColumnInfo>
+      <Rows>
+			</Rows>
+    </Dataset>
+    <Dataset id="gds_msg">
+      <ColumnInfo>
+        <Column id="msgCd" type="STRING" size="256"/>
+        <Column id="msgCts" type="STRING" size="256"/>
+      </ColumnInfo>
+      <Rows>
+			</Rows>
+    </Dataset>
+    <Dataset id="gds_sysCd">
+      <ColumnInfo>
+        <Column id="sysCd" type="STRING" size="256"/>
+        <Column id="sysNm" type="STRING" size="256"/>
+        <Column id="baseUrl" type="STRING" size="256"/>
+      </ColumnInfo>
+      <Rows>
+			</Rows>
+    </Dataset>
+    <Dataset id="gds_userInfo">
+      <ColumnInfo>
+        <Column id="usrId" type="STRING" size="20"/>
+        <Column id="usrFnm" type="STRING" size="50"/>
+        <Column id="dptCd" type="STRING" size="12"/>
+        <Column id="usrTelno" type="STRING" size="20"/>
+        <Column id="usrEmlAdr" type="STRING" size="50"/>
+        <Column id="sysUsrClCd" type="STRING" size="1"/>
+        <Column id="usrPstCd" type="STRING" size="6"/>
+        <Column id="usrDptNm" type="STRING" size="100"/>
+        <Column id="pnsTrtInstCd" type="STRING" size="6"/>
+        <Column id="crgBgnDt" type="STRING" size="8"/>
+        <Column id="crgNdDt" type="STRING" size="8"/>
+        <Column id="scrtNoHntQstCts" type="STRING" size="500"/>
+        <Column id="pwdHntAnsCts" type="STRING" size="500"/>
+        <Column id="usrRegDtm" type="STRING" size="14"/>
+        <Column id="regEmpno" type="STRING" size="20"/>
+        <Column id="usrChnDtm" type="STRING" size="14"/>
+        <Column id="chnEmpno" type="STRING" size="20"/>
+        <Column id="delYn" type="STRING" size="1"/>
+        <Column id="alBofUsePmsYn" type="STRING" size="1"/>
+        <Column id="usrMbpno" type="STRING" size="20"/>
+        <Column id="hofStsCd" type="STRING" size="2"/>
+      </ColumnInfo>
+      <Rows>
+			</Rows>
+    </Dataset>
+    <Dataset id="gds_btnAth">
+      <ColumnInfo>
+        <Column id="mnuId" type="STRING" size="256"/>
+        <Column id="btnId" type="STRING" size="256"/>
+        <Column id="usrId" type="STRING" size="256"/>
+        <Column id="pgmId" type="STRING" size="256"/>
+      </ColumnInfo>
+      <Rows>
+			</Rows>
+    </Dataset>
+    <Dataset id="gds_myMenu">
+      <ColumnInfo>
+        <Column id="imgId" type="STRING" size="255"/>
+        <Column id="pgmUrlNm" type="STRING" size="255"/>
+        <Column id="mnuLvlCnt" type="FLOAT" size="255"/>
+        <Column id="pgmId" type="STRING" size="255"/>
+        <Column id="mnuNm" type="STRING" size="255"/>
+        <Column id="mnuId" type="STRING" size="255"/>
+        <Column id="sqlAction" type="STRING" size="255"/>
+        <Column id="sysCd" type="STRING" size="255"/>
+        <Column id="srtOdr" type="FLOAT" size="255"/>
+        <Column id="hnkMnuId" type="STRING" size="255"/>
+      </ColumnInfo>
+      <Rows>
+			</Rows>
+    </Dataset>
+  </Datasets>
+  <Variables>
+    <Variable id="g_maxForm" initval=""/>
+    <Variable id="g_usrId" initval=""/>
+    <Variable id="g_usrFnm" initval=""/>
+    <Variable id="g_dptCd" initval=""/>
+    <Variable id="SessionURL" initval=""/>
+    <Variable id="InitURL" initval=""/>
+  </Variables>
+</AppVariables>

@@ -1,0 +1,116 @@
+{
+    "menu": {
+      "M1100": "Customer Info",
+      "M1200": "LMS Guide",
+      "M3100": "File Up/Down",
+      "M3200": "Pivot Grid",
+      "M3300": "Quantum Grid",
+      "M3400": "Common Grid",
+      "M3500": "Web Widget",
+      "M3600": "X-PUSH",
+      "M3700": "Miplatform connect",
+      "M3800": "Prevent Copy&Paste",
+      "M3900": "Crypto",
+      "search": "Search",
+      "advantage": "Advantage",
+      "mymenu": "My Menu",
+      "noti": "Notice",
+      "push": "Push Message"
+    },
+
+    "comm": {
+        "search": "Search",
+        "clear": "Clear",
+        "fileImport": "File import",
+        "fileExport": "File export",
+        "add": "Add",
+        "del": "Delete",
+        "down": "DownLoad",
+        "init": "Init",
+        "save": "Save",
+        "widget": "Widget Menu",
+        "send": "Send",
+        "sender": "Sender",
+        "recipient": "Recipient",
+        "title": "Title"
+    },
+    
+    "file": {
+        "up": "File Upload",
+        "down": "File Downlaod"
+    },
+
+    "login": {
+        "id": "ID",
+        "pw": "PASSWORD",
+        "login": "LOGIN",
+        "addr": "Jaewon Lee, CEO of Fubon Hyundai Life Insurance Co., Ltd. | 57, Yeouinaru-ro, Yeongdeungpo-gu, Seoul"
+    },
+
+    "main": {
+        "joblist": "Today's Job List",
+        "contactlist": "Contract progress status",
+        "noti": "Notice",
+        "status": "First half status",
+        "performance": "Sales Performance",
+        "schedule": "Schedule Management"
+    },
+
+    "customer": {
+        "no": "Customer No",
+        "basic": "Customer Base",
+        "basic1": "Base Info 1",
+        "basic2": "Base Info 2",
+        "ssn": "Customer SSN : ",
+        "name_ko": "Name.KO : ",
+        "name_en": "Name.EN : ",
+        "locale": "Nationality : ",
+        "job": "Job : ",
+        "age": "Age : ",
+        "drive": "Drive : ",
+        "birthday": "Birthday : ",
+        "grape": "Consultation Pattern Graph",
+        "callcenter": "Consultation History",
+        "payments": "Payments"
+    },
+
+    "perform": {
+        "search": "Search Time : Server/Network <fc v='#fe5252'>0</fc> sec, UI Rendering <fc v='#fe5252'>0</fc> sec, <fc v='#fe5252'>0</fc> rows",
+        "import": "File import : Processing Time <fc v='#fe5252'>0</fc> sec, <fc v='#fe5252'>0</fc> rows",
+        "export": "File export : Processing Time <fc v='#fe5252'>0</fc> sec, <fc v='#fe5252'>0</fc> rows"
+    },
+
+    "consulting": {
+        "cust_no": "Customer No",
+        "cnsult_date": "Consulting Date",
+        "counselor": "Counselor",
+        "contract_no": "Contract No",
+        "account_no": "Account No",
+        "phone_in": "Phone In",
+        "cnsult_type": "Consulting Type",
+        "cnsult_detail": "Consulting Detail",
+        "pay_date": "Payment Date",
+        "pay_type": "Payment Type",
+        "recipient": "Recipient",
+        "amount": "Amount",
+        "pay_reason": "Payment Reason"
+    },
+
+    "mp": {
+        "screen": "MP Screen",
+        "senddata": "Send Data"
+    },
+
+    "LMS": {
+        "CUST_NO": "Customer No",
+        "PHONE_OUT": "Phone Outgoing",
+        "TITLE": "Title",
+        "CONTENTS": "Contents",
+        "PHONE_IN": "Recipient's\r\nphone number",
+        "G_CODE": "Guide Code",
+        "MANAGER_NAME": "Manager Name",
+        "G_DATE": "Guide Date",
+        "G_TIME": "Guide Time",
+        "G_CANNEL": "Guide\r\nChannel"
+    }
+}

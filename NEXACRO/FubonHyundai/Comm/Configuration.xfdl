@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Configuration" width="480" height="111" titletext="환경 설정" onload="Configuration_onload">
+    <Layouts>
+      <Layout height="111" width="480">
+        <Div id="Div00" taborder="0" left="0" top="0" right="0" cssclass="div_pop_topArea" text="" bottom="0">
+          <Layouts>
+            <Layout>
+              <Button id="btnClose" taborder="1" text="닫기(ESC)" top="60" width="100" height="40" right="20" cssclass="btn_WF_popBtn02" hotkey="ESCAPE" onclick="fnComBtnOnClick"/>
+              <Button id="btnSave" taborder="0" text="저장(F5)" top="60" width="100" right="btnClose:2" cssclass="btn_WF_popBtn01" hotkey="F5" onclick="fnComBtnOnClick" height="40"/>
+              <Div id="Div02" taborder="2" left="20" top="10" height="40" cssclass="div_WF_labelCon01" right="20">
+                <Layouts>
+                  <Layout>
+                    <Static id="Static00" taborder="0" text="테마변경 : " left="0" top="0" width="120" height="38" cssclass="sta_WF_label01"/>
+                    <Combo id="cboTheme" taborder="1" left="125" top="4" height="30" right="5" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" index="0" text="없음" value="" onitemchanged="Div00_Div02_Combo00_onitemchanged">
+                      <Dataset id="innerdataset">
+                        <ColumnInfo>
+                          <Column id="codecolumn" size="256"/>
+                          <Column id="datacolumn" size="256"/>
+                        </ColumnInfo>
+                        <Rows>
+                          <Row>
+                            <Col id="datacolumn">테마1</Col>
+                            <Col id="codecolumn">xcssrc::IBKbasic_theme.xcss</Col>
+                          </Row>
+                          <Row>
+                            <Col id="datacolumn">테마2</Col>
+                            <Col id="codecolumn">xcssrc::IBKbasic.xcss</Col>
+                          </Row>
+                        </Rows>
+                      </Dataset>
+                    </Combo>
+                  </Layout>
+                  <Layout name="Layout0">
+                    <Static id="Static00"/>
+                  </Layout>
+                  <Layout name="Layout2"/>
+                </Layouts>
+              </Div>
+            </Layout>
+            <Layout name="Layout0">
+              <Div id="Div01" left="20" top="20" width="48.02%" height="40"/>
+              <Div id="Div02" top="20" height="40" left="Div01_00_00:-1" right="20"/>
+              <Div id="Div03" left="20" top="59" width="48.02%" height="40"/>
+              <Div id="Div04" top="59" height="40" left="Div01_00_00_00_00:-1" right="20"/>
+              <Button id="btnClose" top="104" width="100" height="40" right="20"/>
+              <Button id="btnSave" top="104" width="100" height="40" right="Button02:2"/>
+              <Button id="Button00" top="104" width="100" height="40" right="Button01:2"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.objApp;
+this.appStyle; //테마 변경
+
+this.Configuration_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.objApp = nexacro.getApplication();
+	
+	if (this.objApp.Theme_Option)
+	this.Div00.form.Div02.form.cboTheme.set_value(this.objApp.Theme_Option);
+};
+
+this.fnComBtnOnClick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	switch (obj.name)
+	{
+		case "btnClose" :
+ 			//this.objApp.Theme_Option = this.Div00.form.Div02.form.cboTheme.value;
+			this.resetScroll();
+			this.close();
+			break;
+			
+		case "btnSave" :
+			this.objApp.Theme_Option = this.Div00.form.Div02.form.cboTheme.value;
+			
+			if (!this.gfn_isNull(this.appStyle)) nexacro.loadStyle(this.appStyle);
+			
+			alert("설정 변경이 되었습니다.");
+			this.close();
+			break;
+	}
+};
+
+this.Div00_Div02_Combo00_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	this.appStyle = obj.value;
+};]]></Script>
+  </Form>
+</FDL>

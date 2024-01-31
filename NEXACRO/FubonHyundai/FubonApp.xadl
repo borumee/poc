@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ADL version="2.0">
+  <Application id="Application" screenid="Desktop_screen" onload="Application_onload" onerror="Application_onerror" licenseurl="web::License/NexacroN_client_license.xml" version="1.0">
+    <Layout>
+      <MainFrame id="mainframe" showtitlebar="true" showstatusbar="false" width="1280" height="720" showcascadetitletext="false" titletext="푸본현대생명-넥사크로" openstatus="maximize" openalign="center middle">
+        <VFrameSet id="VFrameSet" showtitlebar="false" separatesize="*,0,0">
+          <Frames>
+            <ChildFrame id="MainFrame" showtitlebar="false" dragmovetype="none"/>
+            <ChildFrame id="WorkFrame" formurl="" showtitlebar="false" dragmovetype="none" enable="true"/>
+            <ChildFrame id="XPushFrame" formurl=""/>
+          </Frames>
+        </VFrameSet>
+      </MainFrame>
+    </Layout>
+    <Style url="xcssrc::Common-Module.xcss"/>
+    <Style url="xcssrc::NxPivot.xcss"/>
+    <Style url="xcssrc::IBKbasic.xcss"/>
+    <Style url="xcssrc::IBKbasic_theme.xcss"/>
+  </Application>
+  <Script type="xscript5.1"><![CDATA[/**
+ * @description Applicaton onload시 처리내역
+*/
+this.Application_onload = function(obj:nexacro.Application,e:nexacro.LoadEventInfo)
+{
+	// 기본테마 적용 (기본 - xcssrc::IBKbasic.xcss, 다크 - xcssrc::IBKbasic_theme.xcss)
+	this.themeCode = nexacro.getPrivateProfile("themeCode");
+	if (nexacro.isEmpty(this.themeCode)) {
+		this.themeCode = "xcssrc::IBKbasic.xcss"
+	}
+	nexacro.loadStyle(this.themeCode);
+	
+	// 다국어 처리
+	var langCode = nexacro.getPrivateProfile("langCode");
+	if (nexacro.isEmpty(langCode)) {
+		this.langCode = system.locale.indexOf("ko")>-1?"ko":"en";
+	} else {
+		this.langCode = langCode;
+	}
+	
+	// QuikView 여부 설정
+	nexacro.setEnvironmentVariable("evQuikView", "N");
+	
+	// 접속경로 확인 및 설정
+	var projectPath = nexacro.getProjectPath(),
+		nRunMode = 0,
+		titletext = "";
+	
+	trace("===== 접속경로 : " + projectPath);
+	
+	//로컬(파일) - 넥사크로스튜디오에서 실행.
+	if (projectPath.indexOf("file:") >= 0) {
+		titletext = "[Local(File)] " + obj.mainframe.titletext;
+	} else {
+		//로컬(웹)
+		if (projectPath.indexOf("localhost") > -1 || projectPath.indexOf("127.0.0.1") > -1 ) {
+			nRunMode = 1;
+			titletext = "[Local] " + obj.mainframe.titletext + "("+ projectPath +")";
+		} else {
+			nRunMode = 2;
+			titletext = obj.mainframe.titletext + "("+ projectPath +")";
+			
+			// gds_domain - dev 모드로 변경
+			for(var i=0; i<this.gds_domain.rowcount; i++) {
+				this.gds_domain.setColumn(i, 'mode', 'dev');
+			}
+		}
+	}
+	
+	nexacro.setEnvironmentVariable("evRunMode", nRunMode);
+	obj.mainframe.set_titletext(titletext);
+	
+	projectPath = projectPath.substring(0, projectPath.lastIndexOf("/"));
+	projectPath = projectPath.substring(0, projectPath.lastIndexOf("/")+1);
+	nexacro.getEnvironment().services["svcUrl"].set_url(projectPath);
+	
+	// 도메인 설정	
+	var app       = nexacro.getApplication();
+	var nRow      = app.gds_domain.findRow('group', "fubon");
+		
+	app.gds_domain.setColumn(nRow, "prod", projectPath);
+	app.gds_domain.setColumn(nRow, "qa", projectPath);
+	app.gds_domain.setColumn(nRow, "dev", projectPath);
+	app.gds_domain.setColumn(nRow, "local", projectPath);
+		
+	this.changeLanguage(this.langCode);	
+};
+
+/**
+ * @description ESC 통신중단 방지
+*/
+this.Application_onerror = function(obj:nexacro.Application,e:nexacro.ErrorEventInfo)
+{
+	// 사용자가 ESC키를 눌렀을 경우 ESC통신 중단 방지처리
+	if (e.errorcode === -2147418039) {
+		return true;
+	}
+};
+
+/**
+ * @description 다국어 처리
+*/
+this.changeLanguage = function(langCode)
+{
+	this.langCode = langCode;
+    var objEnv = nexacro.getEnvironment();
+	objEnv.set_locale(langCode=="ko"?"ko_KR":"en_US");
+	
+	var xhr = new XMLHttpRequest(),
+		pThis = this;
+    
+	xhr.open("GET", "./web/i18n/"+langCode+".json");
+    xhr.send();
+	
+    xhr.onreadystatechange = function() {
+		if(this.readyState == 1 || this.readyState == 2 || this.readyState == 3)
+		{
+			//  서버 처리중,,,
+		}
+		else if (this.readyState == 4) {
+			//서버로부터 응답이 도착
+			pThis.messages = JSON.parse(this.responseText);
+			
+			// 메뉴에 다국어 적용
+ 			pThis.setAllMenu();
+
+ 			var main = pThis.mainframe.VFrameSet.MainFrame;
+			main.set_formurl("");
+			main.set_formurl("FrameBase::Frame_Login.xfdl");		
+// 			// formurl 재등록
+// 			var work = pThis.mainframe.VFrameSet.WorkFrame;
+// 			if(main.formurl.indexOf("Login") == -1) {
+// 				main.set_formurl("");
+// 				main.set_formurl("FrameBase::Frame_Main.xfdl");		
+// 				work.set_formurl("");
+// 				work.set_formurl("FrameBase::Frame_All.xfdl");			
+// 			} else {			
+// 			}
+		}
+	};
+};
+
+this.setAllMenu = function(menuid){
+	this.gdsAllMenu.filter("");
+	this.gdsAllMenu.updateSortGroup("S:+grp+odr");
+
+	this.gdsMenu.clearData();
+
+	for (var i=0,len=this.gdsAllMenu.rowcount; i<len; i++) {
+		var r = this.gdsMenu.addRow();
+		var matchCol = ["LEVL=LEVL", "MENU_ID=MENU_ID", "HIPO_MENU_ID=HIPO_MENU_ID", "PRGM_ID=PRGM_ID", "MENU_NM=MENU_NM_"+this.langCode, "PRGM_FULL_PATH=PRGM_FULL_PATH", "HashTag=HashTag"];
+		this.gdsMenu.copyRow(r, this.gdsAllMenu, i, matchCol.join(','));
+	}
+	
+	this.gdsMenu.applyChange();	
+}
+]]></Script>
+</ADL>

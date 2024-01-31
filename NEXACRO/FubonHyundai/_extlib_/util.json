@@ -1,0 +1,14 @@
+{
+    "name": "util",
+    "version": "1.0",
+    "description": "Util for Nexacro Banking App",
+    "license": "",
+    "scripts": [
+        "util/Common.js",
+        "util/override.js",
+        "util/DataObject.js",
+        "util/Util.js",
+		"util/grid.js"
+    ],
+    "objInfo": []
+}

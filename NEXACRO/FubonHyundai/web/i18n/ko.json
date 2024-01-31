@@ -1,0 +1,118 @@
+{
+    "menu": {
+      "M1100": "고객정보 통합조회",
+      "M1200": "LMS 안내",
+      "M3100": "파일 업/다운로드",
+      "M3200": "넥사크로 피벗",
+      "M3300": "퀀텀 그리드",
+      "M3400": "다양한 그리드 기능",
+      "M3500": "웹 위젯",
+      "M3600": "X-PUSH",
+      "M3700": "Miplatform 연동",
+      "M3800": "복사 붙여넣기 방지",
+      "M3900": "암호화 전송",
+      "search": "메뉴검색",
+      "advantage": "특장점",
+      "mymenu": "나의 메뉴",
+      "noti": "공지사항",
+      "push": "푸시 메시지"
+    },
+
+    "comm": {
+        "search": "조회",
+        "clear": "초기화",
+        "fileImport": "파일import",
+        "fileExport": "파일export",
+        "add": "추가",
+        "del": "삭제",
+        "down": "다운로드",
+        "init": "초기화",
+        "save": "저장",
+        "widget": "위젯 메뉴",
+        "send": "전송",
+        "sender": "보내는사람",
+        "recipient": "받는사람",
+        "title": "제목"
+    },
+    
+    "file": {
+        "up": "파일 업로드",
+        "down": "파일 다운로드"
+    },
+
+
+    "login": {
+
+        "id": "아이디",
+        "pw": "비밀번호",
+        "login": "로그인",
+        "addr": "푸본현대생명(주)  대표이사 이재원 | 서울특별시 영등포구 여의나루로 57"
+    },
+
+    "main": {
+        "joblist": "오늘의 업무",
+        "contactlist": "계약 진행 현황",
+        "noti": "공지사항",
+        "status": "상반기 현황",
+        "performance": "영업실적",
+        "schedule": "일정관리"
+    },
+
+    "customer": {
+        "no": "고객번호 ",
+        "basic": "고객기본",
+        "basic1": "고객기본정보1",
+        "basic2": "고객기본정보2",
+        "ssn": "고객주민번호 : ",
+        "name_ko": "고객한글성명 : ",
+        "name_en": "고객영문성명 : ",
+        "locale": "고객국적 : ",
+        "job": "고객직업 : ",
+        "age": "고객연령 : ",
+        "drive": "운전여부 : ",
+        "birthday": "생년월일 : ",
+        "grape": "고객상담 패턴 그래프",
+        "callcenter": "콜센터상담이력",
+        "payments": "지급이력"
+    },
+
+    "perform": {
+        "search": "조회시간 : 서버/네트워크시간 <fc v='#fe5252'>0</fc> 초, 렌더링시간 <fc v='#fe5252'>0</fc> 초, <fc v='#fe5252'>0</fc> 건",
+        "import": "파일import : 처리시간 <fc v='#fe5252'>0</fc> 초, 처리건수 <fc v='#fe5252'>0</fc>",
+        "export": "파일export : 처리시간 <fc v='#fe5252'>0</fc> 초, 처리건수 <fc v='#fe5252'>0</fc>"
+    },
+
+    "consulting": {
+        "cust_no": "고객번호",
+        "cnsult_date": "상담일시",
+        "counselor": "상담사",
+        "contract_no": "계약번호",
+        "account_no": "지급계좌",
+        "phone_in": "인입\r\n전화번호",
+        "cnsult_type": "상담유형",
+        "cnsult_detail": "상담상세내용",
+        "pay_date": "지급일자",
+        "pay_type": "지급방법",
+        "recipient": "수령인",
+        "amount": "금액",
+        "pay_reason": "지급사유"
+    },
+
+    "mp": {
+        "screen": "MP 화면",
+        "senddata": "데이터 전달"
+    },
+
+    "LMS": {
+        "CUST_NO": "고객번호",
+        "PHONE_OUT": "발신\r\n전화번호",
+        "TITLE": "제목",
+        "CONTENTS": "메시지내용",
+        "PHONE_IN": "수신인\r\n휴대전화번호",
+        "G_CODE": "안내코드",
+        "MANAGER_NAME": "설계사명",
+        "G_DATE": "안내일자",
+        "G_TIME": "안내시간",
+        "G_CANNEL": "안내채널"
+    }
+}

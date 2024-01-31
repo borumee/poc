@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Frame_Login" width="480" height="720" titletext="로그인 화면">
+    <Layouts>
+      <Layout height="720" width="480">
+        <Div id="Div01" taborder="2" left="0" top="0" right="0" bottom="0" minwidth="480" maxwidth="" minheight="720" maxheight="">
+          <Layouts>
+            <Layout>
+              <Static id="Static01" taborder="1" left="0" bottom="0" top="0" right="0" cssclass="sta_WF_loginBg"/>
+              <Static id="Static00" taborder="1" text="푸본현대생명(주)&#13;&#10;서울특별시 영등포구 여의나루로 57" left="0" height="30" cssclass="sta_LOGIN_Footer" right="0" bottom="30" visible="false"/>
+            </Layout>
+            <Layout name="Layout0">
+              <Static id="Static01" left="0" bottom="0" top="0" right="0"/>
+              <Static id="Static00" bottom="15" left="0" height="30" right="0" text="푸본현대생명(주)  대표이사 이재원 | 서울특별시 영등포구 여의나루로 57" visible="true"/>
+            </Layout>
+            <Layout name="Layout1">
+              <Static id="Static01" left="0" top="0" right="0" bottom="0"/>
+              <Static id="Static00" bottom="30" left="0" height="30" right="0" text="푸본현대생명(주)  대표이사 이재원 | 서울특별시 영등포구 여의나루로 57" visible="true"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div00" taborder="0" left="20" top="100" right="20" bottom="100" maxheight="" maxwidth="" text="" cssclass="div_LOGIN_Box">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="1" left="0" top="30" height="150" right="0" cssclass="sta_WF_loginTitle" text=""/>
+              <Edit id="Edit01" taborder="2" top="270" height="55" displaynulltext="비밀번호" left="18.18%" right="18.18%" cssclass="edit_WF_loginPW" password="true"/>
+              <Button id="Button00" taborder="0" text="로그인" top="345" height="55" left="18.18%" right="18.18%" onclick="Div00_Button00_onclick" cssclass="btn_WF_loginBtn"/>
+              <Combo id="Combo00" taborder="3" left="18.18%" top="205" height="55" innerdataset="gds_empInfo" codecolumn="EMP_NO" datacolumn="EMP_NM" displaynulltext="아이디" onitemchanged="Div00_Combo00_onitemchanged" cssclass="cmb_WF_loginID" itemheight="55" right="18.18%"/>
+            </Layout>
+            <Layout name="Layout0">
+              <Static id="Static00" left="0" top="40" height="200" right="0"/>
+              <Edit id="Edit01" left="100" top="360" height="55" right="100" minwidth="200"/>
+              <Button id="Button00" left="100" top="435" height="55" right="100" minwidth="200"/>
+              <Combo id="Combo00" left="100" top="295" height="55" right="100" minwidth="200"/>
+            </Layout>
+            <Layout name="Layout1">
+              <Edit id="Edit01" left="17.24%" top="285" height="55" right="17.24%"/>
+              <Button id="Button00" left="17.24%" top="390" height="55" right="17.24%"/>
+              <Combo id="Combo00" left="17.24%" top="220" height="55" right="17.24%"/>
+              <Static id="Static00" left="0" top="40" height="150" right="0"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+      <Layout name="Layout0" width="960" height="720">
+        <Div id="Div00" top="100" left="20%" right="20%" bottom="8.33%" minwidth=""/>
+        <Div id="Div01" minwidth="960" maxwidth=""/>
+      </Layout>
+      <Layout name="Layout1" width="1280" height="960">
+        <Div id="Div00" left="27.34%" top="150" right="27.34%" height="660"/>
+        <Div id="Div01" minwidth="1280" maxwidth=""/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.Div00_Combo00_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	this.Div00.form.Edit01.set_value("1111");
+	this.Div00.form.Button00.setFocus();
+};
+
+this.Div00_Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var app = nexacro.getApplication(),
+		row = this.Div00.form.Combo00.index;
+	
+	if (row<0) {
+		alert("ID를 입력하세요")
+		return;
+	}
+	
+	// 글로벌 영역에 세팅
+	nexacro.getApplication().empInfo = {
+		 "OFFICE_NO": app.gds_empInfo.getColumn(row, "OFFICE_NO"),	// 조직 코드
+		 "EMP_NO": app.gds_empInfo.getColumn(row, "EMP_NO"),		// 사원 코드
+		 "EMP_NM": app.gds_empInfo.getColumn(row, "EMP_NM")			// 사원 이름
+	};	
+	
+	nexacro.getApplication().mainframe.VFrameSet.set_separatesize("*, 0, 0");
+	nexacro.getApplication().mainframe.VFrameSet.MainFrame.set_formurl("FrameBase::Frame_Main.xfdl");
+	nexacro.getApplication().mainframe.VFrameSet.WorkFrame.set_formurl("FrameBase::Frame_All.xfdl");
+};]]></Script>
+    <Objects/>
+  </Form>
+</FDL>

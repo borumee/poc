@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+    <params>
+        <param id="DEVICE" type="string">Win32</param>
+        <param id="SOURCE" type="string">etc_files</param>
+        <param id="TARGET" type="string">%component%</param>
+        <param id="FILENAME" type="string"></param>
+        <param id="VERSION" type="string">2013,1,28,1</param>
+        <param id="ACTION" type="string">DOWN</param>
+        <param id="STATUS" type="string">0</param>
+    </params>
+    <dataset id="output">
+        <colinfo id='DEVICE' type="string" size='255'/>
+        <colinfo id='ACTION' type="string" size='255'/>
+        <colinfo id='ARGUMENT' type="string" size='255'/>
+        <colinfo id='SOURCE' type="string" size='255'/>
+        <colinfo id='TARGET' type="string" size='255'/>
+        <colinfo id='FILENAME' type="string" size='255'/>
+        <colinfo id='PATCHFILENAME' type="string" size='255'/>
+        <colinfo id='OLDVERSION' type="string" size='255'/>
+        <colinfo id='VERSION' type="string" size='255'/>
+        <colinfo id='STATUS' type="string" size='2'/>
+        <colinfo id="UACFIX" type="string" size='255'/>
+        <record><FILENAME>ExtCommonApiU.dll</FILENAME><VERSION>system::2013,2,27,0</VERSION></record>
+        <record><TARGET>%APPDATA%</TARGET><FILENAME>icon_next_M_1.ico</FILENAME><VERSION>1000</VERSION></record>
+        <record><FILENAME>icon_next.ico</FILENAME><VERSION>1000</VERSION></record>
+        <record><FILENAME>next_start.gif</FILENAME><VERSION>1000</VERSION></record>
+        <record><FILENAME>next_upd.gif</FILENAME><VERSION>1000</VERSION></record>
+        <record><FILENAME>resource.xml</FILENAME><VERSION>1000</VERSION></record>
+    </dataset>
+</root>

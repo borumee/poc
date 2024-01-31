@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<message_layout>
+	<message type="MSG"> 
+		<field id="TOPIC_ID" type="string" size="9"/> 
+		<field id="title" type="STRING" size="32"/>
+		<field id="content" type="STRING" size="2048"/>
+		<field id="sender" type="STRING" size="32"/>
+		<field id="reg_time" type="STRING" size="32"/>
+	</message> 
+</message_layout>

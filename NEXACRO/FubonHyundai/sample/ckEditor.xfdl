@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="ckEditor" width="1280" height="720" titletext="웹 에디터" onload="ckEditor_onload">
+    <Layouts>
+      <Layout height="720" width="1280">
+        <WebBrowser id="WebBrowser00" taborder="0" left="100" top="100" onloadcompleted="WebBrowser00_onloadcompleted" width="540" height="520"/>
+        <TextArea id="TextArea00" taborder="1" left="675" top="100" width="530" height="520"/>
+        <Button id="btnGetData" taborder="2" text="getData" left="680" top="31" width="120" height="50" onclick="btnGetData_onclick"/>
+        <Button id="btnSetData" taborder="3" text="setData" left="820" top="30" width="120" height="50" onclick="btnSetData_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+ * Script Template
+ * @MenuPath    ?? > ??
+ * @FileName 	?.xfdl 
+ * @Creator 	tobesoft
+ * @CreateDate 	2022.??.??
+ * @Desction    
+ ************** 소스 수정 이력 ***********************************************
+ *  date          		Modifier                Description
+ *******************************************************************************
+ *  2022.??.??			tobesoft				최초 생성 
+ *******************************************************************************
+ */
+ 
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+//this.CKEditorUrl = nexacro.getEnvironment().services["svc"].url + "ckeditor/editor.html";
+this.CKEditorUrl = nexacro.getEnvironment().services["svcUrl"].url + "ckeditor4/editor.html";
+
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+this.ckEditor_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.application = nexacro.getApplication();
+
+	// CKEditor 호출
+	this.WebBrowser00.set_url(this.CKEditorUrl);
+	this.WebBrowser00.show();
+	
+};
+
+/************************************************************************************************
+ * 공통버튼 Event 영역
+ ************************************************************************************************/
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+this.WebBrowser00_onloadcompleted = function(obj:nexacro.WebBrowser,e:nexacro.WebLoadCompEventInfo)
+{
+	this._win = this.WebBrowser00.getProperty('window');	
+};
+
+this.btnSetData_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this._win.callMethod("setData", this.TextArea00.value);	
+};
+
+this.btnGetData_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.TextArea00.set_value(this._win.callMethod("getData"));
+};
+
+/************************************************************************************************
+ * Transaction 영역(Transaction, Popup, Common)
+ ************************************************************************************************/
+/************************************************************************************************
+ * CallBack 영역(Transaction, Popup, Common)
+ ************************************************************************************************/
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+
+]]></Script>
+  </Form>
+</FDL>
