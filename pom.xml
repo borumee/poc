@@ -25,7 +25,7 @@
 		<!-- NEXACROPLATFORM UIADAPTER REPOSITORY -->
 		<repository>
 			<id>tobesoft</id>
-			<url>http://mangosteen.tobesoft.co.kr/nexus/repository/maven-public</url>
+			<url>https://mangosteen.tobesoft.co.kr/nexus/repository/maven-public</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
